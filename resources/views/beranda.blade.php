@@ -405,6 +405,14 @@
 								</div>
 							</div>
 						</a>
+												<a href="{{ url("/certification-test") }}">
+							<div class="boxr-8 pd-10 m_pd-8 d-flex !m_show !m_center-text-align gap-10 ctgoo hover:bg-info-1 boxs-d">
+								<img src="{{ asset("images/lp.webp") }}" alt="Certification Test Englishvit">
+								<div class="text-left !m_center-text">
+									<p class="f-body1 m_f-body2 fc-black-8 fw-bold mb-0">Certification Test</p>
+									<p class="f-body2 fc-black-6 mb-0">Test sertifikasi kemampuan dengan standar yang diakui.</p>
+								</div>
+							</div>
 						</a>
 												<a href="{{ url("/learning-package") }}">
 							<div class="boxr-8 pd-10 m_pd-8 d-flex !m_show !m_center-text-align gap-10 ctgoo hover:bg-info-1 boxs-d">
