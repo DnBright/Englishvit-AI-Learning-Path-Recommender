@@ -587,6 +587,11 @@
                                 <div class="ai-strength-bar-bg">
                                     <div id="aiStrengthFill" class="ai-strength-bar-fill"></div>
                                 </div>
+                                <!-- Budget Alignment Badge (NEW) -->
+                                <div class="m-t-10 d-flex-center-btw">
+                                    <span class="f-10 fc-black-4 text-uppercase fw-bold">Budget Context:</span>
+                                    <span id="aiBudgetAlignment" class="badge bg-info-1 fc-info-7 f-10">Matching Initial Plan</span>
+                                </div>
                             </div>
 
                             <h5 class="fw-bold mb-4">Selected Modules (Ketengan)</h5>

@@ -129,6 +129,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         updateTotalPrice();
         updateMentorAdvice();
+        updatePathStrength();
     }
 
     window.addToCart = function (id) {
@@ -145,6 +146,37 @@ document.addEventListener('DOMContentLoaded', function () {
     function updateTotalPrice() {
         const total = userCart.reduce((sum, item) => sum + item.price, 0);
         totalPriceDisplay.textContent = `Rp ${total.toLocaleString('id-ID')}`;
+    }
+
+    function updatePathStrength() {
+        const strengthFill = document.getElementById('aiStrengthFill');
+        const strengthPercent = document.getElementById('aiStrengthPercent');
+        const ieltsGoal = parseFloat(ieltsSlider.value);
+
+        // Base strength
+        let strength = 20;
+
+        // Variety points (Category depth)
+        const categories = new Set(userCart.map(item => item.category));
+        strength += categories.size * 15;
+
+        // Investment points
+        const total = userCart.reduce((sum, item) => sum + item.price, 0);
+        if (total > 150000) strength += 20;
+        else if (total > 80000) strength += 10;
+
+        // Cap at 100
+        strength = Math.min(100, strength);
+
+        // Update UI
+        strengthFill.style.width = `${strength}%`;
+        strengthPercent.textContent = `${strength}%`;
+
+        // Pulse effect
+        const container = document.getElementById('aiStrengthContainer');
+        container.classList.remove('pulse');
+        void container.offsetWidth; // Trigger reflow
+        container.classList.add('pulse');
     }
 
     function updateMentorAdvice() {
