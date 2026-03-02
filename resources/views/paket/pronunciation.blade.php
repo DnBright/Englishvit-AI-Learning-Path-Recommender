@@ -472,6 +472,27 @@
                     </div>
                 </div>
 
+                <div class="ai-form-group text-left">
+                    <label class="ai-label">Budget Range:</label>
+                    <div class="ai-select-grid">
+                        <div class="ai-select-box" data-group="budget">
+                            <span class="icon">🥉</span>
+                            <div class="f-body2 fw-600">Hemat</div>
+                            <div class="f-10 fc-black-5">&lt; Rp 200rb</div>
+                        </div>
+                        <div class="ai-select-box active" data-group="budget">
+                            <span class="icon">🥈</span>
+                            <div class="f-body2 fw-600">Standar</div>
+                            <div class="f-10 fc-black-5">Rp 200rb - 1jt</div>
+                        </div>
+                        <div class="ai-select-box" data-group="budget">
+                            <span class="icon">🥇</span>
+                            <div class="f-body2 fw-600">Intensif</div>
+                            <div class="f-10 fc-black-5">&gt; Rp 1jt</div>
+                        </div>
+                    </div>
+                </div>
+
                 <button id="generatePathBtn" class="ai-btn-generate hover:opacity-90 mt-4">Next <i class="material-icons f-inherit">chevron_right</i></button>
                 <div class="mt-3">
                     <a href="#!" class="f-14 fc-black-4 hover:fc-black-7" onclick="resetAIForm()">Skip for Now</a>
