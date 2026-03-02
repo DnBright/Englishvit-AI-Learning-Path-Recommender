@@ -383,63 +383,99 @@
             <div id="aiOnboardingForm" class="ai-card mx-w-600 center-align">
                 <span class="ai-header-badge">Englishvit AI Recommender</span>
                 <h3 class="fw-bold mb-2">Pilih Cara Belajar Mu Sendiri 🚀</h3>
-                <p class="ai-text-muted mb-4">Dapatkan rekomendasi program terbaik berdasarkan profil dan tujuan belajarmu.</p>
+                <p class="ai-text-muted mb-4">Build Your Personal Learning Path 🚀🌟</p>
 
-                <div class="ai-step-indicator">
+                <div class="ai-step-indicator mb-1">
                     <div class="ai-step-dot active"></div>
                     <div class="ai-step-dot"></div>
                     <div class="ai-step-dot"></div>
                 </div>
+                <p class="f-12 fc-black-4 mb-4">Step 1 of 3: Goals & Needs</p>
 
-                <div class="ai-form-group">
-                    <label class="ai-label">Level Bahasa Inggris Saat Ini:</label>
+                <div class="ai-form-group text-left">
+                    <label class="ai-label">Select Your Current English Level:</label>
                     <div class="ai-select-grid">
                         <div class="ai-select-box active" data-group="level">
                             <span class="icon">🌱</span>
                             <div class="f-body2 fw-600">Beginner</div>
+                            <div class="f-10 fc-black-5">A1/A2</div>
                         </div>
                         <div class="ai-select-box" data-group="level">
                             <span class="icon">🌿</span>
                             <div class="f-body2 fw-600">Intermediate</div>
+                            <div class="f-10 fc-black-5">B1/B2</div>
                         </div>
                         <div class="ai-select-box" data-group="level">
-                            <span class="icon">🌳</span>
+                            <span class="icon">🌲</span>
                             <div class="f-body2 fw-600">Advanced</div>
+                            <div class="f-10 fc-black-5">C1/C2</div>
                         </div>
                     </div>
                 </div>
 
-                <div class="ai-form-group">
-                    <label class="ai-label">Apa Kelemahan Utama Anda? (Bisa pilih lebih dari satu)</label>
+                <div class="ai-form-group text-left">
+                    <div class="d-flex-center-btw mb-2">
+                        <label class="ai-label mb-0">Target IELTS Score:</label>
+                        <span class="badge bg-warning-1 fc-warning-7 fw-600" id="ieltsScoreValue">Goal Score: 7.0</span>
+                    </div>
+                    <div class="ai-slider-container">
+                        <input type="range" min="3.0" max="9.0" step="0.5" value="7.0" class="ai-slider" id="ieltsSlider">
+                        <div class="d-flex-center-btw mt-2 f-12 fc-black-4">
+                            <span>3.0</span>
+                            <span>7.0</span>
+                            <span>9.0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ai-form-group text-left">
+                    <label class="ai-label">Your Timeframe to Achieve This:</label>
+                    <div class="ai-time-grid">
+                        <div class="ai-time-box" data-group="time">
+                            <div class="icon-sm">🕒</div>
+                            <div class="f-12 fw-600">1 Month</div>
+                        </div>
+                        <div class="ai-time-box" data-group="time">
+                            <div class="icon-sm">🕒</div>
+                            <div class="f-12 fw-600">3 Months</div>
+                        </div>
+                        <div class="ai-time-box active" data-group="time">
+                            <div class="icon-sm">🕒</div>
+                            <div class="f-12 fw-600">6 Months</div>
+                        </div>
+                        <div class="ai-time-box" data-group="time">
+                            <div class="icon-sm">🕒</div>
+                            <div class="f-12 fw-600">1 Year</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ai-form-group text-left">
+                    <label class="ai-label">Select Your Primary Weaknesses:</label>
                     <div class="ai-select-grid">
                         <div class="ai-select-box" data-group="weakness" data-multi="true">
-                            <span class="icon">🗣️</span>
-                            <div class="f-body2 fw-600">Speaking</div>
+                            <span class="icon-sm">🎤</span>
+                            <div class="f-12 fw-600">Speaking</div>
                         </div>
                         <div class="ai-select-box" data-group="weakness" data-multi="true">
-                            <span class="icon">✍️</span>
-                            <div class="f-body2 fw-600">Writing</div>
+                            <span class="icon-sm">📝</span>
+                            <div class="f-12 fw-600">Writing</div>
                         </div>
                         <div class="ai-select-box" data-group="weakness" data-multi="true">
-                            <span class="icon">👂</span>
-                            <div class="f-body2 fw-600">Listening</div>
+                            <span class="icon-sm">🎧</span>
+                            <div class="f-12 fw-600">Listening</div>
                         </div>
                         <div class="ai-select-box" data-group="weakness" data-multi="true">
-                            <span class="icon">📖</span>
-                            <div class="f-body2 fw-600">Reading</div>
-                        </div>
-                        <div class="ai-select-box" data-group="weakness" data-multi="true">
-                            <span class="icon">🔤</span>
-                            <div class="f-body2 fw-600">Grammar</div>
-                        </div>
-                        <div class="ai-select-box" data-group="weakness" data-multi="true">
-                            <span class="icon">✨</span>
-                            <div class="f-body2 fw-600">Confidence</div>
+                            <span class="icon-sm">📚</span>
+                            <div class="f-12 fw-600">Grammar</div>
                         </div>
                     </div>
                 </div>
 
-                <button id="generatePathBtn" class="ai-btn-generate hover:opacity-90">Generate My Plan 🪄</button>
+                <button id="generatePathBtn" class="ai-btn-generate hover:opacity-90 mt-4">Next <i class="material-icons f-inherit">chevron_right</i></button>
+                <div class="mt-3">
+                    <a href="#!" class="f-14 fc-black-4 hover:fc-black-7" onclick="resetAIForm()">Skip for Now</a>
+                </div>
             </div>
 
             <!-- 2. Processing Screen (Hidden by JS) -->

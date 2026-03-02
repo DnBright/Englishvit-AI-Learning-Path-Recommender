@@ -647,6 +647,171 @@
 		</div>
 	</div>
          <style type="text/css" media="screen"> footer{padding-top: 80px; background: var(--info-9); color: #fff;}footer a:hover{color: #FCAE1B;}footer a, footer h3{color: #fff;}footer p{font-size: 14px;}footer li ul{list-style: none;}</style>
+    <!-- AI Learning Path Recommender Section -->
+    <section class="ai-recommender-section" id="ai-recommender">
+        <div class="container">
+            <!-- 1. Onboarding Screen -->
+            <div id="aiOnboardingForm" class="ai-card mx-w-600 center-align">
+                <span class="ai-header-badge">Englishvit AI Recommender</span>
+                <h3 class="fw-bold mb-2">Pilih Cara Belajar Mu Sendiri 🚀</h3>
+                <p class="ai-text-muted mb-4">Build Your Personal Learning Path 🚀🌟</p>
+
+                <div class="ai-step-indicator mb-1">
+                    <div class="ai-step-dot active"></div>
+                    <div class="ai-step-dot"></div>
+                    <div class="ai-step-dot"></div>
+                </div>
+                <p class="f-12 fc-black-4 mb-4">Step 1 of 3: Goals & Needs</p>
+
+                <div class="ai-form-group text-left">
+                    <label class="ai-label">Select Your Current English Level:</label>
+                    <div class="ai-select-grid">
+                        <div class="ai-select-box active" data-group="level">
+                            <span class="icon">🌱</span>
+                            <div class="f-body2 fw-600">Beginner</div>
+                            <div class="f-10 fc-black-5">A1/A2</div>
+                        </div>
+                        <div class="ai-select-box" data-group="level">
+                            <span class="icon">🌿</span>
+                            <div class="f-body2 fw-600">Intermediate</div>
+                            <div class="f-10 fc-black-5">B1/B2</div>
+                        </div>
+                        <div class="ai-select-box" data-group="level">
+                            <span class="icon">🌲</span>
+                            <div class="f-body2 fw-600">Advanced</div>
+                            <div class="f-10 fc-black-5">C1/C2</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ai-form-group text-left">
+                    <div class="d-flex-center-btw mb-2">
+                        <label class="ai-label mb-0">Target IELTS Score:</label>
+                        <span class="badge bg-warning-1 fc-warning-7 fw-600" id="ieltsScoreValue">Goal Score: 7.0</span>
+                    </div>
+                    <div class="ai-slider-container">
+                        <input type="range" min="3.0" max="9.0" step="0.5" value="7.0" class="ai-slider" id="ieltsSlider">
+                        <div class="d-flex-center-btw mt-2 f-12 fc-black-4">
+                            <span>3.0</span>
+                            <span>7.0</span>
+                            <span>9.0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ai-form-group text-left">
+                    <label class="ai-label">Your Timeframe to Achieve This:</label>
+                    <div class="ai-time-grid">
+                        <div class="ai-time-box" data-group="time">
+                            <div class="icon-sm">🕒</div>
+                            <div class="f-12 fw-600">1 Month</div>
+                        </div>
+                        <div class="ai-time-box" data-group="time">
+                            <div class="icon-sm">🕒</div>
+                            <div class="f-12 fw-600">3 Months</div>
+                        </div>
+                        <div class="ai-time-box active" data-group="time">
+                            <div class="icon-sm">🕒</div>
+                            <div class="f-12 fw-600">6 Months</div>
+                        </div>
+                        <div class="ai-time-box" data-group="time">
+                            <div class="icon-sm">🕒</div>
+                            <div class="f-12 fw-600">1 Year</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ai-form-group text-left">
+                    <label class="ai-label">Select Your Primary Weaknesses:</label>
+                    <div class="ai-select-grid">
+                        <div class="ai-select-box" data-group="weakness" data-multi="true">
+                            <span class="icon-sm">🎤</span>
+                            <div class="f-12 fw-600">Speaking</div>
+                        </div>
+                        <div class="ai-select-box" data-group="weakness" data-multi="true">
+                            <span class="icon-sm">📝</span>
+                            <div class="f-12 fw-600">Writing</div>
+                        </div>
+                        <div class="ai-select-box" data-group="weakness" data-multi="true">
+                            <span class="icon-sm">🎧</span>
+                            <div class="f-12 fw-600">Listening</div>
+                        </div>
+                        <div class="ai-select-box" data-group="weakness" data-multi="true">
+                            <span class="icon-sm">📚</span>
+                            <div class="f-12 fw-600">Grammar</div>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="generatePathBtn" class="ai-btn-generate hover:opacity-90 mt-4">Next <i class="material-icons f-inherit">chevron_right</i></button>
+                <div class="mt-3">
+                    <a href="#!" class="f-14 fc-black-4 hover:fc-black-7" onclick="resetAIForm()">Skip for Now</a>
+                </div>
+            </div>
+
+            <!-- 2. Processing Screen (Hidden by JS) -->
+            <div id="aiProcessingOverlay" class="ai-processing-overlay">
+                <div class="ai-loader mb-4"></div>
+                <h4 class="fw-bold">Analyzing your profile and goals...</h4>
+                <p class="ai-text-muted">Personalized plans increase success rate by 73%</p>
+            </div>
+
+            <!-- 3. Result Section (Hidden initially) -->
+            <div id="aiResultSection" class="d-none">
+                <div class="ai-result-header">
+                    <h2 class="fw-bold">🎯 Your Recommended Path</h2>
+                    <p class="f-h6 fc-info-7">Achieve Your Goal: Predicted Score Band 7.5</p>
+                    <div class="d-flex-center justify-center gap-20 m-t-20">
+                        <div class="center-text"><div class="fw-bold">Duration</div><div class="fc-black-6">3 Months</div></div>
+                        <div class="center-text"><div class="fw-bold">Intensity</div><div class="fc-black-6">High</div></div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-8 offset-md-2">
+                        <div class="ai-roadmap">
+                            <div class="ai-roadmap-item">
+                                <div class="ai-roadmap-dot"></div>
+                                <div class="ai-card p-4">
+                                    <div class="d-flex-center-btw mb-2">
+                                        <h5 class="fw-bold mb-0">Month 1: Fundamentals</h5>
+                                        <span class="badge bg-info-1 fc-info-7">IELTS AI Practice</span>
+                                    </div>
+                                    <p class="f-body2 mb-0">Focus on Speaking & Grammar using our Smart Book.</p>
+                                </div>
+                            </div>
+                            <div class="ai-roadmap-item">
+                                <div class="ai-roadmap-dot"></div>
+                                <div class="ai-card p-4">
+                                    <div class="d-flex-center-btw mb-2">
+                                        <h5 class="fw-bold mb-0">Month 2: Intensive</h5>
+                                        <span class="badge bg-purple-1 fc-purple-7">Live Class</span>
+                                    </div>
+                                    <p class="f-body2 mb-0">20 interactive sessions to boost Writing skills.</p>
+                                </div>
+                            </div>
+                            <div class="ai-roadmap-item">
+                                <div class="ai-roadmap-dot"></div>
+                                <div class="ai-card p-4">
+                                    <div class="d-flex-center-btw mb-2">
+                                        <h5 class="fw-bold mb-0">Month 3: Mastery</h5>
+                                        <span class="badge bg-warning-1 fc-warning-7">One on One</span>
+                                    </div>
+                                    <p class="f-body2 mb-0">Personal coaching to finalize your confidence.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex gap-15 justify-center m-t-40">
+                            <button class="btn bg-info-7 pd-lr-30">Start This Plan</button>
+                            <button class="btn bg-white fc-info-7" style="border:1px solid var(--info-7)" onclick="resetAIForm()">Customize Plan</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
 <footer id="footer">
 	<div class="container footer-inside pd-b-20 lg_pd-s-0">
         <div class="row">
