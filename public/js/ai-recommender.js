@@ -177,6 +177,42 @@ document.addEventListener('DOMContentLoaded', function () {
         container.classList.remove('pulse');
         void container.offsetWidth; // Trigger reflow
         container.classList.add('pulse');
+
+        updateBudgetAlignment(total);
+    }
+
+    function updateBudgetAlignment(total) {
+        const budgetBadge = document.getElementById('aiBudgetAlignment');
+        const budgetPreference = document.querySelector('.ai-select-box[data-group="budget"].active')?.querySelector('.f-body2').textContent.trim() || 'Standar';
+
+        let status = "Strategic Choice";
+        let badgeClass = "bg-info-1 fc-info-7";
+
+        if (budgetPreference === 'Hemat') {
+            if (total > 100000) {
+                status = "Above Budget (Investment)";
+                badgeClass = "bg-warning-1 fc-warning-7";
+            } else {
+                status = "Excellent Value";
+                badgeClass = "bg-success-1 fc-success-7";
+            }
+        } else if (budgetPreference === 'Intensif') {
+            if (total < 250000) {
+                status = "Budget Left (Add more?)";
+                badgeClass = "bg-purple-1 fc-purple-7";
+            } else {
+                status = "Professional Choice";
+                badgeClass = "bg-info-1 fc-info-7";
+            }
+        } else { // Standar
+            if (total > 200000) {
+                status = "Premium Selection";
+                badgeClass = "bg-purple-1 fc-purple-7";
+            }
+        }
+
+        budgetBadge.textContent = status;
+        budgetBadge.className = `badge ${badgeClass} f-10`;
     }
 
     function updateMentorAdvice() {
