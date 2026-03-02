@@ -15,7 +15,7 @@
 <meta name="theme-color" content="#002655">
 <meta name="csrf-token" content="Ad6YcFDKNdFtBc4PSMS8lHm8D51tYqH7fbERl1oY">
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=2.0, shrink-to-fit=no" name="viewport">
-<meta content="https://englishvit.com/program/category/1" itemprop="url">
+<meta content="{{ url("/live-class") }}" itemprop="url">
 <meta name="robots" content="index, follow"> <meta name="googlebot-news" content="index,follow"> <meta name="googlebot" content="index,follow"> <meta name="language" content="id"> <meta http-equiv="content-language" content="In-Id"> <meta name="geo.country" content="id"> <meta name="geo.placename" content="Indonesia">
 <meta name="description" content="Kursus bahasa Inggris bergaransi online dan offline. Tersedia kelas Speaking, Grammar dan TOEFL.">
 <meta name="news_keywords" content="englishvit, kursus bahasa inggris, kampung inggris online, kursus online, kursus bahasa inggris online, test toefl online, toefl murah, kursus jogja, kursus bahasa Inggris terpercaya">
@@ -24,7 +24,7 @@
 <meta property="og:locale" content="id_ID">
 <meta property="og:title" content=" Live Class | Englishvit.com">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://englishvit.com/program/category/1">
+<meta property="og:url" content="{{ url("/live-class") }}">
 <meta property="og:image" content="images/thumbnail_3.jpg">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="640"> 
@@ -34,14 +34,14 @@
 <meta property="og:description" content="Kursus bahasa Inggris bergaransi online dan offline. Tersedia kelas Speaking, Grammar dan TOEFL.">
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:url" content="https://englishvit.com/program/category/1">
+<meta name="twitter:url" content="{{ url("/live-class") }}">
 <meta name="twitter:title" content=" Live Class | Englishvit.com ">
 <meta name="twitter:description" content="Kursus bahasa Inggris bergaransi online dan offline. Tersedia kelas Speaking, Grammar dan TOEFL.">
 <meta name="twitter:image:src" content="https://englishvit.com/thumbnail_3.jpg">
 <meta name="thumbnail" content="https://englishvit.com/thumbnail_3.jpg">
 <meta name="alt_image" content="Englishvit">
 <meta name="title_image" content="Englishvit">
-<link rel="canonical" href="https://englishvit.com/program/category/1">
+<link rel="canonical" href="{{ url("/live-class") }}">
 <link rel="shortcut icon" href="images/favicon.ico">
 <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
@@ -158,7 +158,7 @@
 				</a>
 			</div>
 						<div class="d-block pd-s-20">
-				<a href="https://englishvit.com/program/category/1" class="d-flex-center llist activo">
+				<a href="{{ url("/live-class") }}" class="d-flex-center llist activo">
 					<span class="material-icons-round">grid_view</span>
 					<div class="d-block">
 						<h6 class="f-body2 lh-1 m-b-5">Daftar Kursus</h6>
@@ -300,7 +300,7 @@
 				</a>
 			</div>
 						<div class="d-block pd-s-20">
-				<a href="https://englishvit.com/program/category/1" class="d-flex-center llist activo">
+				<a href="{{ url("/live-class") }}" class="d-flex-center llist activo">
 					<span class="material-icons-round">grid_view</span>
 					<div class="d-block">
 						<h6 class="f-body2 lh-1 m-b-5">Daftar Kursus</h6>
@@ -362,26 +362,26 @@
 			</div>
 						<div class="col-12">
 				<div class="gap-10 d-flex-center wrap justify-center" style="padding-bottom: 15px;">
-										<a href="https://englishvit.com/program/category/1" class="d-flex-center boxr-8 pd-s-10 pd-tb-8 gap-5 hover:bg-warning-1 bg-warning-1" style="border: 1px solid var(--warning-6); ">
+										<a href="{{ url("/live-class") }}" class="d-flex-center boxr-8 pd-s-10 pd-tb-8 gap-5 hover:bg-warning-1 bg-warning-1" style="border: 1px solid var(--warning-6); ">
 						<img src="{{ asset("images/live.webp") }}" class="img-fluid" style="max-height: 24px;">
 						<p class="mb-0 fc-black-8 m_f-body2">Live Class</p>
 					</a>
-										<a href="https://englishvit.com/program/category/2" class="d-flex-center boxr-8 pd-s-10 pd-tb-8 gap-5 hover:bg-info-1 bg-black-1 partnerImg" style="border: 1px solid var(--info-6); ">
+										<a href="{{ url("/learning-package") }}" class="d-flex-center boxr-8 pd-s-10 pd-tb-8 gap-5 hover:bg-info-1 bg-black-1 partnerImg" style="border: 1px solid var(--info-6); ">
 						<img src="{{ asset("images/lp.webp") }}" class="img-fluid" style="max-height: 24px;">
 						<p class="mb-0 fc-black-8 m_f-body2">Learning Package</p>
 					</a>
-										<a href="https://englishvit.com/program/category/4" class="d-flex-center boxr-8 pd-s-10 pd-tb-8 gap-5 hover:bg-danger-1 bg-black-1 partnerImg" style="border: 1px solid var(--danger-6); ">
+										<a href="{{ url("/one-on-one") }}" class="d-flex-center boxr-8 pd-s-10 pd-tb-8 gap-5 hover:bg-danger-1 bg-black-1 partnerImg" style="border: 1px solid var(--danger-6); ">
 						<img src="{{ asset("images/ooo.webp") }}" class="img-fluid" style="max-height: 24px;">
 						<p class="mb-0 fc-black-8 m_f-body2">One on One</p>
 					</a>
-										<a href="https://englishvit.com/program/category/3" class="d-flex-center boxr-8 pd-s-10 pd-tb-8 gap-5 hover:bg-success-1 bg-black-1 partnerImg" style="border: 1px solid var(--success-6); ">
+										<a href="{{ url("/certification-test") }}" class="d-flex-center boxr-8 pd-s-10 pd-tb-8 gap-5 hover:bg-success-1 bg-black-1 partnerImg" style="border: 1px solid var(--success-6); ">
 						<img src="{{ asset("images/ct.webp") }}" class="img-fluid" style="max-height: 24px;">
 						<p class="mb-0 fc-black-8 m_f-body2">Certification Test</p>
 					</a>
-										<a href="https://englishvit.com/program/category/9" class="d-flex-center boxr-8 pd-s-10 pd-tb-8 gap-5 hover:bg-purple-1 bg-black-1 partnerImg" style="border: 1px solid var(--purple-6); ">
-						<img src="{{ asset("images/sb.webp") }}" class="img-fluid" style="max-height: 24px;">
-						<p class="mb-0 fc-black-8 m_f-body2">Smart Book</p>
-					</a>
+										<a href="{{ url("/learning-package") }}" class="d-flex-center boxr-8 pd-s-10 pd-tb-8 gap-5 hover:bg-purple-1 bg-black-1 partnerImg" style="border: 1px solid var(--purple-6); ">
+<img src="{{ asset("images/sb.webp") }}" class="img-fluid" style="max-height: 24px;">
+<p class="mb-0 fc-black-8 m_f-body2">Smart Book</p>
+</a>
 									</div>
 			</div>
 			<div class="col-12"><hr></div>

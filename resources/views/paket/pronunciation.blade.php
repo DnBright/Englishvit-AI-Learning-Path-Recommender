@@ -146,7 +146,7 @@
 				</a>
 			</div>
 						<div class="d-block pd-s-20">
-				<a href="https://englishvit.com/program/category/1" class="d-flex-center llist ">
+				<a href="{{ url("/live-class") }}" class="d-flex-center llist ">
 					<span class="material-icons-round">grid_view</span>
 					<div class="d-block">
 						<h6 class="f-body2 lh-1 m-b-5">Daftar Kursus</h6>
@@ -288,7 +288,7 @@
 				</a>
 			</div>
 						<div class="d-block pd-s-20">
-				<a href="https://englishvit.com/program/category/1" class="d-flex-center llist ">
+				<a href="{{ url("/live-class") }}" class="d-flex-center llist ">
 					<span class="material-icons-round">grid_view</span>
 					<div class="d-block">
 						<h6 class="f-body2 lh-1 m-b-5">Daftar Kursus</h6>
@@ -350,23 +350,23 @@
 			</div>
 						<div class="col-12">
 				<div class="gap-10 d-flex-center wrap justify-center" style="padding-bottom: 15px;">
-										<a href="https://englishvit.com/program/category/1" class="d-flex-center boxr-8 pd-s-10 pd-tb-8 gap-5 hover:bg-warning-1 bg-black-1 partnerImg" style="border: 1px solid var(--warning-6); ">
+										<a href="{{ url("/live-class") }}" class="d-flex-center boxr-8 pd-s-10 pd-tb-8 gap-5 hover:bg-warning-1 bg-black-1 partnerImg" style="border: 1px solid var(--warning-6); ">
 						<img src="{{ asset("images/live.webp") }}" class="img-fluid" style="max-height: 24px;">
 						<p class="mb-0 fc-black-8 m_f-body2">Live Class</p>
 					</a>
-										<a href="https://englishvit.com/program/category/2" class="d-flex-center boxr-8 pd-s-10 pd-tb-8 gap-5 hover:bg-info-1 bg-black-1 partnerImg" style="border: 1px solid var(--info-6); ">
+										<a href="{{ url("/learning-package") }}" class="d-flex-center boxr-8 pd-s-10 pd-tb-8 gap-5 hover:bg-info-1 bg-black-1 partnerImg" style="border: 1px solid var(--info-6); ">
 						<img src="{{ asset("images/lp.webp") }}" class="img-fluid" style="max-height: 24px;">
 						<p class="mb-0 fc-black-8 m_f-body2">Learning Package</p>
 					</a>
-										<a href="https://englishvit.com/program/category/4" class="d-flex-center boxr-8 pd-s-10 pd-tb-8 gap-5 hover:bg-danger-1 bg-black-1 partnerImg" style="border: 1px solid var(--danger-6); ">
+										<a href="{{ url("/one-on-one") }}" class="d-flex-center boxr-8 pd-s-10 pd-tb-8 gap-5 hover:bg-danger-1 bg-black-1 partnerImg" style="border: 1px solid var(--danger-6); ">
 						<img src="{{ asset("images/ooo.webp") }}" class="img-fluid" style="max-height: 24px;">
 						<p class="mb-0 fc-black-8 m_f-body2">One on One</p>
 					</a>
-										<a href="https://englishvit.com/program/category/3" class="d-flex-center boxr-8 pd-s-10 pd-tb-8 gap-5 hover:bg-success-1 bg-black-1 partnerImg" style="border: 1px solid var(--success-6); ">
+										<a href="{{ url("/certification-test") }}" class="d-flex-center boxr-8 pd-s-10 pd-tb-8 gap-5 hover:bg-success-1 bg-black-1 partnerImg" style="border: 1px solid var(--success-6); ">
 						<img src="{{ asset("images/ct.webp") }}" class="img-fluid" style="max-height: 24px;">
 						<p class="mb-0 fc-black-8 m_f-body2">Certification Test</p>
 					</a>
-										<a href="https://englishvit.com/program/category/9" class="d-flex-center boxr-8 pd-s-10 pd-tb-8 gap-5 hover:bg-purple-1 bg-black-1 partnerImg" style="border: 1px solid var(--purple-6); ">
+										<a href="{{ url("/learning-package") }}" class="d-flex-center boxr-8 pd-s-10 pd-tb-8 gap-5 hover:bg-purple-1 bg-black-1 partnerImg" style="border: 1px solid var(--purple-6); ">
 						<img src="{{ asset("images/sb.webp") }}" class="img-fluid" style="max-height: 24px;">
 						<p class="mb-0 fc-black-8 m_f-body2">Smart Book</p>
 					</a>
