@@ -414,25 +414,7 @@
 								</div>
 							</div>
 						</a>
-												<a href="{{ url("/learning-package") }}">
-							<div class="boxr-8 pd-10 m_pd-8 d-flex !m_show !m_center-text-align gap-10 ctgoo hover:bg-info-1 boxs-d">
-								<img src="{{ asset("images/lp.webp") }}" alt="Learning Package Englishvit">
-								<div class="text-left !m_center-text">
-									<p class="f-body1 m_f-body2 fc-black-8 fw-bold mb-0">Learning Package</p>
-									<p class="f-body2 fc-black-6 mb-0">Paket belajar mandiri dengan materi terstruktur.</p>
-								</div>
-							</div>
-						</a>
-												<a href="{{ url("/pronunciation") }}">
-							<div class="boxr-8 pd-10 m_pd-8 d-flex !m_show !m_center-text-align gap-10 ctgoo hover:bg-info-1 boxs-d">
-								<img src="{{ asset("images/live.webp") }}" alt="Pronunciation Englishvit">
-								<div class="text-left !m_center-text">
-									<p class="f-body1 m_f-body2 fc-black-8 fw-bold mb-0">Pronunciation</p>
-									<p class="f-body2 fc-black-6 mb-0">Perbaiki cara pengucapan kata dalam bahasa Inggris.</p>
-								</div>
-							</div>
-						</a>
-						<a href="{{ url("/learning-package") }}">
+						<a href="{{ url("/live-class") }}">
 							<div class="boxr-8 pd-10 d-flex-center m_d-flex-column-center gap-10 bg-info-1 ctgoo boxs-d" style="height: 100%;">
 								<img src="{{ asset("images/more.webp") }}" alt="more Englishvit">
 								<p class="f-body2 fw-bold mb-0 fc-info-7 !m_center-text" style="min-width: 100px;">Lainnya</p>
