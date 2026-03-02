@@ -104,7 +104,9 @@
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "dtk0f0pzjg");
 </script>
-                <style type="text/css">hr{border-top:1px solid var(--info-2);}</style>     </head>
+                <style type="text/css">hr{border-top:1px solid var(--info-2);}</style>
+                <link rel="stylesheet" href="{{ asset("css/ai-recommender.css") }}">
+     </head>
     <body>
                 
         
@@ -385,6 +387,135 @@
 									</div>
 			</div>
 			<div class="col-12"><hr></div>
+
+    <!-- AI Learning Path Recommender Section -->
+    <section class="ai-recommender-section" id="ai-recommender">
+        <div class="container">
+            <!-- 1. Onboarding Screen -->
+            <div id="aiOnboardingForm" class="ai-card mx-w-600 center-align">
+                <span class="ai-header-badge">Englishvit AI Recommender</span>
+                <h3 class="fw-bold mb-2">Pilih Cara Belajar Mu Sendiri 🚀</h3>
+                <p class="ai-text-muted mb-4">Dapatkan rekomendasi program terbaik berdasarkan profil dan tujuan belajarmu.</p>
+
+                <div class="ai-step-indicator">
+                    <div class="ai-step-dot active"></div>
+                    <div class="ai-step-dot"></div>
+                    <div class="ai-step-dot"></div>
+                </div>
+
+                <div class="ai-form-group">
+                    <label class="ai-label">Level Bahasa Inggris Saat Ini:</label>
+                    <div class="ai-select-grid">
+                        <div class="ai-select-box active" data-group="level">
+                            <span class="icon">🌱</span>
+                            <div class="f-body2 fw-600">Beginner</div>
+                        </div>
+                        <div class="ai-select-box" data-group="level">
+                            <span class="icon">🌿</span>
+                            <div class="f-body2 fw-600">Intermediate</div>
+                        </div>
+                        <div class="ai-select-box" data-group="level">
+                            <span class="icon">🌳</span>
+                            <div class="f-body2 fw-600">Advanced</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ai-form-group">
+                    <label class="ai-label">Apa Kelemahan Utama Anda? (Bisa pilih lebih dari satu)</label>
+                    <div class="ai-select-grid">
+                        <div class="ai-select-box" data-group="weakness" data-multi="true">
+                            <span class="icon">🗣️</span>
+                            <div class="f-body2 fw-600">Speaking</div>
+                        </div>
+                        <div class="ai-select-box" data-group="weakness" data-multi="true">
+                            <span class="icon">✍️</span>
+                            <div class="f-body2 fw-600">Writing</div>
+                        </div>
+                        <div class="ai-select-box" data-group="weakness" data-multi="true">
+                            <span class="icon">👂</span>
+                            <div class="f-body2 fw-600">Listening</div>
+                        </div>
+                        <div class="ai-select-box" data-group="weakness" data-multi="true">
+                            <span class="icon">📖</span>
+                            <div class="f-body2 fw-600">Reading</div>
+                        </div>
+                        <div class="ai-select-box" data-group="weakness" data-multi="true">
+                            <span class="icon">🔤</span>
+                            <div class="f-body2 fw-600">Grammar</div>
+                        </div>
+                        <div class="ai-select-box" data-group="weakness" data-multi="true">
+                            <span class="icon">✨</span>
+                            <div class="f-body2 fw-600">Confidence</div>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="generatePathBtn" class="ai-btn-generate hover:opacity-90">Generate My Plan 🪄</button>
+            </div>
+
+            <!-- 2. Processing Screen (Hidden by JS) -->
+            <div id="aiProcessingOverlay" class="ai-processing-overlay">
+                <div class="ai-loader mb-4"></div>
+                <h4 class="fw-bold">Analyzing your profile and goals...</h4>
+                <p class="ai-text-muted">Personalized plans increase success rate by 73%</p>
+            </div>
+
+            <!-- 3. Result Section (Hidden initially) -->
+            <div id="aiResultSection" class="d-none">
+                <div class="ai-result-header">
+                    <h2 class="fw-bold">🎯 Your Recommended Path</h2>
+                    <p class="f-h6 fc-info-7">Achieve Your Goal: Predicted Score Band 7.5</p>
+                    <div class="d-flex-center justify-center gap-20 m-t-20">
+                        <div class="center-text"><div class="fw-bold">Duration</div><div class="fc-black-6">3 Months</div></div>
+                        <div class="center-text"><div class="fw-bold">Intensity</div><div class="fc-black-6">High</div></div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-8 offset-md-2">
+                        <div class="ai-roadmap">
+                            <div class="ai-roadmap-item">
+                                <div class="ai-roadmap-dot"></div>
+                                <div class="ai-card p-4">
+                                    <div class="d-flex-center-btw mb-2">
+                                        <h5 class="fw-bold mb-0">Month 1: Fundamentals</h5>
+                                        <span class="badge bg-info-1 fc-info-7">IELTS AI Practice</span>
+                                    </div>
+                                    <p class="f-body2 mb-0">Focus on Speaking & Grammar using our Smart Book.</p>
+                                </div>
+                            </div>
+                            <div class="ai-roadmap-item">
+                                <div class="ai-roadmap-dot"></div>
+                                <div class="ai-card p-4">
+                                    <div class="d-flex-center-btw mb-2">
+                                        <h5 class="fw-bold mb-0">Month 2: Intensive</h5>
+                                        <span class="badge bg-purple-1 fc-purple-7">Live Class</span>
+                                    </div>
+                                    <p class="f-body2 mb-0">20 interactive sessions to boost Writing skills.</p>
+                                </div>
+                            </div>
+                            <div class="ai-roadmap-item">
+                                <div class="ai-roadmap-dot"></div>
+                                <div class="ai-card p-4">
+                                    <div class="d-flex-center-btw mb-2">
+                                        <h5 class="fw-bold mb-0">Month 3: Mastery</h5>
+                                        <span class="badge bg-warning-1 fc-warning-7">One on One</span>
+                                    </div>
+                                    <p class="f-body2 mb-0">Personal coaching to finalize your confidence.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex gap-15 justify-center m-t-40">
+                            <button class="btn bg-info-7 pd-lr-30">Start This Plan</button>
+                            <button class="btn bg-white fc-info-7" style="border:1px solid var(--info-7)" onclick="resetAIForm()">Customize Plan</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 			<div class="col-12 center-text-align mx-w-750 m-b-30">
 								<h3 class="fw-bold m_f-h4">Certification Test</h3>
 				<p class="m_f-body2">Test sertifikasi mudah dari rumah 100% ONLINE dengan standar yang diakui. Sertifikat langsung jadi!!</p>
@@ -592,5 +723,5 @@
 	});
 	</script>
 	    <script src="{{ asset("js/rocket-loader.min.js") }}" data-cf-settings="153ddae86fddd5a616fc146f-|49" defer=""></script><script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d625d5c0b84b8a9',t:'MTc3MjQ3NTA5NA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/v67327c56f0bb4ef8b305cae61679db8f1769101564043" data-cf-beacon="{" version":"2024.11.0","token":"b572e9d54898492181553849794c4f33","r":1,"server_timing":{"name":{"cfcachestatus":true,"cfedge":true,"cfextpri":true,"cfl4":true,"cforigin":true,"cfspeedbrain":true},"location_startswith":null}}"="" crossorigin="anonymous"></script>
-
+	<script src="{{ asset("js/ai-recommender.js") }}" type="153ddae86fddd5a616fc146f-text/javascript"></script>
 </body></html>
