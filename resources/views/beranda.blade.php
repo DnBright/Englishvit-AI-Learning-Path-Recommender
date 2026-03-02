@@ -578,6 +578,17 @@
                         </div>
 
                         <div class="ai-customizer-container p-4">
+                            <!-- Path Strength Meter (NEW) -->
+                            <div class="ai-strength-container m-b-20" id="aiStrengthContainer">
+                                <div class="ai-strength-label">
+                                    <span class="fc-black-6">Path Strength (Goal Alignment)</span>
+                                    <span id="aiStrengthPercent" class="fc-info-7">0%</span>
+                                </div>
+                                <div class="ai-strength-bar-bg">
+                                    <div id="aiStrengthFill" class="ai-strength-bar-fill"></div>
+                                </div>
+                            </div>
+
                             <h5 class="fw-bold mb-4">Selected Modules (Ketengan)</h5>
                             <div id="aiEceranList">
                                 <!-- Will be populated by JS -->
