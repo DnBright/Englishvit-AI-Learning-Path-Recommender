@@ -563,6 +563,42 @@
                 <p class="ai-text-muted">Personalized plans increase success rate by 73%</p>
             </div>
 
+            <!-- 2.5 AI Customizer Section (Ketengan Model - NEW) -->
+            <div id="aiCustomizerSection" class="d-none">
+                <div class="ai-result-header">
+                    <h2 class="fw-bold">🛠️ Customize Your Path</h2>
+                    <p class="f-h6 fc-info-7">Design your own journey. Buy only what you need.</p>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-8 offset-md-2">
+                        <div id="aiMentorAdvice" class="ai-mentor-bubble d-none">
+                            <i class="material-icons">info</i>
+                            <div id="aiMentorText">Your path is looking good! Are you sure about removing the Assessment?</div>
+                        </div>
+
+                        <div class="ai-customizer-container p-4">
+                            <h5 class="fw-bold mb-4">Selected Modules (Ketengan)</h5>
+                            <div id="aiEceranList">
+                                <!-- Will be populated by JS -->
+                            </div>
+                            
+                            <div class="m-t-30">
+                                <h6 class="fw-bold fc-black-5">Available Add-ons:</h6>
+                                <div id="aiAvailableAddons" class="m-t-15">
+                                    <!-- Will be populated by JS -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex gap-15 justify-center m-t-40">
+                            <button class="btn bg-info-7 pd-lr-30" onclick="showFinalRoadmap()">Finalize & View Roadmap</button>
+                            <button class="btn bg-white fc-info-7" style="border:1px solid var(--info-7)" onclick="resetAIForm()">Back to Assessment</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- 3. Result Section (Hidden initially) -->
             <div id="aiResultSection" class="d-none">
                 <div class="ai-result-header">
@@ -615,6 +651,15 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            
+            <!-- Floating Price Cart (NEW) -->
+            <div id="aiFloatingCart" class="ai-floating-cart">
+                <div class="d-flex align-items-center">
+                    <i class="material-icons">shopping_cart</i>
+                    <span class="ms-2 fw-bold">Total:</span>
+                </div>
+                <div id="aiTotalPrice" class="f-h5 fw-700 m-0">Rp 0</div>
             </div>
         </div>
     </section>

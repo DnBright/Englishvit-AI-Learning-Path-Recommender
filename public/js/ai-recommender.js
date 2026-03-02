@@ -3,8 +3,24 @@ document.addEventListener('DOMContentLoaded', function () {
     const processingOverlay = document.getElementById('aiProcessingOverlay');
     const aiForm = document.getElementById('aiOnboardingForm');
     const aiResult = document.getElementById('aiResultSection');
+    const aiCustomizer = document.getElementById('aiCustomizerSection');
     const ieltsSlider = document.getElementById('ieltsSlider');
     const ieltsValue = document.getElementById('ieltsScoreValue');
+    const floatingCart = document.getElementById('aiFloatingCart');
+    const totalPriceDisplay = document.getElementById('aiTotalPrice');
+
+    // Atomic Items Data (Ketengan)
+    const atomicItems = [
+        { id: 'live-standard', name: 'Standard Live Class', price: 55000, category: 'live', icon: '🏫' },
+        { id: 'live-ielts', name: 'Academic IELTS Live Sesi', price: 75000, category: 'live', icon: '🎓' },
+        { id: 'module-skill', name: 'Single Skill Module (VOD)', price: 19000, category: 'module', icon: '📽️' },
+        { id: 'quiz-daily', name: 'Daily Quiz Access (7D)', price: 10000, category: 'module', icon: '✍️' },
+        { id: 'one-private', name: '1-on-1 Private Session', price: 125000, category: 'private', icon: '👤' },
+        { id: 'test-prediction', name: 'IELTS Prediction Test', price: 95000, category: 'test', icon: '📜' },
+        { id: 'essay-review', name: 'Writing Essay Review', price: 110000, category: 'test', icon: '📝' }
+    ];
+
+    let userCart = [];
 
     // Simple option selection toggle
     document.querySelectorAll('.ai-select-box, .ai-time-box').forEach(box => {
@@ -29,51 +45,162 @@ document.addEventListener('DOMContentLoaded', function () {
     if (generateBtn) {
         generateBtn.addEventListener('click', function () {
             // Capture selections
-            const level = document.querySelector('.ai-select-box[data-group="level"].active')?.textContent.trim().split('\n')[0] || 'Beginner';
-            const budget = document.querySelector('.ai-select-box[data-group="budget"].active')?.querySelector('.f-body2').textContent.trim() || 'Standar';
-            const timeframe = document.querySelector('.ai-time-box[data-group="time"].active')?.textContent.trim() || '6 Months';
+            const budgetPreference = document.querySelector('.ai-select-box[data-group="budget"].active')?.querySelector('.f-body2').textContent.trim() || 'Standar';
 
             // Show processing overlay
             processingOverlay.style.display = 'flex';
 
-            // Simulate AI analysis
+            // Simulate AI analysis - Then Go to Customizer
             setTimeout(() => {
                 processingOverlay.style.display = 'none';
                 aiForm.classList.add('d-none');
-                aiResult.classList.remove('d-none');
+                aiCustomizer.classList.remove('d-none');
+                floatingCart.style.display = 'flex';
 
-                // Update result based on budget
-                const intensityText = budget === 'Intensif' ? 'Very High (Personalized)' : (budget === 'Hemat' ? 'Balanced (Self-paced)' : 'High (Interactive)');
-                const intensityElement = aiResult.querySelector('.center-text:last-child .fc-black-6');
-                if (intensityElement) intensityElement.textContent = intensityText;
-
-                const durationElement = aiResult.querySelector('.center-text:first-child .fc-black-6');
-                if (durationElement) durationElement.textContent = timeframe;
-
-                // Update Roadmap based on budget (Simulated)
-                if (budget === 'Hemat') {
-                    aiResult.querySelectorAll('.ai-roadmap-item .badge').forEach((badge, i) => {
-                        if (i === 0) badge.textContent = 'Smart Book';
-                        if (i === 1) badge.textContent = 'Learning Package';
-                        if (i === 2) badge.textContent = 'IELTS AI Practice';
-                    });
-                } else if (budget === 'Intensif') {
-                    aiResult.querySelectorAll('.ai-roadmap-item .badge').forEach((badge, i) => {
-                        if (i === 0) badge.textContent = 'One on One';
-                        if (i === 1) badge.textContent = 'Live Class (VIP)';
-                        if (i === 2) badge.textContent = 'Comprehensive Test';
-                    });
+                // Initial Recommendation based on budget
+                if (budgetPreference === 'Hemat') {
+                    userCart = [
+                        { ...atomicItems.find(i => i.id === 'module-skill') },
+                        { ...atomicItems.find(i => i.id === 'quiz-daily') }
+                    ];
+                } else if (budgetPreference === 'Intensif') {
+                    userCart = [
+                        { ...atomicItems.find(i => i.id === 'live-ielts') },
+                        { ...atomicItems.find(i => i.id === 'one-private') },
+                        { ...atomicItems.find(i => i.id === 'essay-review') }
+                    ];
+                } else {
+                    userCart = [
+                        { ...atomicItems.find(i => i.id === 'live-standard') },
+                        { ...atomicItems.find(i => i.id === 'test-prediction') }
+                    ];
                 }
 
-                // Scroll to result
-                aiResult.scrollIntoView({ behavior: 'smooth' });
-            }, 3000);
+                renderCustomizer();
+                aiCustomizer.scrollIntoView({ behavior: 'smooth' });
+            }, 2000);
         });
+    }
+
+    function renderCustomizer() {
+        const eceranList = document.getElementById('aiEceranList');
+        const addonList = document.getElementById('aiAvailableAddons');
+        eceranList.innerHTML = '';
+        addonList.innerHTML = '';
+
+        // Render Current Cart
+        userCart.forEach((item, index) => {
+            const div = document.createElement('div');
+            div.className = 'ai-item-eceran';
+            div.innerHTML = `
+                <div class="ai-item-info">
+                    <span class="f-20">${item.icon}</span>
+                    <div>
+                        <div class="fw-bold">${item.name}</div>
+                        <div class="f-12 fc-black-5">${item.category}</div>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center gap-15">
+                    <div class="ai-item-price">Rp ${item.price.toLocaleString('id-ID')}</div>
+                    <button class="ai-btn-remove" onclick="removeFromCart(${index})">
+                        <i class="material-icons f-14">close</i>
+                    </button>
+                </div>
+            `;
+            eceranList.appendChild(div);
+        });
+
+        // Render Available Addons
+        atomicItems.filter(item => !userCart.find(c => c.id === item.id)).forEach(item => {
+            const div = document.createElement('div');
+            div.className = 'ai-item-eceran';
+            div.innerHTML = `
+                <div class="ai-item-info">
+                    <span class="f-20">${item.icon}</span>
+                    <div class="fw-bold">${item.name}</div>
+                </div>
+                <div class="d-flex align-items-center gap-15">
+                    <div class="ai-item-price">Rp ${item.price.toLocaleString('id-ID')}</div>
+                    <button class="ai-btn-add" onclick="addToCart('${item.id}')">Add</button>
+                </div>
+            `;
+            addonList.appendChild(div);
+        });
+
+        updateTotalPrice();
+        updateMentorAdvice();
+    }
+
+    window.addToCart = function (id) {
+        const item = atomicItems.find(i => i.id === id);
+        userCart.push({ ...item });
+        renderCustomizer();
+    };
+
+    window.removeFromCart = function (index) {
+        userCart.splice(index, 1);
+        renderCustomizer();
+    };
+
+    function updateTotalPrice() {
+        const total = userCart.reduce((sum, item) => sum + item.price, 0);
+        totalPriceDisplay.textContent = `Rp ${total.toLocaleString('id-ID')}`;
+    }
+
+    function updateMentorAdvice() {
+        const mentorBubble = document.getElementById('aiMentorAdvice');
+        const mentorText = document.getElementById('aiMentorText');
+        const hasGoal = parseFloat(ieltsSlider.value) >= 7.0;
+        const hasTest = userCart.some(i => i.category === 'test');
+        const hasLive = userCart.some(i => i.category === 'live' || i.category === 'private');
+
+        if (hasGoal && !hasTest && userCart.length > 0) {
+            mentorBubble.classList.remove('d-none');
+            mentorText.textContent = "Targetmu 7.0+, tapi kamu belum mengambil simulasi test. Saya sarankan tambah 'IELTS Prediction Test' agar kita tahu progresmu!";
+        } else if (userCart.length === 0) {
+            mentorBubble.classList.remove('d-none');
+            mentorText.textContent = "Halo Andi! Rakit belajarmu di bawah ini sesuai budgetmu ya. Ingat, minimal ambil 1 modul dasar agar progressmu lancar.";
+        } else if (hasGoal && !hasLive) {
+            mentorBubble.classList.remove('d-none');
+            mentorText.textContent = "Untuk skor tinggi, interaksi dengan tutor (Live Class) sangat membantu lho. Coba tambah 1 sesi ke eceranmu!";
+        } else {
+            mentorBubble.classList.add('d-none');
+        }
+    }
+
+    window.showFinalRoadmap = function () {
+        aiCustomizer.classList.add('d-none');
+        floatingCart.style.display = 'none';
+        aiResult.classList.remove('d-none');
+
+        // Populate final roadmap based on cart
+        const roadmapContainer = aiResult.querySelector('.ai-roadmap');
+        roadmapContainer.innerHTML = '';
+
+        userCart.forEach((item, i) => {
+            const div = document.createElement('div');
+            div.className = 'ai-roadmap-item';
+            div.innerHTML = `
+                <div class="ai-roadmap-dot"></div>
+                <div class="ai-card p-4">
+                    <div class="d-flex-center-btw mb-2">
+                        <h5 class="fw-bold mb-0">${item.name}</h5>
+                        <span class="badge bg-info-1 fc-info-7">${item.category}</span>
+                    </div>
+                    <p class="f-body2 mb-0">Part of your custom #${(i + 1)} step in your journey.</p>
+                </div>
+            `;
+            roadmapContainer.appendChild(div);
+        });
+
+        aiResult.scrollIntoView({ behavior: 'smooth' });
     }
 
     // Scroll back to form
     window.resetAIForm = function () {
         if (aiResult) aiResult.classList.add('d-none');
+        if (aiCustomizer) aiCustomizer.classList.add('d-none');
+        if (floatingCart) floatingCart.style.display = 'none';
         if (aiForm) aiForm.classList.remove('d-none');
         if (aiForm) aiForm.scrollIntoView({ behavior: 'smooth' });
     }
