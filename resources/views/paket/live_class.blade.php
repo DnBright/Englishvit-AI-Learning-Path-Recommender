@@ -104,7 +104,9 @@
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "dtk0f0pzjg");
 </script>
-                <style type="text/css">hr{border-top:1px solid var(--info-2);}</style>     </head>
+                <style type="text/css">hr{border-top:1px solid var(--info-2);}</style>
+                <link rel="stylesheet" href="{{ asset("css/ai-recommender.css") }}">
+     </head>
     <body>
                 
         
@@ -902,4 +904,4 @@
 	</script>
 	    <script src="{{ asset("js/rocket-loader.min.js") }}" data-cf-settings="67bff88355a0ff5d93f59496-|49" defer=""></script><script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/v67327c56f0bb4ef8b305cae61679db8f1769101564043" data-cf-beacon="{" version":"2024.11.0","token":"b572e9d54898492181553849794c4f33","r":1,"server_timing":{"name":{"cfcachestatus":true,"cfedge":true,"cfextpri":true,"cfl4":true,"cforigin":true,"cfspeedbrain":true},"location_startswith":null}}"="" crossorigin="anonymous"></script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d625c4feab25329',t:'MTc3MjQ3NTA1MQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
-</body></html>
+<script src="{{ asset("js/ai-recommender.js") }}" type="67bff88355a0ff5d93f59496-text/javascript"></script></body></html>
