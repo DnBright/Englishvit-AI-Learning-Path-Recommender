@@ -4,63 +4,73 @@
 @section('nav_ai', 'active')
 
 @section('content')
-<div class="d-flex justify-content-between align-items-center m-b-30">
-    <div>
-        <h2 class="font-weight-bold primary-text m-b-5">🤖 AI Study Assistant</h2>
-        <p class="text-muted f-14 mb-0">Mentor pribadi yang memantau setiap langkah belajar Anda.</p>
-    </div>
-</div>
-
-<div class="ai-assistant-view">
-    <div class="chat-header pd-s-25 pd-t-20 pd-b-20 bg-gradient-premium text-white d-flex align-items-center shadow-sm">
-        <div class="avatar-ring m-r-15">
-            <span class="material-icons" style="font-size: 32px;">smart_toy</span>
-        </div>
-        <div>
-            <h6 class="mb-0 font-weight-bold text-white">Englishvit AI Mentor</h6>
-            <div class="d-flex align-items-center">
-                <span class="dot bg-success m-r-5"></span>
-                <span class="f-10 opacity-7">Online | Siap Membantu</span>
+<div class="row">
+    <div class="col-lg-8 mx-auto">
+        <div class="d-flex justify-content-between align-items-center m-b-30">
+            <div>
+                <h2 class="font-weight-bold primary-text m-b-5">🤖 AI Study Mentor</h2>
+                <p class="text-muted f-14 mb-0">Speak with your personalized IELTS coach.</p>
             </div>
         </div>
-    </div>
-    
-    <div class="chat-body pd-30 flex-fill d-flex flex-column" style="background: #fdfdfe; overflow-y: auto;">
-        <div class="chat-bubble bubble-ai shadow-sm m-b-20">
-            Halo! Saya melihat Anda baru saja menyelesaikan kuis Grammar. Skor Anda meningkat 15%! <br><br>
-            Ada yang ingin Anda tanyakan mengenai hasil kuis tersebut atau ingin lanjut ke target Reading berikutnya?
-        </div>
-        
-        <div id="chat-messages" class="d-flex flex-column"></div>
-        
-        <!-- Quick Prompts -->
-        <div class="m-t-auto p-t-20">
-            <p class="f-12 text-muted m-b-10 align-center d-flex"><span class="material-icons f-14 m-r-5">tips_and_updates</span> Coba tanya ini:</p>
-            <div class="d-flex flex-wrap gap-10">
-                <button class="btn btn-xs btn-outline-primary f-11 p-x-15 rounded-pill" onclick="quickPrompt('Berapa skor prediksi IELTS saya saat ini?')">Prediksi Skor Saya</button>
-                <button class="btn btn-xs btn-outline-primary f-11 p-x-15 rounded-pill" onclick="quickPrompt('Berikan tips Writing Task 1')">Tips Writing Task 1</button>
-                <button class="btn btn-xs btn-outline-primary f-11 p-x-15 rounded-pill" onclick="quickPrompt('Apa jadwal saya besok?')">Jadwal Besok</button>
-            </div>
-        </div>
-    </div>
 
-    <div class="chat-footer pd-25 border-top bg-white">
-        <div class="input-group shadow-sm rounded-pill overflow-hidden border">
-            <input type="text" class="form-control border-0 p-l-25" id="chatInput" placeholder="Ketik pesan Anda di sini...">
-            <div class="input-group-append">
-                <button class="btn btn-primary p-x-25 border-0" onclick="sendMessage()" style="border-radius: 0;">
-                    <span class="material-icons f-20">send</span>
-                </button>
+        <div class="ai-assistant-view shadow-lg border-0" style="height: 650px;">
+            <!-- Glassmorphism Header -->
+            <div class="chat-header glass-header pd-s-30 pd-t-20 pd-b-20 d-flex align-items-center text-white">
+                <div class="avatar-ring m-r-15 bg-white-20 rounded-circle d-flex-center justify-center p-2" style="width: 45px; height: 45px;">
+                    <span class="material-icons" style="font-size: 24px;">auto_awesome</span>
+                </div>
+                <div>
+                    <h6 class="mb-0 font-weight-bold f-15">Englishvit AI Mentor</h6>
+                    <div class="d-flex align-items-center">
+                        <span class="dot bg-success m-r-8" style="width: 6px; height: 6px;"></span>
+                        <span class="f-11 opacity-7">Mentor is thinking...</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chat-body pd-30 flex-fill d-flex flex-column bg-white" style="overflow-y: auto; scroll-behavior: smooth;">
+                <div id="chat-messages" class="d-flex flex-column">
+                    <!-- Initial AI Contact -->
+                    <div class="chat-bubble bubble-ai">
+                        Welcome back! I've been reviewing your <strong>Success Path</strong>. <br><br>
+                        Ready to boost your Speaking score today? I can help you with some common part 2 cues.
+                    </div>
+                </div>
+
+                <!-- Typing Indicator (Hidden by default) -->
+                <div id="typing-indicator" class="typing-indicator" style="display: none;">
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                </div>
+            </div>
+
+            <!-- Contextual Quick Prompts (Floating above footer) -->
+            <div class="pd-x-30 pd-b-15 bg-white">
+                <div class="d-flex flex-wrap gap-10">
+                    <button class="btn btn-xs btn-light text-primary rounded-pill border f-11 fw-bold p-x-15" onclick="quickPrompt('Give me a Speaking cue card')">Speaking Cue Card</button>
+                    <button class="btn btn-xs btn-light text-primary rounded-pill border f-11 fw-bold p-x-15" onclick="quickPrompt('Check my Vocabulary')">Vocab Check</button>
+                    <button class="btn btn-xs btn-light text-primary rounded-pill border f-11 fw-bold p-x-15" onclick="quickPrompt('What\'s next?')">Next Goal</button>
+                </div>
+            </div>
+
+            <div class="chat-footer pd-20 bg-white border-subtle">
+                <div class="input-group rounded-pill overflow-hidden bg-light border-0 p-1">
+                    <input type="text" class="form-control border-0 bg-transparent p-l-25 f-13" id="chatInput" placeholder="Ask your mentor anything...">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary rounded-circle m-1 d-flex-center p-0" style="width: 40px; height: 40px;" onclick="sendMessage()">
+                            <span class="material-icons f-20">near_me</span>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
 <style>
-    .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
-    .rounded-pill { border-radius: 50px !important; }
-    .btn-xs { padding: 4px 12px; font-size: 11px; }
-    .gap-10 { gap: 10px; }
+    .bg-white-20 { background: rgba(255,255,255,0.2); }
+    .border-subtle { border-top: 1px solid #f1f5f9; }
 </style>
 @endsection
 
@@ -69,16 +79,30 @@
     function sendMessage() {
         const input = $('#chatInput');
         const container = $('#chat-messages');
-        const text = input.val();
+        const text = input.val().trim();
+        
         if (text) {
-            container.append(`<div class="chat-bubble bubble-user shadow-sm align-self-end m-b-20">${text}</div>`);
+            // Add user message
+            container.append(`<div class="chat-bubble bubble-user shadow-sm animate__animated animate__fadeInUp">${text}</div>`);
             input.val('');
             scrollToBottom();
             
-            // AI Response Simulation
+            // Show typing indicator
+            $('#typing-indicator').fadeIn(200);
+            
+            // Simulate AI Mentorship Thinking
             setTimeout(() => {
-                showAIResponse("Menarik! Saya sedang menganalisis data Anda... Mohon tunggu sebentar.");
-            }, 800);
+                $('#typing-indicator').fadeOut(200);
+                
+                const responses = [
+                    "That's a great question! Based on your recent activity, I'd suggest focusing on your <strong>Linking Words</strong> for this task.",
+                    "Interesting! Let me pull up a relevant practice scenario for your <strong>IELTS Speaking</strong> goal.",
+                    "Nice! You're making progress. Let's look at how we can improve that specific point in your next session."
+                ];
+                const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                
+                showAIResponse(randomResponse);
+            }, 1800);
         }
     }
 
@@ -89,38 +113,20 @@
 
     function showAIResponse(text) {
         const container = $('#chat-messages');
-        container.append(`<div class="chat-bubble bubble-ai shadow-sm m-b-20">${text}</div>`);
+        container.append(`
+            <div class="chat-bubble bubble-ai shadow-sm animate__animated animate__fadeInUp">
+                ${text}
+            </div>
+        `);
         scrollToBottom();
     }
 
     function scrollToBottom() {
         const body = $('.chat-body');
-        body.scrollTop(body[0].scrollHeight);
+        body.animate({ scrollTop: body[0].scrollHeight }, 500);
     }
 
     $('#chatInput').on('keypress', function(e) {
-        if(e.which == 13) sendMessage();
-    });
-</script>
-@endsection
-
-@section('scripts')
-<script>
-    function sendMessage() {
-        const input = $('input');
-        const container = $('.chat-body');
-        if (input.val()) {
-            container.append(`<div class="chat-bubble bubble-user m-b-20">${input.val()}</div>`);
-            input.val('');
-            container.scrollTop(container[0].scrollHeight);
-            
-            setTimeout(() => {
-                container.append(`<div class="chat-bubble bubble-ai m-b-20">Menganalisis permintaan Anda... Saya akan terus memantau progress Anda di roadmap.</div>`);
-                container.scrollTop(container[0].scrollHeight);
-            }, 1000);
-        }
-    }
-    $('input').on('keypress', function(e) {
         if(e.which == 13) sendMessage();
     });
 </script>
