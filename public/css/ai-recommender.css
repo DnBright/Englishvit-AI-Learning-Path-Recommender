@@ -1256,6 +1256,280 @@
     }
 }
 
+/* High-Fidelity Integrated Calendar - Dark Theme */
+.calendar-premium-wrapper {
+    background: #0a0e1a;
+    min-height: 100vh;
+    padding: 40px;
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+}
+
+.calendar-header-v2 {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 25px;
+    margin-bottom: 35px;
+}
+
+.calendar-title-large {
+    font-family: 'Sora', sans-serif;
+    font-size: 52px;
+    font-weight: 800;
+    margin-bottom: 0;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    color: #ffffff;
+}
+
+.calendar-title-large span {
+    color: #f8d030;
+    /* Gold highlight */
+}
+
+.calendar-nav-btn {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.calendar-nav-btn:hover {
+    background: #ffffff;
+    color: #0a0e1a;
+}
+
+/* Legend Styles */
+.calendar-legend {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 35px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    font-weight: 600;
+    color: #94a3b8;
+}
+
+.legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+/* Calendar Grid */
+.grid-v2 {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+}
+
+.grid-day-label {
+    text-align: center;
+    font-family: 'Sora', sans-serif;
+    font-weight: 800;
+    font-size: 13px;
+    color: #94a3b8;
+    margin-bottom: 10px;
+}
+
+.calendar-tile {
+    background: #161b2e;
+    border-radius: 12px;
+    aspect-ratio: 1/1.1;
+    padding: 12px;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.calendar-tile:hover {
+    transform: translateY(-5px);
+    background: #1e243a;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.calendar-tile.today {
+    border: 2px solid #f8d030;
+    /* Golden border for today */
+    box-shadow: 0 0 20px rgba(248, 208, 48, 0.15);
+}
+
+.tile-num {
+    font-size: 16px;
+    font-weight: 800;
+    color: #f8d030;
+    position: absolute;
+    top: 12px;
+    left: 12px;
+}
+
+.today-dot {
+    width: 6px;
+    height: 6px;
+    background: #ff7a2d;
+    border-radius: 50%;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+}
+
+.event-stack {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.event-pill {
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 10px;
+    font-weight: 800;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: white;
+}
+
+.pill-speaking {
+    background: rgba(255, 122, 45, 0.2);
+    color: #ff7a2d;
+    border: 1px solid rgba(255, 122, 45, 0.3);
+}
+
+.pill-grammar {
+    background: rgba(60, 80, 224, 0.2);
+    color: #8fa0ff;
+    border: 1px solid rgba(60, 80, 224, 0.3);
+}
+
+.pill-toefl {
+    background: rgba(16, 185, 129, 0.2);
+    color: #10b981;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.pill-live {
+    background: rgba(248, 208, 48, 0.2);
+    color: #f8d030;
+    border: 1px solid rgba(248, 208, 48, 0.3);
+}
+
+/* Bottom Sections */
+.schedule-section {
+    background: #161b2e;
+    border-radius: 20px;
+    padding: 30px;
+    height: 100%;
+}
+
+.schedule-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.schedule-header h4 {
+    font-family: 'Sora', sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    margin-bottom: 0;
+}
+
+.schedule-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.schedule-item {
+    display: flex;
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.schedule-time {
+    width: 80px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #94a3b8;
+}
+
+.schedule-bar {
+    width: 4px;
+    border-radius: 2px;
+    margin-right: 20px;
+}
+
+.schedule-content h6 {
+    font-weight: 800;
+    font-size: 15px;
+    margin-bottom: 4px;
+}
+
+.schedule-content p {
+    font-size: 12px;
+    color: #94a3b8;
+    margin-bottom: 0;
+}
+
+/* Stats Cards */
+.stats-card-yellow {
+    background: #f8d030;
+    color: #0a0e1a;
+    border-radius: 20px;
+    padding: 25px;
+    margin-bottom: 20px;
+}
+
+.stats-card-dark {
+    background: #161b2e;
+    border-radius: 20px;
+    padding: 25px;
+}
+
+.stat-value {
+    font-family: 'Sora', sans-serif;
+    font-size: 48px;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 8px;
+}
+
+.stat-label {
+    text-transform: uppercase;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.stat-progress {
+    height: 8px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    margin-top: 20px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: #0a0e1a;
+}
+
 /* ChatGPT-Style UX Redesign - Ultra Fidelity Polish */
 .gpt-ux-container {
     background: #ffffff;

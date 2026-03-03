@@ -1,98 +1,117 @@
 @extends('layouts.lms-layout')
 
-@section('title', 'Integrated Calendar')
+@section('title', 'High-Fidelity Calendar')
 @section('nav_calendar', 'active')
 
 @section('content')
-<div class="d-flex justify-content-between align-items-center m-b-30">
-    <div>
-        <h2 class="font-weight-bold primary-text m-b-5">📅 Integrated Calendar</h2>
-        <p class="text-muted f-14 mb-0">Sinkronisasi otomatis dengan jadwal Live Zoom & Class Anda.</p>
+<div class="calendar-premium-wrapper">
+    <!-- Header V2 -->
+    <div class="calendar-header-v2">
+        <button class="calendar-nav-btn"><span class="material-icons">chevron_left</span></button>
+        <h1 class="calendar-title-large">March <span>2026</span></h1>
+        <button class="calendar-nav-btn"><span class="material-icons">chevron_right</span></button>
     </div>
-    <div class="d-flex align-items-center bg-white pd-s-15 pd-e-15 pd-t-8 pd-b-8 rounded-pill shadow-sm border">
-        <span class="material-icons text-success f-14 m-r-8">sync</span>
-        <span class="f-12 font-weight-bold">Terakhir diupdate: Baru saja</span>
-    </div>
-</div>
 
-<div class="row">
-    <div class="col-lg-4">
-        <div class="dashboard-card pd-25 m-b-25 bg-gradient-premium text-white border-0">
-            <h6 class="text-white font-weight-bold m-b-20 d-flex align-items-center">
-                <span class="material-icons f-18 m-r-10">notifications_active</span>
-                Mendatang
-            </h6>
-            <div class="upcoming-item p-3 m-b-15 bg-white-10 rounded-lg border border-white-20 h-lift">
-                <div class="d-flex align-items-center m-b-8">
-                    <span class="badge badge-info-light text-info p-x-10 p-y-2 f-10 m-r-10">BESOK</span>
-                    <span class="f-11 opacity-7">19:00 WIB</span>
-                </div>
-                <h6 class="text-white font-weight-bold f-14 m-b-0">Live Class: Speaking Fluency</h6>
-            </div>
-            <div class="upcoming-item p-3 bg-white-10 rounded-lg border border-white-20 h-lift">
-                <div class="d-flex align-items-center m-b-8">
-                    <span class="badge badge-warning-light text-warning p-x-10 p-y-2 f-10 m-r-10">MINGGU</span>
-                    <span class="f-11 opacity-7">08:00 WIB</span>
-                </div>
-                <h6 class="text-white font-weight-bold f-14 m-b-0">IELTS Full Simulation</h6>
-            </div>
-        </div>
-
-        <div class="dashboard-card pd-20">
-            <h6 class="font-weight-bold m-b-15">Kustomisasi Jadwal</h6>
-            <p class="f-12 text-muted">Ingin memindahkan jadwal belajar mandiri? Klik hari di kalender.</p>
-            <button class="btn btn-sm btn-outline-primary w-100 font-weight-bold">Atur Ketersediaan Waktu</button>
-        </div>
+    <!-- Legend -->
+    <div class="calendar-legend">
+        <div class="legend-item"><span class="legend-dot" style="background: #ff7a2d;"></span>Speaking Class</div>
+        <div class="legend-item"><span class="legend-dot" style="background: #3c50e0;"></span>Grammar</div>
+        <div class="legend-item"><span class="legend-dot" style="background: #10b981;"></span>TOEFL Prep</div>
+        <div class="legend-item"><span class="legend-dot" style="background: #f8d030;"></span>Live Session</div>
     </div>
-    <div class="col-lg-8">
-        <div class="dashboard-card pd-30 overflow-hidden">
-            <div class="d-flex justify-content-between align-items-center m-b-25">
-                <h5 class="font-weight-bold mb-0">Maret 2026</h5>
-                <div class="btn-group border shadow-sm rounded-lg overflow-hidden">
-                    <button class="btn btn-white btn-sm px-3"><span class="material-icons f-16">chevron_left</span></button>
-                    <button class="btn btn-white btn-sm px-3"><span class="material-icons f-16">chevron_right</span></button>
-                </div>
-            </div>
-            
-            <div class="calendar-grid border rounded overflow-hidden">
-                <!-- Headers -->
-                @php $days = ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min']; @endphp
-                @foreach($days as $day)
-                <div class="calendar-day-header bg-light py-3 text-center border-bottom font-weight-bold f-12 text-uppercase letter-spacing-1">{{ $day }}</div>
-                @endforeach
+
+    <!-- Calendar Grid -->
+    <div class="grid-v2">
+        @php $days = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']; @endphp
+        @foreach($days as $day)
+            <div class="grid-day-label">{{ $day }}</div>
+        @endforeach
+
+        @for($i=1; $i<=31; $i++)
+            @php 
+                $isToday = ($i == 4);
+                $hasDot = in_array($i, [2, 4, 5, 7, 8, 9, 11, 14, 16, 18, 21, 23, 25, 28, 30]);
+                $events = [];
+                if($i == 2) { $events = [['type'=>'speaking', 'name'=>'Speaking'], ['type'=>'grammar', 'name'=>'Grammar']]; }
+                if($i == 4) { $events = [['type'=>'speaking', 'name'=>'Speaking'], ['type'=>'toefl', 'name'=>'TOEFL Prep']]; }
+                if($i == 5) { $events = [['type'=>'live', 'name'=>'Live Session']]; }
+                if($i == 7) { $events = [['type'=>'grammar', 'name'=>'Grammar']]; }
+                if($i == 8) { $events = [['type'=>'toefl', 'name'=>'TOEFL Mock']]; }
+                if($i == 9) { $events = [['type'=>'speaking', 'name'=>'Speaking']]; }
+                if($i == 11) { $events = [['type'=>'live', 'name'=>'Live Q&A'], ['type'=>'grammar', 'name'=>'Grammar']]; }
+                if($i == 14) { $events = [['type'=>'speaking', 'name'=>'Speaking']]; }
+                if($i == 16) { $events = [['type'=>'toefl', 'name'=>'TOEFL Prep']]; }
+                if($i == 18) { $events = [['type'=>'live', 'name'=>'Live Session']]; }
+                if($i == 21) { $events = [['type'=>'speaking', 'name'=>'Speaking'], ['type'=>'grammar', 'name'=>'Grammar']]; }
+                if($i == 23) { $events = [['type'=>'toefl', 'name'=>'TOEFL Exam']]; }
+                if($i == 25) { $events = [['type'=>'live', 'name'=>'Live Q&A']]; }
+                if($i == 28) { $events = [['type'=>'speaking', 'name'=>'Speaking']]; }
+                if($i == 30) { $events = [['type'=>'grammar', 'name'=>'Grammar'], ['type'=>'toefl', 'name'=>'TOEFL']]; }
+            @endphp
+            <div class="calendar-tile {{ $isToday ? 'today' : '' }}">
+                <span class="tile-num">{{ $i }}</span>
+                @if($hasDot) <span class="today-dot"></span> @endif
                 
-                <!-- Days -->
-                @for($i=1; $i<=35; $i++)
-                    @php 
-                        $dayNum = $i - 2; // Offset for Mar 2026 starting on Sunday? No, let's just mock
-                        $isToday = ($dayNum == 4);
-                        $hasEvent = ($dayNum == 5 || $dayNum == 8 || $dayNum == 15);
-                    @endphp
-                    <div class="calendar-day p-2 border-right border-bottom {{ $dayNum < 1 || $dayNum > 31 ? 'bg-light-soft opacity-3' : '' }} {{ $isToday ? 'bg-info-lighter' : '' }}">
-                        <div class="d-flex justify-content-between">
-                            <span class="f-12 font-weight-bold {{ $isToday ? 'accent-text' : '' }}">{{ $dayNum > 0 && $dayNum <= 31 ? $dayNum : '' }}</span>
-                            @if($isToday) <span class="dot bg-info"></span> @endif
+                <div class="event-stack">
+                    @foreach($events as $event)
+                        <div class="event-pill pill-{{ $event['type'] }}">{{ $event['name'] }}</div>
+                    @endforeach
+                </div>
+            </div>
+        @endfor
+    </div>
+
+    <!-- Bottom Row -->
+    <div class="row">
+        <div class="col-lg-7">
+            <div class="schedule-section shadow-sm">
+                <div class="schedule-header">
+                    <span class="legend-dot" style="background: #ff7a2d; width: 12px; height: 12px;"></span>
+                    <h4>Today's Schedule — <span>4 March 2026</span></h4>
+                </div>
+                <div class="schedule-list">
+                    <div class="schedule-item">
+                        <div class="schedule-time">07:00</div>
+                        <div class="schedule-bar" style="background: #ff7a2d;"></div>
+                        <div class="schedule-content">
+                            <h6>Morning Speaking Session</h6>
+                            <p>Intermediate B2 · Zoom · Mr. Aryo</p>
                         </div>
-                        @if($hasEvent)
-                            <div class="p-1 m-t-5 rounded f-10 font-weight-bold {{ $dayNum == 8 ? 'bg-warning-light text-warning' : 'bg-info-light text-info' }} truncate">
-                                @if($dayNum == 5) Live Zoom @elseif($dayNum == 8) Mock Test @else Coaching @endif
-                            </div>
-                        @endif
                     </div>
-                @endfor
+                    <div class="schedule-item">
+                        <div class="schedule-time">09:30</div>
+                        <div class="schedule-bar" style="background: #3c50e0;"></div>
+                        <div class="schedule-content">
+                            <h6>Grammar Mastery — Unit 5</h6>
+                            <p>All Levels · Self-paced · Online Module</p>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="schedule-time">13:00</div>
+                        <div class="schedule-bar" style="background: #10b981;"></div>
+                        <div class="schedule-content">
+                            <h6>TOEFL Reading & Listening</h6>
+                            <p>Focus: Scimming & Scanning techniques</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div class="stats-card-yellow shadow-sm">
+                <p class="stat-label">Classes this month</p>
+                <h2 class="stat-value">18</h2>
+                <p class="mb-0 f-12">+4 from last month</p>
+                <div class="stat-progress">
+                    <div class="progress-fill" style="width: 70%;"></div>
+                </div>
+            </div>
+            <div class="stats-card-dark shadow-sm">
+                <p class="stat-label" style="color: #94a3b8;">Hours Studied</p>
+                <h2 class="stat-value">26</h2>
+                <p class="mb-0 f-12" style="color: #94a3b8;">Focused Learning Time</p>
             </div>
         </div>
     </div>
 </div>
-
-<style>
-    .rounded-lg { border-radius: 12px !important; }
-    .bg-white-10 { background: rgba(255,255,255,0.1); }
-    .border-white-20 { border-color: rgba(255,255,255,0.2) !important; }
-    .bg-info-lighter { background: #f0f7ff; }
-    .bg-light-soft { background: #fcfcfd; }
-    .letter-spacing-1 { letter-spacing: 1px; }
-    .h-lift:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: all 0.2s; }
-    .truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-</style>
 @endsection
