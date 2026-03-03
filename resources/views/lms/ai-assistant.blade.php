@@ -7,32 +7,39 @@
 <!-- Professional Ultra-Fidelity AI Assistant -->
 <div class="gpt-ux-container">
     <div class="gpt-chat-thread" id="chat-thread">
-        <!-- Initial Onboarding Message -->
-        <div class="gpt-message-row ai-message">
-            <div class="gpt-avatar bg-brand shadow-sm">
-                <span class="material-icons">auto_awesome</span>
-            </div>
-            <div class="gpt-content">
-                <h6 class="fw-800 primary-text">Englishvit AI Mentor</h6>
-                <p class="mb-0">Halo! Saya adalah Mentor AI Anda. Saya telah memantau progres belajar Anda di **Englishvit Success Path**.</p>
-                <div class="bg-white border rounded-12 pd-15 m-t-15 shadow-sm border-left-brand">
-                    <p class="mb-0 f-14 text-muted"><span class="material-icons f-16 me-2 text-warning">insights</span>Anda menunjukkan performa luar biasa di modul **Listening**! Mari kita pertahankan.</p>
+        <!-- AI Messaging Logic Container -->
+        <div class="gpt-thread-content">
+            <!-- Initial Onboarding Message -->
+            <div class="gpt-message-row ai-message">
+                <div class="gpt-thread-content d-flex gap-32">
+                    <div class="gpt-avatar bg-brand shadow-sm">
+                        <span class="material-icons">auto_awesome</span>
+                    </div>
+                    <div class="gpt-content">
+                        <h6 class="primary-text">Englishvit AI Mentor</h6>
+                        <p class="mb-0">Halo! Saya adalah Mentor AI Anda. Saya telah memantau progres belajar Anda di **Englishvit Success Path**.</p>
+                        <div class="bg-white border rounded-12 pd-15 m-t-15 shadow-sm border-left-brand d-inline-block">
+                            <p class="mb-0 f-14 text-muted"><span class="material-icons f-16 me-2 text-warning">insights</span>Anda menunjukkan performa luar biasa di modul **Listening**! Mari kita pertahankan.</p>
+                        </div>
+                        <p class="mb-0 m-t-15">Ada yang bisa saya bantu terkait persiapan IELTS Anda hari ini?</p>
+                    </div>
                 </div>
-                <p class="mb-0 m-t-15">Ada yang bisa saya bantu terkait persiapan IELTS Anda hari ini?</p>
             </div>
-        </div>
 
-        <!-- Dynamic Conversation Thread -->
-        <div id="gpt-messages-container"></div>
+            <!-- Dynamic Conversation Thread -->
+            <div id="gpt-messages-container"></div>
 
-        <!-- Typing Indicator (Refined) -->
-        <div id="gpt-typing" class="gpt-message-row ai-message" style="display: none;">
-            <div class="gpt-avatar bg-brand shadow-sm">
-                <span class="material-icons">auto_awesome</span>
-            </div>
-            <div class="gpt-content">
-                <div class="typing-dots">
-                    <span></span><span></span><span></span>
+            <!-- Typing Indicator (Refined) -->
+            <div id="gpt-typing" class="gpt-message-row ai-message" style="display: none;">
+                <div class="gpt-thread-content d-flex gap-32">
+                    <div class="gpt-avatar bg-brand shadow-sm">
+                        <span class="material-icons">auto_awesome</span>
+                    </div>
+                    <div class="gpt-content">
+                        <div class="typing-dots">
+                            <span></span><span></span><span></span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -40,9 +47,9 @@
 
     <!-- Anchored Input Container -->
     <div class="gpt-input-fixed">
-        <div class="container-fluid max-w-850 p-0">
+        <div class="w-100 max-w-850">
             <!-- Professional Suggestions -->
-            <div class="d-flex flex-wrap gap-3 justify-center m-b-20">
+            <div class="d-flex flex-wrap gap-10 justify-center m-b-20">
                 <button class="gpt-quick-suggest" onclick="quickPrompt('Prediksi skor IELTS saya')">Prediksi Skor</button>
                 <button class="gpt-quick-suggest" onclick="quickPrompt('Review roadmap saya')">Review Roadmap</button>
                 <button class="gpt-quick-suggest" onclick="quickPrompt('Tips Speaking Part 2')">Tips Speaking</button>
@@ -73,6 +80,7 @@
     .m-t-15 { margin-top: 15px; }
     .fw-800 { font-weight: 800; }
     .pd-15 { padding: 15px; }
+    .gap-32 { gap: 32px; }
 </style>
 @endsection
 
@@ -124,10 +132,12 @@
             `<div class="gpt-avatar bg-user shadow-sm"><span class="material-icons">person</span></div>`;
 
         row.innerHTML = `
-            ${avatar}
-            <div class="gpt-content">
-                <h6 class="fw-800 ${role === 'ai' ? 'primary-text' : 'text-muted'}">${role === 'ai' ? 'Englishvit AI Mentor' : 'You'}</h6>
-                <p class="mb-0">${text}</p>
+            <div class="gpt-thread-content d-flex gap-32">
+                ${avatar}
+                <div class="gpt-content">
+                    <h6 class="fw-800 ${role === 'ai' ? 'primary-text' : 'text-muted'}">${role === 'ai' ? 'Englishvit AI Mentor' : 'You'}</h6>
+                    <p class="mb-0">${text}</p>
+                </div>
             </div>
         `;
         container.appendChild(row);
@@ -148,5 +158,8 @@
             handleSend();
         }
     });
+
+    // Handle responsiveness on viewport resize
+    window.addEventListener('resize', scrollToBottom);
 </script>
 @endsection
