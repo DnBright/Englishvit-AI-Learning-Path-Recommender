@@ -488,48 +488,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (commitEl) commitEl.textContent = `${commitmentText} Commitment`;
     }
 
-    window.goToDashboard = function () {
-        const invoice = document.getElementById('aiInvoiceSection');
-        if (invoice) invoice.classList.add('d-none');
 
-        const dashboard = document.getElementById('aiDashboardSection');
-        if (dashboard) {
-            dashboard.classList.remove('d-none');
-            renderScheduleList();
-
-            // Update user's progress bar in dashboard context
-            const roadmapMilesLabel = document.querySelector('.milestone-item .f-12.fw-700');
-            if (roadmapMilesLabel && userCart.length > 0) {
-                roadmapMilesLabel.textContent = userCart[0].name + " #1";
-            }
-            dashboard.scrollIntoView({ behavior: 'smooth' });
-        }
-    };
-
-    function renderScheduleList() {
-        const scheduleList = document.getElementById('aiScheduleList');
-        if (!scheduleList) return;
-        scheduleList.innerHTML = '';
-
-        // Generate mock schedule items based on cart items
-        userCart.forEach((item, index) => {
-            const isCompleted = index === 0;
-            const statusIcon = isCompleted ? '✓' : '○';
-            const statusClass = isCompleted ? 'bg-success-1 fc-success-7' : 'bg-light fc-black-4';
-            const opacityClass = isCompleted ? '' : 'opacity-5';
-            const timeText = isCompleted ? 'Completed recently' : `Scheduled Week ${index + 1}`;
-
-            scheduleList.innerHTML += `
-                <div class="session-item d-flex align-center m-b-15 ${opacityClass}">
-                    <span class="icon-circle ${statusClass} m-r-10">${statusIcon}</span>
-                    <div>
-                        <div class="f-13 fw-700">${item.name}</div>
-                        <div class="f-11 fc-black-4">${timeText}</div>
-                    </div>
-                </div>
-            `;
-        });
-    }
 
     window.switchToCustomizer = function () {
         resultSection.classList.add('d-none');
@@ -547,8 +506,6 @@ document.addEventListener('DOMContentLoaded', function () {
         const invoice = document.getElementById('aiInvoiceSection');
         if (invoice) invoice.classList.add('d-none');
 
-        const dashboard = document.getElementById('aiDashboardSection');
-        if (dashboard) dashboard.classList.add('d-none');
 
         floatingCart.style.display = 'none';
         userCart = [];
