@@ -101,6 +101,7 @@
 
 .ai-slider {
     -webkit-appearance: none;
+    appearance: none;
     width: 100%;
     height: 6px;
     background: #E5E7EB;
