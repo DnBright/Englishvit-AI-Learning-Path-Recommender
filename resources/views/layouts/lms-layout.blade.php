@@ -12,22 +12,28 @@
 </head>
 <body class="bg-light">
 
-<!-- Header (Cloned from beranda) -->
-<header class="main-header shadow-sm bg-white sticky-top">
-    <div class="container d-flex justify-content-between align-items-center py-3">
+<!-- Header (Optimized for Visibility) -->
+<header class="main-header shadow-sm bg-white sticky-top" style="z-index: 1050;">
+    <div class="container d-flex justify-content-between align-items-center py-2">
         <div class="logo">
-            <a href="/"><img src="https://englishvit.com/img/logo.png" alt="Englishvit" height="40"></a>
+            <a href="/">
+                <img src="https://englishvit.com/img/logo.png" alt="Englishvit" height="35">
+            </a>
         </div>
         <nav class="d-none d-md-block">
-            <ul class="d-flex list-unstyled m-0 gap-4">
-                <li><a href="/" class="text-dark font-weight-bold">Home</a></li>
-                <li><a href="#" class="text-dark">Program</a></li>
-                <li><a href="#" class="text-dark">About</a></li>
+            <ul class="d-flex list-unstyled m-0 gap-4 align-items-center">
+                <li><a href="/" class="f-14 font-weight-bold text-dark hover-blue">Beranda</a></li>
+                <li><a href="https://englishvit.com/program" class="f-14 text-dark hover-blue">Program</a></li>
+                <li><a href="https://englishvit.com/artikel" class="f-14 text-dark hover-blue">Blog</a></li>
+                <li><a href="/dashboard-study/roadmap" class="btn btn-sm bg-info-1 accent-text font-weight-bold p-x-15">LMS Dashboard</a></li>
             </ul>
         </nav>
         <div class="user-profile d-flex align-items-center gap-2">
-            <span class="f-14 font-weight-bold">Student Name</span>
-            <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center" style="width: 35px; height: 35px;">S</div>
+            <div class="d-flex flex-column text-right d-none d-sm-flex">
+                <span class="f-12 font-weight-bold mb-0">Student Name</span>
+                <span class="f-10 text-muted">Independent Study</span>
+            </div>
+            <div class="rounded-circle bg-primary text-white d-flex-center justify-center font-weight-bold" style="width: 35px; height: 35px; background: #002655;">S</div>
         </div>
     </div>
 </header>

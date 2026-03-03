@@ -27,7 +27,7 @@ Route::get('/pronunciation', function () {
 });
 
 Route::get('/dashboard-study', function () {
-    return view('dashboard-study');
+    return redirect('/dashboard-study/roadmap');
 });
 
 Route::prefix('dashboard-study')->group(function () {
