@@ -769,7 +769,9 @@ document.addEventListener('DOMContentLoaded', function () {
         refreshCalendar();
     };
 
+    // Final Step: Redirect to Dashboard Study Independent
     window.goToWorkspace = function () {
-        window.location.href = '/dashboard-study';
+        // Redirect to the new independent dashboard roadmap page
+        window.location.href = '/dashboard-study/roadmap';
     };
 });
