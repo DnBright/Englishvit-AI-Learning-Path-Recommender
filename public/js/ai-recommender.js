@@ -265,13 +265,15 @@ document.addEventListener('DOMContentLoaded', function () {
             const isVisible = m === currentMonthView ? '' : 'd-none';
             scheduleHTML += `
                 <div class="ai-month-slide ${isVisible}" id="monthSlide-${m}">
-                    <div class="bg-purple-1 p-3 border-bottom-light text-center" style="background-color:#F5F3FF; border-radius: 12px 12px 0 0;">
-                        <span class="f-14 fw-800 fc-purple-7">Bulan Belajar ${m}</span>
+                    <div class="calendar-header-main">
+                        <span class="f-16 fw-800">Bulan Belajar ${m}</span>
+                        <p class="f-12 fc-black-4 m-0">Satu langkah lebih dekat ke target Anda!</p>
                     </div>
                     <table class="ai-calendar-table">
                         <thead>
                             <tr>
-                                ${dayLabels.map(day => `<th>${day}</th>`).join('')}
+                                <th class="week-hdr">Wk</th>
+                                ${dayLabels.map(label => `<th>${label}</th>`).join('')}
                             </tr>
                         </thead>
                         <tbody>
@@ -279,6 +281,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
             for (let w = 0; w < 4; w++) {
                 scheduleHTML += '<tr>';
+                // Week number indicator
+                scheduleHTML += `<td class="week-num-col">Minggu<br>${w + 1}</td>`;
+
                 for (let d = 0; d < 7; d++) {
                     const dayKey = `${m}-${w}-${d}`;
                     let dayContent = '';
@@ -290,7 +295,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             const label = type === 'live' ? 'Live' : (type === 'private' ? 'Private' : (type === 'module' ? 'Focus' : 'Test'));
                             const time = type === 'live' ? '19:00' : (type === 'private' ? '10:00' : (type === 'module' ? '09:00' : '08:00'));
                             dayContent += `<div class="calendar-slot-available ${type}" onclick="event.stopPropagation(); toggleActivity('${dayKey}', '${type}')">
-                                <span class="slot-time">${time}</span>
+                                <span class="slot-time">${time} WIB</span>
                                 <span class="slot-label">${icon} ${label}</span>
                             </div>`;
                         });
@@ -299,36 +304,36 @@ document.addEventListener('DOMContentLoaded', function () {
                             if (item.category === 'live') {
                                 // Distributed: Tuesday, Thursday, Saturday
                                 if (d === 1 || d === 3 || d === 5) dayContent += `<div class="calendar-slot-available live" title="${item.name}" onclick="event.stopPropagation(); toggleActivity('${dayKey}', 'live')">
-                                    <span class="slot-time">19:00</span>
-                                    <span class="slot-label">${item.icon} Live</span>
+                                    <span class="slot-time">19:00 WIB</span>
+                                    <span class="slot-label">${item.icon} Live Class</span>
                                 </div>`;
                             } else if (item.category === 'private') {
                                 // Distributed: Sunday
                                 if (d === 6) dayContent += `<div class="calendar-slot-available private" title="${item.name}" onclick="event.stopPropagation(); toggleActivity('${dayKey}', 'private')">
-                                    <span class="slot-time">10:00</span>
+                                    <span class="slot-time">10:00 WIB</span>
                                     <span class="slot-label">${item.icon} Private</span>
                                 </div>`;
                             } else if (item.category === 'module') {
                                 // Distributed: Monday, Wednesday, Friday
                                 if (d === 0 || d === 2 || d === 4) dayContent += `<div class="calendar-slot-available module" title="${item.name}" onclick="event.stopPropagation(); toggleActivity('${dayKey}', 'module')">
-                                    <span class="slot-time">09:00</span>
-                                    <span class="slot-label">${item.icon} Focus</span>
+                                    <span class="slot-time">09:00 WIB</span>
+                                    <span class="slot-label">${item.icon} Materi</span>
                                 </div>`;
                             } else if (item.category === 'test') {
                                 // Distributed: Sunday (Week 1 and 3)
                                 if ((w === 0 || w === 2) && d === 6) dayContent += `<div class="calendar-slot-available test" title="${item.name}" onclick="event.stopPropagation(); toggleActivity('${dayKey}', 'test')">
-                                    <span class="slot-time">08:00</span>
-                                    <span class="slot-label">${item.icon} Test</span>
+                                    <span class="slot-time">08:00 WIB</span>
+                                    <span class="slot-label">${item.icon} Quiz</span>
                                 </div>`;
                             }
                         });
                     }
 
-                    const hasActivityClass = dayContent !== '' ? 'has-activity' : '';
+                    const hasActivityClass = dayContent !== '' ? 'has-activity' : 'is-empty';
+                    const hoverTitle = dayContent !== '' ? 'Klik untuk edit' : 'Klik untuk tambah jadwal';
 
                     scheduleHTML += `
-                        <td class="day-cell ${hasActivityClass}" onclick="openDayEditor('${dayKey}')">
-                            <span class="day-num">Mg ${w + 1}</span>
+                        <td class="day-cell ${hasActivityClass}" onclick="openDayEditor('${dayKey}')" title="${hoverTitle}">
                             <div class="day-activities">${dayContent}</div>
                         </td>
                     `;
