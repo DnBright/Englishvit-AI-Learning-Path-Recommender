@@ -7,38 +7,35 @@
 <!-- Professional Ultra-Fidelity AI Assistant -->
 <div class="gpt-ux-container">
     <div class="gpt-chat-thread" id="chat-thread">
-        <!-- AI Messaging Logic Container -->
-        <div class="gpt-thread-content">
-            <!-- Initial Onboarding Message -->
-            <div class="gpt-message-row ai-message">
-                <div class="gpt-thread-content d-flex gap-32">
-                    <div class="gpt-avatar bg-brand shadow-sm">
-                        <span class="material-icons">auto_awesome</span>
+        <!-- Initial Onboarding Message -->
+        <div class="gpt-message-row ai-message">
+            <div class="gpt-thread-content">
+                <div class="gpt-avatar bg-brand shadow-sm">
+                    <span class="material-icons">auto_awesome</span>
+                </div>
+                <div class="gpt-content">
+                    <h6 class="primary-text">Englishvit AI Mentor</h6>
+                    <p class="mb-0">Halo! Saya adalah Mentor AI Anda. Saya telah memantau progres belajar Anda di **Englishvit Success Path**.</p>
+                    <div class="bg-white border rounded-12 pd-15 m-t-15 shadow-sm border-left-brand d-inline-block">
+                        <p class="mb-0 f-14 text-muted"><span class="material-icons f-16 me-2 text-warning">insights</span>Anda menunjukkan performa luar biasa di modul **Listening**! Mari kita pertahankan.</p>
                     </div>
-                    <div class="gpt-content">
-                        <h6 class="primary-text">Englishvit AI Mentor</h6>
-                        <p class="mb-0">Halo! Saya adalah Mentor AI Anda. Saya telah memantau progres belajar Anda di **Englishvit Success Path**.</p>
-                        <div class="bg-white border rounded-12 pd-15 m-t-15 shadow-sm border-left-brand d-inline-block">
-                            <p class="mb-0 f-14 text-muted"><span class="material-icons f-16 me-2 text-warning">insights</span>Anda menunjukkan performa luar biasa di modul **Listening**! Mari kita pertahankan.</p>
-                        </div>
-                        <p class="mb-0 m-t-15">Ada yang bisa saya bantu terkait persiapan IELTS Anda hari ini?</p>
-                    </div>
+                    <p class="mb-0 m-t-15">Ada yang bisa saya bantu terkait persiapan IELTS Anda hari ini?</p>
                 </div>
             </div>
+        </div>
 
-            <!-- Dynamic Conversation Thread -->
-            <div id="gpt-messages-container"></div>
+        <!-- Dynamic Conversation Thread -->
+        <div id="gpt-messages-container"></div>
 
-            <!-- Typing Indicator (Refined) -->
-            <div id="gpt-typing" class="gpt-message-row ai-message" style="display: none;">
-                <div class="gpt-thread-content d-flex gap-32">
-                    <div class="gpt-avatar bg-brand shadow-sm">
-                        <span class="material-icons">auto_awesome</span>
-                    </div>
-                    <div class="gpt-content">
-                        <div class="typing-dots">
-                            <span></span><span></span><span></span>
-                        </div>
+        <!-- Typing Indicator (Refined) -->
+        <div id="gpt-typing" class="gpt-message-row ai-message" style="display: none;">
+            <div class="gpt-thread-content">
+                <div class="gpt-avatar bg-brand shadow-sm">
+                    <span class="material-icons">auto_awesome</span>
+                </div>
+                <div class="gpt-content">
+                    <div class="typing-dots">
+                        <span></span><span></span><span></span>
                     </div>
                 </div>
             </div>
@@ -80,7 +77,6 @@
     .m-t-15 { margin-top: 15px; }
     .fw-800 { font-weight: 800; }
     .pd-15 { padding: 15px; }
-    .gap-32 { gap: 32px; }
 </style>
 @endsection
 
@@ -132,7 +128,7 @@
             `<div class="gpt-avatar bg-user shadow-sm"><span class="material-icons">person</span></div>`;
 
         row.innerHTML = `
-            <div class="gpt-thread-content d-flex gap-32">
+            <div class="gpt-thread-content">
                 ${avatar}
                 <div class="gpt-content">
                     <h6 class="fw-800 ${role === 'ai' ? 'primary-text' : 'text-muted'}">${role === 'ai' ? 'Englishvit AI Mentor' : 'You'}</h6>
