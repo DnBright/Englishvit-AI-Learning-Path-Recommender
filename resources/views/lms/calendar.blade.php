@@ -131,8 +131,12 @@ function renderCal(){
     const evts=CAL_EVENTS[key]||[];
     const cell=document.createElement('div');
     cell.className='cal-cell'+(wknd?' wknd-cell':'')+(isToday?' today':'')+(evts.length?' has-ev':'');
+    cell.setAttribute('ondragover', 'allowDrop(event)');
+    cell.setAttribute('ondrop', `dropEvent(event, '${key}')`);
     let html=`<div class="cdn">${d}</div>`;
-    evts.slice(0,2).forEach(ev=>{html+=`<span class="cev ${ev.cls}">${ev.label}</span>`;});
+    evts.forEach((ev, idx)=>{
+      html+=`<span class="cev ${ev.cls}" draggable="true" ondragstart="dragEvent(event, '${key}', ${idx})" style="cursor: grab;">${ev.label}</span>`;
+    });
     cell.innerHTML=html;
     cell.onclick=()=>{
       document.querySelectorAll('.cal-cell').forEach(c=>c.classList.remove('sel'));
@@ -140,6 +144,37 @@ function renderCal(){
     };
     grid.appendChild(cell);
   }
+}
+
+// Drag and Drop State
+let draggedEvt = null;
+
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+
+function dragEvent(ev, sourceKey, evtIndex) {
+  draggedEvt = { sourceKey, evtIndex };
+  ev.dataTransfer.effectAllowed = 'move';
+}
+
+function dropEvent(ev, targetKey) {
+  ev.preventDefault();
+  if(!draggedEvt) return;
+  
+  const { sourceKey, evtIndex } = draggedEvt;
+  if(sourceKey === targetKey) return; // dropped on same date
+  
+  // Remove from source
+  const evObj = CAL_EVENTS[sourceKey].splice(evtIndex, 1)[0];
+  if(CAL_EVENTS[sourceKey].length === 0) delete CAL_EVENTS[sourceKey];
+  
+  // Add to target
+  if(!CAL_EVENTS[targetKey]) CAL_EVENTS[targetKey] = [];
+  CAL_EVENTS[targetKey].push(evObj);
+  
+  draggedEvt = null;
+  renderCal();
 }
 renderCal();
 </script>
