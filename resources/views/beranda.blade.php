@@ -771,7 +771,50 @@
                 </div>
             </div>
 
-            <!-- STAGE 5: Dashboard Integration (Mockup) -->
+            <!-- STAGE 5.5: Invoice / Payment Success -->
+            <div id="aiInvoiceSection" class="d-none">
+                <div class="ai-result-header">
+                    <h2 class="fw-bold fc-success-7">🎉 Payment Successful!</h2>
+                    <p class="f-h6 fc-black-5">Here is your official learning invoice and schedule summary.</p>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 offset-md-3">
+                        <div class="ai-dashboard-card p-4 m-b-40 shadow">
+                            <h5 class="fw-800 m-b-20 text-center border-bottom pb-3">Official Invoice</h5>
+                            
+                            <div class="d-flex-center-btw m-b-15">
+                                <span class="f-12 fc-black-4">Order ID:</span>
+                                <span class="f-12 fw-700">#EVIT-AI-9921</span>
+                            </div>
+                            <div class="d-flex-center-btw border-bottom pb-3 m-b-15">
+                                <span class="f-12 fc-black-4">Date:</span>
+                                <span class="f-12 fw-700" id="invoiceDate">Today</span>
+                            </div>
+
+                            <div id="aiInvoiceItems" class="m-b-20">
+                                <!-- Populated by JS -->
+                            </div>
+
+                            <div class="d-flex-center-btw border-top pt-3 m-b-10">
+                                <span class="fw-700 f-14">Total Paid:</span>
+                                <span class="fw-800 f-16 fc-purple-7" id="aiInvoiceTotal">Rp 0</span>
+                            </div>
+                            
+                            <div class="m-t-30 bg-light p-3 br-10 text-center">
+                                <span class="f-11 fw-700 fc-black-5 d-block m-b-5">YOUR LEARNING COMMITMENT:</span>
+                                <span class="f-13 fw-800 fc-info-7" id="aiInvoiceCommitment">3 Months - High Intensity</span>
+                            </div>
+                        </div>
+
+                        <div class="text-center">
+                            <button class="ai-btn-generate px-5" onclick="goToDashboard()">Enter Dashboard <i class="material-icons v-middle m-l-5">launch</i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STAGE 6: Dashboard Integration (Mockup) -->
             <div id="aiDashboardSection" class="d-none">
                 <div class="ai-result-header">
                     <h2 class="fw-bold">📅 My Smart-Package Roadmap</h2>
@@ -803,24 +846,13 @@
                     </div>
                     <div class="col-md-6 text-left">
                         <div class="ai-dashboard-card p-4 h-full">
-                            <h5 class="fw-800 m-b-20">Recent Sessions</h5>
-                            <div class="session-list">
-                                <div class="session-item d-flex align-center m-b-15">
-                                    <span class="icon-circle bg-success-1 fc-success-7 m-r-10">✓</span>
-                                    <div>
-                                        <div class="f-13 fw-700">Assessment Test #1</div>
-                                        <div class="f-11 fc-black-4">Completed yesterday</div>
-                                    </div>
-                                </div>
-                                <div class="session-item d-flex align-center m-b-15 opacity-5">
-                                    <span class="icon-circle bg-light fc-black-4 m-r-10">○</span>
-                                    <div>
-                                        <div class="f-13 fw-700">Live Class: Speaking #1</div>
-                                        <div class="f-11 fc-black-4">Scheduled for Friday</div>
-                                    </div>
-                                </div>
+                            <h5 class="fw-800 m-b-5">Your Personal Schedule</h5>
+                            <p class="f-12 fc-black-4 m-b-20">Auto-generated based on your roadmap and availability.</p>
+                            
+                            <div class="session-list" id="aiScheduleList">
+                                <!-- Populated by JS -->
                             </div>
-                            <button class="btn bg-purple-7 fc-white w-full m-t-20" onclick="resetAIForm()">Reset Application (Demo Mode)</button>
+                            <button class="btn bg-purple-7 fc-white w-full m-t-30" onclick="resetAIForm()">Reset Application (Demo Mode)</button>
                         </div>
                     </div>
                 </div>

@@ -276,19 +276,90 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // --- INTERFACE TO DASHBOARD ---
     window.purchasePlan = function () {
-        // Transition to Dashboard
+        // Transition to Invoice
         resultSection.classList.add('d-none');
         customizerSection.classList.add('d-none');
         floatingCart.style.display = 'none';
-        const dashboard = document.getElementById('aiDashboardSection');
-        if (dashboard) dashboard.classList.remove('d-none');
 
-        // Update user's progress bar in dashboard context
-        const roadmapMilesLabel = document.querySelector('.milestone-item .f-12.fw-700');
-        if (roadmapMilesLabel && userCart.length > 0) {
-            roadmapMilesLabel.textContent = userCart[0].name + " #1";
+        const invoice = document.getElementById('aiInvoiceSection');
+        if (invoice) {
+            invoice.classList.remove('d-none');
+            renderInvoice();
+            invoice.scrollIntoView({ behavior: 'smooth' });
         }
     };
+
+    function renderInvoice() {
+        const today = new Date().toLocaleDateString('en-ID', { year: 'numeric', month: 'long', day: 'numeric' });
+        const dateEl = document.getElementById('invoiceDate');
+        if (dateEl) dateEl.textContent = today;
+
+        const invoiceList = document.getElementById('aiInvoiceItems');
+        if (invoiceList) invoiceList.innerHTML = '';
+
+        let total = 0;
+        userCart.forEach(item => {
+            total += item.price;
+            if (invoiceList) {
+                invoiceList.innerHTML += `
+                    <div class="d-flex-center-btw m-b-10">
+                        <span class="f-13 fc-black-5">${item.name}</span>
+                        <span class="f-13 fw-700">Rp ${item.price.toLocaleString('id-ID')}</span>
+                    </div>
+                `;
+            }
+        });
+
+        const commitmentText = formData.timeline ? `${formData.timeline} Months` : 'Flexible';
+        const totalEl = document.getElementById('aiInvoiceTotal');
+        const commitEl = document.getElementById('aiInvoiceCommitment');
+
+        if (totalEl) totalEl.textContent = `Rp ${total.toLocaleString('id-ID')}`;
+        if (commitEl) commitEl.textContent = `${commitmentText} Commitment`;
+    }
+
+    window.goToDashboard = function () {
+        const invoice = document.getElementById('aiInvoiceSection');
+        if (invoice) invoice.classList.add('d-none');
+
+        const dashboard = document.getElementById('aiDashboardSection');
+        if (dashboard) {
+            dashboard.classList.remove('d-none');
+            renderScheduleList();
+
+            // Update user's progress bar in dashboard context
+            const roadmapMilesLabel = document.querySelector('.milestone-item .f-12.fw-700');
+            if (roadmapMilesLabel && userCart.length > 0) {
+                roadmapMilesLabel.textContent = userCart[0].name + " #1";
+            }
+            dashboard.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+
+    function renderScheduleList() {
+        const scheduleList = document.getElementById('aiScheduleList');
+        if (!scheduleList) return;
+        scheduleList.innerHTML = '';
+
+        // Generate mock schedule items based on cart items
+        userCart.forEach((item, index) => {
+            const isCompleted = index === 0;
+            const statusIcon = isCompleted ? '✓' : '○';
+            const statusClass = isCompleted ? 'bg-success-1 fc-success-7' : 'bg-light fc-black-4';
+            const opacityClass = isCompleted ? '' : 'opacity-5';
+            const timeText = isCompleted ? 'Completed recently' : `Scheduled Week ${index + 1}`;
+
+            scheduleList.innerHTML += `
+                <div class="session-item d-flex align-center m-b-15 ${opacityClass}">
+                    <span class="icon-circle ${statusClass} m-r-10">${statusIcon}</span>
+                    <div>
+                        <div class="f-13 fw-700">${item.name}</div>
+                        <div class="f-11 fc-black-4">${timeText}</div>
+                    </div>
+                </div>
+            `;
+        });
+    }
 
     window.switchToCustomizer = function () {
         resultSection.classList.add('d-none');
@@ -303,6 +374,9 @@ document.addEventListener('DOMContentLoaded', function () {
         assessmentContainer.classList.add('d-none');
         resultSection.classList.add('d-none');
         customizerSection.classList.add('d-none');
+        const invoice = document.getElementById('aiInvoiceSection');
+        if (invoice) invoice.classList.add('d-none');
+
         const dashboard = document.getElementById('aiDashboardSection');
         if (dashboard) dashboard.classList.add('d-none');
 
