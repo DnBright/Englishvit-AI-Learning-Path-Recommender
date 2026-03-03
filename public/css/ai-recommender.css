@@ -258,6 +258,8 @@
     overflow: hidden;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     animation: fadeIn 0.3s ease-out;
+    width: 100%;
+    /* Ensure full width */
 }
 
 @keyframes fadeIn {
@@ -308,13 +310,32 @@
 
 .day-cell {
     padding: 8px !important;
-    min-height: 100px;
-    transition: background 0.2s ease;
+    min-height: 110px;
+    transition: all 0.2s ease;
     cursor: pointer;
+    background: #FFFFFF;
 }
 
 .day-cell:hover {
     background-color: rgba(79, 70, 229, 0.05);
+    z-index: 2;
+}
+
+.day-cell.has-activity {
+    background-color: rgba(79, 70, 229, 0.02);
+    border: 1px solid rgba(79, 70, 229, 0.1) !important;
+}
+
+.day-cell.has-activity::after {
+    content: '';
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 6px;
+    height: 6px;
+    background: var(--ai-primary);
+    border-radius: 50%;
+    opacity: 0.5;
 }
 
 .day-activities {

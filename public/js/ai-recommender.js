@@ -297,22 +297,26 @@ document.addEventListener('DOMContentLoaded', function () {
                     } else {
                         cartItems.forEach(item => {
                             if (item.category === 'live') {
-                                if (d === 1 || d === 3) dayContent += `<div class="calendar-slot-available live" title="${item.name}" onclick="event.stopPropagation(); toggleActivity('${dayKey}', 'live')">
+                                // Distributed: Tuesday, Thursday, Saturday
+                                if (d === 1 || d === 3 || d === 5) dayContent += `<div class="calendar-slot-available live" title="${item.name}" onclick="event.stopPropagation(); toggleActivity('${dayKey}', 'live')">
                                     <span class="slot-time">19:00</span>
                                     <span class="slot-label">${item.icon} Live</span>
                                 </div>`;
                             } else if (item.category === 'private') {
-                                if (d === 5) dayContent += `<div class="calendar-slot-available private" title="${item.name}" onclick="event.stopPropagation(); toggleActivity('${dayKey}', 'private')">
+                                // Distributed: Sunday
+                                if (d === 6) dayContent += `<div class="calendar-slot-available private" title="${item.name}" onclick="event.stopPropagation(); toggleActivity('${dayKey}', 'private')">
                                     <span class="slot-time">10:00</span>
                                     <span class="slot-label">${item.icon} Private</span>
                                 </div>`;
                             } else if (item.category === 'module') {
+                                // Distributed: Monday, Wednesday, Friday
                                 if (d === 0 || d === 2 || d === 4) dayContent += `<div class="calendar-slot-available module" title="${item.name}" onclick="event.stopPropagation(); toggleActivity('${dayKey}', 'module')">
                                     <span class="slot-time">09:00</span>
                                     <span class="slot-label">${item.icon} Focus</span>
                                 </div>`;
                             } else if (item.category === 'test') {
-                                if (w === 0 && d === 6) dayContent += `<div class="calendar-slot-available test" title="${item.name}" onclick="event.stopPropagation(); toggleActivity('${dayKey}', 'test')">
+                                // Distributed: Sunday (Week 1 and 3)
+                                if ((w === 0 || w === 2) && d === 6) dayContent += `<div class="calendar-slot-available test" title="${item.name}" onclick="event.stopPropagation(); toggleActivity('${dayKey}', 'test')">
                                     <span class="slot-time">08:00</span>
                                     <span class="slot-label">${item.icon} Test</span>
                                 </div>`;
@@ -320,8 +324,10 @@ document.addEventListener('DOMContentLoaded', function () {
                         });
                     }
 
+                    const hasActivityClass = dayContent !== '' ? 'has-activity' : '';
+
                     scheduleHTML += `
-                        <td class="day-cell" onclick="openDayEditor('${dayKey}')">
+                        <td class="day-cell ${hasActivityClass}" onclick="openDayEditor('${dayKey}')">
                             <span class="day-num">Mg ${w + 1}</span>
                             <div class="day-activities">${dayContent}</div>
                         </td>
