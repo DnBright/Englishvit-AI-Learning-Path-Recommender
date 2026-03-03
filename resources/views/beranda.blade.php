@@ -563,19 +563,19 @@
                     <h4 class="fw-800 m-b-10 text-left">Where do you struggle most?</h4>
                     <p class="fc-black-4 m-b-30 text-left">Select areas that need the most improvement.</p>
                     <div class="ai-select-grid">
-                        <div class="ai-select-box" data-group="weakness" data-multi="true" data-val="speaking">
+                        <div class="ai-select-box" data-group="weaknesses" data-multi="true" data-val="speaking">
                             <span class="icon-sm">🎤</span>
                             <div class="f-12 fw-600">Speaking</div>
                         </div>
-                        <div class="ai-select-box" data-group="weakness" data-multi="true" data-val="writing">
+                        <div class="ai-select-box" data-group="weaknesses" data-multi="true" data-val="writing">
                             <span class="icon-sm">📝</span>
                             <div class="f-12 fw-600">Writing</div>
                         </div>
-                        <div class="ai-select-box" data-group="weakness" data-multi="true" data-val="listening">
+                        <div class="ai-select-box" data-group="weaknesses" data-multi="true" data-val="listening">
                             <span class="icon-sm">🎧</span>
                             <div class="f-12 fw-600">Listening</div>
                         </div>
-                        <div class="ai-select-box" data-group="weakness" data-multi="true" data-val="grammar">
+                        <div class="ai-select-box" data-group="weaknesses" data-multi="true" data-val="grammar">
                             <span class="icon-sm">📚</span>
                             <div class="f-12 fw-600">Grammar</div>
                         </div>
