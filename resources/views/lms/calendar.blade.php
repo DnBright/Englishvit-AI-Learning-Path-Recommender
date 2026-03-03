@@ -33,6 +33,20 @@
       💡 <strong style="color:var(--white)">Tips:</strong> Kamu bisa memindahkan jadwal (seperti Speaking, Grammar, TOEFL) ke hari lain dengan cara <strong>drag and drop</strong> (tarik dan lepas), atau hapus dengan menariknya ke ikon tempat sampah.
     </div>
     <div class="cal-grid" id="calGrid"></div>
+    
+    <!-- Unscheduled Classes (Nyawa) -->
+    <div style="margin-top:24px; background:var(--bg-card); border-radius:12px; border:1px solid rgba(255,255,255,0.05); overflow:hidden;">
+      <div style="padding:16px 20px; border-bottom:1px solid rgba(255,255,255,0.05); font-weight:700; display:flex; justify-content:space-between; align-items:center;">
+        <div style="display:flex; align-items:center; gap:8px;">
+          <span style="font-size:18px;">🎒</span>
+          <span>Kelas Belum Terjadwal (Sisa Tiket/Nyawa)</span>
+        </div>
+        <span style="font-size:12px; font-weight:500; color:var(--text-2); background:rgba(255,255,255,0.1); padding:4px 10px; border-radius:12px;" id="unschedCount">0</span>
+      </div>
+      <div id="unscheduledZone" style="padding:20px; display:flex; flex-wrap:wrap; gap:10px; min-height:80px; background:rgba(0,0,0,0.2);" ondragover="allowDrop(event)" ondrop="dropEvent(event, 'unscheduled')">
+        <!-- Unscheduled events will be rendered here -->
+      </div>
+    </div>
   </div>
 
   <div class="cal-side">
@@ -103,6 +117,8 @@
    CALENDAR
 =========================================================== */
 const MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+// Scheduled target events
 const CAL_EVENTS={
   '2026-3-4':[{label:'Speaking',cls:'cev-o'},{label:'TOEFL',cls:'cev-g'}],
   '2026-3-5':[{label:'Live Session',cls:'cev-y'}],
@@ -117,6 +133,17 @@ const CAL_EVENTS={
   '2026-3-25':[{label:'Live Q&A',cls:'cev-y'}],
   '2026-3-28':[{label:'Speaking',cls:'cev-o'}],
 };
+
+// Unscheduled source events (Nyawa / Tiket)
+let UNSCHEDULED_EVENTS = [
+  {label:'Live Class Zoom 1', cls:'cev-y'},
+  {label:'Live Class Zoom 2', cls:'cev-y'},
+  {label:'One-on-One 1', cls:'cev-o'},
+  {label:'One-on-One 2', cls:'cev-o'},
+  {label:'TOEFL Test Attempt', cls:'cev-g'},
+  {label:'Grammar Clinic', cls:'cev-b'}
+];
+
 let calCur={year:2026,month:3};
 
 function calChange(dir){
@@ -153,16 +180,37 @@ function renderCal(){
     cell.className='cal-cell'+(wknd?' wknd-cell':'')+(isToday?' today':'')+(evts.length?' has-ev':'');
     cell.setAttribute('ondragover', 'allowDrop(event)');
     cell.setAttribute('ondrop', `dropEvent(event, '${key}')`);
-    let html=`<div class="cdn">${d}</div>`;
-    evts.forEach((ev, idx)=>{
-      html+=`<span class="cev ${ev.cls}" draggable="true" ondragstart="dragEvent(event, '${key}', ${idx})" style="cursor: grab;">${ev.label}</span>`;
-    });
-    cell.innerHTML=html;
+    cell.appendChild(htmlDiv);
     cell.onclick=()=>{
       document.querySelectorAll('.cal-cell').forEach(c=>c.classList.remove('sel'));
       cell.classList.add('sel');
     };
     grid.appendChild(cell);
+  }
+  
+  renderUnscheduled();
+}
+
+function renderUnscheduled() {
+  const zone = document.getElementById('unscheduledZone');
+  const count = document.getElementById('unschedCount');
+  zone.innerHTML = '';
+  count.innerText = UNSCHEDULED_EVENTS.length + ' Item';
+  
+  if (UNSCHEDULED_EVENTS.length === 0) {
+    zone.innerHTML = '<div style="color:var(--text-2); font-size:13px; font-style:italic; padding:10px;">Semua tiket kelas sudah dijadwalkan! 🎉</div>';
+  } else {
+    UNSCHEDULED_EVENTS.forEach((ev, idx) => {
+      const span = document.createElement('span');
+      span.className = `cev ${ev.cls}`;
+      span.style.padding = '6px 12px';
+      span.style.fontSize = '12px';
+      span.style.cursor = 'grab';
+      span.setAttribute('draggable', 'true');
+      span.setAttribute('ondragstart', `dragEvent(event, 'unscheduled', ${idx})`);
+      span.innerText = ev.label;
+      zone.appendChild(span);
+    });
   }
 }
 
@@ -179,6 +227,11 @@ function dragEvent(ev, sourceKey, evtIndex) {
   document.getElementById('trashZone').style.background = 'rgba(255,90,90,0.2)';
   document.getElementById('trashZone').style.borderStyle = 'solid';
   document.getElementById('trashZone').style.transform = 'scale(1.05)';
+  
+  // Highlight unchedulled drop zone if dragging from calendar
+  if(sourceKey !== 'unscheduled') {
+    document.getElementById('unscheduledZone').style.background = 'rgba(255,255,255,0.05)';
+  }
 }
 
 function dropEvent(ev, targetKey) {
@@ -187,15 +240,24 @@ function dropEvent(ev, targetKey) {
   if(!draggedEvt) return;
   
   const { sourceKey, evtIndex } = draggedEvt;
-  if(sourceKey === targetKey) return; // dropped on same date
+  if(sourceKey === targetKey) return; // dropped on same date/zone
   
-  // Remove from source
-  const evObj = CAL_EVENTS[sourceKey].splice(evtIndex, 1)[0];
-  if(CAL_EVENTS[sourceKey].length === 0) delete CAL_EVENTS[sourceKey];
+  // Extract from source array
+  let evObj;
+  if (sourceKey === 'unscheduled') {
+    evObj = UNSCHEDULED_EVENTS.splice(evtIndex, 1)[0];
+  } else {
+    evObj = CAL_EVENTS[sourceKey].splice(evtIndex, 1)[0];
+    if(CAL_EVENTS[sourceKey].length === 0) delete CAL_EVENTS[sourceKey];
+  }
   
-  // Add to target
-  if(!CAL_EVENTS[targetKey]) CAL_EVENTS[targetKey] = [];
-  CAL_EVENTS[targetKey].push(evObj);
+  // Add to target array
+  if (targetKey === 'unscheduled') {
+    UNSCHEDULED_EVENTS.push(evObj);
+  } else {
+    if(!CAL_EVENTS[targetKey]) CAL_EVENTS[targetKey] = [];
+    CAL_EVENTS[targetKey].push(evObj);
+  }
   
   draggedEvt = null;
   renderCal();
@@ -208,8 +270,12 @@ function deleteEvent(ev) {
   const { sourceKey, evtIndex } = draggedEvt;
   
   // Remove from source permanently
-  CAL_EVENTS[sourceKey].splice(evtIndex, 1);
-  if(CAL_EVENTS[sourceKey].length === 0) delete CAL_EVENTS[sourceKey];
+  if (sourceKey === 'unscheduled') {
+    UNSCHEDULED_EVENTS.splice(evtIndex, 1);
+  } else {
+    CAL_EVENTS[sourceKey].splice(evtIndex, 1);
+    if(CAL_EVENTS[sourceKey].length === 0) delete CAL_EVENTS[sourceKey];
+  }
   
   draggedEvt = null;
   renderCal();
@@ -221,6 +287,10 @@ function resetTrashStyle() {
     tz.style.background = 'rgba(255,90,90,0.1)';
     tz.style.borderStyle = 'dashed';
     tz.style.transform = 'scale(1)';
+  }
+  const uz = document.getElementById('unscheduledZone');
+  if(uz) {
+    uz.style.background = 'rgba(0,0,0,0.2)';
   }
 }
 
