@@ -245,15 +245,22 @@ document.addEventListener('DOMContentLoaded', function () {
         const totalMonths = parseInt(timelineMonths) || 1;
 
         scheduleHTML += `
-            <div class="m-b-20 d-flex-center-btw flex-wrap gap-15">
+            <div class="m-b-30 d-flex-center-btw flex-wrap gap-15 ai-roadmap-controls">
                 <div>
-                    <h5 class="fw-800 m-b-5">📅 Kalender Roadmap Bulanan</h5>
-                    <p class="f-13 fc-black-5 mb-0">Rencana belajar Anda. <strong>Klik hari untuk kustomisasi!</strong></p>
+                    <h4 class="fw-800 m-b-5">📅 Kalender Roadmap Belajar</h4>
+                    <p class="f-13 fc-black-5 mb-0">Rencana personal Anda. <strong>Klik hari untuk kustomisasi jadwal!</strong></p>
                 </div>
-                <div class="d-flex gap-10">
-                    <button class="btn btn-sm bg-white border" onclick="changeMonthView(-1)"><i class="material-icons f-16 v-middle">west</i></button>
-                    <span class="fw-800 f-14 align-self-center" id="currentMonthLabel">Bulan ${currentMonthView}</span>
-                    <button class="btn btn-sm bg-white border" onclick="changeMonthView(1)"><i class="material-icons f-16 v-middle">east</i></button>
+                <div class="d-flex align-center gap-15 bg-white p-2 border-radius-12 shadow-sm border">
+                    <button class="btn btn-sm btn-icon-round bg-purple-1 fc-purple-7" onclick="changeMonthView(-1)" title="Bulan Sebelumnya">
+                        <i class="material-icons f-18">chevron_left</i>
+                    </button>
+                    <div class="text-center px-2" style="min-width: 100px;">
+                        <span class="f-11 fw-700 fc-black-4 d-block text-uppercase">Tampilan</span>
+                        <span class="fw-800 f-15 fc-purple-7" id="currentMonthLabel">Bulan ${currentMonthView}</span>
+                    </div>
+                    <button class="btn btn-sm btn-icon-round bg-purple-1 fc-purple-7" onclick="changeMonthView(1)" title="Bulan Berikutnya">
+                        <i class="material-icons f-18">chevron_right</i>
+                    </button>
                 </div>
             </div>
             <div class="ai-month-slider-container">
@@ -344,11 +351,40 @@ document.addEventListener('DOMContentLoaded', function () {
             scheduleHTML += `
                         </tbody>
                     </table>
-                    <div class="calendar-legend">
-                        <div class="legend-item"><div class="legend-dot live"></div> Live Class</div>
-                        <div class="legend-item"><div class="legend-dot private"></div> Privat</div>
-                        <div class="legend-item"><div class="legend-dot module"></div> Modul</div>
-                        <div class="legend-item"><div class="legend-dot test"></div> Tes</div>
+                    <div class="ai-legend-wrapper m-t-25">
+                        <div class="f-12 fw-800 m-b-15 fc-black-6 text-uppercase letter-spacing-1">
+                            <i class="material-icons f-14 v-middle m-r-5">info_outline</i> Panduan Jenis Kegiatan
+                        </div>
+                        <div class="ai-legend-grid">
+                            <div class="ai-legend-card live">
+                                <div class="icon">🏫</div>
+                                <div class="info">
+                                    <span class="title">Live Class</span>
+                                    <p class="desc">Kelas interaktif tatap muka via Zoom dengan Tutor Expert (1.5 Jam).</p>
+                                </div>
+                            </div>
+                            <div class="ai-legend-card private">
+                                <div class="icon">👤</div>
+                                <div class="info">
+                                    <span class="title">Privat</span>
+                                    <p class="desc">Sesi 1-on-1 intensif untuk konsultasi personal & koreksi (1 Jam).</p>
+                                </div>
+                            </div>
+                            <div class="ai-legend-card module">
+                                <div class="icon">📽️</div>
+                                <div class="info">
+                                    <span class="title">Materi / Focus</span>
+                                    <p class="desc">Belajar mandiri via platform video & latihan modul pilihan.</p>
+                                </div>
+                            </div>
+                            <div class="ai-legend-card test">
+                                <div class="icon">📜</div>
+                                <div class="info">
+                                    <span class="title">Quiz / Test</span>
+                                    <p class="desc">Ukur progres Anda dengan tes berkala setiap 2 minggu sekali.</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             `;

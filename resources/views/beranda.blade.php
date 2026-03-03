@@ -688,8 +688,8 @@
                     <p class="f-h6 fc-info-7" id="roadmapProfileSummary">Ringkasan akan muncul di sini</p>
                 </div>
 
-                <div class="row">
-                    <div class="col-md-9 offset-md-1.5">
+                <div class="row justify-content-center">
+                    <div class="col-md-11">
                         <!-- Roadmap View -->
                         <div class="roadmap-container m-b-40">
                              <div id="aiRoadmapTimeline">
