@@ -1,3 +1,8 @@
+@extends('layouts.lms-layout')
+
+@section('title', 'Clan System')
+@section('nav_clan', 'active')
+
 @section('content')
 <div class="d-flex justify-content-between align-items-center m-b-30">
     <div>
