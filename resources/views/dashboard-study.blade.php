@@ -249,65 +249,64 @@
 <script src="{{ asset("js/bootstrap.min.js") }}"></script>
 
 <script>
-    // Initialize Skill Radar Chart
+    // Initialize Skill Radar Chart (Mini Version)
     const ctx = document.getElementById('skillRadar').getContext('2d');
     const skillRadar = new Chart(ctx, {
         type: 'radar',
         data: {
-            labels: ['Listening', 'Reading', 'Writing', 'Speaking'],
+            labels: ['LIS', 'REA', 'WRI', 'SPE'],
             datasets: [{
-                label: 'Current Skill',
+                label: 'Current',
                 data: [65, 59, 45, 40],
                 fill: true,
-                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                borderColor: 'rgb(54, 162, 235)',
-                pointBackgroundColor: 'rgb(54, 162, 235)',
-                pointBorderColor: '#fff'
+                backgroundColor: 'rgba(0, 123, 255, 0.2)',
+                borderColor: '#007bff',
+                pointRadius: 2
             }, {
-                label: 'IELTS 6.5 Target',
+                label: 'Target',
                 data: [80, 80, 75, 75],
                 fill: true,
-                backgroundColor: 'rgba(255, 99, 132, 0.1)',
-                borderColor: 'rgba(255, 99, 132, 0.5)',
-                borderDash: [5, 5],
-                pointBackgroundColor: 'rgba(255, 99, 132, 0.5)',
-                pointBorderColor: '#fff'
+                backgroundColor: 'rgba(255, 99, 132, 0.05)',
+                borderColor: 'rgba(255, 99, 132, 0.4)',
+                borderDash: [2, 2],
+                pointRadius: 0
             }]
         },
         options: {
-            elements: { line: { borderWidth: 3 } },
+            plugins: {
+                legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 10 } } }
+            },
             scales: {
                 r: {
-                    angleLines: { display: false },
+                    ticks: { display: false },
+                    grid: { color: '#f0f0f0' },
                     suggestedMin: 0,
                     suggestedMax: 100
                 }
-            },
-            plugins: {
-                legend: { position: 'bottom' }
             }
         }
     });
 
-    // Interactivity: Update Path
-    function updatePath(type) {
-        $('.flex-option-card').removeClass('active');
-        $(event.currentTarget).addClass('active');
-
-        const badge = $('.success-badge');
-        const note = $('#path-note');
-
-        if(type === 'budget') {
-            badge.text('Probability: 72%').removeClass('success-high').addClass('success-mid');
-            note.text('*Pilihan Hemat: Durasi belajar menjadi 6 bulan dengan sesi mandiri lebih banyak.');
-        } else if(type === 'fast') {
-            badge.text('Probability: 94%').removeClass('success-mid').addClass('success-high');
-            note.text('*Pilihan Intensif: Sesi live class ditambah 2x/minggu untuk progress kilat.');
-        } else {
-            badge.text('Probability: 88%').removeClass('success-mid').addClass('success-high');
-            note.text('*Pilihan Seimbang: Target 4 bulan dengan porsi belajar ideal.');
+    // Chatbox Toggle / Interactivity (Optional)
+    function sendMessage() {
+        const input = $('.ai-chat-box input');
+        if (input.val()) {
+            $('.chat-body').append(`<div class="chat-bubble bubble-user">${input.val()}</div>`);
+            input.val('');
+            $('.chat-body').scrollTop($('.chat-body')[0].scrollHeight);
+            
+            // Fake AI Response
+            setTimeout(() => {
+                $('.chat-body').append(`<div class="chat-bubble bubble-ai">Mengerti. Saya akan segera menyesuaikan roadmap Anda.</div>`);
+                $('.chat-body').scrollTop($('.chat-body')[0].scrollHeight);
+            }, 1000);
         }
     }
+
+    $('.ai-chat-box button').on('click', sendMessage);
+    $('.ai-chat-box input').on('keypress', function(e) {
+        if(e.which == 13) sendMessage();
+    });
 </script>
 
 </body>
