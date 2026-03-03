@@ -25,3 +25,7 @@ Route::get('/one-on-one', function () {
 Route::get('/pronunciation', function () {
     return view('paket.pronunciation');
 });
+
+Route::get('/dashboard-study', function () {
+    return view('dashboard-study');
+});

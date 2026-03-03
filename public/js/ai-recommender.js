@@ -436,33 +436,6 @@ document.addEventListener('DOMContentLoaded', function () {
         scheduleHTML += `</div>`; // Close slider container
 
 
-        // Section: Detailed Explanation
-        scheduleHTML += `<div class="m-t-40"><h5 class="fw-800 m-b-20 fc-purple-7">📚 Detail Instruksi & Panduan Rutinitas (${totalMonths} Bulan Ke Depan)</h5>`;
-
-        cartItems.forEach(item => {
-            let details = '';
-            if (item.category === 'live') {
-                details = 'Interaksi langsung dengan tutor eksklusif melalui Zoom. Jadwal diset otomatis setiap <strong>Selasa & Kamis Pukul 19.00 WIB</strong> berturut-turut sesuai fase bulan. Fokuskan pada keaktifan.';
-            } else if (item.category === 'private') {
-                details = 'Sesi review eksklusif Face-to-Face secara virtual (1 Siswa, 1 Tutor). Default jadwal rutin: <strong>Sabtu 10.00 WIB</strong>. Siapkan bahan dari senin-jumat untuk direview.';
-            } else if (item.category === 'module') {
-                details = 'Modul E-Course ini bersifat Video On-Demand (Flexible Time). Disarankan konsisten: <strong>Senin, Rabu, Jumat pukul 09.00</strong>. Anda bisa atur jam sesuai kerjaan if bentrok.';
-            } else if (item.category === 'test') {
-                details = 'Simulasi Tryout Penuh. Test Online dengan durasi ~3.5 Jam. Jadwal: <strong>Minggu pertama tiap fase pukul 08.00 WIB</strong>.';
-            }
-
-            scheduleHTML += `
-                <div class="ai-card p-4 shadow-sm bg-white br-12 border-left-purple m-b-20">
-                    <div class="d-flex-center-btw mb-2">
-                        <span class="badge bg-info-1 fc-info-7 f-10">${item.category.toUpperCase()}</span>
-                    </div>
-                    <h6 class="fw-800 m-b-10">${item.name}</h6>
-                    <p class="f-13 fc-black-5 mb-0 lh-15">${details}</p>
-                </div>
-            `;
-        });
-
-        scheduleHTML += `</div>`;
         return scheduleHTML;
     }
 
@@ -549,8 +522,6 @@ document.addEventListener('DOMContentLoaded', function () {
         const dashboard = document.getElementById('aiDashboardSection');
         if (dashboard) dashboard.classList.add('d-none');
 
-        const workspace = document.getElementById('aiWorkspaceSection');
-        if (workspace) workspace.classList.add('d-none');
 
 
         floatingCart.style.display = 'none';
@@ -799,75 +770,6 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     window.goToWorkspace = function () {
-        const invoice = document.getElementById('aiInvoiceSection');
-        if (invoice) invoice.classList.add('d-none');
-
-        const workspace = document.getElementById('aiWorkspaceSection');
-        if (workspace) {
-            workspace.classList.remove('d-none');
-            renderWorkspace();
-            workspace.scrollIntoView({ behavior: 'smooth' });
-        }
+        window.location.href = '/dashboard-study';
     };
-
-    function renderWorkspace() {
-        const dateEl = document.getElementById('workspaceCurrentDate');
-        if (dateEl) {
-            dateEl.textContent = new Date().toLocaleDateString('id-ID', {
-                weekday: 'long',
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-            });
-        }
-
-        const statsList = document.getElementById('workspaceStats');
-        if (statsList) {
-            statsList.innerHTML = '';
-            const categories = {
-                live: 'Live',
-                private: 'Private',
-                module: 'Module',
-                test: 'Quiz'
-            };
-            const counts = {};
-
-            userCart.forEach(item => {
-                counts[item.category] = (counts[item.category] || 0) + 1;
-            });
-
-            Object.keys(categories).forEach(key => {
-                const hasItem = counts[key] > 0;
-                statsList.innerHTML += `
-                    <div class="d-flex-center-btw m-b-8 ${hasItem ? '' : 'opacity-4'}">
-                        <span class="f-12 fc-black-5">${categories[key]} aktif</span>
-                        <span class="f-12 fw-700">${hasItem ? 'Aktif' : 'Kosong'}</span>
-                    </div>
-                `;
-            });
-        }
-
-        const taskList = document.getElementById('workspaceDailyTasks');
-        if (taskList) {
-            taskList.innerHTML = `
-                <div class="milestone-item active d-flex align-center shadow-sm p-4 bg-white br-12 m-b-15 border">
-                    <div class="bg-purple-1 p-2 br-10 m-r-15">
-                        <i class="material-icons fc-purple-7">play_circle</i>
-                    </div>
-                    <div class="text-left">
-                        <div class="f-14 fw-800">${userCart[0]?.name || 'Modul Perkenalan'}</div>
-                        <div class="f-11 fc-black-4">Modul ini sudah terbuka. Estimasi waktu: 45 menit.</div>
-                    </div>
-                    <button class="btn btn-sm bg-purple-7 fc-white m-l-auto px-3">Mulai Sekarang</button>
-                </div>
-                <div class="milestone-item d-flex align-center p-3 bg-light br-12 opacity-7">
-                    <i class="material-icons fc-black-3 m-r-15">lock</i>
-                    <div class="text-left">
-                        <div class="f-13 fw-700 fc-black-4">${userCart[1]?.name || 'Modul Lanjutan'}</div>
-                        <div class="f-11 fc-black-3">Terbuka setelah modul pertama selesai.</div>
-                    </div>
-                </div>
-            `;
-        }
-    }
 });
