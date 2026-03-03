@@ -340,25 +340,21 @@ document.addEventListener('DOMContentLoaded', function () {
             timeline: ''
         };
     };
-    resultSection.classList.add('d-none');
-    customizerSection.classList.add('d-none');
-    document.querySelectorAll('.active').forEach(a => a.classList.remove('active'));
-};
-// The following functions are part of the original customizer logic,
-// which might be reused or adapted for the new `switchToCustomizer` function.
-// For now, they are kept as is, assuming `renderCustomizer` will be called from `switchToCustomizer`.
+    // The following functions are part of the customizer logic
+    // which allows users to add/remove specific modules (ketengan)
 
-function renderCustomizer() {
-    const eceranList = document.getElementById('aiEceranList');
-    const addonList = document.getElementById('aiAvailableAddons');
-    eceranList.innerHTML = '';
-    addonList.innerHTML = '';
 
-    // Render Current Cart
-    userCart.forEach((item, index) => {
-        const div = document.createElement('div');
-        div.className = 'ai-item-eceran';
-        div.innerHTML = `
+    function renderCustomizer() {
+        const eceranList = document.getElementById('aiEceranList');
+        const addonList = document.getElementById('aiAvailableAddons');
+        eceranList.innerHTML = '';
+        addonList.innerHTML = '';
+
+        // Render Current Cart
+        userCart.forEach((item, index) => {
+            const div = document.createElement('div');
+            div.className = 'ai-item-eceran';
+            div.innerHTML = `
                 <div class="ai-item-info">
                     <span class="f-20">${item.icon}</span>
                     <div>
@@ -373,14 +369,14 @@ function renderCustomizer() {
                     </button>
                 </div>
             `;
-        eceranList.appendChild(div);
-    });
+            eceranList.appendChild(div);
+        });
 
-    // Render Available Addons
-    atomicItems.filter(item => !userCart.find(c => c.id === item.id)).forEach(item => {
-        const div = document.createElement('div');
-        div.className = 'ai-item-eceran';
-        div.innerHTML = `
+        // Render Available Addons
+        atomicItems.filter(item => !userCart.find(c => c.id === item.id)).forEach(item => {
+            const div = document.createElement('div');
+            div.className = 'ai-item-eceran';
+            div.innerHTML = `
                 <div class="ai-item-info">
                     <span class="f-20">${item.icon}</span>
                     <div class="fw-bold">${item.name}</div>
@@ -390,152 +386,116 @@ function renderCustomizer() {
                     <button class="ai-btn-add" onclick="addToCart('${item.id}')">Add</button>
                 </div>
             `;
-        addonList.appendChild(div);
-    });
+            addonList.appendChild(div);
+        });
 
-    updateTotalPrice();
-    updateMentorAdvice();
-    updatePathStrength();
-}
+        updateTotalPrice();
+        updateMentorAdvice();
+        updatePathStrength();
+    }
 
-window.addToCart = function (id) {
-    const item = atomicItems.find(i => i.id === id);
-    userCart.push({ ...item });
-    renderCustomizer();
-};
+    window.addToCart = function (id) {
+        const item = atomicItems.find(i => i.id === id);
+        userCart.push({ ...item });
+        renderCustomizer();
+    };
 
-window.removeFromCart = function (index) {
-    userCart.splice(index, 1);
-    renderCustomizer();
-};
+    window.removeFromCart = function (index) {
+        userCart.splice(index, 1);
+        renderCustomizer();
+    };
 
-function updateTotalPrice() {
-    const total = userCart.reduce((sum, item) => sum + item.price, 0);
-    totalPriceDisplay.textContent = `Rp ${total.toLocaleString('id-ID')}`;
-}
+    function updateTotalPrice() {
+        const total = userCart.reduce((sum, item) => sum + item.price, 0);
+        totalPriceDisplay.textContent = `Rp ${total.toLocaleString('id-ID')}`;
+    }
 
-function updatePathStrength() {
-    const strengthFill = document.getElementById('aiStrengthFill');
-    const strengthPercent = document.getElementById('aiStrengthPercent');
-    const ieltsGoal = parseFloat(ieltsSlider.value);
+    function updatePathStrength() {
+        const strengthFill = document.getElementById('aiStrengthFill');
+        const strengthPercent = document.getElementById('aiStrengthPercent');
+        const ieltsGoal = parseFloat(ieltsSlider.value);
 
-    // Base strength
-    let strength = 20;
+        // Base strength
+        let strength = 20;
 
-    // Variety points (Category depth)
-    const categories = new Set(userCart.map(item => item.category));
-    strength += categories.size * 15;
+        // Variety points (Category depth)
+        const categories = new Set(userCart.map(item => item.category));
+        strength += categories.size * 15;
 
-    // Investment points
-    const total = userCart.reduce((sum, item) => sum + item.price, 0);
-    if (total > 150000) strength += 20;
-    else if (total > 80000) strength += 10;
+        // Investment points
+        const total = userCart.reduce((sum, item) => sum + item.price, 0);
+        if (total > 150000) strength += 20;
+        else if (total > 80000) strength += 10;
 
-    // Cap at 100
-    strength = Math.min(100, strength);
+        // Cap at 100
+        strength = Math.min(100, strength);
 
-    // Update UI
-    strengthFill.style.width = `${strength}%`;
-    strengthPercent.textContent = `${strength}%`;
+        // Update UI
+        strengthFill.style.width = `${strength}%`;
+        strengthPercent.textContent = `${strength}%`;
 
-    // Pulse effect
-    const container = document.getElementById('aiStrengthContainer');
-    container.classList.remove('pulse');
-    void container.offsetWidth; // Trigger reflow
-    container.classList.add('pulse');
+        // Pulse effect
+        const container = document.getElementById('aiStrengthContainer');
+        container.classList.remove('pulse');
+        void container.offsetWidth; // Trigger reflow
+        container.classList.add('pulse');
 
-    updateBudgetAlignment(total);
-}
+        updateBudgetAlignment(total);
+    }
 
-function updateBudgetAlignment(total) {
-    const budgetBadge = document.getElementById('aiBudgetAlignment');
-    const budgetPreference = document.querySelector('.ai-select-box[data-group="budget"].active')?.querySelector('.f-body2').textContent.trim() || 'Standar';
+    function updateBudgetAlignment(total) {
+        const budgetBadge = document.getElementById('aiBudgetAlignment');
+        const budgetPreference = document.querySelector('.ai-select-box[data-group="budget"].active')?.querySelector('.f-body2').textContent.trim() || 'Standar';
 
-    let status = "Strategic Choice";
-    let badgeClass = "bg-info-1 fc-info-7";
+        let status = "Strategic Choice";
+        let badgeClass = "bg-info-1 fc-info-7";
 
-    if (budgetPreference === 'Hemat') {
-        if (total > 100000) {
-            status = "Above Budget (Investment)";
-            badgeClass = "bg-warning-1 fc-warning-7";
-        } else {
-            status = "Excellent Value";
-            badgeClass = "bg-success-1 fc-success-7";
+        if (budgetPreference === 'Hemat') {
+            if (total > 100000) {
+                status = "Above Budget (Investment)";
+                badgeClass = "bg-warning-1 fc-warning-7";
+            } else {
+                status = "Excellent Value";
+                badgeClass = "bg-success-1 fc-success-7";
+            }
+        } else if (budgetPreference === 'Intensif') {
+            if (total < 250000) {
+                status = "Budget Left (Add more?)";
+                badgeClass = "bg-purple-1 fc-purple-7";
+            } else {
+                status = "Professional Choice";
+                badgeClass = "bg-info-1 fc-info-7";
+            }
+        } else { // Standar
+            if (total > 200000) {
+                status = "Premium Selection";
+                badgeClass = "bg-purple-1 fc-purple-7";
+            }
         }
-    } else if (budgetPreference === 'Intensif') {
-        if (total < 250000) {
-            status = "Budget Left (Add more?)";
-            badgeClass = "bg-purple-1 fc-purple-7";
+
+        budgetBadge.textContent = status;
+        budgetBadge.className = `badge ${badgeClass} f-10`;
+    }
+
+    function updateMentorAdvice() {
+        const mentorBubble = document.getElementById('aiMentorAdvice');
+        const mentorText = document.getElementById('aiMentorText');
+        const hasGoal = parseFloat(ieltsSlider.value) >= 7.0;
+        const hasTest = userCart.some(i => i.category === 'test');
+        const hasLive = userCart.some(i => i.category === 'live' || i.category === 'private');
+
+        if (hasGoal && !hasTest && userCart.length > 0) {
+            mentorBubble.classList.remove('d-none');
+            mentorText.textContent = "Targetmu 7.0+, tapi kamu belum mengambil simulasi test. Saya sarankan tambah 'IELTS Prediction Test' agar kita tahu progresmu!";
+        } else if (userCart.length === 0) {
+            mentorBubble.classList.remove('d-none');
+            mentorText.textContent = "Halo Andi! Rakit belajarmu di bawah ini sesuai budgetmu ya. Ingat, minimal ambil 1 modul dasar agar progressmu lancar.";
+        } else if (hasGoal && !hasLive) {
+            mentorBubble.classList.remove('d-none');
+            mentorText.textContent = "Untuk skor tinggi, interaksi dengan tutor (Live Class) sangat membantu lho. Coba tambah 1 sesi ke eceranmu!";
         } else {
-            status = "Professional Choice";
-            badgeClass = "bg-info-1 fc-info-7";
-        }
-    } else { // Standar
-        if (total > 200000) {
-            status = "Premium Selection";
-            badgeClass = "bg-purple-1 fc-purple-7";
+            mentorBubble.classList.add('d-none');
         }
     }
 
-    budgetBadge.textContent = status;
-    budgetBadge.className = `badge ${badgeClass} f-10`;
-}
-
-function updateMentorAdvice() {
-    const mentorBubble = document.getElementById('aiMentorAdvice');
-    const mentorText = document.getElementById('aiMentorText');
-    const hasGoal = parseFloat(ieltsSlider.value) >= 7.0;
-    const hasTest = userCart.some(i => i.category === 'test');
-    const hasLive = userCart.some(i => i.category === 'live' || i.category === 'private');
-
-    if (hasGoal && !hasTest && userCart.length > 0) {
-        mentorBubble.classList.remove('d-none');
-        mentorText.textContent = "Targetmu 7.0+, tapi kamu belum mengambil simulasi test. Saya sarankan tambah 'IELTS Prediction Test' agar kita tahu progresmu!";
-    } else if (userCart.length === 0) {
-        mentorBubble.classList.remove('d-none');
-        mentorText.textContent = "Halo Andi! Rakit belajarmu di bawah ini sesuai budgetmu ya. Ingat, minimal ambil 1 modul dasar agar progressmu lancar.";
-    } else if (hasGoal && !hasLive) {
-        mentorBubble.classList.remove('d-none');
-        mentorText.textContent = "Untuk skor tinggi, interaksi dengan tutor (Live Class) sangat membantu lho. Coba tambah 1 sesi ke eceranmu!";
-    } else {
-        mentorBubble.classList.add('d-none');
-    }
-}
-
-window.showFinalRoadmap = function () {
-    aiCustomizer.classList.add('d-none');
-    floatingCart.style.display = 'none';
-    aiResult.classList.remove('d-none');
-
-    // Populate final roadmap based on cart
-    const roadmapContainer = aiResult.querySelector('.ai-roadmap');
-    roadmapContainer.innerHTML = '';
-
-    userCart.forEach((item, i) => {
-        const div = document.createElement('div');
-        div.className = 'ai-roadmap-item';
-        div.innerHTML = `
-                <div class="ai-roadmap-dot"></div>
-                <div class="ai-card p-4">
-                    <div class="d-flex-center-btw mb-2">
-                        <h5 class="fw-bold mb-0">${item.name}</h5>
-                        <span class="badge bg-info-1 fc-info-7">${item.category}</span>
-                    </div>
-                    <p class="f-body2 mb-0">Part of your custom #${(i + 1)} step in your journey.</p>
-                </div>
-            `;
-        roadmapContainer.appendChild(div);
-    });
-
-    aiResult.scrollIntoView({ behavior: 'smooth' });
-}
-
-// Scroll back to form
-window.resetAIForm = function () {
-    if (aiResult) aiResult.classList.add('d-none');
-    if (aiCustomizer) aiCustomizer.classList.add('d-none');
-    if (floatingCart) floatingCart.style.display = 'none';
-    if (aiForm) aiForm.classList.remove('d-none');
-    if (aiForm) aiForm.scrollIntoView({ behavior: 'smooth' });
-}
 });
