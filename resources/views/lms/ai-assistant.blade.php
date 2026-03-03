@@ -4,14 +4,12 @@
 @section('topbar_title', '🤖 AI Assistant')
 
 @section('content')
-<h2 class="page-title">AI Assistant</h2>
-<p class="page-sub">Asisten belajar personal yang memahami roadmap dan progressmu secara real-time.</p>
 
 <div class="ai-layout">
   <div class="chat-area">
     <div class="chat-messages" id="chatMessages">
       <div class="msg msg-ai">
-        <div class="msg-avatar" style="background:transparent;"><img src="{{ asset('images/logo-new.png') }}" style="width: 24px; object-fit: contain; filter: brightness(0) invert(1);"></div>
+        <div class="msg-avatar" style="background:transparent;"><img src="{{ asset('images/logo-white.svg') }}" style="width: 24px; object-fit: contain;"></div>
         <div>
           <div class="msg-bubble">
             Halo {{ explode(' ', Auth::user()->name ?? 'Student')[0] }}! 👋 Saya sudah analisa progress belajarmu minggu ini.<br><br>
@@ -28,7 +26,7 @@
         </div>
       </div>
       <div class="msg msg-ai">
-        <div class="msg-avatar" style="background:transparent;"><img src="{{ asset('images/logo-new.png') }}" style="width: 24px; object-fit: contain; filter: brightness(0) invert(1);"></div>
+        <div class="msg-avatar" style="background:transparent;"><img src="{{ asset('images/logo-white.svg') }}" style="width: 24px; object-fit: contain;"></div>
         <div>
           <div class="msg-bubble">
             Paham! Writing Task 2 memang butuh latihan struktur yang konsisten. Ini quick tip dari saya:<br><br>
@@ -50,7 +48,7 @@
         </div>
       </div>
       <div class="msg msg-ai">
-        <div class="msg-avatar" style="background:transparent;"><img src="{{ asset('images/logo-new.png') }}" style="width: 24px; object-fit: contain; filter: brightness(0) invert(1);"></div>
+        <div class="msg-avatar" style="background:transparent;"><img src="{{ asset('images/logo-white.svg') }}" style="width: 24px; object-fit: contain;"></div>
         <div>
           <div class="msg-bubble">
             ✏️ <strong>Exercise — Writing Task 2</strong><br><br>
@@ -163,7 +161,7 @@ function addMsg(txt,role){
   d.innerHTML=`
     <div class="msg-avatar" ${role==='ai'?'style="background:transparent;"':''}>
       ${role==='ai' 
-        ? '<img src="{{ asset("images/logo-new.png") }}" style="width: 24px; object-fit: contain; filter: brightness(0) invert(1);">' 
+        ? '<img src="{{ asset("images/logo-white.svg") }}" style="width: 24px; object-fit: contain;">' 
         : '{{ substr(Auth::user()->name ?? "S", 0, 1) }}'}
     </div>
     <div>

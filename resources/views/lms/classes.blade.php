@@ -4,8 +4,6 @@
 @section('topbar_title', '🎓 Class Menu')
 
 @section('content')
-<h2 class="page-title">Class Menu</h2>
-<p class="page-sub">Semua kelas, materi, dan rekaman yang terintegrasi dengan roadmap belajarmu.</p>
 
 <div class="class-tabs">
   <div class="ctab active" onclick="switchTab(this,'tab-jadwal')">📅 Jadwal Aktif</div>

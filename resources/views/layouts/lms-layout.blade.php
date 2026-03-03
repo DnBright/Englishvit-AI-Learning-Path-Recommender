@@ -17,7 +17,7 @@
 <!-- ===== SIDEBAR ===== -->
 <nav class="sidebar" id="sidebar">
   <div class="sb-logo" style="display:block; padding-top:12px;">
-    <img src="{{ asset('images/logo-new.png') }}" alt="Englishvit Logo" style="height: 26px; margin-bottom: 8px; filter: brightness(0) invert(1);">
+    <img src="{{ asset('images/logo-white.svg') }}" alt="Englishvit Logo" style="height: 26px; margin-bottom: 8px;">
     <div class="sb-logo-sub" style="display:block;">My Success Path</div>
   </div>
 

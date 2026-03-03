@@ -4,8 +4,6 @@
 @section('topbar_title', '📘 Core Roadmap')
 
 @section('content')
-<h2 class="page-title">Core Roadmap</h2>
-<p class="page-sub">Rencana belajarmu yang dipersonalisasi oleh AI berdasarkan profil dan target.</p>
 
 <div class="roadmap-header">
   <div>

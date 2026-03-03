@@ -4,8 +4,6 @@
 @section('topbar_title', '📅 Integrated Calendar')
 
 @section('content')
-<h2 class="page-title">Integrated Calendar</h2>
-<p class="page-sub">Semua jadwal belajar, live class, dan deadline dalam satu tampilan.</p>
 
 <div class="cal-layout">
   <div class="cal-main">

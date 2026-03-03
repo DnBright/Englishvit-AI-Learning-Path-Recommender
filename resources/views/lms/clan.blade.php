@@ -4,8 +4,6 @@
 @section('topbar_title', '👥 Clan System')
 
 @section('content')
-<h2 class="page-title">Clan System</h2>
-<p class="page-sub">Belajar lebih semangat bersama kelompok dengan target yang sama.</p>
 
 <div class="clan-banner">
   <div>

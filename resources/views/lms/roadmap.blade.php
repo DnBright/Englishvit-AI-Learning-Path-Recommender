@@ -4,8 +4,6 @@
 @section('topbar_title', '🗺 My Success Path')
 
 @section('content')
-<h2 class="page-title">My Success Path</h2>
-<p class="page-sub">Visualisasi perjalanan belajarmu dari awal hingga target IELTS 6.5 tercapai.</p>
 
 <div class="map-prog-banner">
   <div class="map-prog-left">
