@@ -438,8 +438,6 @@
         <div class="container">
             <!-- 1. Onboarding Screen -->
             <div id="aiOnboardingForm" class="ai-card center-align" style="max-width: 1000px; margin: 0 auto;">
-                <span class="ai-header-badge">Englishvit AI Recommender</span>
-                <h3 class="fw-bold mb-2">Pilih Cara Belajar Mu Sendiri 🚀</h3>
             <!-- STAGE 0: Landing Page (Hook) -->
             <div id="aiLandingPage" class="ai-landing-page">
                 <div class="m-b-30">
@@ -808,55 +806,11 @@
                         </div>
 
                         <div class="text-center">
-                            <button class="ai-btn-generate px-5" onclick="goToDashboard()">Enter Dashboard <i class="material-icons v-middle m-l-5">launch</i></button>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- STAGE 6: Dashboard Integration (Mockup) -->
-            <div id="aiDashboardSection" class="d-none">
-                <div class="ai-result-header">
-                    <h2 class="fw-bold">📅 My Smart-Package Roadmap</h2>
-                    <p class="f-h6 fc-purple-7">Your learning path is active. Track your milestones below.</p>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="ai-dashboard-card p-4 h-full">
-                            <h5 class="fw-800 m-b-20">Learning Progress</h5>
-                            <div class="d-flex-center-btw m-b-10">
-                                <span class="f-13 fc-black-5">Total Completion</span>
-                                <span class="f-13 fw-700 fc-purple-7">12%</span>
-                            </div>
-                            <div class="ai-strength-bar-bg">
-                                <div class="ai-strength-bar-fill" style="width: 12%"></div>
-                            </div>
-                            <div class="m-t-30">
-                                <p class="f-12 fc-black-4 mb-2">NEXT MILESTONE:</p>
-                                <div class="milestone-item active d-flex align-center shadow-sm p-3 bg-white br-12">
-                                    <i class="material-icons fc-warning-7 m-r-10">play_circle</i>
-                                    <div>
-                                        <div class="f-12 fw-700">Grammar Mastery #1</div>
-                                        <div class="f-10 fc-black-4">Due in 2 days</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 text-left">
-                        <div class="ai-dashboard-card p-4 h-full">
-                            <h5 class="fw-800 m-b-5">Your Personal Schedule</h5>
-                            <p class="f-12 fc-black-4 m-b-20">Auto-generated based on your roadmap and availability.</p>
-                            
-                            <div class="session-list" id="aiScheduleList">
-                                <!-- Populated by JS -->
-                            </div>
-                            <button class="btn bg-purple-7 fc-white w-full m-t-30" onclick="resetAIForm()">Reset Application (Demo Mode)</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
             
             <!-- Floating Price Cart (NEW) -->
