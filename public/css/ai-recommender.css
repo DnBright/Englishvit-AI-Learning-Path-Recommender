@@ -857,139 +857,135 @@
     font-size: 12px;
 }
 
-/* Englishvit Professional Success Path */
-.ev-path-wrapper {
-    max-width: 800px;
+/* Duolingo-Style Snake Roadmap */
+.duo-roadmap-wrapper {
+    max-width: 600px;
     margin: 0 auto;
-    padding: 20px 20px 100px 20px;
+    padding: 60px 20px;
     position: relative;
-}
-
-.ev-path-timeline {
-    position: relative;
-    padding-left: 60px;
-}
-
-.ev-path-timeline::before {
-    content: '';
-    position: absolute;
-    left: 29px;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background: #e2e8f0;
-    z-index: 1;
-}
-
-.ev-milestone {
-    position: relative;
-    margin-bottom: 60px;
     display: flex;
-    align-items: flex-start;
+    flex-direction: column;
+    align-items: center;
 }
 
-.ev-node {
-    position: absolute;
-    left: -60px;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: white;
-    border: 3px solid #e2e8f0;
+.duo-node-row {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 50px;
+}
+
+/* Snake Path Offsets */
+.duo-node-row:nth-child(4n+1) .duo-node-wrapper {
+    transform: translateX(0);
+}
+
+.duo-node-row:nth-child(4n+2) .duo-node-wrapper {
+    transform: translateX(80px);
+}
+
+.duo-node-row:nth-child(4n+3) .duo-node-wrapper {
+    transform: translateX(0);
+}
+
+.duo-node-row:nth-child(4n+4) .duo-node-wrapper {
+    transform: translateX(-80px);
+}
+
+.duo-node-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 5;
+}
+
+.duo-node {
+    width: 80px;
+    height: 75px;
+    background: #e2e8f0;
+    border-radius: 50% / 40%;
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 5;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-}
-
-.ev-node .material-icons {
-    font-size: 28px;
-    color: #afafaf;
-}
-
-.ev-node.completed {
-    background: #002655;
-    border-color: #002655;
-}
-
-.ev-node.completed .material-icons {
-    color: white;
-}
-
-.ev-node.active {
-    background: white;
-    border-color: #002655;
-    box-shadow: 0 0 0 10px rgba(0, 38, 85, 0.1);
-    animation: evPulse 2s infinite;
-}
-
-.ev-node.active .material-icons {
-    color: #002655;
-}
-
-.ev-milestone-card {
-    background: white;
-    padding: 20px 25px;
-    border-radius: 16px;
-    border: 1px solid #edf2f7;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
-    flex-grow: 1;
-    margin-left: 20px;
-    transition: all 0.3s ease;
+    box-shadow: 0 8px 0 #cbd5e1;
     cursor: pointer;
+    transition: all 0.1s ease;
     position: relative;
 }
 
-.ev-milestone-card:hover {
-    transform: translateX(8px);
-    box-shadow: 0 8px 25px rgba(0, 38, 85, 0.08);
-    border-color: #002655;
+.duo-node:active {
+    transform: translateY(4px);
+    box-shadow: 0 4px 0 #cbd5e1;
 }
 
-.ev-milestone-card .stage-label {
-    font-size: 11px;
+.duo-node.active {
+    background: #002655;
+    /* Englishvit Brand */
+    box-shadow: 0 8px 0 #001a3a;
+}
+
+.duo-node.completed {
+    background: #10b981;
+    box-shadow: 0 8px 0 #059669;
+}
+
+.duo-node .material-icons {
+    font-size: 32px;
+    color: white;
+}
+
+.duo-node.locked .material-icons {
+    color: #94a3b8;
+}
+
+.duo-label {
+    margin-top: 15px;
     font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: #64748b;
-    margin-bottom: 8px;
-    display: block;
-}
-
-.ev-milestone-card h5 {
-    font-weight: 700;
+    font-size: 14px;
     color: #002655;
-    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-align: center;
 }
 
-.ev-milestone-card p {
-    font-size: 13px;
-    color: #64748b;
-    margin-bottom: 0;
+/* Dotted Path Connection */
+.duo-path-svg {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 80px);
+    z-index: 1;
+    pointer-events: none;
 }
 
-.ev-milestone.locked {
-    opacity: 0.6;
+.duo-path-line {
+    fill: none;
+    stroke: #e2e8f0;
+    stroke-width: 12px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
 }
 
-.ev-node.locked {
-    background: #f8fafc;
+.duo-node-tooltip {
+    position: absolute;
+    bottom: 110%;
+    background: white;
+    border: 2px solid #e2e8f0;
+    padding: 15px;
+    border-radius: 12px;
+    width: 200px;
+    display: none;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    text-transform: none;
 }
 
-@keyframes evPulse {
-    0% {
-        box-shadow: 0 0 0 0 rgba(0, 38, 85, 0.4);
-    }
-
-    70% {
-        box-shadow: 0 0 0 15px rgba(0, 38, 85, 0);
-    }
-
-    100% {
-        box-shadow: 0 0 0 0 rgba(0, 38, 85, 0);
-    }
+.duo-node-wrapper:hover .duo-node-tooltip {
+    display: block;
+    animation: fadeInUp 0.2s ease-out;
 }
 
 /* Success Path Progress Header */
