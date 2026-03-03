@@ -236,67 +236,104 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function generateDetailedSchedule(cartItems, timelineMonths) {
         let scheduleHTML = '';
-        const months = parseInt(timelineMonths) || 1;
-        const itemsPerMonth = Math.ceil(cartItems.length / months);
+        
+        scheduleHTML += `
+            <div class="m-b-20">
+                <h5 class="fw-800 m-b-5">📅 Personalized Weekly Calendar (Week 1)</h5>
+                <p class="f-13 fc-black-5">Jadwal harian ini dirancang spesifik oleh AI berdasarkan ketersediaan dan modul Anda agar efisiensi belajar maksimal.</p>
+            </div>
+            <div class="ai-calendar-container">
+                <table class="ai-calendar-table">
+                    <thead>
+                        <tr>
+                            <th class="time-col">Waktu<br>(WIB)</th>
+                            <th>Mon<span class="date">09</span></th>
+                            <th>Tue<span class="date">10</span></th>
+                            <th>Wed<span class="date">11</span></th>
+                            <th>Thu<span class="date">12</span></th>
+                            <th>Fri<span class="date">13</span></th>
+                            <th>Sat<span class="date">14</span></th>
+                            <th>Sun<span class="date">15</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+        `;
 
-        let currentItemIndex = 0;
-
-        for (let m = 1; m <= months; m++) {
-            scheduleHTML += `
-                <div class="ai-roadmap-item mb-4">
-                    <div class="d-flex align-center m-b-15">
-                        <div class="ai-roadmap-step bg-purple-7">Month ${m}</div>
-                        <h5 class="fw-800 m-l-15 mb-0">Phase ${m}: Execution</h5>
-                    </div>
-                    <div class="ai-card p-4 shadow-sm bg-white br-12 border-left-purple">
-            `;
-
-            const itemsThisMonth = cartItems.slice(currentItemIndex, currentItemIndex + itemsPerMonth);
-            currentItemIndex += itemsPerMonth;
-
-            if (itemsThisMonth.length === 0) {
-                scheduleHTML += `<p class="f-12 fc-black-5 mb-0">Independent Practice / Review Month</p>`;
-            } else {
-                itemsThisMonth.forEach((item, index) => {
-                    let scheduleDetails = '';
-                    if (item.category === 'live' || item.category === 'private') {
-                        scheduleDetails = `
-                            <ul class="schedule-list f-12 fc-black-5 m-t-10 p-l-20 mb-0">
-                                <li><strong>Week 1:</strong> Kickoff Session (Tuesday) & Practice (Thursday)</li>
-                                <li><strong>Week 2-3:</strong> Intensive Drill Labs (Tues & Thurs)</li>
-                                <li><strong>Week 4:</strong> Evaluation & Feedback</li>
-                            </ul>
-                         `;
-                    } else if (item.category === 'module') {
-                        scheduleDetails = `
-                            <ul class="schedule-list f-12 fc-black-5 m-t-10 p-l-20 mb-0">
-                                <li><strong>Daily:</strong> 30-min Video On-Demand (Mon-Fri)</li>
-                                <li><strong>Weekend:</strong> Skill Quiz & Worksheet</li>
-                            </ul>
-                         `;
-                    } else if (item.category === 'test') {
-                        scheduleDetails = `
-                            <ul class="schedule-list f-12 fc-black-5 m-t-10 p-l-20 mb-0">
-                                <li><strong>Day 15:</strong> Tryout Simulation</li>
-                                <li><strong>Day 20:</strong> Result Review & Weakness Analysis</li>
-                            </ul>
-                         `;
-                    }
-
-                    scheduleHTML += `
-                        <div class="m-b-20 p-b-15 border-bottom-light">
-                            <div class="d-flex-center-btw mb-2">
-                                <span class="badge bg-info-1 fc-info-7 f-10">${item.category.toUpperCase()}</span>
-                                <span class="f-11 fw-700 fc-success-7">Scheduled</span>
-                            </div>
-                            <h6 class="fw-800 m-b-5">${item.name}</h6>
-                            ${scheduleDetails}
-                        </div>
-                     `;
-                });
+        const timeslots = [
+            '08.00-09.00', '09.00-10.00', '10.00-11.00', '11.00-12.00', 
+            '12.00-13.00', '13.00-14.00', '16.00-17.00', '19.00-20.00'
+        ];
+        
+        // Smart Grid Mapping based on package constraints
+        let grid = Array(timeslots.length).fill(null).map(() => Array(7).fill(null));
+        
+        cartItems.forEach((item, index) => {
+            if (item.category === 'live') {
+                grid[7][1] = item.name; // Tue 19.00
+                grid[7][3] = item.name; // Thu 19.00
+            } else if (item.category === 'private') {
+                grid[2][5] = item.name; // Sat 10.00
+            } else if (item.category === 'module') {
+                grid[1][0] = 'Focus: ' + item.name; // Mon 09.00
+                grid[1][2] = 'Focus: ' + item.name; // Wed 09.00
+                grid[1][4] = 'Focus: ' + item.name; // Fri 09.00
+            } else if (item.category === 'test') {
+                grid[0][6] = item.name; // Sun 08.00
+                grid[1][6] = item.name; // Sun 09.00
+                grid[2][6] = item.name; // Sun 10.00
             }
-            scheduleHTML += `</div></div>`;
-        }
+        });
+
+        // Building the table rows
+        timeslots.forEach((timeStr, tIdx) => {
+            scheduleHTML += `<tr><td class="time-col">${timeStr}</td>`;
+            for (let d = 0; d < 7; d++) {
+                if (grid[tIdx][d]) {
+                    scheduleHTML += \`<td><div class="calendar-slot-available" title="\${grid[tIdx][d]}">\${grid[tIdx][d]}</div></td>\`;
+                } else {
+                    scheduleHTML += `<td></td>`;
+                }
+            }
+            scheduleHTML += `</tr>`;
+        });
+
+        scheduleHTML += `
+                    </tbody>
+                </table>
+                <div class="calendar-legend">
+                    <div class="legend-item"><div class="legend-dot available"></div> Sesi Belajar Terjadwal</div>
+                    <div class="legend-item"><div class="legend-dot unavailable"></div> Kosong (Istirahat/Kerja)</div>
+                </div>
+            </div>
+        `;
+
+        // Section: Detailed Explanation
+        scheduleHTML += \`<div class="m-t-40"><h5 class="fw-800 m-b-20 fc-purple-7">📚 Detail Instruksi & Panduan Kelas</h5>\`;
+        
+        cartItems.forEach(item => {
+            let details = '';
+            if (item.category === 'live') {
+                details = 'Interaksi langsung dengan tutor eksklusif melalui Zoom. Jadwal diset otomatis setiap <strong>Selasa & Kamis Pukul 19.00 WIB</strong>. Fokuskan pada keaktifan.';
+            } else if (item.category === 'private') {
+                details = 'Sesi review eksklusif Face-to-Face secara virtual (1 Siswa, 1 Tutor). Default jadwal: <strong>Sabtu 10.00 WIB</strong>.';
+            } else if (item.category === 'module') {
+                details = 'Modul E-Course ini bersifat Video On-Demand (Flexible Time). Disarankan: <strong>Senin, Rabu, Jumat pukul 09.00</strong>.';
+            } else if (item.category === 'test') {
+                details = 'Simulasi Tryout Penuh. Test Online dengan durasi ~3.5 Jam. Jadwal: <strong>Minggu pukul 08.00 WIB</strong>.';
+            }
+            
+            scheduleHTML += `
+                <div class="ai-card p-4 shadow-sm bg-white br-12 border-left-purple m-b-20">
+                    <div class="d-flex-center-btw mb-2">
+                        <span class="badge bg-info-1 fc-info-7 f-10">${item.category.toUpperCase()}</span>
+                    </div>
+                    <h6 class="fw-800 m-b-10">${item.name}</h6>
+                    <p class="f-13 fc-black-5 mb-0 lh-15">${details}</p>
+                </div>
+            `;
+        });
+        
+        scheduleHTML += `</div>`;
         return scheduleHTML;
     }
 
