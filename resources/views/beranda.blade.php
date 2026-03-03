@@ -764,8 +764,63 @@
                         </div>
 
                         <div class="d-flex gap-15 justify-center m-t-40">
-                            <button class="btn bg-info-7 pd-lr-30" onclick="showFinalRoadmap()">Finalize & View Roadmap</button>
-                            <button class="btn bg-white fc-info-7" style="border:1px solid var(--info-7)" onclick="resetAIForm()">Back to Assessment</button>
+                            <button class="ai-btn-generate px-4" onclick="showFinalRoadmap()">Finalize & View Roadmap</button>
+                            <button class="btn bg-white fc-info-7" style="border:1px solid var(--info-7)" onclick="resetAIForm()">Back to Landing</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STAGE 5: Dashboard Integration (Mockup) -->
+            <div id="aiDashboardSection" class="d-none">
+                <div class="ai-result-header">
+                    <h2 class="fw-bold">📅 My Smart-Package Roadmap</h2>
+                    <p class="f-h6 fc-purple-7">Your learning path is active. Track your milestones below.</p>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="ai-dashboard-card p-4 h-full">
+                            <h5 class="fw-800 m-b-20">Learning Progress</h5>
+                            <div class="d-flex-center-btw m-b-10">
+                                <span class="f-13 fc-black-5">Total Completion</span>
+                                <span class="f-13 fw-700 fc-purple-7">12%</span>
+                            </div>
+                            <div class="ai-strength-bar-bg">
+                                <div class="ai-strength-bar-fill" style="width: 12%"></div>
+                            </div>
+                            <div class="m-t-30">
+                                <p class="f-12 fc-black-4 mb-2">NEXT MILESTONE:</p>
+                                <div class="milestone-item active d-flex align-center shadow-sm p-3 bg-white br-12">
+                                    <i class="material-icons fc-warning-7 m-r-10">play_circle</i>
+                                    <div>
+                                        <div class="f-12 fw-700">Grammar Mastery #1</div>
+                                        <div class="f-10 fc-black-4">Due in 2 days</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 text-left">
+                        <div class="ai-dashboard-card p-4 h-full">
+                            <h5 class="fw-800 m-b-20">Recent Sessions</h5>
+                            <div class="session-list">
+                                <div class="session-item d-flex align-center m-b-15">
+                                    <span class="icon-circle bg-success-1 fc-success-7 m-r-10">✓</span>
+                                    <div>
+                                        <div class="f-13 fw-700">Assessment Test #1</div>
+                                        <div class="f-11 fc-black-4">Completed yesterday</div>
+                                    </div>
+                                </div>
+                                <div class="session-item d-flex align-center m-b-15 opacity-5">
+                                    <span class="icon-circle bg-light fc-black-4 m-r-10">○</span>
+                                    <div>
+                                        <div class="f-13 fw-700">Live Class: Speaking #1</div>
+                                        <div class="f-11 fc-black-4">Scheduled for Friday</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn bg-purple-7 fc-white w-full m-t-20" onclick="resetAIForm()">Reset Application (Demo Mode)</button>
                         </div>
                     </div>
                 </div>
