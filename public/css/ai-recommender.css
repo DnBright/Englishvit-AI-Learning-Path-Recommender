@@ -650,8 +650,9 @@
 .lms-content {
     flex-grow: 1;
     padding: 40px;
-    overflow-y: auto;
     background-color: #f7f9fc;
+    min-height: 100vh;
+    display: block !important;
 }
 
 /* Premium Design System Utilities */
@@ -806,148 +807,155 @@
     font-size: 12px;
 }
 
-/* Duolingo Style Roadmap */
-.duo-path-wrapper {
-    max-width: 600px;
+/* Englishvit Professional Success Path */
+.ev-path-wrapper {
+    max-width: 800px;
     margin: 0 auto;
-    padding: 40px 20px;
-    position: relative;
-    background: #f7f9fc;
-}
-
-.duo-progress-header {
-    position: sticky;
-    top: 70px;
-    background: white;
-    padding: 15px 25px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    z-index: 100;
-    margin-bottom: 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border: 1px solid #e5e7eb;
-}
-
-.duo-metric {
-    display: flex;
-    align-items: center;
-    font-weight: 800;
-    font-size: 16px;
-    gap: 8px;
-}
-
-.duo-node-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
+    padding: 20px 20px 100px 20px;
     position: relative;
 }
 
-.duo-node {
-    width: 85px;
-    height: 75px;
-    border-radius: 50%;
+.ev-path-timeline {
     position: relative;
-    cursor: pointer;
-    transition: transform 0.1s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 2;
+    padding-left: 60px;
 }
 
-/* 3D Effect */
-.duo-node::before {
+.ev-path-timeline::before {
     content: '';
     position: absolute;
-    top: 6px;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    z-index: -1;
-}
-
-.duo-node:active {
-    transform: translateY(4px);
-}
-
-.duo-node.completed {
-    background: #58cc02;
-}
-
-.duo-node.completed::before {
-    background: #46a302;
-}
-
-.duo-node.active {
-    background: #1cb0f6;
-    animation: duoPulse 2s infinite;
-}
-
-.duo-node.active::before {
-    background: #1899d6;
-}
-
-.duo-node.locked {
-    background: #e5e5e5;
-    cursor: not-allowed;
-}
-
-.duo-node.locked::before {
-    background: #afafaf;
-}
-
-.duo-node .material-icons {
-    color: white;
-    font-size: 32px;
-}
-
-/* Zig Zag Offsets */
-.duo-node:nth-child(2n) {
-    transform: translateX(45px);
-}
-
-.duo-node:nth-child(2n):active {
-    transform: translateX(45px) translateY(4px);
-}
-
-.duo-node:nth-child(4n-1) {
-    transform: translateX(-45px);
-}
-
-.duo-node:nth-child(4n-1):active {
-    transform: translateX(-45px) translateY(4px);
-}
-
-/* SVG Path Connectors (Conceptual simplified with CSS) */
-.duo-node-container::after {
-    content: '';
-    position: absolute;
-    top: 40px;
-    bottom: 40px;
-    width: 8px;
-    background: #e5e5e5;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 29px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #e2e8f0;
     z-index: 1;
 }
 
-@keyframes duoPulse {
+.ev-milestone {
+    position: relative;
+    margin-bottom: 60px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.ev-node {
+    position: absolute;
+    left: -60px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: white;
+    border: 3px solid #e2e8f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.ev-node .material-icons {
+    font-size: 28px;
+    color: #afafaf;
+}
+
+.ev-node.completed {
+    background: #002655;
+    border-color: #002655;
+}
+
+.ev-node.completed .material-icons {
+    color: white;
+}
+
+.ev-node.active {
+    background: white;
+    border-color: #002655;
+    box-shadow: 0 0 0 10px rgba(0, 38, 85, 0.1);
+    animation: evPulse 2s infinite;
+}
+
+.ev-node.active .material-icons {
+    color: #002655;
+}
+
+.ev-milestone-card {
+    background: white;
+    padding: 20px 25px;
+    border-radius: 16px;
+    border: 1px solid #edf2f7;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    flex-grow: 1;
+    margin-left: 20px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+}
+
+.ev-milestone-card:hover {
+    transform: translateX(8px);
+    box-shadow: 0 8px 25px rgba(0, 38, 85, 0.08);
+    border-color: #002655;
+}
+
+.ev-milestone-card .stage-label {
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #64748b;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.ev-milestone-card h5 {
+    font-weight: 700;
+    color: #002655;
+    margin-bottom: 5px;
+}
+
+.ev-milestone-card p {
+    font-size: 13px;
+    color: #64748b;
+    margin-bottom: 0;
+}
+
+.ev-milestone.locked {
+    opacity: 0.6;
+}
+
+.ev-node.locked {
+    background: #f8fafc;
+}
+
+@keyframes evPulse {
     0% {
-        box-shadow: 0 0 0 0 rgba(28, 176, 246, 0.7);
+        box-shadow: 0 0 0 0 rgba(0, 38, 85, 0.4);
     }
 
     70% {
-        box-shadow: 0 0 0 15px rgba(28, 176, 246, 0);
+        box-shadow: 0 0 0 15px rgba(0, 38, 85, 0);
     }
 
     100% {
-        box-shadow: 0 0 0 0 rgba(28, 176, 246, 0);
+        box-shadow: 0 0 0 0 rgba(0, 38, 85, 0);
     }
+}
+
+/* Success Path Progress Header */
+.ev-progress-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 15px 30px;
+    border-radius: 12px;
+    border: 1px solid #edf2f7;
+    margin-bottom: 40px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
 }
 
 /* Responsive Fixes */

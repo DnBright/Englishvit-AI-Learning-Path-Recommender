@@ -86,7 +86,7 @@
     </aside>
 
     <!-- Main Content Area -->
-    <main class="lms-content" style="background: red !important; border: 10px solid blue !important;">
+    <main class="lms-content">
         @yield('content')
     </main>
 </div>
