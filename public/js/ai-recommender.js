@@ -35,52 +35,205 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // IELTS Slider Update
-    if (ieltsSlider && ieltsValue) {
-        ieltsSlider.addEventListener('input', function () {
-            ieltsValue.textContent = `Goal Score: ${parseFloat(this.value).toFixed(1)}`;
-        });
+    // --- STATE MANAGEMENT ---
+    let currentStep = 1;
+    const totalSteps = 6;
+    let formData = {
+        goal_category: '',
+        level: '',
+        ielts_goal: 7.0,
+        weaknesses: [],
+        time_commit: '',
+        budget: '',
+        timeline: ''
+    };
+
+    // --- DOM ELEMENTS ---
+    const landingPage = document.getElementById('aiLandingPage');
+    const assessmentContainer = document.getElementById('aiAssessmentContainer');
+    const resultSection = document.getElementById('aiResultSection');
+    const customizerSection = document.getElementById('aiCustomizerSection');
+
+    const progressFill = document.getElementById('aiAssessmentProgress');
+    const stepIndicator = document.getElementById('aiStepIndicator');
+    const stepPercent = document.getElementById('aiStepPercent');
+
+    // ieltsSlider and ieltsValue are already defined globally, but re-declared here for scope within the new flow
+    // const ieltsSlider = document.getElementById('ieltsSlider'); // Already defined
+    // const ieltsValue = document.getElementById('ieltsScoreValue'); // Already defined
+
+    // --- NAVIGATION ---
+    window.startAssessment = function () {
+        landingPage.classList.add('d-none');
+        assessmentContainer.classList.remove('d-none');
+        updateStepUI();
+    };
+
+    window.assessmentNext = function () {
+        if (currentStep < totalSteps) {
+            currentStep++;
+            updateStepUI();
+        }
+    };
+
+    window.assessmentPrev = function () {
+        if (currentStep > 1) {
+            currentStep--;
+            updateStepUI();
+        }
+    };
+
+    function updateStepUI() {
+        // Hide all steps
+        document.querySelectorAll('.ai-step-view').forEach(step => step.classList.add('d-none'));
+
+        // Show current step
+        const currentView = document.getElementById(`aiStep${currentStep}`);
+        if (currentView) currentView.classList.remove('d-none');
+
+        // Update Progress Bar
+        const percent = Math.round((currentStep / totalSteps) * 100);
+        progressFill.style.width = `${percent}%`;
+        stepPercent.textContent = `${percent}% Complete`;
+
+        // Update Indicator Text
+        const stepTitles = [
+            "Goal Selection",
+            "Current Level",
+            "Weakness Area",
+            "Time Commitment",
+            "Budget Range",
+            "Target Timeline"
+        ];
+        stepIndicator.textContent = `Step ${currentStep}: ${stepTitles[currentStep - 1]}`;
+
+        // Navigation Buttons
+        document.getElementById('aiPrevBtn').classList.toggle('d-none', currentStep === 1);
+        document.getElementById('aiNextBtn').classList.toggle('d-none', currentStep === totalSteps);
+        document.getElementById('aiFinishBtn').classList.toggle('d-none', currentStep !== totalSteps);
     }
 
-    if (generateBtn) {
-        generateBtn.addEventListener('click', function () {
-            // Capture selections
-            const budgetPreference = document.querySelector('.ai-select-box[data-group="budget"].active')?.querySelector('.f-body2').textContent.trim() || 'Standar';
+    // --- SELECTION LOGIC ---
+    document.querySelectorAll('.ai-select-box, .ai-time-box').forEach(box => {
+        box.addEventListener('click', function () {
+            const group = this.dataset.group;
+            const val = this.dataset.val;
+            const multi = this.dataset.multi === "true";
 
-            // Show processing overlay
-            processingOverlay.style.display = 'flex';
+            if (!multi) {
+                document.querySelectorAll(`[data-group="${group}"]`).forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                formData[group] = val;
 
-            // Simulate AI analysis - Then Go to Customizer
-            setTimeout(() => {
-                processingOverlay.style.display = 'none';
-                aiForm.classList.add('d-none');
-                aiCustomizer.classList.remove('d-none');
-                floatingCart.style.display = 'flex';
-
-                // Initial Recommendation based on budget
-                if (budgetPreference === 'Hemat') {
-                    userCart = [
-                        { ...atomicItems.find(i => i.id === 'module-skill') },
-                        { ...atomicItems.find(i => i.id === 'quiz-daily') }
-                    ];
-                } else if (budgetPreference === 'Intensif') {
-                    userCart = [
-                        { ...atomicItems.find(i => i.id === 'live-ielts') },
-                        { ...atomicItems.find(i => i.id === 'one-private') },
-                        { ...atomicItems.find(i => i.id === 'essay-review') }
-                    ];
-                } else {
-                    userCart = [
-                        { ...atomicItems.find(i => i.id === 'live-standard') },
-                        { ...atomicItems.find(i => i.id === 'test-prediction') }
-                    ];
+                // Special: Show IELTS slider if Academic is picked
+                if (group === 'goal_category' && val === 'academic') {
+                    document.getElementById('ieltsGoalContainer').classList.remove('d-none');
+                } else if (group === 'goal_category') {
+                    document.getElementById('ieltsGoalContainer').classList.add('d-none');
                 }
+            } else {
+                this.classList.toggle('active');
+                const actives = Array.from(document.querySelectorAll(`[data-group="${group}"].active`)).map(b => b.dataset.val);
+                formData[group] = actives;
+            }
+        });
+    });
 
-                renderCustomizer();
-                aiCustomizer.scrollIntoView({ behavior: 'smooth' });
-            }, 2000);
+    if (ieltsSlider) {
+        ieltsSlider.addEventListener('input', function () {
+            ieltsValue.textContent = `Goal Score: ${this.value}`;
+            formData.ielts_goal = parseFloat(this.value);
         });
     }
+
+    // --- PROCESSING & LOGIC ENGINE ---
+    window.startAIAnalysis = function () {
+        assessmentContainer.classList.add('d-none');
+        processingOverlay.classList.remove('d-none');
+
+        const details = document.getElementById('processingDetails');
+        const stages = [
+            "Calculating Goal Weight (30%)...",
+            "Evaluating Level Gap (25%)...",
+            "Mapping Weakness Bundle (20%)...",
+            "Checking Budget Constraints (10%)...",
+            "Finalizing Roadmap Strategy..."
+        ];
+
+        let i = 0;
+        const interval = setInterval(() => {
+            if (i < stages.length) {
+                details.textContent = stages[i];
+                i++;
+            } else {
+                clearInterval(interval);
+                generatePersonalizedResults();
+            }
+        }, 800);
+    };
+
+    function generatePersonalizedResults() {
+        processingOverlay.classList.add('d-none');
+        resultSection.classList.remove('d-none');
+
+        // Populate Summary
+        document.getElementById('roadmapProfileSummary').textContent =
+            `You are a ${formData.level || 'learner'} aiming for ${formData.goal_category || 'success'} in ${formData.timeline || 3} months.`;
+
+        // The Logic Engine Calculation (Simulation for now)
+        renderRoadmapTimeline();
+    }
+
+    function renderRoadmapTimeline() {
+        const list = document.getElementById('aiRoadmapTimeline');
+        list.innerHTML = '';
+
+        // Mocking logic-based products
+        const plan = [
+            { month: 1, title: formData.goal_category === 'academic' ? "Grammar Mastery" : "Speaking Foundation", tag: "MODULE" },
+            { month: 2, title: formData.weaknesses.includes('writing') ? "Writing Drill Bundle" : "Communication Skills", tag: "LIVE CLASS" },
+            { month: 3, title: "Final Certification & Prep", tag: "ASSESSMENT" }
+        ];
+
+        plan.forEach(step => {
+            const div = document.createElement('div');
+            div.className = 'ai-roadmap-item mb-4';
+            div.innerHTML = `
+                <div class="d-flex align-center">
+                    <div class="ai-roadmap-step">Month ${step.month}</div>
+                    <div class="ai-roadmap-card flex-grow shadow-sm p-3 bg-white br-12 ml-3">
+                        <div class="badge bg-info-1 fc-info-7 f-10 mb-2">${step.tag}</div>
+                        <h6 class="fw-800 m-b-5">${step.title}</h6>
+                    </div>
+                </div>
+            `;
+            list.appendChild(div);
+        });
+    }
+
+    // --- INTERFACE TO DASHBOARD ---
+    window.purchasePlan = function () {
+        alert("Plan Purchased! Integrating with your Dashboard...");
+        // In a real app, this would hit an API and then redirect to the Dashboard View
+    };
+
+    window.switchToCustomizer = function () {
+        resultSection.classList.add('d-none');
+        customizerSection.classList.remove('d-none');
+        // renderCustomizer(); (Reuse existing logic if applicable)
+    };
+
+    window.resetAIForm = function () {
+        currentStep = 1;
+        landingPage.classList.remove('d-none');
+        assessmentContainer.classList.add('d-none');
+        resultSection.classList.add('d-none');
+        customizerSection.classList.add('d-none');
+        document.querySelectorAll('.active').forEach(a => a.classList.remove('active'));
+    };
+    // The following functions are part of the original customizer logic,
+    // which might be reused or adapted for the new `switchToCustomizer` function.
+    // For now, they are kept as is, assuming `renderCustomizer` will be called from `switchToCustomizer`.
 
     function renderCustomizer() {
         const eceranList = document.getElementById('aiEceranList');

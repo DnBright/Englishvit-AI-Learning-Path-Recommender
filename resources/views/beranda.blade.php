@@ -440,134 +440,290 @@
             <div id="aiOnboardingForm" class="ai-card mx-w-600 center-align">
                 <span class="ai-header-badge">Englishvit AI Recommender</span>
                 <h3 class="fw-bold mb-2">Pilih Cara Belajar Mu Sendiri 🚀</h3>
-                <p class="ai-text-muted mb-4">Build Your Personal Learning Path 🚀🌟</p>
-
-                <div class="ai-step-indicator mb-1">
-                    <div class="ai-step-dot active"></div>
-                    <div class="ai-step-dot"></div>
-                    <div class="ai-step-dot"></div>
+            <!-- STAGE 0: Landing Page (Hook) -->
+            <div id="aiLandingPage" class="ai-landing-page">
+                <div class="m-b-30">
+                    <span class="badge bg-purple-1 fc-purple-7 px-3 py-2 mb-3">
+                        <i class="material-icons f-14 v-middle m-r-5">auto_awesome</i> AI-Powered Personalized Learning
+                    </span>
+                    <h1 class="fw-800 fc-black-8 m-b-15">Build Your Personal Study Roadmap</h1>
+                    <p class="f-h6 fc-black-5 m-b-30">Tell us your goal, we'll design the fastest path. AI-driven recommendations based on 10,000+ successful student patterns.</p>
                 </div>
-                <p class="f-12 fc-black-4 mb-4">Step 1 of 3: Goals & Needs</p>
+                
+                <div class="row m-b-40">
+                    <div class="col-md-4">
+                        <div class="ai-feature-card">
+                            <i class="material-icons fc-info-7 m-b-10">fact_check</i>
+                            <p class="f-14 fw-700 m-b-5">Precision Roadmap</p>
+                            <p class="f-11 fc-black-4">Tailored to your current level and targets.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="ai-feature-card">
+                            <i class="material-icons fc-purple-7 m-b-10">smart_toy</i>
+                            <p class="f-14 fw-700 m-b-5">AI Mentor</p>
+                            <p class="f-11 fc-black-4">Get 24/7 strategic advice on your path.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="ai-feature-card">
+                            <i class="material-icons fc-warning-7 m-b-10">shopping_basket</i>
+                            <p class="f-14 fw-700 m-b-5">Modular Pricing</p>
+                            <p class="f-11 fc-black-4">Buy only what you need. No more rigid packages.</p>
+                        </div>
+                    </div>
+                </div>
 
-                <div class="ai-form-group text-left">
-                    <label class="ai-label">Select Your Current English Level:</label>
+                <div class="d-flex flex-column gap-15 align-center">
+                    <button class="ai-btn-generate hover:scale-105" onclick="startAssessment()">
+                        Start Assessment <i class="material-icons f-inherit m-l-5">rocket_launch</i>
+                    </button>
+                    <div class="d-flex align-center gap-20 f-13 fc-black-4">
+                        <span><i class="material-icons f-16 v-middle m-r-5">timer</i> Est. 5-7 min</span>
+                        <span><i class="material-icons f-16 v-middle m-r-5">group</i> 5k+ Roadmaps created</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STAGE 1: Multi-Step Assessment Form -->
+            <div id="aiAssessmentContainer" class="d-none">
+                <div class="ai-stepper m-b-40">
+                    <div class="ai-progress-bar">
+                        <div id="aiAssessmentProgress" class="ai-progress-fill" style="width: 16.6%"></div>
+                    </div>
+                    <div class="d-flex-center-btw mt-3">
+                        <span class="f-12 fw-700 fc-black-6" id="aiStepIndicator">Step 1: Goal Selection</span>
+                        <span class="f-12 fc-black-4" id="aiStepPercent">15% Complete</span>
+                    </div>
+                </div>
+
+                <!-- Step 1: Goal Selection -->
+                <div id="aiStep1" class="ai-step-view">
+                    <h4 class="fw-800 m-b-10 text-left">Why are you learning English?</h4>
+                    <p class="fc-black-4 m-b-30 text-left">This will help our AI determine your study focus and intensity.</p>
                     <div class="ai-select-grid">
-                        <div class="ai-select-box active" data-group="level">
+                        <div class="ai-select-box" data-group="goal_category" data-val="academic">
+                            <span class="icon">🎓</span>
+                            <div class="f-body2 fw-700">Academic</div>
+                            <div class="f-10 fc-black-5">IELTS / TOEFL Prep</div>
+                        </div>
+                        <div class="ai-select-box" data-group="goal_category" data-val="career">
+                            <span class="icon">💼</span>
+                            <div class="f-body2 fw-700">Career Growth</div>
+                            <div class="f-10 fc-black-5">Promotion & CV</div>
+                        </div>
+                        <div class="ai-select-box" data-group="goal_category" data-val="conversation">
+                            <span class="icon">🗣️</span>
+                            <div class="f-body2 fw-700">Conversation</div>
+                            <div class="f-10 fc-black-5">Daily Confidence</div>
+                        </div>
+                        <div class="ai-select-box" data-group="goal_category" data-val="study_abroad">
+                            <span class="icon">✈️</span>
+                            <div class="f-body2 fw-700">Study Abroad</div>
+                            <div class="f-10 fc-black-5">Exchange Programs</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Current Level -->
+                <div id="aiStep2" class="ai-step-view d-none">
+                    <h4 class="fw-800 m-b-10 text-left">What is your current level?</h4>
+                    <p class="fc-black-4 m-b-30 text-left">Be honest! We'll adjust the difficulty of your roadmap.</p>
+                    <div class="ai-select-grid">
+                        <div class="ai-select-box" data-group="level" data-val="beginner">
                             <span class="icon">🌱</span>
-                            <div class="f-body2 fw-600">Beginner</div>
+                            <div class="f-body2 fw-700">Beginner</div>
                             <div class="f-10 fc-black-5">A1/A2</div>
                         </div>
-                        <div class="ai-select-box" data-group="level">
+                        <div class="ai-select-box" data-group="level" data-val="intermediate">
                             <span class="icon">🌿</span>
-                            <div class="f-body2 fw-600">Intermediate</div>
+                            <div class="f-body2 fw-700">Intermediate</div>
                             <div class="f-10 fc-black-5">B1/B2</div>
                         </div>
-                        <div class="ai-select-box" data-group="level">
+                        <div class="ai-select-box" data-group="level" data-val="advanced">
                             <span class="icon">🌲</span>
-                            <div class="f-body2 fw-600">Advanced</div>
+                            <div class="f-body2 fw-700">Advanced</div>
                             <div class="f-10 fc-black-5">C1/C2</div>
                         </div>
                     </div>
-                </div>
-
-                <div class="ai-form-group text-left">
-                    <div class="d-flex-center-btw mb-2">
-                        <label class="ai-label mb-0">Target IELTS Score:</label>
-                        <span class="badge bg-warning-1 fc-warning-7 fw-600" id="ieltsScoreValue">Goal Score: 7.0</span>
-                    </div>
-                    <div class="ai-slider-container">
-                        <input type="range" min="3.0" max="9.0" step="0.5" value="7.0" class="ai-slider" id="ieltsSlider">
-                        <div class="d-flex-center-btw mt-2 f-12 fc-black-4">
-                            <span>3.0</span>
-                            <span>7.0</span>
-                            <span>9.0</span>
+                    <!-- IELTS Slider (conditionally shown in Stepper or here) -->
+                    <div id="ieltsGoalContainer" class="m-t-30 text-left d-none">
+                        <div class="d-flex-center-btw mb-2">
+                            <label class="ai-label mb-0 f-14 fw-700">Target IELTS Score:</label>
+                            <span class="badge bg-warning-1 fc-warning-7 fw-600" id="ieltsScoreValue">Goal Score: 7.0</span>
+                        </div>
+                        <div class="ai-slider-container">
+                            <input type="range" min="3.0" max="9.0" step="0.5" value="7.0" class="ai-slider" id="ieltsSlider">
                         </div>
                     </div>
                 </div>
 
-                <div class="ai-form-group text-left">
-                    <label class="ai-label">Your Timeframe to Achieve This:</label>
-                    <div class="ai-time-grid">
-                        <div class="ai-time-box" data-group="time">
-                            <div class="icon-sm">🕒</div>
-                            <div class="f-12 fw-600">1 Month</div>
-                        </div>
-                        <div class="ai-time-box" data-group="time">
-                            <div class="icon-sm">🕒</div>
-                            <div class="f-12 fw-600">3 Months</div>
-                        </div>
-                        <div class="ai-time-box active" data-group="time">
-                            <div class="icon-sm">🕒</div>
-                            <div class="f-12 fw-600">6 Months</div>
-                        </div>
-                        <div class="ai-time-box" data-group="time">
-                            <div class="icon-sm">🕒</div>
-                            <div class="f-12 fw-600">1 Year</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="ai-form-group text-left">
-                    <label class="ai-label">Select Your Primary Weaknesses:</label>
+                <!-- Step 3: Weakness Area -->
+                <div id="aiStep3" class="ai-step-view d-none">
+                    <h4 class="fw-800 m-b-10 text-left">Where do you struggle most?</h4>
+                    <p class="fc-black-4 m-b-30 text-left">Select areas that need the most improvement.</p>
                     <div class="ai-select-grid">
-                        <div class="ai-select-box" data-group="weakness" data-multi="true">
+                        <div class="ai-select-box" data-group="weakness" data-multi="true" data-val="speaking">
                             <span class="icon-sm">🎤</span>
                             <div class="f-12 fw-600">Speaking</div>
                         </div>
-                        <div class="ai-select-box" data-group="weakness" data-multi="true">
+                        <div class="ai-select-box" data-group="weakness" data-multi="true" data-val="writing">
                             <span class="icon-sm">📝</span>
                             <div class="f-12 fw-600">Writing</div>
                         </div>
-                        <div class="ai-select-box" data-group="weakness" data-multi="true">
+                        <div class="ai-select-box" data-group="weakness" data-multi="true" data-val="listening">
                             <span class="icon-sm">🎧</span>
                             <div class="f-12 fw-600">Listening</div>
                         </div>
-                        <div class="ai-select-box" data-group="weakness" data-multi="true">
+                        <div class="ai-select-box" data-group="weakness" data-multi="true" data-val="grammar">
                             <span class="icon-sm">📚</span>
                             <div class="f-12 fw-600">Grammar</div>
                         </div>
                     </div>
                 </div>
 
-                <div class="ai-form-group text-left">
-                    <label class="ai-label">Budget Range:</label>
+                <!-- Step 4: Time Commitment -->
+                <div id="aiStep4" class="ai-step-view d-none">
+                    <h4 class="fw-800 m-b-10 text-left">Your weekly commitment?</h4>
+                    <p class="fc-black-4 m-b-30 text-left">Hours per week you can dedicate to study.</p>
                     <div class="ai-select-grid">
-                        <div class="ai-select-box" data-group="budget">
-                            <span class="icon">🥉</span>
-                            <div class="f-body2 fw-600">Hemat</div>
-                            <div class="f-10 fc-black-5">&lt; Rp 200rb</div>
+                        <div class="ai-select-box" data-group="time_commit" data-val="low">
+                            <span class="icon">☕</span>
+                            <div class="f-body2 fw-700">&lt; 2 Hours</div>
+                            <div class="f-10 fc-black-5">Casual Learner</div>
                         </div>
-                        <div class="ai-select-box active" data-group="budget">
-                            <span class="icon">🥈</span>
-                            <div class="f-body2 fw-600">Standar</div>
-                            <div class="f-10 fc-black-5">Rp 200rb - 1jt</div>
+                        <div class="ai-select-box" data-group="time_commit" data-val="mid">
+                            <span class="icon">⏳</span>
+                            <div class="f-body2 fw-700">3-5 Hours</div>
+                            <div class="f-10 fc-black-5">Steady Progress</div>
                         </div>
-                        <div class="ai-select-box" data-group="budget">
-                            <span class="icon">🥇</span>
-                            <div class="f-body2 fw-600">Intensif</div>
-                            <div class="f-10 fc-black-5">&gt; Rp 1jt</div>
+                        <div class="ai-select-box" data-group="time_commit" data-val="high">
+                            <span class="icon">🏃</span>
+                            <div class="f-body2 fw-700">6-10 Hours</div>
+                            <div class="f-10 fc-black-5">Aggressive Goal</div>
+                        </div>
+                        <div class="ai-select-box" data-group="time_commit" data-val="professional">
+                            <span class="icon">🔥</span>
+                            <div class="f-body2 fw-700">10+ Hours</div>
+                            <div class="f-10 fc-black-5">Total Immersion</div>
                         </div>
                     </div>
                 </div>
 
-                <button id="generatePathBtn" class="ai-btn-generate hover:opacity-90 mt-4">Next <i class="material-icons f-inherit">chevron_right</i></button>
-                <div class="mt-3">
-                    <a href="#!" class="f-14 fc-black-4 hover:fc-black-7" onclick="resetAIForm()">Skip for Now</a>
+                <!-- Step 5: Budget Range -->
+                <div id="aiStep5" class="ai-step-view d-none">
+                    <h4 class="fw-800 m-b-10 text-left">What is your budget?</h4>
+                    <p class="fc-black-4 m-b-30 text-left">This ensures our recommendation is realistic for you.</p>
+                    <div class="ai-select-grid">
+                        <div class="ai-select-box" data-group="budget" data-val="hemat">
+                            <span class="icon">🥉</span>
+                            <div class="f-body2 fw-700">&lt; 300rb</div>
+                        </div>
+                        <div class="ai-select-box" data-group="budget" data-val="standar">
+                            <span class="icon">🥈</span>
+                            <div class="f-body2 fw-700">300rb - 800rb</div>
+                        </div>
+                        <div class="ai-select-box" data-group="budget" data-val="premium">
+                            <span class="icon">🥇</span>
+                            <div class="f-body2 fw-700">800rb - 1.5jt</div>
+                        </div>
+                        <div class="ai-select-box" data-group="budget" data-val="intensive">
+                            <span class="icon">💎</span>
+                            <div class="f-body2 fw-700">&gt; 1.5jt</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 6: Target Timeline -->
+                <div id="aiStep6" class="ai-step-view d-none">
+                    <h4 class="fw-800 m-b-10 text-left">When is your deadline?</h4>
+                    <p class="fc-black-4 m-b-30 text-left">Kapan Anda ingin mencapai target ini?</p>
+                    <div class="ai-time-grid">
+                        <div class="ai-time-box" data-group="timeline" data-val="1">
+                            <div class="icon-sm">📅</div>
+                            <div class="f-12 fw-600">1 Month</div>
+                        </div>
+                        <div class="ai-time-box" data-group="timeline" data-val="3">
+                            <div class="icon-sm">📅</div>
+                            <div class="f-12 fw-600">3 Months</div>
+                        </div>
+                        <div class="ai-time-box" data-group="timeline" data-val="6">
+                            <div class="icon-sm">📅</div>
+                            <div class="f-12 fw-600">6 Months</div>
+                        </div>
+                        <div class="ai-time-box" data-group="timeline" data-val="12">
+                            <div class="icon-sm">📅</div>
+                            <div class="f-12 fw-600">1 Year</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ai-form-nav d-flex gap-15 m-t-40 justify-center">
+                    <button id="aiPrevBtn" class="btn bg-white fc-black-4 d-none" style="border:1px solid #ddd" onclick="assessmentPrev()">
+                        <i class="material-icons v-middle m-r-5">west</i> Previous
+                    </button>
+                    <button id="aiNextBtn" class="ai-btn-generate" onclick="assessmentNext()">
+                        Next Step <i class="material-icons v-middle m-l-5">east</i>
+                    </button>
+                    <button id="aiFinishBtn" class="ai-btn-generate d-none" onclick="startAIAnalysis()">
+                        Generate Roadmap <i class="material-icons v-middle m-l-5">auto_awesome</i>
+                    </button>
                 </div>
             </div>
 
-            <!-- 2. Processing Screen (Hidden by JS) -->
-            <div id="aiProcessingOverlay" class="ai-processing-overlay">
+            <!-- STAGE 2: Processing Screen -->
+            <div id="aiProcessingOverlay" class="ai-processing-overlay d-none">
                 <div class="ai-loader mb-4"></div>
-                <h4 class="fw-bold">Analyzing your profile and goals...</h4>
-                <p class="ai-text-muted">Personalized plans increase success rate by 73%</p>
+                <h4 class="fw-bold" id="processingText">Analyzing your goal...</h4>
+                <p class="ai-text-muted mt-2">Allocating optimal learning resources for your budget...</p>
+                <div class="ai-processing-details m-t-30 f-12 fc-black-4" id="processingDetails">
+                    Checking IELTS modules similarity...
+                </div>
             </div>
 
-            <!-- 2.5 AI Customizer Section (Ketengan Model - NEW) -->
+            <!-- STAGE 3: Result Page - Personalized Roadmap -->
+            <div id="aiResultSection" class="d-none">
+                <div class="ai-result-header">
+                    <h2 class="fw-bold">🎯 Your Personalized Roadmap</h2>
+                    <p class="f-h6 fc-info-7" id="roadmapProfileSummary">Summary will go here</p>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-9 offset-md-1.5">
+                        <!-- Roadmap View -->
+                        <div class="roadmap-container m-b-40">
+                             <div id="aiRoadmapTimeline">
+                                 <!-- Will be populated by JS -->
+                             </div>
+                        </div>
+
+                        <!-- Budget Anchor Section -->
+                        <div class="ai-budget-anchor p-4 m-b-40">
+                            <div class="row align-center">
+                                <div class="col-md-7">
+                                    <h5 class="fw-800 m-b-5">Total Academic Investment</h5>
+                                    <p class="f-13 fc-black-5">All modules bundled for your success.</p>
+                                </div>
+                                <div class="col-md-5 text-right">
+                                    <h3 class="fw-800 fc-black-8 m-b-0" id="resultTotalPrice">Rp 1.250.000</h3>
+                                    <p class="f-12 fc-success-7 fw-700">Save Rp <span id="resultSavings">200.000</span> if bundled</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex gap-15 justify-center">
+                            <button class="ai-btn-generate px-5" onclick="purchasePlan()">Start My Plan <i class="material-icons v-middle m-l-5">shopping_cart</i></button>
+                            <button class="btn bg-white fc-info-7 px-4" style="border:1px solid var(--info-7)" onclick="switchToCustomizer()">Customize Plan</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STAGE 4: AI Customizer Section (Plan Detail Page) -->
             <div id="aiCustomizerSection" class="d-none">
                 <div class="ai-result-header">
-                    <h2 class="fw-bold">🛠️ Customize Your Path</h2>
-                    <p class="f-h6 fc-info-7">Design your own journey. Buy only what you need.</p>
+                    <h2 class="fw-bold">🛠️ Refine Your Journey</h2>
+                    <p class="f-h6 fc-info-7">Add or remove modules. AI will guide your academic strength.</p>
                 </div>
 
                 <div class="row">
@@ -614,11 +770,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- 3. Result Section (Hidden initially) -->
-            <div id="aiResultSection" class="d-none">
-                <div class="ai-result-header">
-                    <h2 class="fw-bold">🎯 Your Recommended Path</h2>
                     <p class="f-h6 fc-info-7">Achieve Your Goal: Predicted Score Band 7.5</p>
                     <div class="d-flex-center justify-center gap-20 m-t-20">
                         <div class="center-text"><div class="fw-bold">Duration</div><div class="fc-black-6">3 Months</div></div>
