@@ -43,19 +43,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let userCart = [];
 
-    // Simple option selection toggle
-    document.querySelectorAll('.ai-select-box, .ai-time-box').forEach(box => {
-        box.addEventListener('click', function () {
-            const group = this.dataset.group;
-            if (this.dataset.multi === 'true') {
-                this.classList.toggle('active');
-            } else {
-                document.querySelectorAll(`.ai-select-box[data-group="${group}"], .ai-time-box[data-group="${group}"]`).forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-            }
-        });
-    });
-
     // --- STATE MANAGEMENT ---
     let currentStep = 1;
     const totalSteps = 6;
