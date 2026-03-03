@@ -809,13 +809,75 @@
                         </div>
 
                         <div class="text-center">
+                            <button class="ai-btn-generate px-5" onclick="goToWorkspace()">Buka Workspace Saya <i class="material-icons v-middle m-l-5">rocket_launch</i></button>
                         </div>
                     </div>
                 </div>
             </div>
 
+            <!-- STAGE 6: Student Workspace (Actual Learning Dashboard) -->
+            <div id="aiWorkspaceSection" class="d-none">
+                <div class="ai-result-header">
+                    <h2 class="fw-bold">🚀 Student Learning Workspace</h2>
+                    <p class="f-h6 fc-purple-7">Selamat datang di tempat belajar baru Anda! Mari mulai kembangkan skill Bahasa Inggris Anda.</p>
+                </div>
 
-            
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="ai-dashboard-card p-4 h-full shadow-sm">
+                            <h5 class="fw-800 m-b-20">Progres Belajar</h5>
+                            <div class="d-flex-center-btw m-b-10">
+                                <span class="f-13 fc-black-5">Total Penyelesaian</span>
+                                <span class="f-13 fw-700 fc-purple-7" id="workspaceProgressPercent">12%</span>
+                            </div>
+                            <div class="ai-strength-bar-bg">
+                                <div id="workspaceProgressBar" class="ai-strength-bar-fill" style="width: 12%"></div>
+                            </div>
+                            
+                            <div class="m-t-30">
+                                <h6 class="fw-700 f-11 m-b-15 fc-black-4 text-uppercase letter-spacing-1">Statistik Paket:</h6>
+                                <div id="workspaceStats">
+                                    <!-- Populated by JS -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-8">
+                        <div class="ai-dashboard-card p-4 h-full shadow-sm">
+                            <div class="d-flex-center-btw m-b-20">
+                                <h5 class="fw-800 mb-0">📅 Agenda Belajar Hari Ini</h5>
+                                <span class="f-12 fc-black-4" id="workspaceCurrentDate">Today</span>
+                            </div>
+                            
+                            <div id="workspaceDailyTasks">
+                                <!-- Populated by JS -->
+                            </div>
+                            
+                            <div class="m-t-30 p-3 bg-purple-1 br-12 border-left-purple">
+                                <div class="row align-center">
+                                    <div class="col-sm-8">
+                                        <div class="d-flex align-center">
+                                            <i class="material-icons fc-purple-7 m-r-10">headset_mic</i>
+                                            <div>
+                                                <div class="f-13 fw-800 text-left">Butuh bantuan tutor?</div>
+                                                <div class="f-11 fc-black-5 text-left">Tutor standby untuk membantu kendala teknismu.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 text-right">
+                                        <button class="btn btn-sm bg-purple-7 fc-white">Chat Tutor</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center m-t-40">
+                    <button class="btn bg-white fc-black-4" style="border: 1px solid #ddd" onclick="resetAIForm()">Keluar Workspace & Ulangi Demo</button>
+                </div>
+            </div>
             <!-- Floating Price Cart (NEW) -->
             <div id="aiFloatingCart" class="ai-floating-cart">
                 <div class="d-flex align-items-center">

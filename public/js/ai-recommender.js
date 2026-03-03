@@ -546,8 +546,11 @@ document.addEventListener('DOMContentLoaded', function () {
         assessmentContainer.classList.add('d-none');
         resultSection.classList.add('d-none');
         customizerSection.classList.add('d-none');
-        const invoice = document.getElementById('aiInvoiceSection');
-        if (invoice) invoice.classList.add('d-none');
+        const dashboard = document.getElementById('aiDashboardSection');
+        if (dashboard) dashboard.classList.add('d-none');
+
+        const workspace = document.getElementById('aiWorkspaceSection');
+        if (workspace) workspace.classList.add('d-none');
 
 
         floatingCart.style.display = 'none';
@@ -794,4 +797,77 @@ document.addEventListener('DOMContentLoaded', function () {
         currentMonthView = nextMonth;
         refreshCalendar();
     };
+
+    window.goToWorkspace = function () {
+        const invoice = document.getElementById('aiInvoiceSection');
+        if (invoice) invoice.classList.add('d-none');
+
+        const workspace = document.getElementById('aiWorkspaceSection');
+        if (workspace) {
+            workspace.classList.remove('d-none');
+            renderWorkspace();
+            workspace.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+
+    function renderWorkspace() {
+        const dateEl = document.getElementById('workspaceCurrentDate');
+        if (dateEl) {
+            dateEl.textContent = new Date().toLocaleDateString('id-ID', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+
+        const statsList = document.getElementById('workspaceStats');
+        if (statsList) {
+            statsList.innerHTML = '';
+            const categories = {
+                live: 'Live',
+                private: 'Private',
+                module: 'Module',
+                test: 'Quiz'
+            };
+            const counts = {};
+
+            userCart.forEach(item => {
+                counts[item.category] = (counts[item.category] || 0) + 1;
+            });
+
+            Object.keys(categories).forEach(key => {
+                const hasItem = counts[key] > 0;
+                statsList.innerHTML += `
+                    <div class="d-flex-center-btw m-b-8 ${hasItem ? '' : 'opacity-4'}">
+                        <span class="f-12 fc-black-5">${categories[key]} aktif</span>
+                        <span class="f-12 fw-700">${hasItem ? 'Aktif' : 'Kosong'}</span>
+                    </div>
+                `;
+            });
+        }
+
+        const taskList = document.getElementById('workspaceDailyTasks');
+        if (taskList) {
+            taskList.innerHTML = `
+                <div class="milestone-item active d-flex align-center shadow-sm p-4 bg-white br-12 m-b-15 border">
+                    <div class="bg-purple-1 p-2 br-10 m-r-15">
+                        <i class="material-icons fc-purple-7">play_circle</i>
+                    </div>
+                    <div class="text-left">
+                        <div class="f-14 fw-800">${userCart[0]?.name || 'Modul Perkenalan'}</div>
+                        <div class="f-11 fc-black-4">Modul ini sudah terbuka. Estimasi waktu: 45 menit.</div>
+                    </div>
+                    <button class="btn btn-sm bg-purple-7 fc-white m-l-auto px-3">Mulai Sekarang</button>
+                </div>
+                <div class="milestone-item d-flex align-center p-3 bg-light br-12 opacity-7">
+                    <i class="material-icons fc-black-3 m-r-15">lock</i>
+                    <div class="text-left">
+                        <div class="f-13 fw-700 fc-black-4">${userCart[1]?.name || 'Modul Lanjutan'}</div>
+                        <div class="f-11 fc-black-3">Terbuka setelah modul pertama selesai.</div>
+                    </div>
+                </div>
+            `;
+        }
+    }
 });
