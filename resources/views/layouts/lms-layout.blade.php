@@ -9,6 +9,23 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .lms-wrapper {
+            display: flex !important;
+            min-height: calc(100vh - 70px) !important;
+            background-color: #f7f9fc !important;
+            width: 100%;
+        }
+        .lms-content {
+            flex-grow: 1 !important;
+            padding: 40px !important;
+            background-color: #f7f9fc !important;
+            min-width: 0;
+        }
+        .lms-sidebar {
+            flex-shrink: 0 !important;
+        }
+    </style>
 </head>
 <body class="bg-light">
 

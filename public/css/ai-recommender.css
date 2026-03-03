@@ -640,6 +640,20 @@
     }
 }
 
+/* LMS Dashboard Layout */
+.lms-wrapper {
+    display: flex;
+    min-height: calc(100vh - 70px);
+    background-color: #f7f9fc;
+}
+
+.lms-content {
+    flex-grow: 1;
+    padding: 40px;
+    overflow-y: auto;
+    background-color: #f7f9fc;
+}
+
 /* Premium Design System Utilities */
 .dashboard-card {
     background: #ffffff;
