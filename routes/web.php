@@ -32,6 +32,7 @@ Route::get('/dashboard-study', function () {
 
 Route::prefix('dashboard-study')->group(function () {
     Route::get('/roadmap', function () { return view('lms.roadmap'); });
+    Route::get('/core-roadmap', function () { return view('lms.core-roadmap'); });
     Route::get('/ai-assistant', function () { return view('lms.ai-assistant'); });
     Route::get('/calendar', function () { return view('lms.calendar'); });
     Route::get('/clan', function () { return view('lms.clan'); });
