@@ -437,7 +437,7 @@
     <section class="ai-recommender-section" id="ai-recommender">
         <div class="container">
             <!-- 1. Onboarding Screen -->
-            <div id="aiOnboardingForm" class="ai-card mx-w-600 center-align">
+            <div id="aiOnboardingForm" class="ai-card center-align" style="max-width: 1000px; margin: 0 auto;">
                 <span class="ai-header-badge">Englishvit AI Recommender</span>
                 <h3 class="fw-bold mb-2">Pilih Cara Belajar Mu Sendiri 🚀</h3>
             <!-- STAGE 0: Landing Page (Hook) -->
