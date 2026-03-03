@@ -1,3 +1,8 @@
+@extends('layouts.lms-layout')
+
+@section('title', 'Core Roadmap')
+@section('nav_roadmap', 'active')
+
 @section('content')
 <div class="duo-path-wrapper">
     <!-- Sticky Progress Header -->
