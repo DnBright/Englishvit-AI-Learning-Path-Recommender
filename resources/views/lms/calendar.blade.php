@@ -226,16 +226,7 @@ function resetTrashStyle() {
 
 // Add global drag end to reset trash style if dropped outside
 document.addEventListener('dragend', resetTrashStyle);
-  const evObj = CAL_EVENTS[sourceKey].splice(evtIndex, 1)[0];
-  if(CAL_EVENTS[sourceKey].length === 0) delete CAL_EVENTS[sourceKey];
-  
-  // Add to target
-  if(!CAL_EVENTS[targetKey]) CAL_EVENTS[targetKey] = [];
-  CAL_EVENTS[targetKey].push(evObj);
-  
-  draggedEvt = null;
-  renderCal();
-}
+
 renderCal();
 </script>
 @endsection
