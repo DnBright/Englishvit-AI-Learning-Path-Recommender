@@ -3,156 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title') | Englishvit LMS</title>
-    <link rel="stylesheet" href="{{ asset("css/bootstrap.min.css") }}">
-    <link rel="stylesheet" href="{{ asset("css/ai-recommender.css") }}">
+    <title>@yield('title', 'My Success Path') | Englishvit</title>
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Base CSS -->
+    <link rel="stylesheet" href="{{ asset("css/bootstrap.min.css") }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!-- Custom Ecosystem CSS -->
+    <link rel="stylesheet" href="{{ asset("css/ai-recommender.css") }}">
+    
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <style>
-        .lms-wrapper {
-            display: flex !important;
-            min-height: calc(100vh - 70px) !important;
-            background-color: #f7f9fc !important;
-            width: 100%;
-        }
-        .lms-content {
-            flex-grow: 1 !important;
-            padding: 40px !important;
-            background-color: #f7f9fc !important;
-            min-width: 0;
-        }
-        .lms-sidebar {
-            flex-shrink: 0 !important;
-        }
-    </style>
 </head>
-<body class="bg-light">
+<body class="ecosystem-theme">
 
-<!-- Minimalist Professional Header -->
-<header class="main-header bg-white border-bottom sticky-top" style="z-index: 1050; height: 70px;">
-    <div class="container-fluid px-4 h-100 d-flex justify-content-between align-items-center">
-        <!-- Logo Section -->
-        <div class="d-flex align-items-center">
-            <a href="/" class="d-flex align-items-center text-decoration-none">
-                <img src="https://englishvit.com/img/logo.png" alt="Englishvit" height="32" class="me-2">
-            </a>
+<div class="ecosystem-wrapper">
+    <!-- Global Ecosystem Sidebar (ChatGPT Style) -->
+    <aside class="ecosystem-sidebar" id="global-sidebar">
+        <!-- Brand Header -->
+        <div class="eco-sidebar-header">
+            <span class="eco-brand">My Success Path</span>
+            <button class="eco-sidebar-btn d-md-none" onclick="toggleSidebar()"><span class="material-icons">close</span></button>
         </div>
 
-        <!-- Profile Section -->
-        <div class="d-flex align-items-center">
-            <div class="user-profile-dock d-flex align-items-center py-2 px-3 rounded-pill bg-light border cursor-pointer hover-shadow">
-                <div class="text-right me-3 d-none d-sm-block">
-                    <p class="f-12 fw-800 primary-text mb-0 line-height-1">Student Name</p>
-                    <p class="f-10 text-muted mb-0">Independent Study</p>
-                </div>
-                <div class="profile-avatar shadow-sm border border-white">S</div>
-                <span class="material-icons f-18 text-muted ms-2">expand_more</span>
-            </div>
-        </div>
-    </div>
-</header>
-
-<style>
-    .gap-32 { gap: 32px; }
-    .header-nav-link { 
-        font-family: 'Sora', sans-serif;
-        font-size: 14px;
-        font-weight: 600;
-        color: #4b5563;
-        text-decoration: none;
-        transition: all 0.2s;
-        position: relative;
-    }
-    .header-nav-link:hover, .header-nav-link.active {
-        color: #002655;
-    }
-    .header-nav-link.active::after {
-        content: '';
-        position: absolute;
-        bottom: -24px;
-        left: 0;
-        right: 0;
-        height: 2px;
-        background: #002655;
-    }
-    .btn-lms-nav {
-        background: #002655;
-        color: white !important;
-        font-size: 11px;
-        font-weight: 800;
-        padding: 10px 18px;
-        border-radius: 8px;
-        display: flex;
-        align-items: center;
-        text-decoration: none;
-        letter-spacing: 0.5px;
-    }
-    .header-divider {
-        width: 1px;
-        height: 30px;
-        background: #e5e7eb;
-        margin: 0 24px;
-    }
-    .user-profile-dock {
-        transition: all 0.2s ease;
-    }
-    .profile-avatar {
-        width: 32px;
-        height: 32px;
-        background: #002655;
-        color: white;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: 800;
-        font-size: 12px;
-    }
-</style>
-
-<div class="lms-wrapper">
-    <!-- Sidebar Navigation -->
-    <aside class="lms-sidebar">
-        <div class="m-b-30 pd-s-25">
-            <h6 class="text-white opacity-5 font-weight-bold f-12 text-uppercase">Study Menu</h6>
-        </div>
-        <nav>
-            <a href="/dashboard-study/roadmap" class="lms-nav-item @yield('nav_roadmap')">
+        <!-- Ecosystem Navigation Modules -->
+        <div class="eco-nav-group mt-3">
+            <a href="/dashboard-study/roadmap" class="eco-nav-item @yield('nav_map')">
                 <span class="material-icons">map</span>
+                <span>The Map</span>
+            </a>
+            <a href="/dashboard-study/core-roadmap" class="eco-nav-item @yield('nav_roadmap')">
+                <span class="material-icons">flag</span>
                 <span>Core Roadmap</span>
             </a>
-            <a href="/dashboard-study/ai-assistant" class="lms-nav-item @yield('nav_ai')">
-                <span class="material-icons">smart_toy</span>
+            <a href="/dashboard-study/ai-assistant" class="eco-nav-item @yield('nav_ai')">
+                <span class="material-icons">chat_bubble_outline</span>
                 <span>AI Assistant</span>
             </a>
-            <a href="/dashboard-study/calendar" class="lms-nav-item @yield('nav_calendar')">
+            <a href="/dashboard-study/calendar" class="eco-nav-item @yield('nav_calendar')">
                 <span class="material-icons">calendar_month</span>
-                <span>Integrated Calendar</span>
+                <span>Calendar</span>
             </a>
-            <a href="/dashboard-study/clan" class="lms-nav-item @yield('nav_clan')">
+            <a href="/dashboard-study/clan" class="eco-nav-item @yield('nav_clan')">
                 <span class="material-icons">groups</span>
                 <span>Clan System</span>
             </a>
-            <a href="/dashboard-study/classes" class="lms-nav-item @yield('nav_classes')">
+            <a href="/dashboard-study/classes" class="eco-nav-item @yield('nav_classes')">
                 <span class="material-icons">school</span>
                 <span>Class Menu</span>
             </a>
-        </nav>
+        </div>
+
+        <!-- Sidebar Sub-Content (Dynamic via Yield if needed) -->
+        @yield('sidebar_extensions')
+
+        <!-- User Footer Container -->
+        <div class="eco-user-dock mt-auto">
+            <div class="eco-avatar">SN</div>
+            <div style="flex:1;">
+                <div class="f-13 font-weight-bold" style="color:#ececec; line-height: 1.2;">Student Name</div>
+                <div class="f-10 text-muted">IELTS 6.5 Target</div>
+            </div>
+            <span class="material-icons text-muted f-16">more_horiz</span>
+        </div>
     </aside>
 
     <!-- Main Content Area -->
-    <main class="lms-content">
-        @yield('content')
+    <main class="ecosystem-main">
+        <!-- Contextual Topbar -->
+        <header class="eco-topbar">
+            <div class="d-flex align-items-center">
+                <button class="eco-sidebar-btn d-md-none me-2" onclick="toggleSidebar()">
+                    <span class="material-icons">menu</span>
+                </button>
+                <div class="eco-topbar-title">
+                    @yield('topbar_title', 'My Success Path')
+                </div>
+            </div>
+            <div class="d-flex gap-3">
+                @yield('topbar_actions')
+            </div>
+        </header>
+
+        <!-- Dynamic Module Content -->
+        <div class="eco-content-area" id="eco-content">
+            @yield('content')
+        </div>
     </main>
 </div>
 
-<footer class="bg-white border-top py-4 mt-auto">
-    <div class="container text-center text-muted">
-        <p class="mb-0 f-12">&copy; 2026 Englishvit. All rights reserved.</p>
-    </div>
-</footer>
-
+<!-- Global Scripts -->
+<script>
+    function toggleSidebar() {
+        const sb = document.getElementById('global-sidebar');
+        sb.classList.toggle('open');
+    }
+</script>
 @yield('scripts')
 
 </body>
