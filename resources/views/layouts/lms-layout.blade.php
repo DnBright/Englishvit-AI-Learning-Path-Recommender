@@ -29,31 +29,87 @@
 </head>
 <body class="bg-light">
 
-<!-- Header (Optimized for Visibility) -->
-<header class="main-header shadow-sm bg-white sticky-top" style="z-index: 1050;">
-    <div class="container d-flex justify-content-between align-items-center py-2">
-        <div class="logo">
-            <a href="/">
-                <img src="https://englishvit.com/img/logo.png" alt="Englishvit" height="35">
+<!-- Minimalist Professional Header -->
+<header class="main-header bg-white border-bottom sticky-top" style="z-index: 1050; height: 70px;">
+    <div class="container-fluid px-4 h-100 d-flex justify-content-between align-items-center">
+        <!-- Logo Section -->
+        <div class="d-flex align-items-center">
+            <a href="/" class="d-flex align-items-center text-decoration-none">
+                <img src="https://englishvit.com/img/logo.png" alt="Englishvit" height="32" class="me-2">
             </a>
         </div>
-        <nav class="d-none d-md-block">
-            <ul class="d-flex list-unstyled m-0 gap-4 align-items-center">
-                <li><a href="/" class="f-14 font-weight-bold text-dark hover-blue">Beranda</a></li>
-                <li><a href="https://englishvit.com/program" class="f-14 text-dark hover-blue">Program</a></li>
-                <li><a href="https://englishvit.com/artikel" class="f-14 text-dark hover-blue">Blog</a></li>
-                <li><a href="/dashboard-study/roadmap" class="btn btn-sm bg-info-1 accent-text font-weight-bold p-x-15">LMS Dashboard</a></li>
-            </ul>
-        </nav>
-        <div class="user-profile d-flex align-items-center gap-2">
-            <div class="d-flex flex-column text-right d-none d-sm-flex">
-                <span class="f-12 font-weight-bold mb-0">Student Name</span>
-                <span class="f-10 text-muted">Independent Study</span>
+
+        <!-- Profile Section -->
+        <div class="d-flex align-items-center">
+            <div class="user-profile-dock d-flex align-items-center py-2 px-3 rounded-pill bg-light border cursor-pointer hover-shadow">
+                <div class="text-right me-3 d-none d-sm-block">
+                    <p class="f-12 fw-800 primary-text mb-0 line-height-1">Student Name</p>
+                    <p class="f-10 text-muted mb-0">Independent Study</p>
+                </div>
+                <div class="profile-avatar shadow-sm border border-white">S</div>
+                <span class="material-icons f-18 text-muted ms-2">expand_more</span>
             </div>
-            <div class="rounded-circle bg-primary text-white d-flex-center justify-center font-weight-bold" style="width: 35px; height: 35px; background: #002655;">S</div>
         </div>
     </div>
 </header>
+
+<style>
+    .gap-32 { gap: 32px; }
+    .header-nav-link { 
+        font-family: 'Sora', sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        color: #4b5563;
+        text-decoration: none;
+        transition: all 0.2s;
+        position: relative;
+    }
+    .header-nav-link:hover, .header-nav-link.active {
+        color: #002655;
+    }
+    .header-nav-link.active::after {
+        content: '';
+        position: absolute;
+        bottom: -24px;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: #002655;
+    }
+    .btn-lms-nav {
+        background: #002655;
+        color: white !important;
+        font-size: 11px;
+        font-weight: 800;
+        padding: 10px 18px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        letter-spacing: 0.5px;
+    }
+    .header-divider {
+        width: 1px;
+        height: 30px;
+        background: #e5e7eb;
+        margin: 0 24px;
+    }
+    .user-profile-dock {
+        transition: all 0.2s ease;
+    }
+    .profile-avatar {
+        width: 32px;
+        height: 32px;
+        background: #002655;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        font-size: 12px;
+    }
+</style>
 
 <div class="lms-wrapper">
     <!-- Sidebar Navigation -->
