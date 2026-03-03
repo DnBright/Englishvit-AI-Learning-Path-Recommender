@@ -64,6 +64,73 @@
   <div class="topbar">
     <div class="topbar-title" id="topbar-title">@yield('topbar_title', '🗺 My Success Path')</div>
     <div class="topbar-actions">
+      <!-- Leaderboard Dropdown -->
+      <div class="leaderboard-dropdown" style="position:relative;">
+        <button class="btn-ghost" style="padding:8px 12px; display:flex; gap:6px; align-items:center;" onclick="document.getElementById('lbDropdown').classList.toggle('show')">
+          <span style="font-size:16px;">🏆</span>
+          <span style="font-weight:600; font-size:13px;">Rank</span>
+        </button>
+        
+        <div id="lbDropdown" style="position:absolute; top:45px; right:0; width:280px; background:var(--bg-card); border:1px solid rgba(255,255,255,0.05); border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.5); display:none; flex-direction:column; z-index:100; overflow:hidden;">
+          <!-- Tabs -->
+          <div style="display:flex; border-bottom:1px solid rgba(255,255,255,0.05);">
+            <div class="lb-tab active" onclick="switchLbTab('clan')" id="tab-lb-clan" style="flex:1; padding:12px; text-align:center; font-size:13px; font-weight:600; cursor:pointer; background:rgba(255,255,255,0.05); color:var(--white);">🛡️ Clan Rank</div>
+            <div class="lb-tab" onclick="switchLbTab('personal')" id="tab-lb-personal" style="flex:1; padding:12px; text-align:center; font-size:13px; font-weight:600; cursor:pointer; color:var(--text-2);">👤 Global Rank</div>
+          </div>
+          
+          <!-- Content: Clan -->
+          <div id="content-lb-clan" style="display:block; padding:12px;">
+            <div style="font-size:11px; color:var(--text-2); margin-bottom:12px; text-align:center;">Top 3 Clan Minggu Ini</div>
+            <div style="display:flex; align-items:center; justify-content:space-between; padding:8px 12px; background:rgba(255,215,0,0.1); border-radius:8px; margin-bottom:8px;">
+              <div style="display:flex; align-items:center; gap:8px;">
+                <span style="font-size:14px;">🥇</span> <span style="font-size:13px; font-weight:600; color:var(--yellow);">IELTS Knights</span>
+              </div>
+              <span style="font-size:12px; font-weight:700; color:var(--white);">12.5k XP</span>
+            </div>
+            <div style="display:flex; align-items:center; justify-content:space-between; padding:8px 12px; background:var(--surface); border-radius:8px; margin-bottom:8px;">
+              <div style="display:flex; align-items:center; gap:8px;">
+                <span style="font-size:14px; opacity:0.8">🥈</span> <span style="font-size:13px; font-weight:600; color:var(--white);">Grammar Police</span>
+              </div>
+              <span style="font-size:12px; font-weight:700; color:var(--text-2);">11.2k XP</span>
+            </div>
+            <div style="display:flex; align-items:center; justify-content:space-between; padding:8px 12px; background:var(--surface); border-radius:8px;">
+              <div style="display:flex; align-items:center; gap:8px;">
+                <span style="font-size:14px; opacity:0.6">🥉</span> <span style="font-size:13px; font-weight:600; color:var(--white);">Speaking Masters</span>
+              </div>
+              <span style="font-size:12px; font-weight:700; color:var(--text-2);">9.8k XP</span>
+            </div>
+          </div>
+          
+          <!-- Content: Personal -->
+          <div id="content-lb-personal" style="display:none; padding:12px;">
+            <div style="font-size:11px; color:var(--text-2); margin-bottom:12px; text-align:center;">Posisi Anda di Global Leaderboard</div>
+            <div style="display:flex; align-items:center; justify-content:space-between; padding:8px 12px; background:var(--surface); border-radius:8px; margin-bottom:8px; opacity:0.5;">
+              <div style="display:flex; align-items:center; gap:8px;">
+                <span style="font-size:12px; color:var(--text-2); width:16px;">42</span>
+                <span style="font-size:13px; font-weight:600; color:var(--white);">Budi S.</span>
+              </div>
+              <span style="font-size:12px; font-weight:700; color:var(--text-2);">8,450 XP</span>
+            </div>
+            <div style="display:flex; align-items:center; justify-content:space-between; padding:8px 12px; background:rgba(var(--blue-rgb), 0.15); border:1px solid rgba(var(--blue-rgb), 0.3); border-radius:8px; margin-bottom:8px;">
+              <div style="display:flex; align-items:center; gap:8px;">
+                <span style="font-size:12px; color:var(--blue-acc); width:16px; font-weight:700;">43</span>
+                <span style="font-size:13px; font-weight:600; color:var(--white);">Anda</span>
+              </div>
+              <span style="font-size:12px; font-weight:700; color:var(--blue-acc);">8,420 XP</span>
+            </div>
+            <div style="display:flex; align-items:center; justify-content:space-between; padding:8px 12px; background:var(--surface); border-radius:8px; opacity:0.5;">
+              <div style="display:flex; align-items:center; gap:8px;">
+                <span style="font-size:12px; color:var(--text-2); width:16px;">44</span>
+                <span style="font-size:13px; font-weight:600; color:var(--white);">Sarah F.</span>
+              </div>
+              <span style="font-size:12px; font-weight:700; color:var(--text-2);">8,390 XP</span>
+            </div>
+          </div>
+          
+          <a href="/dashboard-study/clan" style="display:block; padding:12px; text-align:center; font-size:12px; color:var(--blue-acc); text-decoration:none; border-top:1px solid rgba(255,255,255,0.05); background:rgba(0,0,0,0.2);">Lihat Selengkapnya &rarr;</a>
+        </div>
+      </div>
+      
       <button class="btn-ghost" onclick="toggleSidebar()">☰ Menu</button>
       <button class="btn-yellow">+ Tambah Sesi</button>
     </div>
@@ -79,6 +146,32 @@
 function toggleSidebar() {
   const sb = document.getElementById('sidebar');
   sb.classList.toggle('open');
+}
+
+// Close Dropdown when clicking outside
+document.addEventListener('click', function(event) {
+  const dropdown = document.getElementById('lbDropdown');
+  const button = dropdown.previousElementSibling;
+  
+  if (!dropdown.contains(event.target) && !button.contains(event.target)) {
+    dropdown.classList.remove('show');
+  }
+});
+
+function switchLbTab(tab) {
+  // Update Buttons
+  document.getElementById('tab-lb-clan').className = 'lb-tab' + (tab === 'clan' ? ' active' : '');
+  document.getElementById('tab-lb-personal').className = 'lb-tab' + (tab === 'personal' ? ' active' : '');
+  
+  // Custom active styling
+  document.getElementById('tab-lb-clan').style.background = tab === 'clan' ? 'rgba(255,255,255,0.05)' : 'transparent';
+  document.getElementById('tab-lb-clan').style.color = tab === 'clan' ? 'var(--white)' : 'var(--text-2)';
+  document.getElementById('tab-lb-personal').style.background = tab === 'personal' ? 'rgba(255,255,255,0.05)' : 'transparent';
+  document.getElementById('tab-lb-personal').style.color = tab === 'personal' ? 'var(--white)' : 'var(--text-2)';
+
+  // Update Content
+  document.getElementById('content-lb-clan').style.display = tab === 'clan' ? 'block' : 'none';
+  document.getElementById('content-lb-personal').style.display = tab === 'personal' ? 'block' : 'none';
 }
 </script>
 @yield('scripts')
