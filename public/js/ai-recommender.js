@@ -236,92 +236,88 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function generateDetailedSchedule(cartItems, timelineMonths) {
         let scheduleHTML = '';
-        
+        const totalMonths = parseInt(timelineMonths) || 1;
+
         scheduleHTML += `
             <div class="m-b-20">
-                <h5 class="fw-800 m-b-5">📅 Personalized Weekly Calendar (Week 1)</h5>
-                <p class="f-13 fc-black-5">Jadwal harian ini dirancang spesifik oleh AI berdasarkan ketersediaan dan modul Anda agar efisiensi belajar maksimal.</p>
+                <h5 class="fw-800 m-b-5">📅 Monthly Roadmap Calendar (${totalMonths} Months)</h5>
+                <p class="f-13 fc-black-5">Jadwal di bawah ini merepresentasikan rencana belajar bulanan Anda selama ${totalMonths} Bulan ke depan.</p>
             </div>
-            <div class="ai-calendar-container">
-                <table class="ai-calendar-table">
-                    <thead>
-                        <tr>
-                            <th class="time-col">Waktu<br>(WIB)</th>
-                            <th>Mon<span class="date">09</span></th>
-                            <th>Tue<span class="date">10</span></th>
-                            <th>Wed<span class="date">11</span></th>
-                            <th>Thu<span class="date">12</span></th>
-                            <th>Fri<span class="date">13</span></th>
-                            <th>Sat<span class="date">14</span></th>
-                            <th>Sun<span class="date">15</span></th>
-                        </tr>
-                    </thead>
-                    <tbody>
         `;
 
-        const timeslots = [
-            '08.00-09.00', '09.00-10.00', '10.00-11.00', '11.00-12.00', 
-            '12.00-13.00', '13.00-14.00', '16.00-17.00', '19.00-20.00'
-        ];
-        
-        // Smart Grid Mapping based on package constraints
-        let grid = Array(timeslots.length).fill(null).map(() => Array(7).fill(null));
-        
-        cartItems.forEach((item, index) => {
-            if (item.category === 'live') {
-                grid[7][1] = item.name; // Tue 19.00
-                grid[7][3] = item.name; // Thu 19.00
-            } else if (item.category === 'private') {
-                grid[2][5] = item.name; // Sat 10.00
-            } else if (item.category === 'module') {
-                grid[1][0] = 'Focus: ' + item.name; // Mon 09.00
-                grid[1][2] = 'Focus: ' + item.name; // Wed 09.00
-                grid[1][4] = 'Focus: ' + item.name; // Fri 09.00
-            } else if (item.category === 'test') {
-                grid[0][6] = item.name; // Sun 08.00
-                grid[1][6] = item.name; // Sun 09.00
-                grid[2][6] = item.name; // Sun 10.00
-            }
-        });
+        const dayLabels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
-        // Building the table rows
-        timeslots.forEach((timeStr, tIdx) => {
-            scheduleHTML += `<tr><td class="time-col">${timeStr}</td>`;
-            for (let d = 0; d < 7; d++) {
-                if (grid[tIdx][d]) {
-                    scheduleHTML += \`<td><div class="calendar-slot-available" title="\${grid[tIdx][d]}">\${grid[tIdx][d]}</div></td>\`;
-                } else {
-                    scheduleHTML += `<td></td>`;
+        for (let m = 1; m <= totalMonths; m++) {
+            scheduleHTML += `
+                <div class="ai-calendar-container m-b-40">
+                    <div class="bg-purple-1 p-3 border-bottom-light text-center" style="background-color:#F5F3FF;">
+                        <span class="f-14 fw-800 fc-purple-7">Learning Month ${m}</span>
+                    </div>
+                    <table class="ai-calendar-table">
+                        <thead>
+                            <tr>
+                                ${dayLabels.map(day => `<th>${day}</th>`).join('')}
+                            </tr>
+                        </thead>
+                        <tbody>
+            `;
+
+            for (let w = 0; w < 4; w++) {
+                scheduleHTML += '<tr>';
+                for (let d = 0; d < 7; d++) {
+                    const currentWeekNum = ((m - 1) * 4) + w + 1;
+                    let dayContent = '';
+
+                    cartItems.forEach(item => {
+                        if (item.category === 'live') {
+                            if (d === 1 || d === 3) dayContent += `<div class="calendar-slot-available live" title="${item.name}">${item.icon} Live</div>`;
+                        } else if (item.category === 'private') {
+                            if (d === 5) dayContent += `<div class="calendar-slot-available private" title="${item.name}">${item.icon} Private</div>`;
+                        } else if (item.category === 'module') {
+                            if (d === 0 || d === 2 || d === 4) dayContent += `<div class="calendar-slot-available module" title="${item.name}">${item.icon} Focus</div>`;
+                        } else if (item.category === 'test') {
+                            if (w === 0 && d === 6) dayContent += `<div class="calendar-slot-available test" title="${item.name}">${item.icon} Test</div>`;
+                        }
+                    });
+
+                    scheduleHTML += `
+                        <td class="day-cell">
+                            <span class="day-num">Week ${w + 1}</span>
+                            <div class="day-activities">${dayContent}</div>
+                        </td>
+                    `;
                 }
+                scheduleHTML += '</tr>';
             }
-            scheduleHTML += `</tr>`;
-        });
 
-        scheduleHTML += `
-                    </tbody>
-                </table>
-                <div class="calendar-legend">
-                    <div class="legend-item"><div class="legend-dot available"></div> Sesi Belajar Terjadwal</div>
-                    <div class="legend-item"><div class="legend-dot unavailable"></div> Kosong (Istirahat/Kerja)</div>
+            scheduleHTML += `
+                        </tbody>
+                    </table>
+                    <div class="calendar-legend">
+                        <div class="legend-item"><div class="legend-dot live"></div> Live Class</div>
+                        <div class="legend-item"><div class="legend-dot private"></div> Private</div>
+                        <div class="legend-item"><div class="legend-dot module"></div> Module</div>
+                        <div class="legend-item"><div class="legend-dot test"></div> Test</div>
+                    </div>
                 </div>
-            </div>
-        `;
+            `;
+        }
 
         // Section: Detailed Explanation
-        scheduleHTML += \`<div class="m-t-40"><h5 class="fw-800 m-b-20 fc-purple-7">📚 Detail Instruksi & Panduan Kelas</h5>\`;
-        
+        scheduleHTML += `<div class="m-t-40"><h5 class="fw-800 m-b-20 fc-purple-7">📚 Detail Instruksi & Panduan Rutinitas (${months} Bulan Ke Depan)</h5>`;
+
         cartItems.forEach(item => {
             let details = '';
             if (item.category === 'live') {
-                details = 'Interaksi langsung dengan tutor eksklusif melalui Zoom. Jadwal diset otomatis setiap <strong>Selasa & Kamis Pukul 19.00 WIB</strong>. Fokuskan pada keaktifan.';
+                details = 'Interaksi langsung dengan tutor eksklusif melalui Zoom. Jadwal diset otomatis setiap <strong>Selasa & Kamis Pukul 19.00 WIB</strong> berturut-turut sesuai fase bulan. Fokuskan pada keaktifan.';
             } else if (item.category === 'private') {
-                details = 'Sesi review eksklusif Face-to-Face secara virtual (1 Siswa, 1 Tutor). Default jadwal: <strong>Sabtu 10.00 WIB</strong>.';
+                details = 'Sesi review eksklusif Face-to-Face secara virtual (1 Siswa, 1 Tutor). Default jadwal rutin: <strong>Sabtu 10.00 WIB</strong>. Siapkan bahan dari senin-jumat untuk direview.';
             } else if (item.category === 'module') {
-                details = 'Modul E-Course ini bersifat Video On-Demand (Flexible Time). Disarankan: <strong>Senin, Rabu, Jumat pukul 09.00</strong>.';
+                details = 'Modul E-Course ini bersifat Video On-Demand (Flexible Time). Disarankan konsisten: <strong>Senin, Rabu, Jumat pukul 09.00</strong>. Anda bisa atur jam sesuai kerjaan if bentrok.';
             } else if (item.category === 'test') {
-                details = 'Simulasi Tryout Penuh. Test Online dengan durasi ~3.5 Jam. Jadwal: <strong>Minggu pukul 08.00 WIB</strong>.';
+                details = 'Simulasi Tryout Penuh. Test Online dengan durasi ~3.5 Jam. Jadwal: <strong>Minggu pertama tiap fase pukul 08.00 WIB</strong>.';
             }
-            
+
             scheduleHTML += `
                 <div class="ai-card p-4 shadow-sm bg-white br-12 border-left-purple m-b-20">
                     <div class="d-flex-center-btw mb-2">
@@ -332,7 +328,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 </div>
             `;
         });
-        
+
         scheduleHTML += `</div>`;
         return scheduleHTML;
     }

@@ -282,86 +282,73 @@
     padding: 0;
     border-bottom: 1px solid #E5E7EB;
     border-right: 1px solid #E5E7EB;
-    height: 60px;
-    vertical-align: middle;
+    height: 100px;
+    vertical-align: top;
+    position: relative;
 }
 
-.ai-calendar-table td.time-col {
-    width: 120px;
-    text-align: center;
-    font-size: 12px;
+.day-cell {
+    padding: 8px !important;
+    min-height: 100px;
+}
+
+.day-num {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
     color: var(--ai-text-muted);
-    font-weight: 600;
-    background: #FFFFFF;
+    margin-bottom: 5px;
 }
 
-.ai-calendar-table th:last-child,
-.ai-calendar-table td:last-child {
-    border-right: none;
+.day-activities {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
 
 .calendar-slot-available {
-    background-color: #4ADE80;
-    /* Bright Green */
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 11px;
+    border-radius: 4px;
+    padding: 4px 6px;
+    font-size: 10px;
     font-weight: 700;
-    text-align: center;
-    padding: 4px;
-    transition: opacity 0.2s;
+    text-align: left;
+    color: white;
     cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.calendar-slot-available:hover {
-    opacity: 0.9;
+.calendar-slot-available.live {
+    background-color: #4F46E5;
 }
 
-.calendar-slot-filled {
-    background-color: #E5E7EB;
-    /* Gray */
-    height: 100%;
-    width: 100%;
+.calendar-slot-available.private {
+    background-color: #7C3AED;
 }
 
-.calendar-legend {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    font-size: 12px;
-    color: var(--ai-text-muted);
-    font-weight: 500;
-    padding: 16px;
-    border-top: 1px solid #E5E7EB;
+.calendar-slot-available.module {
+    background-color: #10B981;
 }
 
-.legend-item {
-    display: flex;
-    align-items: center;
-    gap: 6px;
+.calendar-slot-available.test {
+    background-color: #F59E0B;
 }
 
-.legend-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
+.legend-dot.live {
+    background-color: #4F46E5;
 }
 
-.legend-dot.available {
-    background-color: #4ADE80;
+.legend-dot.private {
+    background-color: #7C3AED;
 }
 
-.legend-dot.filled {
-    background-color: #E5E7EB;
+.legend-dot.module {
+    background-color: #10B981;
 }
 
-.legend-dot.unavailable {
-    border: 1px solid #D1D5DB;
-    background-color: #FFFFFF;
+.legend-dot.test {
+    background-color: #F59E0B;
 }
 
 /* Path Strength & Gamification */
