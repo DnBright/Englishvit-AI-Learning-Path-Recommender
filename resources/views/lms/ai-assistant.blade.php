@@ -1,43 +1,57 @@
 @extends('layouts.lms-layout')
 
-@section('title', 'AI Study Assistant')
+@section('title', 'AI Study Mentor')
 @section('nav_ai', 'active')
 
 @section('content')
-<div class="row">
-    <div class="col-lg-8 mx-auto">
-        <div class="d-flex justify-content-between align-items-center m-b-30">
-            <div>
-                <h2 class="font-weight-bold primary-text m-b-5">🤖 AI Study Mentor</h2>
-                <p class="text-muted f-14 mb-0">Speak with your personalized IELTS coach.</p>
+<div class="container-fluid pd-x-30 pd-t-30">
+    <div class="row">
+        <div class="col-12 m-b-30 p-0">
+            <h3 class="font-weight-bold primary-text m-b-8" style="font-family: 'Sora', sans-serif;">🤖 AI Study Mentor</h3>
+            <p class="text-muted f-15 mb-0" style="font-family: 'Inter', sans-serif;">Consult with your Englishvit personalized IELTS coach.</p>
+        </div>
+    </div>
+
+    <div class="row shadow-sm bg-white rounded-12 p-0 overflow-hidden" style="border: 1px solid #edf2f7; min-height: 600px;">
+        <!-- Mentor Info Sidebar (Optional but helps neatness) -->
+        <div class="col-md-3 border-right p-0 d-none d-md-block bg-light-5">
+            <div class="pd-30 text-center border-bottom bg-white">
+                <div class="rounded-circle d-inline-flex justify-content-center align-items-center bg-info-1 m-b-20" style="width: 80px; height: 80px;">
+                    <span class="material-icons accent-text" style="font-size: 40px;">auto_awesome</span>
+                </div>
+                <h6 class="font-weight-bold primary-text m-b-5">EV Mentor AI</h6>
+                <span class="badge badge-success-light f-11 px-3 py-1">Online & Active</span>
+            </div>
+            <div class="pd-20">
+                <p class="f-11 font-weight-bold text-uppercase text-muted m-b-15">MENTORSHIP TOPICS</p>
+                <ul class="list-unstyled">
+                    <li class="f-13 m-b-12 d-flex align-items-center text-muted"><span class="material-icons f-16 m-r-10 accent-text">check_circle</span> IELTS Speaking</li>
+                    <li class="f-13 m-b-12 d-flex align-items-center text-muted"><span class="material-icons f-16 m-r-10 accent-text">check_circle</span> Writing Task 1 & 2</li>
+                    <li class="f-13 m-b-12 d-flex align-items-center text-muted"><span class="material-icons f-16 m-r-10 accent-text">check_circle</span> Grammar Mastery</li>
+                </ul>
             </div>
         </div>
 
-        <div class="ai-assistant-view shadow-lg border-0" style="height: 650px;">
-            <!-- Glassmorphism Header -->
-            <div class="chat-header glass-header pd-s-30 pd-t-20 pd-b-20 d-flex align-items-center text-white">
-                <div class="avatar-ring m-r-15 bg-white-20 rounded-circle d-flex-center justify-center p-2" style="width: 45px; height: 45px;">
-                    <span class="material-icons" style="font-size: 24px;">auto_awesome</span>
+        <!-- Chat Area -->
+        <div class="col-md-9 p-0 d-flex flex-column bg-white">
+            <div class="chat-header branded-header text-white d-flex align-items-center">
+                <div class="avatar-sm m-r-15 d-md-none rounded-circle bg-white-20 d-flex justify-center align-items-center" style="width: 35px; height: 35px;">
+                    <span class="material-icons f-18">auto_awesome</span>
                 </div>
                 <div>
-                    <h6 class="mb-0 font-weight-bold f-15">Englishvit AI Mentor</h6>
-                    <div class="d-flex align-items-center">
-                        <span class="dot bg-success m-r-8" style="width: 6px; height: 6px;"></span>
-                        <span class="f-11 opacity-7">Mentor is thinking...</span>
-                    </div>
+                    <h6 class="mb-0 font-weight-bold f-15">Chat with Mentor</h6>
+                    <span class="f-10 opacity-7 d-md-none">Online</span>
                 </div>
             </div>
-            
-            <div class="chat-body pd-30 flex-fill d-flex flex-column bg-white" style="overflow-y: auto; scroll-behavior: smooth;">
+
+            <div class="chat-body pd-30 flex-fill d-flex flex-column" style="height: 450px; overflow-y: auto; scroll-behavior: smooth;">
                 <div id="chat-messages" class="d-flex flex-column">
-                    <!-- Initial AI Contact -->
                     <div class="chat-bubble bubble-ai">
-                        Welcome back! I've been reviewing your <strong>Success Path</strong>. <br><br>
-                        Ready to boost your Speaking score today? I can help you with some common part 2 cues.
+                        Welcome back! I'm your Englishvit Mentor. I've been monitoring your <strong>IELTS Prep</strong> progress. <br><br>
+                        Ready to polish your speaking skills today?
                     </div>
                 </div>
 
-                <!-- Typing Indicator (Hidden by default) -->
                 <div id="typing-indicator" class="typing-indicator" style="display: none;">
                     <div class="typing-dot"></div>
                     <div class="typing-dot"></div>
@@ -45,21 +59,16 @@
                 </div>
             </div>
 
-            <!-- Contextual Quick Prompts (Floating above footer) -->
-            <div class="pd-x-30 pd-b-15 bg-white">
-                <div class="d-flex flex-wrap gap-10">
-                    <button class="btn btn-xs btn-light text-primary rounded-pill border f-11 fw-bold p-x-15" onclick="quickPrompt('Give me a Speaking cue card')">Speaking Cue Card</button>
-                    <button class="btn btn-xs btn-light text-primary rounded-pill border f-11 fw-bold p-x-15" onclick="quickPrompt('Check my Vocabulary')">Vocab Check</button>
-                    <button class="btn btn-xs btn-light text-primary rounded-pill border f-11 fw-bold p-x-15" onclick="quickPrompt('What\'s next?')">Next Goal</button>
+            <div class="chat-footer pd-20 border-top bg-light-soft">
+                <div class="m-b-15 d-flex flex-wrap gap-10">
+                    <button class="btn btn-xs btn-white border rounded-pill f-11 fw-800 text-muted px-3" onclick="quickPrompt('Give me a Speaking Cue Card')">Speaking Cue Card</button>
+                    <button class="btn btn-xs btn-white border rounded-pill f-11 fw-800 text-muted px-3" onclick="quickPrompt('Review my Writing Task 1')">Writing Review</button>
                 </div>
-            </div>
-
-            <div class="chat-footer pd-20 bg-white border-subtle">
-                <div class="input-group rounded-pill overflow-hidden bg-light border-0 p-1">
-                    <input type="text" class="form-control border-0 bg-transparent p-l-25 f-13" id="chatInput" placeholder="Ask your mentor anything...">
+                <div class="input-group bg-white rounded-pill overflow-hidden border p-1" style="border-color: #e2e8f0 !important;">
+                    <input type="text" class="form-control border-0 p-l-25 f-14 bg-transparent" id="chatInput" placeholder="Tanyakan apapun pada Mentor AI Anda...">
                     <div class="input-group-append">
-                        <button class="btn btn-primary rounded-circle m-1 d-flex-center p-0" style="width: 40px; height: 40px;" onclick="sendMessage()">
-                            <span class="material-icons f-20">near_me</span>
+                        <button class="btn btn-primary rounded-pill px-4 m-1 d-flex-center" onclick="sendMessage()" style="background: #002655; border: none;">
+                            <span class="material-icons f-18">send</span>
                         </button>
                     </div>
                 </div>
@@ -69,8 +78,11 @@
 </div>
 
 <style>
+    .rounded-12 { border-radius: 12px !important; }
+    .bg-light-5 { background: #f9fbfd; }
     .bg-white-20 { background: rgba(255,255,255,0.2); }
-    .border-subtle { border-top: 1px solid #f1f5f9; }
+    .badge-success-light { background: #e6fffa; color: #00a3c4; border: 1px solid #b2f5ea; }
+    .gap-10 { gap: 10px; }
 </style>
 @endsection
 
@@ -82,27 +94,16 @@
         const text = input.val().trim();
         
         if (text) {
-            // Add user message
             container.append(`<div class="chat-bubble bubble-user shadow-sm animate__animated animate__fadeInUp">${text}</div>`);
             input.val('');
             scrollToBottom();
             
-            // Show typing indicator
             $('#typing-indicator').fadeIn(200);
             
-            // Simulate AI Mentorship Thinking
             setTimeout(() => {
                 $('#typing-indicator').fadeOut(200);
-                
-                const responses = [
-                    "That's a great question! Based on your recent activity, I'd suggest focusing on your <strong>Linking Words</strong> for this task.",
-                    "Interesting! Let me pull up a relevant practice scenario for your <strong>IELTS Speaking</strong> goal.",
-                    "Nice! You're making progress. Let's look at how we can improve that specific point in your next session."
-                ];
-                const randomResponse = responses[Math.floor(Math.random() * responses.length)];
-                
-                showAIResponse(randomResponse);
-            }, 1800);
+                showAIResponse("Thank you for choosing Englishvit! As your mentor, I've analyzed your progress. Let's focus on <strong>linking words</strong> to make your explanation more structured.");
+            }, 1500);
         }
     }
 
@@ -113,11 +114,7 @@
 
     function showAIResponse(text) {
         const container = $('#chat-messages');
-        container.append(`
-            <div class="chat-bubble bubble-ai shadow-sm animate__animated animate__fadeInUp">
-                ${text}
-            </div>
-        `);
+        container.append(`<div class="chat-bubble bubble-ai shadow-sm animate__animated animate__fadeInUp">${text}</div>`);
         scrollToBottom();
     }
 
