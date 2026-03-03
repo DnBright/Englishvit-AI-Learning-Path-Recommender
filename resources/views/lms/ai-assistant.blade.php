@@ -11,7 +11,7 @@
   <div class="chat-area">
     <div class="chat-messages" id="chatMessages">
       <div class="msg msg-ai">
-        <div class="msg-avatar" style="background:#ffffff; padding: 4px;"><img src="{{ asset('images/logo-new.png') }}" style="width: 24px; object-fit: contain;"></div>
+        <div class="msg-avatar" style="background:transparent;"><img src="{{ asset('images/logo-new.png') }}" style="width: 24px; object-fit: contain; filter: brightness(0) invert(1);"></div>
         <div>
           <div class="msg-bubble">
             Halo {{ explode(' ', Auth::user()->name ?? 'Student')[0] }}! 👋 Saya sudah analisa progress belajarmu minggu ini.<br><br>
@@ -28,7 +28,7 @@
         </div>
       </div>
       <div class="msg msg-ai">
-        <div class="msg-avatar" style="background:transparent;"><img src="{{ asset('images/logo-new.png') }}" style="width: 24px; object-fit: contain;"></div>
+        <div class="msg-avatar" style="background:transparent;"><img src="{{ asset('images/logo-new.png') }}" style="width: 24px; object-fit: contain; filter: brightness(0) invert(1);"></div>
         <div>
           <div class="msg-bubble">
             Paham! Writing Task 2 memang butuh latihan struktur yang konsisten. Ini quick tip dari saya:<br><br>
@@ -50,7 +50,7 @@
         </div>
       </div>
       <div class="msg msg-ai">
-        <div class="msg-avatar" style="background:transparent;"><img src="{{ asset('images/logo-new.png') }}" style="width: 24px; object-fit: contain;"></div>
+        <div class="msg-avatar" style="background:transparent;"><img src="{{ asset('images/logo-new.png') }}" style="width: 24px; object-fit: contain; filter: brightness(0) invert(1);"></div>
         <div>
           <div class="msg-bubble">
             ✏️ <strong>Exercise — Writing Task 2</strong><br><br>
@@ -161,9 +161,9 @@ function addMsg(txt,role){
   const now=new Date();
   const time=now.getHours()+':'+String(now.getMinutes()).padStart(2,'0');
   d.innerHTML=`
-    <div class="msg-avatar" ${role==='ai'?'style="background:#ffffff; padding:4px;"':''}>
+    <div class="msg-avatar" ${role==='ai'?'style="background:transparent;"':''}>
       ${role==='ai' 
-        ? '<img src="{{ asset("images/logo-new.png") }}" style="width: 24px; object-fit: contain;">' 
+        ? '<img src="{{ asset("images/logo-new.png") }}" style="width: 24px; object-fit: contain; filter: brightness(0) invert(1);">' 
         : '{{ substr(Auth::user()->name ?? "S", 0, 1) }}'}
     </div>
     <div>
