@@ -163,7 +163,7 @@ function addMsg(txt,role){
   d.innerHTML=`
     <div class="msg-avatar" ${role==='ai'?'style="background:#ffffff; padding:4px;"':''}>
       ${role==='ai' 
-        ? '<img src="{{ asset(\'images/logo-new.png\') }}" style="width: 24px; object-fit: contain;">' 
+        ? '<img src="{{ asset("images/logo-new.png") }}" style="width: 24px; object-fit: contain;">' 
         : '{{ substr(Auth::user()->name ?? "S", 0, 1) }}'}
     </div>
     <div>
