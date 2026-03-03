@@ -40,200 +40,215 @@
 </nav>
 
 <main class="dashboard-container">
-    <div class="container">
-        <!-- Dashboard Header -->
-        <div class="row m-b-40">
-            <div class="col-md-12">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb bg-transparent p-0">
-                        <li class="breadcrumb-item"><a href="/">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Study Dashboard</li>
-                    </ol>
-                </nav>
-                <h1 class="font-weight-bold primary-text">獨立 Dashboard Workspace 🚀</h1>
-                <p class="text-muted">Kelola rencana belajar mandiri Anda yang didukung oleh AI.</p>
-            </div>
+<div class="lms-wrapper">
+    <!-- Sidebar Navigation -->
+    <aside class="lms-sidebar">
+        <div class="m-b-30 pd-s-25">
+            <h6 class="text-white opacity-5 font-weight-bold f-12 text-uppercase">Study Menu</h6>
         </div>
+        <nav>
+            <a class="lms-nav-item active" onclick="switchMenu('roadmap')">
+                <span class="material-icons">map</span>
+                <span>Core Roadmap</span>
+            </a>
+            <a class="lms-nav-item" onclick="switchMenu('ai')">
+                <span class="material-icons">smart_toy</span>
+                <span>AI Assistant</span>
+            </a>
+            <a class="lms-nav-item" onclick="switchMenu('calendar')">
+                <span class="material-icons">calendar_month</span>
+                <span>Integrated Calendar</span>
+            </a>
+            <a class="lms-nav-item" onclick="switchMenu('clan')">
+                <span class="material-icons">groups</span>
+                <span>Clan System</span>
+            </a>
+            <a class="lms-nav-item" onclick="switchMenu('class')">
+                <span class="material-icons">school</span>
+                <span>Class Menu</span>
+            </a>
+        </nav>
+    </aside>
 
-        <div class="row">
-            <!-- Left Column: Primary Learning Modules -->
-            <div class="col-lg-8">
-                
-                <!-- [Module 3] Roadmap: Core Execution -->
-                <div class="dashboard-card border-top-primary">
-                    <div class="card-header-ai d-flex justify-between align-items-center">
-                        <h5 class="card-title-ai">
-                            <span class="material-icons accent-text">map</span>
-                            Learning Roadmap & Progress
-                        </h5>
-                        <div class="badge badge-pill badge-primary">Fase 1: Foundation</div>
-                    </div>
-                    <div class="card-body-ai">
-                        <div class="progress m-b-20" style="height: 12px; border-radius: 10px;">
-                            <div class="progress-bar bg-info" style="width: 42%;">42% Complete</div>
+    <!-- Main Content Area -->
+    <main class="lms-content">
+        
+        <!-- [Menu: Core Roadmap] -->
+        <section id="menu-roadmap" class="menu-section active">
+            <h2 class="font-weight-bold primary-text m-b-20">🗺️ Core Roadmap</h2>
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="dashboard-card pd-30">
+                        <div class="d-flex justify-between m-b-20">
+                            <h5 class="font-weight-bold">Progress Target IELTS 6.5</h5>
+                            <span class="badge badge-success">On Track</span>
                         </div>
-                        
-                        <div class="timeline-path m-b-20">
+                        <div class="progress m-b-30" style="height: 15px; border-radius: 10px;">
+                            <div class="progress-bar bg-info" style="width: 42%;">42%</div>
+                        </div>
+                        <div class="timeline-path m-b-30">
                             <div class="timeline-step active">M1</div>
                             <div class="timeline-step">M2</div>
                             <div class="timeline-step">M3</div>
                             <div class="timeline-step">M4</div>
                         </div>
+                        <div class="bg-light p-3 rounded">
+                            <h6 class="font-weight-bold">Bulan Ini: Foundation & Grammar</h6>
+                            <p class="f-13 text-muted">Aksi selanjutnya: Selesaikan 5 quiz reading untuk membuka milestone berikutnya.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="dashboard-card pd-20">
+                        <h6 class="font-weight-bold m-b-15">Skill Balance</h6>
+                        <div class="radar-chart-container">
+                            <canvas id="skillRadar"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-                        <div class="list-group list-group-flush">
-                            <div class="list-group-item d-flex justify-between align-items-center bg-transparent border-0 pd-s-0">
-                                <div>
-                                    <h6 class="m-b-0 font-weight-bold">Current Milestone: Academic Vocabulary</h6>
-                                    <p class="f-12 text-muted m-b-0">Target: Band 6.5 Requirement</p>
-                                </div>
-                                <span class="material-icons text-success">check_circle</span>
+        <!-- [Menu: AI Assistant] -->
+        <section id="menu-ai" class="menu-section">
+            <h2 class="font-weight-bold primary-text m-b-20">🤖 AI Study Assistant</h2>
+            <div class="ai-assistant-view">
+                <div class="chat-header pd-s-20 pd-t-15 pd-b-15">
+                    <span class="material-icons">psychology</span>
+                    <span class="m-l-10">Contextual Learning Mentor</span>
+                </div>
+                <div class="chat-body pd-30 bg-light flex-fill">
+                    <div class="chat-bubble bubble-ai m-b-20">
+                        Halo! Saya sudah menganalisis progress Roadmap Anda. Progress Writing Anda sedikit melambat di minggu ini. Ingin fokus latihan Essay hari ini?
+                    </div>
+                </div>
+                <div class="chat-footer pd-20">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Tanya sesuatu tentang roadmap mu...">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary">Kirim</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- [Menu: Integrated Calendar] -->
+        <section id="menu-calendar" class="menu-section">
+            <h2 class="font-weight-bold primary-text m-b-20">📅 Integrated Calendar</h2>
+            <div class="dashboard-card pd-30">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="pd-20 bg-gradient-soft rounded">
+                            <h6 class="font-weight-bold"><span class="material-icons f-16 m-r-5">event</span> Upcoming</h6>
+                            <hr>
+                            <div class="p-2 m-b-10 border-left-blue bg-white rounded">
+                                <span class="f-12 font-weight-bold">Besok, 19:00</span>
+                                <p class="f-13 m-b-0">Live Class #4: Listening Tips</p>
                             </div>
-                            <div class="list-group-item d-flex justify-between align-items-center bg-transparent border-0 pd-s-0">
-                                <div>
-                                    <h6 class="m-b-0 font-weight-bold">Next: Speaking Simulation #1</h6>
-                                    <p class="f-12 text-muted m-b-0">Estimated: 3 Days remaining</p>
-                                </div>
-                                <span class="material-icons text-muted">radio_button_unchecked</span>
+                            <div class="p-2 m-b-10 border-left-warning bg-white rounded">
+                                <span class="f-12 font-weight-bold">8 Mar, 08:00</span>
+                                <p class="f-13 m-b-0">Mock Test #1 (Full Simulation)</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="calendar-grid">
+                            <!-- Simplified Grid -->
+                            <div class="calendar-day font-weight-bold text-center bg-light" style="min-height: auto;">Sen</div>
+                            <div class="calendar-day font-weight-bold text-center bg-light" style="min-height: auto;">Sel</div>
+                            <div class="calendar-day font-weight-bold text-center bg-light" style="min-height: auto;">Rab</div>
+                            <div class="calendar-day font-weight-bold text-center bg-light" style="min-height: auto;">Kam</div>
+                            <div class="calendar-day font-weight-bold text-center bg-light" style="min-height: auto;">Jum</div>
+                            <div class="calendar-day font-weight-bold text-center bg-light" style="min-height: auto;">Sab</div>
+                            <div class="calendar-day font-weight-bold text-center bg-light" style="min-height: auto;">Min</div>
+                            <!-- Days -->
+                            <div class="calendar-day text-muted f-12">1</div>
+                            <div class="calendar-day text-muted f-12">2</div>
+                            <div class="calendar-day text-muted f-12">3</div>
+                            <div class="calendar-day">
+                                <span class="f-12 font-weight-bold">4</span>
+                                <div class="badge badge-info f-10 d-block m-t-5">Live Zoom</div>
+                            </div>
+                            <div class="calendar-day text-muted f-12">5</div>
+                            <div class="calendar-day text-muted f-12">6</div>
+                            <div class="calendar-day text-muted f-12">7</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- [Menu: Clan System] -->
+        <section id="menu-clan" class="menu-section">
+            <h2 class="font-weight-bold primary-text m-b-20">👥 Clan System</h2>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="dashboard-card pd-30">
+                        <h5 class="font-weight-bold m-b-20">Leaderboard: Clan Target 6.5</h5>
+                        <div class="clan-board p-0 shadow-none">
+                            <div class="clan-item">
+                                <div class="clan-rank">1</div>
+                                <div class="flex-fill font-weight-bold">Budi Santoso</div>
+                                <div class="badge badge-success">450 XP</div>
+                            </div>
+                            <div class="clan-item">
+                                <div class="clan-rank">2</div>
+                                <div class="flex-fill">Siti Aminah</div>
+                                <div class="badge badge-secondary">410 XP</div>
+                            </div>
+                            <div class="clan-item">
+                                <div class="clan-rank">3</div>
+                                <div class="flex-fill">Agus Pratama</div>
+                                <div class="badge badge-secondary">380 XP</div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <!-- [Module 2] Integrated Calendar -->
-                <div class="dashboard-card">
-                    <div class="card-header-ai">
-                        <h5 class="card-title-ai">
-                            <span class="material-icons accent-text">calendar_month</span>
-                            Jadwal Belajar Terintegrasi
-                        </h5>
-                    </div>
-                    <div class="card-body-ai">
-                        <div class="row lms-calendar">
-                            <div class="col-md-6 border-right">
-                                <h6 class="f-14 font-weight-bold m-b-15">Hari Ini (4 Maret)</h6>
-                                <div class="cal-event event-live">09:00 - Self Study: Reading Drill</div>
-                                <div class="cal-event event-zoom">19:00 - Live Session: Essay Structure</div>
-                            </div>
-                            <div class="col-md-6">
-                                <h6 class="f-14 font-weight-bold m-b-15">Mendatang</h6>
-                                <div class="cal-event event-test">6 Mar - Deadline Writing Assignment</div>
-                                <div class="cal-event event-live">7 Mar - Full Mock Test IELTS</div>
-                            </div>
-                        </div>
-                        <div class="text-center m-t-15">
-                            <button class="btn btn-sm btn-outline-primary">Buka Kalender Lengkap</button>
-                        </div>
+                <div class="col-md-4">
+                    <div class="dashboard-card pd-20 bg-primary-8 text-white">
+                        <h6 class="text-white font-weight-bold">Accountability Challenge</h6>
+                        <p class="f-12 opacity-8">Selesaikan 1 jam belajar mandiri berturut-turut untuk mendapatkan Badge "Elite Warrior".</p>
+                        <button class="btn btn-sm btn-info w-100">Ikuti Challenge</button>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <!-- [Module 5] Class Menu & Resources -->
-                <div class="dashboard-card">
-                    <div class="card-header-ai">
-                        <h5 class="card-title-ai">
-                            <span class="material-icons accent-text">school</span>
-                            Class Menu & Resources
-                        </h5>
-                    </div>
-                    <div class="card-body-ai">
+        <!-- [Menu: Class Menu] -->
+        <section id="menu-class" class="menu-section">
+            <h2 class="font-weight-bold primary-text m-b-20">📚 Class Menu & Resources</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="dashboard-card pd-25">
+                        <h6 class="font-weight-bold m-b-20">Sesi Zoom Terjadwal</h6>
                         <div class="class-resource-card">
                             <div class="icon-wrap bg-info-1"><span class="material-icons accent-text">videocam</span></div>
                             <div class="flex-fill">
-                                <h6 class="m-b-0 font-weight-bold">Zoom Session: Academic Writing</h6>
-                                <p class="f-12 text-muted m-b-0">Tersedia dalam 4 jam</p>
+                                <h6 class="m-b-0 font-weight-bold">Writing Task 2 Deep Dive</h6>
+                                <p class="f-12 text-muted m-b-0">4 Maret, 19:00 WIB</p>
                             </div>
-                            <button class="btn btn-sm btn-info">Join Zoom</button>
+                            <button class="btn btn-sm btn-info">Join Link</button>
                         </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="dashboard-card pd-25">
+                        <h6 class="font-weight-bold m-b-20">Materi & PDF</h6>
                         <div class="class-resource-card">
-                            <div class="icon-wrap bg-warning-1"><span class="material-icons text-warning">description</span></div>
+                            <div class="icon-wrap bg-warning-1"><span class="material-icons text-warning">picture_as_pdf</span></div>
                             <div class="flex-fill">
-                                <h6 class="m-b-0 font-weight-bold">PDF: Writing Task 2 Guide</h6>
-                                <p class="f-12 text-muted m-b-0">Materi Referensi Utama</p>
+                                <h6 class="m-b-0 font-weight-bold">IELTS Pattern Handbook</h6>
+                                <p class="f-12 text-muted m-b-0">E-Book Eksklusif</p>
                             </div>
                             <button class="btn btn-sm btn-outline-warning">Download</button>
                         </div>
                     </div>
                 </div>
-
             </div>
+        </section>
 
-            <!-- Right Column: Community & Support -->
-            <div class="col-lg-4">
-                
-                <!-- [Module 4] Clan System: Social Accountability -->
-                <div class="dashboard-card">
-                    <div class="card-header-ai">
-                        <h5 class="card-title-ai">
-                            <span class="material-icons text-warning">groups</span>
-                            Clan: Target IELTS 6.5
-                        </h5>
-                    </div>
-                    <div class="card-body-ai p-t-10">
-                        <p class="f-12 text-muted m-b-15">Belajar bersama 12 siswa dengan target yang sama.</p>
-                        
-                        <div class="clan-board">
-                            <div class="clan-item">
-                                <div class="clan-rank">1</div>
-                                <div class="flex-fill f-14 font-weight-bold">Budi Santoso</div>
-                                <div class="f-12 text-success">98% Streak</div>
-                            </div>
-                            <div class="clan-item">
-                                <div class="clan-rank">2</div>
-                                <div class="flex-fill f-14">Siti Aminah</div>
-                                <div class="f-12 text-muted">92% Streak</div>
-                            </div>
-                            <div class="clan-item">
-                                <div class="clan-rank">3</div>
-                                <div class="flex-fill f-14">Agus Pratama</div>
-                                <div class="f-12 text-muted">85% Streak</div>
-                            </div>
-                        </div>
-                        
-                        <div class="m-t-20 p-2 bg-gradient-soft rounded text-center">
-                            <h6 class="f-14 font-weight-bold m-b-5">Study Challenge!</h6>
-                            <p class="f-11 text-muted">Selesaikan 5 Quiz Writing untuk Clan Bonus.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Skill Summary (Previously Block 4) - Integrated as Mini-Card -->
-                <div class="dashboard-card">
-                    <div class="card-body-ai p-3">
-                        <div class="radar-chart-container" style="max-width: 250px; margin: 0 auto;">
-                            <canvas id="skillRadar"></canvas>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-</main>
-
-<!-- [Module 1] AI Study Assistant: Contextual Chatbox -->
-<div class="ai-chat-box shadow-lg">
-    <div class="chat-header">
-        <span class="material-icons f-18">smart_toy</span>
-        <span>AI Study Assistant</span>
-    </div>
-    <div class="chat-body d-flex flex-column">
-        <div class="chat-bubble bubble-ai">
-            Halo! Saya melihat Anda sudah menyelesaikan 40% materi Writing. Ingin menjadwalkan latihan tambahan hari ini?
-        </div>
-        <div class="chat-bubble bubble-user">
-            Iya, bantu aku fokus ke Essay Structure.
-        </div>
-        <div class="chat-bubble bubble-ai">
-            Tentu! Saya telah menambahkan "Deep Dive: Essay Structure" ke Roadmap Anda jam 4 sore nanti.
-        </div>
-    </div>
-    <div class="chat-footer">
-        <div class="input-group">
-            <input type="text" class="form-control form-control-sm" placeholder="Tanya AI Assistant...">
-            <div class="input-group-append">
-                <button class="btn btn-sm btn-primary"><span class="material-icons f-14">send</span></button>
-            </div>
-        </div>
-    </div>
+    </main>
 </div>
     </div>
 </main>
