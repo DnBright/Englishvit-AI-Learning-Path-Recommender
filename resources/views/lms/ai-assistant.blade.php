@@ -4,62 +4,64 @@
 @section('nav_ai', 'active')
 
 @section('content')
+<!-- High-Fidelity ChatGPT Style UX -->
 <div class="gpt-ux-container">
-    <!-- Centered Chat Thread -->
-    <div class="gpt-chat-thread pd-t-40 pd-b-100">
-        <div class="container max-w-800">
-            <!-- Initial Greeting -->
-            <div class="gpt-message-row ai-message">
-                <div class="gpt-avatar bg-brand">
-                    <span class="material-icons">auto_awesome</span>
-                </div>
-                <div class="gpt-content">
-                    <h5 class="fw-800 primary-text mb-2">Hello! I'm your Englishvit Mentor.</h5>
-                    <p class="mb-0 text-muted">I've been analyzing your recent progress in the **Success Path**. You're doing great with your Listening modules! How can I help you improve your IELTS score today?</p>
-                </div>
+    <div class="gpt-chat-thread" id="chat-thread">
+        <div class="gpt-message-row ai-message">
+            <div class="gpt-avatar bg-brand shadow-sm">
+                <span class="material-icons">auto_awesome</span>
             </div>
+            <div class="gpt-content">
+                <h6 class="fw-800 primary-text mb-2">Englishvit AI Mentor</h6>
+                <p class="mb-0 text-muted">Halo! Saya adalah Mentor AI Anda. Saya telah memantau progress Anda di **Success Path**. Anda menunjukkan performa luar biasa di modul Listening!</p>
+                <p class="mb-0 text-muted m-t-10">Ada yang bisa saya bantu terkait persiapan IELTS Anda hari ini?</p>
+            </div>
+        </div>
 
-            <!-- Message Container for Dynamic Messages -->
-            <div id="gpt-messages-container"></div>
+        <!-- Dynamic Conversation Thread -->
+        <div id="gpt-messages-container"></div>
 
-            <!-- Typing Indicator -->
-            <div id="gpt-typing" class="gpt-message-row ai-message" style="display: none;">
-                <div class="gpt-avatar bg-brand">
-                    <span class="material-icons">auto_awesome</span>
-                </div>
-                <div class="gpt-content">
-                    <div class="typing-dots">
-                        <span></span><span></span><span></span>
-                    </div>
+        <!-- Typing Indicator -->
+        <div id="gpt-typing" class="gpt-message-row ai-message" style="display: none;">
+            <div class="gpt-avatar bg-brand">
+                <span class="material-icons">auto_awesome</span>
+            </div>
+            <div class="gpt-content">
+                <div class="typing-dots">
+                    <span></span><span></span><span></span>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Floating Bottom Input -->
+    <!-- Stationary Input Container -->
     <div class="gpt-input-fixed">
-        <div class="container max-w-800">
-            <!-- Quick Prompts (Small & Subtle) -->
-            <div class="d-flex flex-wrap gap-8 justify-center m-b-15">
-                <button class="gpt-quick-suggest" onclick="quickPrompt('Predict my IELTS score')">Predict Score</button>
-                <button class="gpt-quick-suggest" onclick="quickPrompt('Show my next milestone')">Next Milestone</button>
-                <button class="gpt-quick-suggest" onclick="quickPrompt('Give me a Speaking cue')">Speaking Cue</button>
+        <div class="max-w-800">
+            <!-- Branded Suggestions Pin -->
+            <div class="d-flex flex-wrap gap-10 justify-center m-b-20">
+                <button class="gpt-quick-suggest" onclick="quickPrompt('Prediksi skor IELTS saya')">Prediksi Skor</button>
+                <button class="gpt-quick-suggest" onclick="quickPrompt('Review progress Roadmap')">Review Roadmap</button>
+                <button class="gpt-quick-suggest" onclick="quickPrompt('Tips Speaking Part 2')">Tips Speaking</button>
             </div>
 
-            <div class="gpt-input-wrapper shadow-lg">
-                <textarea id="gpt-input" placeholder="Ask anything to your Englishvit Mentor..." rows="1"></textarea>
+            <!-- Modern GPT Input Box -->
+            <div class="gpt-input-wrapper">
+                <textarea id="gpt-input" placeholder="Tanyakan apapun pada Mentor AI Englishvit..." rows="1"></textarea>
                 <button class="gpt-send-btn" id="send-btn" onclick="handleSend()">
                     <span class="material-icons">arrow_upward</span>
                 </button>
             </div>
-            <p class="f-10 text-center text-muted m-t-10 opacity-60">Englishvit AI Mentor can make mistakes. Consider checking important information.</p>
+            <p class="text-center text-muted f-10 m-t-12 opacity-60">Englishvit AI Mentor dapat membuat kesalahan. Mohon tinjau informasi penting.</p>
         </div>
     </div>
 </div>
 
 <style>
-    .max-w-800 { max-width: 800px; margin: 0 auto; }
     .bg-brand { background: #002655 !important; }
+    .bg-user { background: #64748b !important; }
+    .m-t-10 { margin-top: 10px; }
+    .m-t-12 { margin-top: 12px; }
+    .fw-800 { font-weight: 800; }
 </style>
 @endsection
 
@@ -68,8 +70,9 @@
     const chatInput = document.getElementById('gpt-input');
     const container = document.getElementById('gpt-messages-container');
     const typingIndicator = document.getElementById('gpt-typing');
+    const thread = document.getElementById('chat-thread');
 
-    // Auto-expand textarea
+    // Auto-grow input
     chatInput.addEventListener('input', function() {
         this.style.height = 'auto';
         this.style.height = (this.scrollHeight) + 'px';
@@ -79,26 +82,26 @@
         const text = chatInput.value.trim();
         if(!text) return;
 
-        // Add User Message
+        // User Message View
         appendMessage('user', text);
         chatInput.value = '';
         chatInput.style.height = 'auto';
         
-        // Show Typing
+        // Show AI Thinking
         typingIndicator.style.display = 'flex';
         scrollToBottom();
 
-        // Simulate AI
+        // Simulate Premium AI Mentor Response
         setTimeout(() => {
             typingIndicator.style.display = 'none';
             const responses = [
-                "That's a very proactive question! Based on your current progress, I suggest we focus on **Coherence and Cohesion** for your next task.",
-                "I've looked at your data. You're strong in Vocabulary, but we can refine your **Grammar complexity** to hit that Band 7.0 mark.",
-                "Certainly! Here is a Speaking Cue Card for you: 'Describe a place you visited that you would like to go back to'."
+                "Pertanyaan yang bagus! Mengingat progress Anda, saya sarankan fokus pada **skimming** untuk meningkatkan kecepatan Reading.",
+                "Terima kasih atas pertanyaannya. Tips utama untuk Speaking Part 2 adalah menggunakan **linking words** yang bervariasi.",
+                "Berdasarkan performa Anda, prediksi skor IELTS Anda saat ini berada di kisaran **Band 6.5 - 7.0**. Mari kita asah lagi!"
             ];
             appendMessage('ai', responses[Math.floor(Math.random() * responses.length)]);
             scrollToBottom();
-        }, 1500);
+        }, 1800);
     }
 
     function appendMessage(role, text) {
@@ -106,12 +109,13 @@
         row.className = `gpt-message-row ${role}-message animate__animated animate__fadeIn`;
         
         const avatar = role === 'ai' ? 
-            `<div class="gpt-avatar bg-brand"><span class="material-icons">auto_awesome</span></div>` :
-            `<div class="gpt-avatar bg-secondary"><span class="material-icons">person</span></div>`;
+            `<div class="gpt-avatar bg-brand shadow-sm"><span class="material-icons">auto_awesome</span></div>` :
+            `<div class="gpt-avatar bg-user shadow-sm"><span class="material-icons">person</span></div>`;
 
         row.innerHTML = `
             ${avatar}
             <div class="gpt-content">
+                ${role === 'ai' ? '<h6 class="fw-800 primary-text mb-2">Englishvit AI Mentor</h6>' : '<h6 class="fw-800 text-muted mb-2">You</h6>'}
                 <p class="mb-0">${text}</p>
             </div>
         `;
@@ -124,7 +128,7 @@
     }
 
     function scrollToBottom() {
-        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        thread.scrollTo({ top: thread.scrollHeight, behavior: 'smooth' });
     }
 
     chatInput.addEventListener('keypress', (e) => {

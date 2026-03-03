@@ -1260,118 +1260,128 @@
     }
 }
 
-/* ChatGPT-Style UX Redesign */
+/* ChatGPT-Style UX Redesign - High Fidelity Polish */
 .gpt-ux-container {
     background: #ffffff;
-    min-height: 100vh;
+    height: calc(100vh - 150px);
+    /* Fill available space */
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 .gpt-chat-thread {
     flex: 1;
     overflow-y: auto;
+    padding-bottom: 200px;
+    /* Space for fixed input */
 }
 
 .gpt-message-row {
     display: flex;
-    gap: 20px;
-    padding: 24px 0;
-    border-bottom: 1px solid #f1f5f9;
+    gap: 24px;
+    padding: 32px 20px;
+    border-bottom: 1px solid #f8fafd;
+    max-width: 900px;
+    margin: 0 auto;
+    transition: all 0.2s ease;
 }
 
 .gpt-avatar {
-    width: 32px;
-    height: 32px;
-    border-radius: 4px;
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
     flex-shrink: 0;
+    margin-top: 4px;
 }
 
 .gpt-avatar .material-icons {
-    font-size: 18px;
+    font-size: 20px;
 }
 
 .gpt-content {
     flex: 1;
     font-size: 15px;
-    line-height: 1.7;
-    color: #374151;
+    line-height: 1.75;
+    color: #1a202c;
+    word-break: break-word;
 }
 
 .ai-message {
-    background: #f8fafc;
-    padding-left: 20px;
-    padding-right: 20px;
-    margin-left: -20px;
-    margin-right: -20px;
-    border-radius: 12px;
+    background: #fdfdfe;
 }
 
 .user-message {
-    background: white;
+    background: #ffffff;
 }
 
 .gpt-input-fixed {
-    position: fixed;
+    position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    background: linear-gradient(to top, white 80%, transparent);
-    padding-bottom: 30px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 30%);
+    padding: 40px 20px 30px 20px;
     z-index: 1000;
 }
 
 .gpt-input-wrapper {
     background: white;
     border: 1px solid #e2e8f0;
-    border-radius: 16px;
-    padding: 12px 16px;
+    border-radius: 12px;
+    padding: 14px 18px;
     display: flex;
     align-items: flex-end;
-    gap: 12px;
+    gap: 15px;
     max-width: 800px;
     margin: 0 auto;
+    box-shadow: 0 10px 40px rgba(0, 38, 85, 0.08);
+    /* Premium depth */
 }
 
 .gpt-input-wrapper textarea {
     width: 100%;
     border: none;
     outline: none;
-    padding: 8px 0;
+    padding: 0;
     resize: none;
     font-size: 15px;
-    max-height: 200px;
+    max-height: 150px;
     background: transparent;
+    color: #1a202c;
 }
 
 .gpt-send-btn {
     background: #002655;
+    /* Englishvit Brand */
     color: white;
     border: none;
-    width: 32px;
-    height: 32px;
+    width: 36px;
+    height: 36px;
     border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: opacity 0.2s;
+    transition: transform 0.2s, background 0.2s;
+    flex-shrink: 0;
 }
 
 .gpt-send-btn:hover {
-    opacity: 0.9;
+    transform: scale(1.05);
+    background: #003a82;
 }
 
 .gpt-quick-suggest {
-    background: white;
-    border: 1px solid #e2e8f0;
-    color: #64748b;
-    padding: 5px 15px;
-    border-radius: 20px;
+    background: #f8fafc;
+    border: 1px solid #edf2f7;
+    color: #475569;
+    padding: 6px 16px;
+    border-radius: 8px;
     font-size: 12px;
     font-weight: 600;
     cursor: pointer;
@@ -1379,15 +1389,17 @@
 }
 
 .gpt-quick-suggest:hover {
-    background: #f8fafc;
-    border-color: #cbd5e1;
-    color: #002655;
+    background: #002655;
+    border-color: #002655;
+    color: #ffffff;
+    transform: translateY(-2px);
 }
 
 .typing-dots {
     display: flex;
     gap: 4px;
-    padding-top: 8px;
+    align-items: center;
+    height: 24px;
 }
 
 .typing-dots span {
