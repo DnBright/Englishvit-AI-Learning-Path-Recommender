@@ -11,7 +11,7 @@
   <div class="chat-area">
     <div class="chat-messages" id="chatMessages">
       <div class="msg msg-ai">
-        <div class="msg-avatar" style="background:transparent;"><img src="{{ asset('images/logo-new.png') }}" style="width: 24px; object-fit: contain;"></div>
+        <div class="msg-avatar" style="background:#ffffff; padding: 4px;"><img src="{{ asset('images/logo-new.png') }}" style="width: 24px; object-fit: contain;"></div>
         <div>
           <div class="msg-bubble">
             Halo {{ explode(' ', Auth::user()->name ?? 'Student')[0] }}! 👋 Saya sudah analisa progress belajarmu minggu ini.<br><br>
@@ -161,7 +161,7 @@ function addMsg(txt,role){
   const now=new Date();
   const time=now.getHours()+':'+String(now.getMinutes()).padStart(2,'0');
   d.innerHTML=`
-    <div class="msg-avatar" ${role==='ai'?'style="background:transparent;"':''}>
+    <div class="msg-avatar" ${role==='ai'?'style="background:#ffffff; padding:4px;"':''}>
       ${role==='ai' 
         ? '<img src="{{ asset(\'images/logo-new.png\') }}" style="width: 24px; object-fit: contain;">' 
         : '{{ substr(Auth::user()->name ?? "S", 0, 1) }}'}
