@@ -58,6 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // --- INTERACTIVE CALENDAR STATE ---
     let customSchedule = {}; // Key: "m-w-d", Value: [activityType, ...]
+    let currentMonthView = 1;
 
 
     // --- DOM ELEMENTS ---
@@ -244,18 +245,27 @@ document.addEventListener('DOMContentLoaded', function () {
         const totalMonths = parseInt(timelineMonths) || 1;
 
         scheduleHTML += `
-            <div class="m-b-20">
-                <h5 class="fw-800 m-b-5">📅 Kalender Roadmap Bulanan (${totalMonths} Bulan)</h5>
-                <p class="f-13 fc-black-5">Jadwal di bawah ini merepresentasikan rencana belajar bulanan Anda selama ${totalMonths} Bulan ke depan. <strong>Klik pada kotak hari untuk kustomisasi jadwal!</strong></p>
+            <div class="m-b-20 d-flex-center-btw flex-wrap gap-15">
+                <div>
+                    <h5 class="fw-800 m-b-5">📅 Kalender Roadmap Bulanan</h5>
+                    <p class="f-13 fc-black-5 mb-0">Rencana belajar Anda. <strong>Klik hari untuk kustomisasi!</strong></p>
+                </div>
+                <div class="d-flex gap-10">
+                    <button class="btn btn-sm bg-white border" onclick="changeMonthView(-1)"><i class="material-icons f-16 v-middle">west</i></button>
+                    <span class="fw-800 f-14 align-self-center" id="currentMonthLabel">Bulan ${currentMonthView}</span>
+                    <button class="btn btn-sm bg-white border" onclick="changeMonthView(1)"><i class="material-icons f-16 v-middle">east</i></button>
+                </div>
             </div>
+            <div class="ai-month-slider-container">
         `;
 
         const dayLabels = ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'];
 
         for (let m = 1; m <= totalMonths; m++) {
+            const isVisible = m === currentMonthView ? '' : 'd-none';
             scheduleHTML += `
-                <div class="ai-calendar-container m-b-40">
-                    <div class="bg-purple-1 p-3 border-bottom-light text-center" style="background-color:#F5F3FF;">
+                <div class="ai-month-slide ${isVisible}" id="monthSlide-${m}">
+                    <div class="bg-purple-1 p-3 border-bottom-light text-center" style="background-color:#F5F3FF; border-radius: 12px 12px 0 0;">
                         <span class="f-14 fw-800 fc-purple-7">Bulan Belajar ${m}</span>
                     </div>
                     <table class="ai-calendar-table">
@@ -278,18 +288,34 @@ document.addEventListener('DOMContentLoaded', function () {
                         customSchedule[dayKey].forEach(type => {
                             const icon = type === 'live' ? '🏫' : (type === 'private' ? '👤' : (type === 'module' ? '📽️' : '📜'));
                             const label = type === 'live' ? 'Live' : (type === 'private' ? 'Private' : (type === 'module' ? 'Focus' : 'Test'));
-                            dayContent += `<div class="calendar-slot-available ${type}" onclick="event.stopPropagation(); toggleActivity('${dayKey}', '${type}')">${icon} ${label}</div>`;
+                            const time = type === 'live' ? '19:00' : (type === 'private' ? '10:00' : (type === 'module' ? '09:00' : '08:00'));
+                            dayContent += `<div class="calendar-slot-available ${type}" onclick="event.stopPropagation(); toggleActivity('${dayKey}', '${type}')">
+                                <span class="slot-time">${time}</span>
+                                <span class="slot-label">${icon} ${label}</span>
+                            </div>`;
                         });
                     } else {
                         cartItems.forEach(item => {
                             if (item.category === 'live') {
-                                if (d === 1 || d === 3) dayContent += `<div class="calendar-slot-available live" title="${item.name}" onclick="event.stopPropagation(); toggleActivity('${dayKey}', 'live')">${item.icon} Live</div>`;
+                                if (d === 1 || d === 3) dayContent += `<div class="calendar-slot-available live" title="${item.name}" onclick="event.stopPropagation(); toggleActivity('${dayKey}', 'live')">
+                                    <span class="slot-time">19:00</span>
+                                    <span class="slot-label">${item.icon} Live</span>
+                                </div>`;
                             } else if (item.category === 'private') {
-                                if (d === 5) dayContent += `<div class="calendar-slot-available private" title="${item.name}" onclick="event.stopPropagation(); toggleActivity('${dayKey}', 'private')">${item.icon} Private</div>`;
+                                if (d === 5) dayContent += `<div class="calendar-slot-available private" title="${item.name}" onclick="event.stopPropagation(); toggleActivity('${dayKey}', 'private')">
+                                    <span class="slot-time">10:00</span>
+                                    <span class="slot-label">${item.icon} Private</span>
+                                </div>`;
                             } else if (item.category === 'module') {
-                                if (d === 0 || d === 2 || d === 4) dayContent += `<div class="calendar-slot-available module" title="${item.name}" onclick="event.stopPropagation(); toggleActivity('${dayKey}', 'module')">${item.icon} Focus</div>`;
+                                if (d === 0 || d === 2 || d === 4) dayContent += `<div class="calendar-slot-available module" title="${item.name}" onclick="event.stopPropagation(); toggleActivity('${dayKey}', 'module')">
+                                    <span class="slot-time">09:00</span>
+                                    <span class="slot-label">${item.icon} Focus</span>
+                                </div>`;
                             } else if (item.category === 'test') {
-                                if (w === 0 && d === 6) dayContent += `<div class="calendar-slot-available test" title="${item.name}" onclick="event.stopPropagation(); toggleActivity('${dayKey}', 'test')">${item.icon} Test</div>`;
+                                if (w === 0 && d === 6) dayContent += `<div class="calendar-slot-available test" title="${item.name}" onclick="event.stopPropagation(); toggleActivity('${dayKey}', 'test')">
+                                    <span class="slot-time">08:00</span>
+                                    <span class="slot-label">${item.icon} Test</span>
+                                </div>`;
                             }
                         });
                     }
@@ -316,6 +342,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 </div>
             `;
         }
+
+        scheduleHTML += `</div>`; // Close slider container
+
 
         // Section: Detailed Explanation
         scheduleHTML += `<div class="m-t-40"><h5 class="fw-800 m-b-20 fc-purple-7">📚 Detail Instruksi & Panduan Rutinitas (${totalMonths} Bulan Ke Depan)</h5>`;
@@ -707,4 +736,15 @@ document.addEventListener('DOMContentLoaded', function () {
             list.innerHTML = generateDetailedSchedule(userCart, formData.timeline);
         }
     }
+
+    window.changeMonthView = function (dir) {
+        const totalMonths = parseInt(formData.timeline) || 1;
+        let nextMonth = currentMonthView + dir;
+
+        if (nextMonth < 1) nextMonth = totalMonths;
+        if (nextMonth > totalMonths) nextMonth = 1;
+
+        currentMonthView = nextMonth;
+        refreshCalendar();
+    };
 });
