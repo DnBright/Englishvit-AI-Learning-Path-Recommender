@@ -8,9 +8,29 @@
 <div class="cal-layout">
   <div class="cal-main">
     <div class="cal-nav">
-      <button class="cal-arrow" onclick="calChange(-1)">&#8592;</button>
-      <div class="cal-month" id="calMonth">March <span class="yr">2026</span></div>
-      <button class="cal-arrow" onclick="calChange(1)">&#8594;</button>
+      <div style="display:flex; gap:12px; align-items:center;">
+        <button class="cal-arrow" onclick="calChange(-1)">&#8592;</button>
+        <div class="cal-month" id="calMonth">March <span class="yr">2026</span></div>
+        <button class="cal-arrow" onclick="calChange(1)">&#8594;</button>
+      </div>
+      
+      <div style="display:flex; gap:12px; align-items:center;">
+        <!-- Trash Dropzone -->
+        <div id="trashZone" class="trash-zone" ondragover="allowDrop(event)" ondrop="deleteEvent(event)" 
+             style="display:flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:8px; background:rgba(255,90,90,0.1); border:1px dashed rgba(255,90,90,0.5); color:#FF5A5A; font-size:16px; cursor:pointer; transition:all 0.2s;"
+             title="Tarik event ke sini untuk menghapus">
+          🗑️
+        </div>
+        
+        <!-- Add Button -->
+        <button class="btn-yellow" style="display:flex; align-items:center; gap:6px; padding:8px 14px; font-size:13px; font-weight:700; border:none; border-radius:8px; cursor:pointer;" onclick="alert('Fitur tambah jadwal akan segera hadir!')">
+          <span>+</span> Tambah Jadwal
+        </button>
+      </div>
+    </div>
+    
+    <div style="margin-bottom:16px; font-size:12px; color:var(--text-2); display:flex; align-items:center; gap:6px; background:var(--bg-card); padding:10px 14px; border-radius:8px; border:1px solid rgba(255,255,255,0.05);">
+      💡 <strong style="color:var(--white)">Tips:</strong> Kamu bisa memindahkan jadwal (seperti Speaking, Grammar, TOEFL) ke hari lain dengan cara <strong>drag and drop</strong> (tarik dan lepas), atau hapus dengan menariknya ke ikon tempat sampah.
     </div>
     <div class="cal-grid" id="calGrid"></div>
   </div>
@@ -156,16 +176,56 @@ function allowDrop(ev) {
 function dragEvent(ev, sourceKey, evtIndex) {
   draggedEvt = { sourceKey, evtIndex };
   ev.dataTransfer.effectAllowed = 'move';
+  document.getElementById('trashZone').style.background = 'rgba(255,90,90,0.2)';
+  document.getElementById('trashZone').style.borderStyle = 'solid';
+  document.getElementById('trashZone').style.transform = 'scale(1.05)';
 }
 
 function dropEvent(ev, targetKey) {
   ev.preventDefault();
+  resetTrashStyle();
   if(!draggedEvt) return;
   
   const { sourceKey, evtIndex } = draggedEvt;
   if(sourceKey === targetKey) return; // dropped on same date
   
   // Remove from source
+  const evObj = CAL_EVENTS[sourceKey].splice(evtIndex, 1)[0];
+  if(CAL_EVENTS[sourceKey].length === 0) delete CAL_EVENTS[sourceKey];
+  
+  // Add to target
+  if(!CAL_EVENTS[targetKey]) CAL_EVENTS[targetKey] = [];
+  CAL_EVENTS[targetKey].push(evObj);
+  
+  draggedEvt = null;
+  renderCal();
+}
+
+function deleteEvent(ev) {
+  ev.preventDefault();
+  resetTrashStyle();
+  if(!draggedEvt) return;
+  const { sourceKey, evtIndex } = draggedEvt;
+  
+  // Remove from source permanently
+  CAL_EVENTS[sourceKey].splice(evtIndex, 1);
+  if(CAL_EVENTS[sourceKey].length === 0) delete CAL_EVENTS[sourceKey];
+  
+  draggedEvt = null;
+  renderCal();
+}
+
+function resetTrashStyle() {
+  const tz = document.getElementById('trashZone');
+  if(tz) {
+    tz.style.background = 'rgba(255,90,90,0.1)';
+    tz.style.borderStyle = 'dashed';
+    tz.style.transform = 'scale(1)';
+  }
+}
+
+// Add global drag end to reset trash style if dropped outside
+document.addEventListener('dragend', resetTrashStyle);
   const evObj = CAL_EVENTS[sourceKey].splice(evtIndex, 1)[0];
   if(CAL_EVENTS[sourceKey].length === 0) delete CAL_EVENTS[sourceKey];
   
