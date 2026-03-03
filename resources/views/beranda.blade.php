@@ -825,55 +825,7 @@
                     </div>
                 </div>
             </div>
-                    <p class="f-h6 fc-info-7">Achieve Your Goal: Predicted Score Band 7.5</p>
-                    <div class="d-flex-center justify-center gap-20 m-t-20">
-                        <div class="center-text"><div class="fw-bold">Duration</div><div class="fc-black-6">3 Months</div></div>
-                        <div class="center-text"><div class="fw-bold">Intensity</div><div class="fc-black-6">High</div></div>
-                    </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-md-8 offset-md-2">
-                        <div class="ai-roadmap">
-                            <div class="ai-roadmap-item">
-                                <div class="ai-roadmap-dot"></div>
-                                <div class="ai-card p-4">
-                                    <div class="d-flex-center-btw mb-2">
-                                        <h5 class="fw-bold mb-0">Month 1: Fundamentals</h5>
-                                        <span class="badge bg-info-1 fc-info-7">IELTS AI Practice</span>
-                                    </div>
-                                    <p class="f-body2 mb-0">Focus on Speaking & Grammar using our Smart Book.</p>
-                                </div>
-                            </div>
-                            <div class="ai-roadmap-item">
-                                <div class="ai-roadmap-dot"></div>
-                                <div class="ai-card p-4">
-                                    <div class="d-flex-center-btw mb-2">
-                                        <h5 class="fw-bold mb-0">Month 2: Intensive</h5>
-                                        <span class="badge bg-purple-1 fc-purple-7">Live Class</span>
-                                    </div>
-                                    <p class="f-body2 mb-0">20 interactive sessions to boost Writing skills.</p>
-                                </div>
-                            </div>
-                            <div class="ai-roadmap-item">
-                                <div class="ai-roadmap-dot"></div>
-                                <div class="ai-card p-4">
-                                    <div class="d-flex-center-btw mb-2">
-                                        <h5 class="fw-bold mb-0">Month 3: Mastery</h5>
-                                        <span class="badge bg-warning-1 fc-warning-7">One on One</span>
-                                    </div>
-                                    <p class="f-body2 mb-0">Personal coaching to finalize your confidence.</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="d-flex gap-15 justify-center m-t-40">
-                            <button class="btn bg-info-7 pd-lr-30">Start This Plan</button>
-                            <button class="btn bg-white fc-info-7" style="border:1px solid var(--info-7)" onclick="resetAIForm()">Customize Plan</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
             
             <!-- Floating Price Cart (NEW) -->
             <div id="aiFloatingCart" class="ai-floating-cart">
