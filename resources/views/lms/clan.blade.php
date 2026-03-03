@@ -1,125 +1,116 @@
 @extends('layouts.lms-layout')
-
-@section('title', 'Clan System')
+@section('title', '👥 Clan System')
 @section('nav_clan', 'active')
+@section('topbar_title', '👥 Clan System')
 
 @section('content')
-<div class="d-flex justify-content-between align-items-center m-b-30">
-    <div>
-        <h2 class="font-weight-bold primary-text m-b-5">👥 Clan System</h2>
-        <p class="text-muted f-14 mb-0">Belajar lebih semangat bersama komunitas yang satu visi.</p>
+<h2 class="page-title">Clan System</h2>
+<p class="page-sub">Belajar lebih semangat bersama kelompok dengan target yang sama.</p>
+
+<div class="clan-banner">
+  <div>
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+      <span class="tag tag-blue">Clan Aktif</span>
+      <span class="tag tag-muted">32 Anggota</span>
     </div>
-    <div class="text-right">
-        <span class="f-12 font-weight-bold d-block">Clan: <span class="accent-text">Target IELTS 6.5</span></span>
-        <span class="f-10 text-muted">24 Members Active</span>
+    <div class="clan-name">⚔️ IELTS Warriors 6.5</div>
+    <div style="font-size:13px;color:var(--text-2);">Target bersama: IELTS 6.5 · Deadline: Juli 2026</div>
+    <div class="clan-stats">
+      <div class="cs-item">
+        <div class="cs-num">32</div>
+        <div class="cs-lbl">Anggota</div>
+      </div>
+      <div class="cs-item">
+        <div class="cs-num">94%</div>
+        <div class="cs-lbl">Aktif minggu ini</div>
+      </div>
+      <div class="cs-item">
+        <div class="cs-num">#12</div>
+        <div class="cs-lbl">Rank kamu</div>
+      </div>
     </div>
+  </div>
+  <div class="clan-shield">⚔️</div>
 </div>
 
-<div class="row">
-    <div class="col-md-8">
-        <div class="dashboard-card pd-30">
-            <div class="d-flex justify-content-between align-items-center m-b-25">
-                <h5 class="font-weight-bold mb-0">Weekly Leaderboard</h5>
-                <button class="btn btn-xs btn-link accent-text font-weight-bold">Lihat Semua</button>
-            </div>
-            
-            <div class="clan-board p-0 shadow-none">
-                <!-- Rank 1 -->
-                <div class="clan-item hover-bg-light rounded-lg transition-300">
-                    <div class="clan-rank bg-warning text-white shadow-sm">1</div>
-                    <div class="avatar-sm rounded-circle bg-primary-light text-primary d-flex-center justify-center font-weight-bold">B</div>
-                    <div class="flex-fill">
-                        <h6 class="m-b-5 font-weight-bold f-14">Budi Santoso</h6>
-                        <div class="progress" style="height: 4px; width: 60%;">
-                            <div class="progress-bar bg-success" style="width: 100%;"></div>
-                        </div>
-                    </div>
-                    <div class="text-right">
-                        <span class="font-weight-bold primary-text">450 XP</span>
-                        <p class="f-10 text-muted mb-0">🔥 5 Day Streak</p>
-                    </div>
-                </div>
-
-                <!-- Rank 2 -->
-                <div class="clan-item hover-bg-light rounded-lg transition-300">
-                    <div class="clan-rank">2</div>
-                    <div class="avatar-sm rounded-circle bg-info-light text-info d-flex-center justify-center font-weight-bold">S</div>
-                    <div class="flex-fill">
-                        <h6 class="m-b-5 font-weight-bold f-14">Siti Aminah</h6>
-                        <div class="progress" style="height: 4px; width: 60%;">
-                            <div class="progress-bar bg-success" style="width: 90%;"></div>
-                        </div>
-                    </div>
-                    <div class="text-right">
-                        <span class="font-weight-bold primary-text">410 XP</span>
-                    </div>
-                </div>
-
-                <!-- Rank 3 -->
-                <div class="clan-item hover-bg-light rounded-lg transition-300">
-                    <div class="clan-rank">3</div>
-                    <div class="avatar-sm rounded-circle bg-warning-light text-warning d-flex-center justify-center font-weight-bold">A</div>
-                    <div class="flex-fill">
-                        <h6 class="m-b-5 font-weight-bold f-14">Agus Pratama</h6>
-                        <div class="progress" style="height: 4px; width: 60%;">
-                            <div class="progress-bar bg-success" style="width: 82%;"></div>
-                        </div>
-                    </div>
-                    <div class="text-right">
-                        <span class="font-weight-bold primary-text">380 XP</span>
-                    </div>
-                </div>
-
-                <!-- You -->
-                <div class="clan-item bg-info-lighter rounded-lg m-t-15 border border-info-light">
-                    <div class="clan-rank bg-info text-white">4</div>
-                    <div class="avatar-sm rounded-circle bg-info text-white d-flex-center justify-center font-weight-bold">Y</div>
-                    <div class="flex-fill">
-                        <h6 class="m-b-5 font-weight-bold f-14">You (Student)</h6>
-                        <div class="progress" style="height: 4px; width: 60%;">
-                            <div class="progress-bar bg-info" style="width: 70%;"></div>
-                        </div>
-                    </div>
-                    <div class="text-right">
-                        <span class="font-weight-bold accent-text">320 XP</span>
-                        <p class="f-10 text-muted mb-0">+20 XP to Rank Up</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+<div class="grid-2">
+  <div>
+    <div class="section-label" style="margin-bottom:14px">🏆 Weekly Leaderboard</div>
+    <div class="leaderboard" id="leaderboard"></div>
+  </div>
+  <div>
+    <div class="section-label" style="margin-bottom:14px">🔥 Weekly Challenge</div>
+    <div class="card card-sm" style="margin-bottom:12px;border-color:rgba(245,200,66,.2);background:var(--yellow-dim)">
+      <div style="font-weight:700;margin-bottom:6px;">🗣 Speaking Marathon</div>
+      <div style="font-size:12px;color:var(--text-2);line-height:1.6;margin-bottom:12px;">
+        Record 3 speaking answers (2 menit tiap satu) dan submit sebelum Minggu jam 23:59.
+      </div>
+      <div class="prog-bar"><div class="prog-fill" style="width:33%"></div></div>
+      <div style="display:flex;justify-content:space-between;margin-top:6px;">
+        <div style="font-size:11px;color:var(--muted)">1 dari 3 selesai</div>
+        <div style="font-size:11px;color:var(--yellow)">Sisa 4 hari</div>
+      </div>
     </div>
-    <div class="col-md-4">
-        <div class="dashboard-card pd-25 bg-gradient-premium text-white border-0 shadow-lg position-relative overflow-hidden">
-            <div class="pos-rel" style="z-index: 2;">
-                <h6 class="text-white font-weight-bold m-b-15 d-flex align-items-center">
-                    <span class="material-icons m-r-10 text-warning">workspace_premium</span>
-                    Elite Challenge
-                </h6>
-                <p class="f-13 opacity-8 m-b-20">Selesaikan 1 jam belajar mandiri berturut-turut hari ini untuk mendapatkan Badge "Elite Warrior".</p>
-                <div class="bg-white-10 p-3 rounded-lg border border-white-20 m-b-20">
-                    <div class="d-flex justify-content-between f-11 m-b-5">
-                        <span>Progress Mingguan</span>
-                        <span>2/3 Hari</span>
-                    </div>
-                    <div class="progress" style="height: 6px; background: rgba(255,255,255,0.1);">
-                        <div class="progress-bar bg-warning" style="width: 66%;"></div>
-                    </div>
-                </div>
-                <button class="btn btn-sm btn-info w-100 font-weight-bold shadow-sm">Ikuti Challenge</button>
-            </div>
-            <span class="material-icons position-absolute" style="bottom: -20px; right: -20px; font-size: 120px; opacity: 0.1; color: white;">military_tech</span>
+
+    <div class="section-label" style="margin-bottom:14px">💬 Forum Diskusi</div>
+    <div class="card card-sm" style="margin-bottom:10px;">
+      <div style="display:flex;gap:10px;align-items:flex-start;">
+        <div class="lb-avatar" style="background:linear-gradient(135deg,#F5C842,#F5842A);color:var(--navy);font-size:11px;">DS</div>
+        <div>
+          <div style="font-size:13px;font-weight:600;">Dini Sari</div>
+          <div style="font-size:12px;color:var(--text-2);margin-top:2px;">"Ada yang sudah coba PEEL structure untuk Task 2? Hasilnya gimana?"</div>
+          <div style="font-size:10px;color:var(--muted);margin-top:6px;">2 jam lalu · 8 replies</div>
         </div>
+      </div>
     </div>
+    <div class="card card-sm" style="margin-bottom:10px;">
+      <div style="display:flex;gap:10px;align-items:flex-start;">
+        <div class="lb-avatar" style="background:linear-gradient(135deg,var(--blue-acc),#7BAEFF);color:#fff;font-size:11px;">BW</div>
+        <div>
+          <div style="font-size:13px;font-weight:600;">Bagas W.</div>
+          <div style="font-size:12px;color:var(--text-2);margin-top:2px;">"Checkpoint 1 besok — ada yang mau group study malam ini?"</div>
+          <div style="font-size:10px;color:var(--muted);margin-top:6px;">5 jam lalu · 14 replies</div>
+        </div>
+      </div>
+    </div>
+    <button class="btn-yellow" style="width:100%;font-family:var(--font-body);font-size:13px;padding:12px;">+ Buat Post Diskusi</button>
+  </div>
 </div>
+@endsection
 
-<style>
-    .avatar-sm { width: 35px; height: 35px; font-size: 14px; }
-    .bg-primary-light { background: #eef2ff; }
-    .bg-info-light { background: #e0f2fe; }
-    .bg-warning-light { background: #fef3c7; }
-    .hover-bg-light:hover { background: #f8fafc; }
-    .transition-300 { transition: all 0.3s ease; }
-    .bg-info-lighter { background: #f0f9ff; }
-    .border-info-light { border-color: #bae6fd !important; }
-</style>
+@section('scripts')
+<script>
+/* ============================================================
+   LEADERBOARD
+=========================================================== */
+const lbData=[
+  {rank:1,name:'Siti Rahma',pts:1240,pct:100,color:'#F5C842,#F5842A',initials:'SR'},
+  {rank:2,name:'Bima Kusuma',pts:1185,pct:96,color:'#4F7BFF,#7BAEFF',initials:'BK'},
+  {rank:3,name:'Laila Nur',pts:1102,pct:89,color:'#3DD68C,#7DFFC9',initials:'LN'},
+  {rank:4,name:'Reza Fauzi',pts:980,pct:79,color:'#FF8A4F,#FFB27A',initials:'RF'},
+  {rank:5,name:'Maya Putri',pts:860,pct:69,color:'#A78BFA,#C4B5FD',initials:'MP'},
+  {rank:6,name:'Aryo Rahmat ★',pts:745,pct:60,color:'#F5C842,#F5842A',initials:'AR',me:true},
+  {rank:7,name:'Dani Syahri',pts:680,pct:55,color:'#4F7BFF,#7BAEFF',initials:'DS'},
+];
+function renderLB(){
+  const c=document.getElementById('leaderboard');
+  c.innerHTML='';
+  const rankClass=['','gold','silver','bronze'];
+  lbData.forEach(u=>{
+    const row=document.createElement('div');
+    row.className='lb-row'+(u.me?' me':'');
+    row.innerHTML=`
+      <div class="lb-rank ${rankClass[u.rank]||''}">${u.rank}</div>
+      <div class="lb-avatar" style="background:linear-gradient(135deg,${u.color});color:${u.rank<=3?'#0B1B3E':'#fff'}">${u.initials}</div>
+      <div class="lb-info">
+        <div class="lb-name">${u.name}</div>
+        <div class="lb-bar-wrap"><div class="lb-bar"><div class="lb-fill" style="width:${u.pct}%"></div></div></div>
+      </div>
+      <div class="lb-pts">${u.pts.toLocaleString()}</div>
+    `;
+    c.appendChild(row);
+  });
+}
+renderLB();
+</script>
 @endsection

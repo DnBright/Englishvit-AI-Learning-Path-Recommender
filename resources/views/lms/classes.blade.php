@@ -1,87 +1,171 @@
 @extends('layouts.lms-layout')
-
-@section('title', 'Class Menu')
+@section('title', '🎓 Class Menu')
 @section('nav_classes', 'active')
+@section('topbar_title', '🎓 Class Menu')
 
 @section('content')
-<div class="d-flex justify-content-between align-items-center m-b-30">
-    <div>
-        <h2 class="font-weight-bold primary-text m-b-5">📚 Class Menu & Resources</h2>
-        <p class="text-muted f-14 mb-0">Akses cepat ke sesi LIVE dan materi pendukung belajar Anda.</p>
-    </div>
+<h2 class="page-title">Class Menu</h2>
+<p class="page-sub">Semua kelas, materi, dan rekaman yang terintegrasi dengan roadmap belajarmu.</p>
+
+<div class="class-tabs">
+  <div class="ctab active" onclick="switchTab(this,'tab-jadwal')">📅 Jadwal Aktif</div>
+  <div class="ctab" onclick="switchTab(this,'tab-rekaman')">▶ Rekaman</div>
+  <div class="ctab" onclick="switchTab(this,'tab-materi')">📚 Materi</div>
+  <div class="ctab" onclick="switchTab(this,'tab-absensi')">✔ Absensi</div>
 </div>
 
-<div class="row">
-    <div class="col-md-6">
-        <div class="dashboard-card pd-30 m-b-25">
-            <h5 class="font-weight-bold m-b-25 d-flex align-items-center">
-                <span class="material-icons m-r-10 accent-text">video_camera_front</span>
-                Sesi Zoom Terjadwal
-            </h5>
-            
-            <div class="resource-item p-3 m-b-15 border rounded-lg hover-shadow transition-300 d-flex align-items-center bg-light-soft">
-                <div class="icon-box bg-info text-white rounded-lg m-r-15 d-flex-center justify-center" style="width: 50px; height: 50px;">
-                    <span class="material-icons">videocam</span>
-                </div>
-                <div class="flex-fill">
-                    <h6 class="m-b-3 font-weight-bold f-14">Writing Task 2 Deep Dive</h6>
-                    <p class="f-11 text-muted mb-0 d-flex align-items-center">
-                        <span class="material-icons f-12 m-r-5">schedule</span> 4 Maret, 19:00 WIB
-                    </p>
-                </div>
-                <button class="btn btn-sm btn-info font-weight-bold p-x-15 rounded-pill">Join Now</button>
-            </div>
-
-            <div class="resource-item p-3 border rounded-lg hover-shadow transition-300 d-flex align-items-center">
-                <div class="icon-box bg-info-light text-info rounded-lg m-r-15 d-flex-center justify-center" style="width: 50px; height: 50px;">
-                    <span class="material-icons">record_voice_over</span>
-                </div>
-                <div class="flex-fill">
-                    <h6 class="m-b-3 font-weight-bold f-14">Speaking Fluency Session</h6>
-                    <p class="f-11 text-muted mb-0 d-flex align-items-center">
-                        <span class="material-icons f-12 m-r-5">calendar_today</span> 6 Maret, 19:00 WIB
-                    </p>
-                </div>
-                <button class="btn btn-sm btn-outline-info font-weight-bold p-x-15 rounded-pill">Reminder</button>
-            </div>
-        </div>
-    </div>
-    
-    <div class="col-md-6">
-        <div class="dashboard-card pd-30 m-b-25">
-            <h5 class="font-weight-bold m-b-25 d-flex align-items-center">
-                <span class="material-icons m-r-10 text-warning">menu_book</span>
-                Materi & PDF
-            </h5>
-            
-            <div class="resource-item p-3 m-b-15 border rounded-lg hover-shadow transition-300 d-flex align-items-center">
-                <div class="icon-box bg-warning-light text-warning rounded-lg m-r-15 d-flex-center justify-center" style="width: 50px; height: 50px;">
-                    <span class="material-icons">picture_as_pdf</span>
-                </div>
-                <div class="flex-fill">
-                    <h6 class="m-b-3 font-weight-bold f-14">IELTS Pattern Handbook</h6>
-                    <p class="f-11 text-muted mb-0">E-Book Eksklusif • 4.2 MB</p>
-                </div>
-                <button class="btn btn-sm btn-outline-warning font-weight-bold p-x-15 rounded-pill">Download</button>
-            </div>
-
-            <div class="resource-item p-3 border rounded-lg hover-shadow transition-300 d-flex align-items-center">
-                <div class="icon-box bg-warning-light text-warning rounded-lg m-r-15 d-flex-center justify-center" style="width: 50px; height: 50px;">
-                    <span class="material-icons">description</span>
-                </div>
-                <div class="flex-fill">
-                    <h6 class="m-b-3 font-weight-bold f-14">Vocabulary Builder List</h6>
-                    <p class="f-11 text-muted mb-0">Level B1-B2 • 1.5 MB</p>
-                </div>
-                <button class="btn btn-sm btn-outline-warning font-weight-bold p-x-15 rounded-pill">Download</button>
-            </div>
-        </div>
-    </div>
+<!-- TAB: JADWAL -->
+<div id="tab-jadwal" class="tab-content">
+  <div class="grid-3" id="classCards"></div>
 </div>
 
-<style>
-    .hover-shadow:hover { box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-    .bg-light-soft { background: #f9fafb; border-color: #e5e7eb !important; }
-    .rounded-pill { border-radius: 50px !important; }
-</style>
+<!-- TAB: REKAMAN -->
+<div id="tab-rekaman" class="tab-content" style="display:none">
+  <div class="grid-3">
+    <div class="card card-sm">
+      <div style="font-size:11px;color:var(--muted);margin-bottom:8px;">📅 28 Feb 2026</div>
+      <div style="font-weight:700;margin-bottom:4px;">Speaking Session — IELTS Part 2</div>
+      <div style="font-size:12px;color:var(--text-2);margin-bottom:12px;">Durasi: 45 menit · Mr. Aryo</div>
+      <button class="btn-sm btn-sm-yellow">▶ Putar Rekaman</button>
+    </div>
+    <div class="card card-sm">
+      <div style="font-size:11px;color:var(--muted);margin-bottom:8px;">📅 25 Feb 2026</div>
+      <div style="font-weight:700;margin-bottom:4px;">Grammar Masterclass — Tenses</div>
+      <div style="font-size:12px;color:var(--text-2);margin-bottom:12px;">Durasi: 60 menit · Ms. Rina</div>
+      <button class="btn-sm btn-sm-yellow">▶ Putar Rekaman</button>
+    </div>
+    <div class="card card-sm">
+      <div style="font-size:11px;color:var(--muted);margin-bottom:8px;">📅 20 Feb 2026</div>
+      <div style="font-weight:700;margin-bottom:4px;">TOEFL Listening Strategy</div>
+      <div style="font-size:12px;color:var(--text-2);margin-bottom:12px;">Durasi: 50 menit · Mr. Bayu</div>
+      <button class="btn-sm btn-sm-yellow">▶ Putar Rekaman</button>
+    </div>
+  </div>
+</div>
+
+<!-- TAB: MATERI -->
+<div id="tab-materi" class="tab-content" style="display:none">
+  <div style="display:flex;flex-direction:column;gap:10px;">
+    <div class="card card-sm" style="display:flex;align-items:center;gap:14px;">
+      <div style="font-size:28px;">📄</div>
+      <div style="flex:1">
+        <div style="font-weight:700;">IELTS Writing Task 2 — Guide PDF</div>
+        <div style="font-size:12px;color:var(--muted);">Unit 4 · 24 halaman · 2.1 MB</div>
+      </div>
+      <button class="btn-sm btn-sm-yellow">⬇ Download</button>
+    </div>
+    <div class="card card-sm" style="display:flex;align-items:center;gap:14px;">
+      <div style="font-size:28px;">📊</div>
+      <div style="flex:1">
+        <div style="font-weight:700;">Grammar Fundamentals — Slide Deck</div>
+        <div style="font-size:12px;color:var(--muted);">Unit 3 · 48 slide · 5.4 MB</div>
+      </div>
+      <button class="btn-sm btn-sm-yellow">⬇ Download</button>
+    </div>
+    <div class="card card-sm" style="display:flex;align-items:center;gap:14px;">
+      <div style="font-size:28px;">🎧</div>
+      <div style="flex:1">
+        <div style="font-weight:700;">Listening Practice Pack — MP3</div>
+        <div style="font-size:12px;color:var(--muted);">Unit 5 · 12 audio · 45 MB</div>
+      </div>
+      <button class="btn-sm btn-sm-ghost">🔒 Locked</button>
+    </div>
+  </div>
+</div>
+
+<!-- TAB: ABSENSI -->
+<div id="tab-absensi" class="tab-content" style="display:none">
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+      <div>
+        <div style="font-family:var(--font-disp);font-size:22px;font-weight:800;">92% <span style="font-size:14px;color:var(--muted);font-weight:400">Kehadiran</span></div>
+        <div style="font-size:12px;color:var(--text-2);margin-top:2px;">22 dari 24 sesi hadir</div>
+      </div>
+      <span class="tag tag-green">Sangat Baik ✓</span>
+    </div>
+    <div id="absenList"></div>
+  </div>
+</div>
+@endsection
+
+@section('scripts')
+<script>
+/* ============================================================
+   CLASS CARDS
+=========================================================== */
+const classData=[
+  {emoji:'🎤',bg:'linear-gradient(135deg,#1A2D60,#0F1E45)',title:'Live Speaking Session',tags:['tag-orange','Intermediate'],meta:'Zoom · Mr. Aryo',next:'Hari ini, 16:00',active:true},
+  {emoji:'✏️',bg:'linear-gradient(135deg,#1A3A2A,#0F2015)',title:'Writing Masterclass',tags:['tag-blue','Advanced'],meta:'Zoom · Ms. Rina',next:'Kamis, 09:00',active:true},
+  {emoji:'🎧',bg:'linear-gradient(135deg,#2A1A3A,#160F20)',title:'TOEFL Listening Drills',tags:['tag-muted','All Levels'],meta:'Self-paced · Online',next:'Jumat, 14:00',active:false},
+  {emoji:'📖',bg:'linear-gradient(135deg,#3A2A0A,#201505)',title:'Reading Strategy',tags:['tag-green','Semua Level'],meta:'Live · Mr. Bayu',next:'Sabtu, 10:00',active:true},
+  {emoji:'🗣',bg:'linear-gradient(135deg,#1A2D60,#0F1E45)',title:'Conversation Club',tags:['tag-yellow','Beginner'],meta:'Google Meet',next:'Senin, 19:00',active:true},
+  {emoji:'📝',bg:'linear-gradient(135deg,#1A2A3A,#0F1520)',title:'Grammar Clinic',tags:['tag-blue','Semua Level'],meta:'Zoom · Ms. Rina',next:'Selasa, 11:00',active:false},
+];
+function renderClasses(){
+  const c=document.getElementById('classCards');
+  c.innerHTML='';
+  classData.forEach(cl=>{
+    const card=document.createElement('div');
+    card.className='class-card';
+    card.innerHTML=`
+      <div class="class-thumb" style="background:${cl.bg}">
+        <span style="position:relative;z-index:1;font-size:40px">${cl.emoji}</span>
+      </div>
+      <div class="class-body">
+        <div class="class-title">${cl.title}</div>
+        <div class="class-meta">
+          <span class="tag ${cl.tags[0]}">${cl.tags[1]}</span>
+          ${cl.active?'<span class="tag tag-green">Aktif</span>':'<span class="tag tag-muted">Segera</span>'}
+        </div>
+        <div style="font-size:11px;color:var(--muted);margin-bottom:12px">🕐 ${cl.next} · ${cl.meta}</div>
+        <div class="class-actions">
+          ${cl.active?'<button class="btn-sm btn-sm-yellow">🔗 Join Zoom</button>':'<button class="btn-sm btn-sm-ghost">🔔 Remind Me</button>'}
+          <button class="btn-sm btn-sm-ghost">📄 Materi</button>
+        </div>
+      </div>
+    `;
+    c.appendChild(card);
+  });
+}
+renderClasses();
+
+/* ABSENSI */
+const absensi=[
+  {date:'4 Mar 2026',class:'Speaking Session',status:'Hadir',cls:'tag-green'},
+  {date:'2 Mar 2026',class:'Grammar Clinic',status:'Hadir',cls:'tag-green'},
+  {date:'28 Feb 2026',class:'Writing Masterclass',status:'Hadir',cls:'tag-green'},
+  {date:'25 Feb 2026',class:'Conversation Club',status:'Hadir',cls:'tag-green'},
+  {date:'21 Feb 2026',class:'TOEFL Listening',status:'Absen',cls:'tag-red'},
+  {date:'18 Feb 2026',class:'Speaking Session',status:'Hadir',cls:'tag-green'},
+];
+function renderAbsensi(){
+  const c=document.getElementById('absenList');
+  if(!c)return;
+  c.innerHTML='';
+  absensi.forEach(a=>{
+    const row=document.createElement('div');
+    row.className='attend-row';
+    row.innerHTML=`
+      <div class="att-ico" style="background:${a.status==='Hadir'?'rgba(61,214,140,.15)':'rgba(255,90,90,.15)'}">
+        ${a.status==='Hadir'?'✅':'❌'}
+      </div>
+      <div style="flex:1">
+        <div style="font-size:13px;font-weight:700">${a.class}</div>
+        <div style="font-size:11px;color:var(--muted)">${a.date}</div>
+      </div>
+      <span class="tag ${a.cls}">${a.status}</span>
+    `;
+    c.appendChild(row);
+  });
+}
+renderAbsensi();
+
+/* CLASS TABS */
+function switchTab(el,tabId){
+  document.querySelectorAll('.ctab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(t=>t.style.display='none');
+  el.classList.add('active');
+  document.getElementById(tabId).style.display='block';
+}
+</script>
 @endsection
