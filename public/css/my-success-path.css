@@ -766,8 +766,13 @@ p.page-sub {
   align-items: flex-end;
 }
 
-.msg.user {
+.msg.msg-ai {
+  align-self: flex-start;
+}
+
+.msg.msg-user {
   flex-direction: row-reverse;
+  align-self: flex-end;
 }
 
 .msg-avatar {
@@ -1043,36 +1048,152 @@ p.page-sub {
   color: rgba(245, 200, 66, .6);
 }
 
-.cev {
-  font-size: 9px;
+/* Gamified Interactive Tickets */
+.cev-ticket {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px;
+  border-radius: 6px;
+  margin-bottom: 4px;
+  cursor: grab;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid transparent;
+  user-select: none;
+  background: rgba(255, 255, 255, 0.02);
+  position: relative;
+  overflow: hidden;
+}
+
+.cev-ticket:active {
+  cursor: grabbing;
+  transform: scale(0.95);
+  opacity: 0.8;
+}
+
+.cev-ticket:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  filter: brightness(1.15);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Shine effect on hover */
+.cev-ticket::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+  transform: skewX(-20deg);
+  transition: 0s;
+}
+
+.cev-ticket:hover::before {
+  left: 200%;
+  transition: 0.6s ease-in-out;
+}
+
+.cev-icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.cev-label {
+  font-size: 10px;
   font-weight: 700;
-  padding: 2px 6px;
-  border-radius: 5px;
-  margin-bottom: 2px;
-  display: block;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  padding-right: 4px;
 }
 
+/* Colors */
 .cev-o {
-  background: rgba(245, 132, 42, .2);
+  background: rgba(245, 132, 42, .05);
+  border-color: rgba(245, 132, 42, .2);
+}
+
+.cev-o .cev-icon {
+  background: rgba(245, 132, 42, .15);
+  color: var(--orange);
+}
+
+.cev-o .cev-label {
   color: var(--orange);
 }
 
 .cev-b {
-  background: rgba(79, 123, 255, .2);
+  background: rgba(79, 123, 255, .05);
+  border-color: rgba(79, 123, 255, .2);
+}
+
+.cev-b .cev-icon {
+  background: rgba(79, 123, 255, .15);
+  color: var(--blue-acc);
+}
+
+.cev-b .cev-label {
   color: var(--blue-acc);
 }
 
 .cev-g {
+  background: rgba(61, 214, 140, .05);
+  border-color: rgba(61, 214, 140, .2);
+}
+
+.cev-g .cev-icon {
   background: rgba(61, 214, 140, .15);
   color: var(--green-acc);
 }
 
+.cev-g .cev-label {
+  color: var(--green-acc);
+}
+
 .cev-y {
+  background: rgba(245, 200, 66, .05);
+  border-color: rgba(245, 200, 66, .2);
+}
+
+.cev-y .cev-icon {
   background: rgba(245, 200, 66, .15);
   color: var(--yellow);
+}
+
+.cev-y .cev-label {
+  color: var(--yellow);
+}
+
+/* Larger version for the unscheduled bin */
+.unsched-ticket {
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  background: var(--navy-card);
+}
+
+.unsched-ticket:hover {
+  transform: translateY(-3px) scale(1.02);
+}
+
+.unsched-ticket .cev-icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+}
+
+.unsched-ticket .cev-label {
+  font-size: 12px;
+  margin-left: 2px;
 }
 
 .cal-side {

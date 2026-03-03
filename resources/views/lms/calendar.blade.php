@@ -120,28 +120,28 @@ const MONTHS=['January','February','March','April','May','June','July','August',
 
 // Scheduled target events
 const CAL_EVENTS={
-  '2026-3-4':[{label:'Speaking',cls:'cev-o'},{label:'TOEFL',cls:'cev-g'}],
-  '2026-3-5':[{label:'Live Session',cls:'cev-y'}],
-  '2026-3-7':[{label:'Grammar',cls:'cev-b'}],
-  '2026-3-8':[{label:'Checkpoint 1',cls:'cev-g'}],
-  '2026-3-11':[{label:'Live Q&A',cls:'cev-y'},{label:'Grammar',cls:'cev-b'}],
-  '2026-3-14':[{label:'Speaking',cls:'cev-o'}],
-  '2026-3-16':[{label:'TOEFL Prep',cls:'cev-g'}],
-  '2026-3-18':[{label:'Live Session',cls:'cev-y'}],
-  '2026-3-21':[{label:'Speaking',cls:'cev-o'},{label:'Grammar',cls:'cev-b'}],
-  '2026-3-23':[{label:'Mock Test',cls:'cev-g'}],
-  '2026-3-25':[{label:'Live Q&A',cls:'cev-y'}],
-  '2026-3-28':[{label:'Speaking',cls:'cev-o'}],
+  '2026-3-4':[{label:'Speaking',cls:'cev-o',icon:'record_voice_over'},{label:'TOEFL',cls:'cev-g',icon:'school'}],
+  '2026-3-5':[{label:'Live Session',cls:'cev-y',icon:'sensors'}],
+  '2026-3-7':[{label:'Grammar',cls:'cev-b',icon:'menu_book'}],
+  '2026-3-8':[{label:'Checkpoint 1',cls:'cev-g',icon:'flag'}],
+  '2026-3-11':[{label:'Live Q&A',cls:'cev-y',icon:'forum'},{label:'Grammar',cls:'cev-b',icon:'menu_book'}],
+  '2026-3-14':[{label:'Speaking',cls:'cev-o',icon:'record_voice_over'}],
+  '2026-3-16':[{label:'TOEFL Prep',cls:'cev-g',icon:'school'}],
+  '2026-3-18':[{label:'Live Session',cls:'cev-y',icon:'sensors'}],
+  '2026-3-21':[{label:'Speaking',cls:'cev-o',icon:'record_voice_over'},{label:'Grammar',cls:'cev-b',icon:'menu_book'}],
+  '2026-3-23':[{label:'Mock Test',cls:'cev-g',icon:'emoji_events'}],
+  '2026-3-25':[{label:'Live Q&A',cls:'cev-y',icon:'forum'}],
+  '2026-3-28':[{label:'Speaking',cls:'cev-o',icon:'record_voice_over'}],
 };
 
 // Unscheduled source events (Nyawa / Tiket)
 let UNSCHEDULED_EVENTS = [
-  {label:'Live Class Zoom 1', cls:'cev-y'},
-  {label:'Live Class Zoom 2', cls:'cev-y'},
-  {label:'One-on-One 1', cls:'cev-o'},
-  {label:'One-on-One 2', cls:'cev-o'},
-  {label:'TOEFL Test Attempt', cls:'cev-g'},
-  {label:'Grammar Clinic', cls:'cev-b'}
+  {label:'Live Class Zoom 1', cls:'cev-y', icon:'videocam'},
+  {label:'Live Class Zoom 2', cls:'cev-y', icon:'videocam'},
+  {label:'One-on-One 1', cls:'cev-o', icon:'co_present'},
+  {label:'One-on-One 2', cls:'cev-o', icon:'co_present'},
+  {label:'TOEFL Test Attempt', cls:'cev-g', icon:'school'},
+  {label:'Grammar Clinic', cls:'cev-b', icon:'healing'}
 ];
 
 let calCur={year:2026,month:3};
@@ -180,7 +180,16 @@ function renderCal(){
     cell.className='cal-cell'+(wknd?' wknd-cell':'')+(isToday?' today':'')+(evts.length?' has-ev':'');
     cell.setAttribute('ondragover', 'allowDrop(event)');
     cell.setAttribute('ondrop', `dropEvent(event, '${key}')`);
-    cell.appendChild(htmlDiv);
+    let html=`<div class="cdn">${d}</div>`;
+    evts.forEach((ev, idx)=>{
+      html += `
+        <div class="cev-ticket ${ev.cls}" draggable="true" ondragstart="dragEvent(event, '${key}', ${idx})">
+          <div class="cev-icon"><span class="material-icons" style="font-size:11px;">${ev.icon}</span></div>
+          <div class="cev-label">${ev.label}</div>
+        </div>
+      `;
+    });
+    cell.innerHTML=html;
     cell.onclick=()=>{
       document.querySelectorAll('.cal-cell').forEach(c=>c.classList.remove('sel'));
       cell.classList.add('sel');
@@ -201,15 +210,15 @@ function renderUnscheduled() {
     zone.innerHTML = '<div style="color:var(--text-2); font-size:13px; font-style:italic; padding:10px;">Semua tiket kelas sudah dijadwalkan! 🎉</div>';
   } else {
     UNSCHEDULED_EVENTS.forEach((ev, idx) => {
-      const span = document.createElement('span');
-      span.className = `cev ${ev.cls}`;
-      span.style.padding = '6px 12px';
-      span.style.fontSize = '12px';
-      span.style.cursor = 'grab';
-      span.setAttribute('draggable', 'true');
-      span.setAttribute('ondragstart', `dragEvent(event, 'unscheduled', ${idx})`);
-      span.innerText = ev.label;
-      zone.appendChild(span);
+      const ticket = document.createElement('div');
+      ticket.className = `cev-ticket ${ev.cls} unsched-ticket`;
+      ticket.setAttribute('draggable', 'true');
+      ticket.setAttribute('ondragstart', `dragEvent(event, 'unscheduled', ${idx})`);
+      ticket.innerHTML = `
+        <div class="cev-icon"><span class="material-icons" style="font-size:15px;">${ev.icon}</span></div>
+        <div class="cev-label">${ev.label}</div>
+      `;
+      zone.appendChild(ticket);
     });
   }
 }
