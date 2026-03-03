@@ -11,24 +11,24 @@
   <div class="chat-area">
     <div class="chat-messages" id="chatMessages">
       <div class="msg msg-ai">
-        <div class="msg-avatar">Ev</div>
+        <div class="msg-avatar" style="background:transparent;"><img src="{{ asset('images/logo-new.png') }}" style="width: 24px; object-fit: contain;"></div>
         <div>
           <div class="msg-bubble">
-            Halo Aryo! 👋 Saya sudah analisa progress belajarmu minggu ini.<br><br>
+            Halo {{ explode(' ', Auth::user()->name ?? 'Student')[0] }}! 👋 Saya sudah analisa progress belajarmu minggu ini.<br><br>
             Kamu sudah menyelesaikan <strong>3 dari 5 task</strong> di Unit 4. Good job! Tapi saya lihat kamu belum sentuh <em>Writing Task 2 Practice</em> dalam 3 hari terakhir. Mau kita mulai sekarang?
           </div>
           <span class="msg-time">09:00 · AI Assistant</span>
         </div>
       </div>
       <div class="msg msg-user">
-        <div class="msg-avatar">AR</div>
+        <div class="msg-avatar">{{ substr(Auth::user()->name ?? 'S', 0, 1) }}</div>
         <div>
           <div class="msg-bubble">Iya betul, saya kesulitan di bagian essay structure-nya.</div>
           <span class="msg-time" style="text-align:right;display:block;">09:02</span>
         </div>
       </div>
       <div class="msg msg-ai">
-        <div class="msg-avatar">Ev</div>
+        <div class="msg-avatar" style="background:transparent;"><img src="{{ asset('images/logo-new.png') }}" style="width: 24px; object-fit: contain;"></div>
         <div>
           <div class="msg-bubble">
             Paham! Writing Task 2 memang butuh latihan struktur yang konsisten. Ini quick tip dari saya:<br><br>
@@ -43,14 +43,14 @@
         </div>
       </div>
       <div class="msg msg-user">
-        <div class="msg-avatar">AR</div>
+        <div class="msg-avatar">{{ substr(Auth::user()->name ?? 'S', 0, 1) }}</div>
         <div>
           <div class="msg-bubble">Boleh! Sekarang saja.</div>
           <span class="msg-time" style="text-align:right;display:block;">09:04</span>
         </div>
       </div>
       <div class="msg msg-ai">
-        <div class="msg-avatar">Ev</div>
+        <div class="msg-avatar" style="background:transparent;"><img src="{{ asset('images/logo-new.png') }}" style="width: 24px; object-fit: contain;"></div>
         <div>
           <div class="msg-bubble">
             ✏️ <strong>Exercise — Writing Task 2</strong><br><br>
@@ -161,7 +161,11 @@ function addMsg(txt,role){
   const now=new Date();
   const time=now.getHours()+':'+String(now.getMinutes()).padStart(2,'0');
   d.innerHTML=`
-    <div class="msg-avatar">${role==='ai'?'Ev':'AR'}</div>
+    <div class="msg-avatar" ${role==='ai'?'style="background:transparent;"':''}>
+      ${role==='ai' 
+        ? '<img src="{{ asset(\'images/logo-new.png\') }}" style="width: 24px; object-fit: contain;">' 
+        : '{{ substr(Auth::user()->name ?? "S", 0, 1) }}'}
+    </div>
     <div>
       <div class="msg-bubble">${txt}</div>
       <span class="msg-time" ${role==='user'?'style="text-align:right;display:block;"':''}>${time}${role==='ai'?' · AI Assistant':''}</span>

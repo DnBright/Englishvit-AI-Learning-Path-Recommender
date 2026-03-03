@@ -89,7 +89,7 @@ const lbData=[
   {rank:3,name:'Laila Nur',pts:1102,pct:89,color:'#3DD68C,#7DFFC9',initials:'LN'},
   {rank:4,name:'Reza Fauzi',pts:980,pct:79,color:'#FF8A4F,#FFB27A',initials:'RF'},
   {rank:5,name:'Maya Putri',pts:860,pct:69,color:'#A78BFA,#C4B5FD',initials:'MP'},
-  {rank:6,name:'Aryo Rahmat ★',pts:745,pct:60,color:'#F5C842,#F5842A',initials:'AR',me:true},
+  {rank:6,name:'{{ Auth::user()->name ?? "Aryo Rahmat" }} ★',pts:745,pct:60,color:'#F5C842,#F5842A',initials:'{{ substr(Auth::user()->name ?? "S", 0, 1) }}',me:true},
   {rank:7,name:'Dani Syahri',pts:680,pct:55,color:'#4F7BFF,#7BAEFF',initials:'DS'},
 ];
 function renderLB(){

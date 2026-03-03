@@ -16,12 +16,9 @@
 
 <!-- ===== SIDEBAR ===== -->
 <nav class="sidebar" id="sidebar">
-  <div class="sb-logo">
-    <div class="sb-logo-mark">Ev</div>
-    <div>
-      <div class="sb-logo-txt">english<span>vit</span></div>
-      <div class="sb-logo-sub">My Success Path</div>
-    </div>
+  <div class="sb-logo" style="display:block; padding-top:12px;">
+    <img src="{{ asset('images/logo-new.png') }}" alt="Englishvit Logo" style="height: 36px; margin-bottom: 8px;">
+    <div class="sb-logo-sub" style="display:block;">My Success Path</div>
   </div>
 
   <div class="sb-section">Learning</div>
@@ -51,9 +48,9 @@
 
   <div class="sb-bottom">
     <div class="sb-user">
-      <div class="sb-avatar">AR</div>
+      <div class="sb-avatar">{{ substr(Auth::user()->name ?? 'Student', 0, 1) }}</div>
       <div>
-        <div class="sb-user-name">Aryo Rahmat</div>
+        <div class="sb-user-name">{{ Auth::user()->name ?? 'Student Name' }}</div>
         <div class="sb-user-tag">IELTS 6.5 Target</div>
       </div>
     </div>
