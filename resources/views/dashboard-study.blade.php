@@ -264,6 +264,22 @@
 <script src="{{ asset("js/bootstrap.min.js") }}"></script>
 
 <script>
+    // Menu Switching Logic
+    function switchMenu(menuId) {
+        // Remove active class from all nav items and sections
+        $('.lms-nav-item').removeClass('active');
+        $('.menu-section').removeClass('active');
+
+        // Add active class to selected
+        $(`.lms-nav-item[onclick="switchMenu('${menuId}')"]`).addClass('active');
+        $(`#menu-${menuId}`).addClass('active');
+
+        // Trigger chart resize if roadmap is selected
+        if (menuId === 'roadmap') {
+            skillRadar.update();
+        }
+    }
+
     // Initialize Skill Radar Chart (Mini Version)
     const ctx = document.getElementById('skillRadar').getContext('2d');
     const skillRadar = new Chart(ctx, {
@@ -288,6 +304,7 @@
             }]
         },
         options: {
+            maintainAspectRatio: false,
             plugins: {
                 legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 10 } } }
             },
@@ -302,25 +319,26 @@
         }
     });
 
-    // Chatbox Toggle / Interactivity (Optional)
-    function sendMessage() {
-        const input = $('.ai-chat-box input');
+    // AI Assistant Chat Logic
+    function sendAssistantMessage() {
+        const input = $('#menu-ai input');
+        const container = $('#menu-ai .chat-body');
         if (input.val()) {
-            $('.chat-body').append(`<div class="chat-bubble bubble-user">${input.val()}</div>`);
+            container.append(`<div class="chat-bubble bubble-user m-b-20">${input.val()}</div>`);
             input.val('');
-            $('.chat-body').scrollTop($('.chat-body')[0].scrollHeight);
+            container.scrollTop(container[0].scrollHeight);
             
-            // Fake AI Response
+            // AI Typing Simulation
             setTimeout(() => {
-                $('.chat-body').append(`<div class="chat-bubble bubble-ai">Mengerti. Saya akan segera menyesuaikan roadmap Anda.</div>`);
-                $('.chat-body').scrollTop($('.chat-body')[0].scrollHeight);
+                container.append(`<div class="chat-bubble bubble-ai m-b-20">Menganalisis permintaan Anda... Saya akan segera menyesuaikan roadmap di tab Roadmap.</div>`);
+                container.scrollTop(container[0].scrollHeight);
             }, 1000);
         }
     }
 
-    $('.ai-chat-box button').on('click', sendMessage);
-    $('.ai-chat-box input').on('keypress', function(e) {
-        if(e.which == 13) sendMessage();
+    $('#menu-ai button').on('click', sendAssistantMessage);
+    $('#menu-ai input').on('keypress', function(e) {
+        if(e.which == 13) sendAssistantMessage();
     });
 </script>
 

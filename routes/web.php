@@ -29,3 +29,11 @@ Route::get('/pronunciation', function () {
 Route::get('/dashboard-study', function () {
     return view('dashboard-study');
 });
+
+Route::prefix('dashboard-study')->group(function () {
+    Route::get('/roadmap', function () { return view('lms.roadmap'); });
+    Route::get('/ai-assistant', function () { return view('lms.ai-assistant'); });
+    Route::get('/calendar', function () { return view('lms.calendar'); });
+    Route::get('/clan', function () { return view('lms.clan'); });
+    Route::get('/classes', function () { return view('lms.classes'); });
+});
