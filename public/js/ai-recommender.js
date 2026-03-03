@@ -243,6 +243,49 @@ document.addEventListener('DOMContentLoaded', function () {
     function generateDetailedSchedule(cartItems, timelineMonths) {
         let scheduleHTML = '';
         const totalMonths = parseInt(timelineMonths) || 1;
+        const totalWeeks = totalMonths * 4;
+
+        // Calculate Quotas based on schedule logic
+        let countLive = 0;
+        let countPrivate = 0;
+        let countModule = 0;
+        let countTest = 0;
+
+        cartItems.forEach(item => {
+            if (item.category === 'live') countLive += totalWeeks * 3; // Tue, Thu, Sat
+            if (item.category === 'private') countPrivate += totalWeeks * 1; // Sun
+            if (item.category === 'module') countModule += totalWeeks * 3; // Mon, Wed, Fri
+            if (item.category === 'test') countTest += totalMonths * 2; // Week 1 & 3 of each month
+        });
+
+        // Add Quota Summary Section
+        scheduleHTML += `
+            <div class="ai-quota-summary">
+                <div class="d-flex align-center gap-10 m-b-5">
+                    <span class="badge bg-purple-1 fc-purple-7 f-10 fw-800">RINGKASAN PAKET</span>
+                    <h5 class="fw-800 mb-0">Rincian Total Sesi & Fasilitas</h5>
+                </div>
+                <p class="f-12 fc-black-4 m-b-15">Berikut adalah total jatah kegiatan yang Anda dapatkan selama <strong>${totalMonths} bulan</strong> ke depan:</p>
+                <div class="ai-quota-grid">
+                    <div class="ai-quota-item">
+                        <span class="val">${countLive}x</span>
+                        <span class="lbl">🏫 Live Classes</span>
+                    </div>
+                    <div class="ai-quota-item">
+                        <span class="val">${countPrivate}x</span>
+                        <span class="lbl">👤 Private Session</span>
+                    </div>
+                    <div class="ai-quota-item">
+                        <span class="val">${countModule}x</span>
+                        <span class="lbl">📽️ Materi Focus</span>
+                    </div>
+                    <div class="ai-quota-item">
+                        <span class="val">${countTest}x</span>
+                        <span class="lbl">📜 Quiz & Test</span>
+                    </div>
+                </div>
+            </div>
+        `;
 
         scheduleHTML += `
             <div class="m-b-30 d-flex-center-btw flex-wrap gap-15 ai-roadmap-controls">

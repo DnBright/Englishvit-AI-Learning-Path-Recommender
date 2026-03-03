@@ -671,11 +671,14 @@
 
             <!-- STAGE 2: Processing Screen -->
             <div id="aiProcessingOverlay" class="ai-processing-overlay d-none">
-                <div class="ai-loader mb-4"></div>
-                <h4 class="fw-bold" id="processingText">Menganalisis tujuan Anda...</h4>
-                <p class="ai-text-muted mt-2">Mengalokasikan sumber daya pembelajaran yang optimal untuk anggaran Anda...</p>
+                <div class="ai-branded-loader">
+                    <img src="{{ asset('images/logo-new.png') }}" alt="Englishvit Logo" class="ai-loader-logo">
+                    <div class="ai-scanner-line"></div>
+                </div>
+                <h4 class="fw-bold m-t-30" id="processingText">Menganalisis tujuan Anda...</h4>
+                <p class="ai-text-muted mt-2">AI kami sedang merancang jalur belajar paling efisien untuk Anda...</p>
                 <div class="ai-processing-details m-t-30 f-12 fc-black-4" id="processingDetails">
-                    Memeriksa kemiripan modul IELTS...
+                    Memeriksa ketersediaan tutor dan modul...
                 </div>
             </div>
 
