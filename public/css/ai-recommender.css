@@ -244,6 +244,126 @@
     animation: pulse-strength 0.3s ease-in-out;
 }
 
+/* Full Calendar View */
+.ai-calendar-container {
+    background: #FFFFFF;
+    border: 1px solid #E5E7EB;
+    border-radius: 12px;
+    overflow-x: auto;
+    margin-bottom: 24px;
+}
+
+.ai-calendar-table {
+    width: 100%;
+    min-width: 700px;
+    border-collapse: collapse;
+}
+
+.ai-calendar-table th {
+    padding: 16px 8px;
+    text-align: center;
+    border-bottom: 1px solid #E5E7EB;
+    border-right: 1px solid #E5E7EB;
+    font-weight: 600;
+    color: var(--ai-text-dark);
+    font-size: 13px;
+    background: #F9FAFB;
+}
+
+.ai-calendar-table th .date {
+    display: block;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--ai-text-muted);
+    margin-top: 4px;
+}
+
+.ai-calendar-table td {
+    padding: 0;
+    border-bottom: 1px solid #E5E7EB;
+    border-right: 1px solid #E5E7EB;
+    height: 60px;
+    vertical-align: middle;
+}
+
+.ai-calendar-table td.time-col {
+    width: 120px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--ai-text-muted);
+    font-weight: 600;
+    background: #FFFFFF;
+}
+
+.ai-calendar-table th:last-child,
+.ai-calendar-table td:last-child {
+    border-right: none;
+}
+
+.calendar-slot-available {
+    background-color: #4ADE80;
+    /* Bright Green */
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    text-align: center;
+    padding: 4px;
+    transition: opacity 0.2s;
+    cursor: pointer;
+}
+
+.calendar-slot-available:hover {
+    opacity: 0.9;
+}
+
+.calendar-slot-filled {
+    background-color: #E5E7EB;
+    /* Gray */
+    height: 100%;
+    width: 100%;
+}
+
+.calendar-legend {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 12px;
+    color: var(--ai-text-muted);
+    font-weight: 500;
+    padding: 16px;
+    border-top: 1px solid #E5E7EB;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.legend-dot.available {
+    background-color: #4ADE80;
+}
+
+.legend-dot.filled {
+    background-color: #E5E7EB;
+}
+
+.legend-dot.unavailable {
+    border: 1px solid #D1D5DB;
+    background-color: #FFFFFF;
+}
+
 /* Path Strength & Gamification */
 .ai-strength-container {
     margin-bottom: 24px;

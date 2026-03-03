@@ -234,28 +234,75 @@ document.addEventListener('DOMContentLoaded', function () {
         renderRoadmapTimeline(coreRecs, recommendations);
     }
 
+    function generateDetailedSchedule(cartItems, timelineMonths) {
+        let scheduleHTML = '';
+        const months = parseInt(timelineMonths) || 1;
+        const itemsPerMonth = Math.ceil(cartItems.length / months);
+
+        let currentItemIndex = 0;
+
+        for (let m = 1; m <= months; m++) {
+            scheduleHTML += `
+                <div class="ai-roadmap-item mb-4">
+                    <div class="d-flex align-center m-b-15">
+                        <div class="ai-roadmap-step bg-purple-7">Month ${m}</div>
+                        <h5 class="fw-800 m-l-15 mb-0">Phase ${m}: Execution</h5>
+                    </div>
+                    <div class="ai-card p-4 shadow-sm bg-white br-12 border-left-purple">
+            `;
+
+            const itemsThisMonth = cartItems.slice(currentItemIndex, currentItemIndex + itemsPerMonth);
+            currentItemIndex += itemsPerMonth;
+
+            if (itemsThisMonth.length === 0) {
+                scheduleHTML += `<p class="f-12 fc-black-5 mb-0">Independent Practice / Review Month</p>`;
+            } else {
+                itemsThisMonth.forEach((item, index) => {
+                    let scheduleDetails = '';
+                    if (item.category === 'live' || item.category === 'private') {
+                        scheduleDetails = `
+                            <ul class="schedule-list f-12 fc-black-5 m-t-10 p-l-20 mb-0">
+                                <li><strong>Week 1:</strong> Kickoff Session (Tuesday) & Practice (Thursday)</li>
+                                <li><strong>Week 2-3:</strong> Intensive Drill Labs (Tues & Thurs)</li>
+                                <li><strong>Week 4:</strong> Evaluation & Feedback</li>
+                            </ul>
+                         `;
+                    } else if (item.category === 'module') {
+                        scheduleDetails = `
+                            <ul class="schedule-list f-12 fc-black-5 m-t-10 p-l-20 mb-0">
+                                <li><strong>Daily:</strong> 30-min Video On-Demand (Mon-Fri)</li>
+                                <li><strong>Weekend:</strong> Skill Quiz & Worksheet</li>
+                            </ul>
+                         `;
+                    } else if (item.category === 'test') {
+                        scheduleDetails = `
+                            <ul class="schedule-list f-12 fc-black-5 m-t-10 p-l-20 mb-0">
+                                <li><strong>Day 15:</strong> Tryout Simulation</li>
+                                <li><strong>Day 20:</strong> Result Review & Weakness Analysis</li>
+                            </ul>
+                         `;
+                    }
+
+                    scheduleHTML += `
+                        <div class="m-b-20 p-b-15 border-bottom-light">
+                            <div class="d-flex-center-btw mb-2">
+                                <span class="badge bg-info-1 fc-info-7 f-10">${item.category.toUpperCase()}</span>
+                                <span class="f-11 fw-700 fc-success-7">Scheduled</span>
+                            </div>
+                            <h6 class="fw-800 m-b-5">${item.name}</h6>
+                            ${scheduleDetails}
+                        </div>
+                     `;
+                });
+            }
+            scheduleHTML += `</div></div>`;
+        }
+        return scheduleHTML;
+    }
+
     function renderRoadmapTimeline(coreRecs, allRecs) {
         const list = document.getElementById('aiRoadmapTimeline');
-        list.innerHTML = '';
-
-        coreRecs.forEach((step, index) => {
-            const div = document.createElement('div');
-            div.className = 'ai-roadmap-item mb-4';
-            div.innerHTML = `
-                <div class="d-flex align-center">
-                    <div class="ai-roadmap-step">Month ${index + 1}</div>
-                    <div class="ai-roadmap-card flex-grow shadow-sm p-3 bg-white br-12 ml-3">
-                        <div class="d-flex-center-btw mb-2">
-                            <span class="badge bg-info-1 fc-info-7 f-10">${step.category.toUpperCase()}</span>
-                            <span class="f-10 fc-success-7 fw-800">Match: ${step.matchScore}%</span>
-                        </div>
-                        <h6 class="fw-800 m-b-5">${step.name}</h6>
-                        <p class="f-11 fc-black-5 m-b-0">Rp ${step.price.toLocaleString('id-ID')}</p>
-                    </div>
-                </div>
-            `;
-            list.appendChild(div);
-        });
+        list.innerHTML = generateDetailedSchedule(coreRecs, formData.timeline);
 
         // Add Alternatif if any (50-64%)
         const altRecs = allRecs.filter(r => r.matchScore >= 50 && r.matchScore < 65);
@@ -557,6 +604,27 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
             mentorBubble.classList.add('d-none');
         }
+    }
+
+    window.showFinalRoadmap = function () {
+        customizerSection.classList.add('d-none');
+        floatingCart.style.display = 'none';
+        resultSection.classList.remove('d-none');
+
+        // Update total price display in Result Section based on actual custom cart
+        const totalPrice = userCart.reduce((sum, item) => sum + item.price, 0);
+        const savings = Math.round(totalPrice * 0.15);
+
+        const resTotalEl = document.getElementById('resultTotalPrice');
+        const resSavEl = document.getElementById('resultSavings');
+        if (resTotalEl) resTotalEl.textContent = `Rp ${totalPrice.toLocaleString('id-ID')}`;
+        if (resSavEl) resSavEl.textContent = `${savings.toLocaleString('id-ID')}`;
+
+        // Regenerate roadmap timeline with detailed schedule based on updated cart
+        const list = document.getElementById('aiRoadmapTimeline');
+        list.innerHTML = generateDetailedSchedule(userCart, formData.timeline);
+
+        resultSection.scrollIntoView({ behavior: 'smooth' });
     }
 
 });
