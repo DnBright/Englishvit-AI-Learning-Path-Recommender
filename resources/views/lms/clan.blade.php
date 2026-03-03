@@ -5,110 +5,162 @@
 
 @section('content')
 
+{{-- ── CLAN OVERVIEW ── --}}
 <div class="clan-banner">
-  <div>
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
-      <span class="tag tag-blue">Clan Aktif</span>
-      <span class="tag tag-muted">32 Anggota</span>
+  <div style="flex:1">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+      <span class="tag tag-blue" style="background:rgba(59,130,246,0.15);color:#60a5fa;border:1px solid rgba(59,130,246,0.2)">🛡️ Official Clan</span>
+      <span class="tag tag-muted" id="memberCount">32 Members</span>
+      <span class="tag tag-orange" id="countdownTimer">⏳ 12 Hari lagi</span>
     </div>
-    <div class="clan-name">⚔️ IELTS Warriors 6.5</div>
-    <div style="font-size:13px;color:var(--text-2);">Target bersama: IELTS 6.5 · Deadline: Juli 2026</div>
-    <div class="clan-stats">
-      <div class="cs-item">
-        <div class="cs-num">32</div>
-        <div class="cs-lbl">Anggota</div>
-      </div>
-      <div class="cs-item">
-        <div class="cs-num">94%</div>
-        <div class="cs-lbl">Aktif minggu ini</div>
-      </div>
-      <div class="cs-item">
-        <div class="cs-num">#12</div>
-        <div class="cs-lbl">Rank kamu</div>
-      </div>
+    <div class="clan-name" style="font-size:32px;margin-bottom:8px;">⚔️ IELTS Warriors 6.5</div>
+    <div style="font-size:14px;color:var(--text-2);max-width:500px;line-height:1.6">
+        Target bersama: <b>IELTS 6.5 Intensive</b> · Progress Kolektif: <span style="color:var(--yellow)">64%</span>
     </div>
   </div>
-  <div class="clan-shield">⚔️</div>
+  <div class="clan-shield">🛡️</div>
+</div>
+
+{{-- ── CLAN PROGRESS BOARD ── --}}
+<div class="section-label" style="margin-bottom:16px">📊 Clan Progress Board</div>
+<div class="clan-board-grid">
+    <div class="cb-card">
+        <div class="cb-val">124</div>
+        <div class="cb-lbl">Unit Selesai</div>
+    </div>
+    <div class="cb-card">
+        <div class="cb-val">42</div>
+        <div class="cb-lbl">Challenges</div>
+    </div>
+    <div class="cb-card">
+        <div class="cb-val">7.2</div>
+        <div class="cb-lbl">Avg Mock Test</div>
+    </div>
+    <div class="cb-card">
+        <div class="cb-val">96%</div>
+        <div class="cb-lbl">Anggota Aktif</div>
+    </div>
 </div>
 
 <div class="grid-2">
-  <div>
-    <div class="section-label" style="margin-bottom:14px">🏆 Weekly Leaderboard</div>
-    <div class="leaderboard" id="leaderboard"></div>
-  </div>
-  <div>
-    <div class="section-label" style="margin-bottom:14px">🔥 Weekly Challenge</div>
-    <div class="card card-sm" style="margin-bottom:12px;border-color:rgba(245,200,66,.2);background:var(--yellow-dim)">
-      <div style="font-weight:700;margin-bottom:6px;">🗣 Speaking Marathon</div>
-      <div style="font-size:12px;color:var(--text-2);line-height:1.6;margin-bottom:12px;">
-        Record 3 speaking answers (2 menit tiap satu) dan submit sebelum Minggu jam 23:59.
-      </div>
-      <div class="prog-bar"><div class="prog-fill" style="width:33%"></div></div>
-      <div style="display:flex;justify-content:space-between;margin-top:6px;">
-        <div style="font-size:11px;color:var(--muted)">1 dari 3 selesai</div>
-        <div style="font-size:11px;color:var(--yellow)">Sisa 4 hari</div>
-      </div>
+    {{-- ── LEFT COLUMN: Challenges & Feed ── --}}
+    <div>
+        {{-- Weekly Challenge --}}
+        <div class="section-label" style="margin-bottom:16px">🔥 Weekly Challenge</div>
+        <div class="card card-sm" style="margin-bottom:24px; border-color: rgba(245, 200, 66, 0.15);">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
+                <div>
+                    <div style="font-weight:700; font-size:15px; margin-bottom:4px;">🚀 Sprint Vocabulary Practice</div>
+                    <div style="font-size:12px; color:var(--muted)">Selesaikan 20 latihan vocab mingguan</div>
+                </div>
+                <div class="tag tag-yellow">+500 Clan Pts</div>
+            </div>
+            <div class="prog-bar"><div class="prog-fill" style="width:75%"></div></div>
+            <div style="display:flex; justify-content:space-between; margin-top:8px;">
+                <div style="font-size:11px; color:var(--muted)">15 dari 20 orang selesai</div>
+                <div style="font-size:11px; color:var(--yellow); font-weight:700">75% Complete</div>
+            </div>
+        </div>
+
+        {{-- Activity Feed --}}
+        <div class="section-label" style="margin-bottom:16px; display:flex; justify-content:space-between;">
+            <span>⚡ Clan Activity Feed</span>
+            <span style="font-size:10px; color:var(--muted); font-weight:normal">LIVE UPDATE</span>
+        </div>
+        <div class="feed-container" id="clanActivityFeed">
+            {{-- Rendered by JS --}}
+        </div>
     </div>
 
-    <div class="section-label" style="margin-bottom:14px">💬 Forum Diskusi</div>
-    <div class="card card-sm" style="margin-bottom:10px;">
-      <div style="display:flex;gap:10px;align-items:flex-start;">
-        <div class="lb-avatar" style="background:linear-gradient(135deg,#F5C842,#F5842A);color:var(--navy);font-size:11px;">DS</div>
-        <div>
-          <div style="font-size:13px;font-weight:600;">Dini Sari</div>
-          <div style="font-size:12px;color:var(--text-2);margin-top:2px;">"Ada yang sudah coba PEEL structure untuk Task 2? Hasilnya gimana?"</div>
-          <div style="font-size:10px;color:var(--muted);margin-top:6px;">2 jam lalu · 8 replies</div>
+    {{-- ── RIGHT COLUMN: Discussion & War ── --}}
+    <div>
+        {{-- Discussion Room --}}
+        <div class="section-label" style="margin-bottom:16px">💬 Discussion & Peer Support</div>
+        <div class="thread-list">
+            <div class="thread-card">
+                <div class="tc-meta">
+                    <div class="lb-avatar" style="background:var(--yellow); color:var(--navy); font-size:10px;">AR</div>
+                    <div style="font-size:12px; font-weight:600">Aryo Rahmat</div>
+                    <div style="font-size:10px; color:var(--muted)">• 2 jam lalu</div>
+                </div>
+                <div class="tc-title">Tips Skimming di Reading Task 2?</div>
+                <div class="tc-preview">Guys, ada yang punya trik cepat untuk nemuin keyword di teks panjang? Skimming saya masih berantakan...</div>
+                <div style="margin-top:10px; display:flex; gap:12px;">
+                    <span style="font-size:11px; color:var(--muted)">💬 12 Replies</span>
+                    <span style="font-size:11px; color:var(--muted)">👏 8 Helpful</span>
+                </div>
+            </div>
+
+            <div class="thread-card">
+                <div class="tc-meta">
+                    <div class="lb-avatar" style="background:var(--blue-acc); color:#fff; font-size:10px;">SR</div>
+                    <div style="font-size:12px; font-weight:600">Siti Rahma</div>
+                    <div style="font-size:10px; color:var(--muted)">• 5 jam lalu</div>
+                </div>
+                <div class="tc-title">Group Study: Writing Task 1</div>
+                <div class="tc-preview">Nanti malam jam 20:00 kita bahas cara deskripsiin chart bareng di Zoom yuk? Link saya taruh di pinned post.</div>
+                <div style="margin-top:10px; display:flex; gap:12px;">
+                    <span style="font-size:11px; color:var(--muted)">💬 24 Replies</span>
+                    <span style="font-size:11px; color:var(--muted)">👏 15 Joiners</span>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <div class="card card-sm" style="margin-bottom:10px;">
-      <div style="display:flex;gap:10px;align-items:flex-start;">
-        <div class="lb-avatar" style="background:linear-gradient(135deg,var(--blue-acc),#7BAEFF);color:#fff;font-size:11px;">BW</div>
-        <div>
-          <div style="font-size:13px;font-weight:600;">Bagas W.</div>
-          <div style="font-size:12px;color:var(--text-2);margin-top:2px;">"Checkpoint 1 besok — ada yang mau group study malam ini?"</div>
-          <div style="font-size:10px;color:var(--muted);margin-top:6px;">5 jam lalu · 14 replies</div>
+        <button class="btn-yellow" style="width:100%; margin-top:16px; padding:12px; font-size:13px; font-family:var(--font-body)">+ Buat Pertanyaan Baru</button>
+
+        {{-- Clan War Hook --}}
+        <div class="clan-war-banner">
+            <div class="cw-glow"></div>
+            <div style="position:relative; z-index:2">
+                <div class="cw-title">⚔️ Clan War: Season 4</div>
+                <div class="cw-desc">Clan kita saat ini berada di posisi <b>ke-3</b> se-regional. Satu langkah lagi menuju Diamond League!</div>
+            </div>
+            <button class="cw-btn" style="position:relative; z-index:2">LIHAT WAR</button>
         </div>
-      </div>
     </div>
-    <button class="btn-yellow" style="width:100%;font-family:var(--font-body);font-size:13px;padding:12px;">+ Buat Post Diskusi</button>
-  </div>
 </div>
+
 @endsection
 
 @section('scripts')
 <script>
 /* ============================================================
-   LEADERBOARD
-=========================================================== */
-const lbData=[
-  {rank:1,name:'Siti Rahma',pts:1240,pct:100,color:'#F5C842,#F5842A',initials:'SR'},
-  {rank:2,name:'Bima Kusuma',pts:1185,pct:96,color:'#4F7BFF,#7BAEFF',initials:'BK'},
-  {rank:3,name:'Laila Nur',pts:1102,pct:89,color:'#3DD68C,#7DFFC9',initials:'LN'},
-  {rank:4,name:'Reza Fauzi',pts:980,pct:79,color:'#FF8A4F,#FFB27A',initials:'RF'},
-  {rank:5,name:'Maya Putri',pts:860,pct:69,color:'#A78BFA,#C4B5FD',initials:'MP'},
-  {rank:6,name:'{{ Auth::user()->name ?? "Aryo Rahmat" }} ★',pts:745,pct:60,color:'#F5C842,#F5842A',initials:'{{ substr(Auth::user()->name ?? "S", 0, 1) }}',me:true},
-  {rank:7,name:'Dani Syahri',pts:680,pct:55,color:'#4F7BFF,#7BAEFF',initials:'DS'},
+   CLAN ACTIVITY FEED (Simulated Live Data)
+============================================================ */
+const ACTIVITIES = [
+    { type: 'achievement', icon: '🏆', ctx: '<b>Siti Rahma</b> baru saja menyelesaikan Unit 4 Grammar', time: '5 menit lalu' },
+    { type: 'progress',    icon: '📈', ctx: '<b>Budi</b> menyelesaikan Weekly Challenge Vocabulary', time: '12 menit lalu' },
+    { type: 'achievement', icon: '⭐', ctx: 'Clan kita baru saja mencapai <b>50% target bulanan</b>', time: '1 jam lalu' },
+    { type: 'progress',    icon: '📝', ctx: '<b>Rina</b> mengirimkan Writing Submission pertama', time: '2 jam lalu' },
+    { type: 'achievement', icon: '🔥', ctx: '<b>Aryo Rahmat</b> mencapai 7 hari streak belajar!', time: '3 jam lalu' },
+    { type: 'progress',    icon: '🎯', ctx: '<b>Maya</b> mengerjakan Mock Test dengan skor 7.5', time: '4 jam lalu' },
 ];
-function renderLB(){
-  const c=document.getElementById('leaderboard');
-  c.innerHTML='';
-  const rankClass=['','gold','silver','bronze'];
-  lbData.forEach(u=>{
-    const row=document.createElement('div');
-    row.className='lb-row'+(u.me?' me':'');
-    row.innerHTML=`
-      <div class="lb-rank ${rankClass[u.rank]||''}">${u.rank}</div>
-      <div class="lb-avatar" style="background:linear-gradient(135deg,${u.color});color:${u.rank<=3?'#0B1B3E':'#fff'}">${u.initials}</div>
-      <div class="lb-info">
-        <div class="lb-name">${u.name}</div>
-        <div class="lb-bar-wrap"><div class="lb-bar"><div class="lb-fill" style="width:${u.pct}%"></div></div></div>
-      </div>
-      <div class="lb-pts">${u.pts.toLocaleString()}</div>
-    `;
-    c.appendChild(row);
-  });
+
+function renderFeed() {
+    const container = document.getElementById('clanActivityFeed');
+    if (!container) return;
+    
+    container.innerHTML = '';
+    ACTIVITIES.forEach(act => {
+        const item = document.createElement('div');
+        item.className = `feed-item ${act.type}`;
+        item.innerHTML = `
+            <div class="feed-icon">${act.icon}</div>
+            <div class="feed-ctx">${act.ctx}</div>
+            <div class="feed-time">${act.time}</div>
+        `;
+        container.appendChild(item);
+    });
 }
-renderLB();
+
+// Simulated real-time update
+setInterval(() => {
+    // In real app, this would be a WebSocket event
+    // For prototype, let's just re-render or add a pulse
+    console.log("Updating clan activity feed...");
+}, 30000);
+
+document.addEventListener('DOMContentLoaded', () => {
+    renderFeed();
+});
 </script>
 @endsection
