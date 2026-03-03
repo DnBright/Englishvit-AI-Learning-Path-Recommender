@@ -56,6 +56,10 @@ document.addEventListener('DOMContentLoaded', function () {
         timeline: ''
     };
 
+    // --- INTERACTIVE CALENDAR STATE ---
+    let customSchedule = {}; // Key: "m-w-d", Value: [activityType, ...]
+
+
     // --- DOM ELEMENTS ---
     const landingPage = document.getElementById('aiLandingPage');
     const assessmentContainer = document.getElementById('aiAssessmentContainer');
@@ -106,14 +110,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Update Indicator Text
         const stepTitles = [
-            "Goal Selection",
-            "Current Level",
-            "Weakness Area",
-            "Time Commitment",
-            "Budget Range",
-            "Target Timeline"
+            "Pemilihan Tujuan",
+            "Level Saat Ini",
+            "Area Kesulitan",
+            "Komitmen Waktu",
+            "Rentang Anggaran",
+            "Target Waktu"
         ];
-        stepIndicator.textContent = `Step ${currentStep}: ${stepTitles[currentStep - 1]}`;
+        stepIndicator.textContent = `Langkah ${currentStep}: ${stepTitles[currentStep - 1]}`;
 
         // Navigation Buttons
         document.getElementById('aiPrevBtn').classList.toggle('d-none', currentStep === 1);
@@ -149,7 +153,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (ieltsSlider) {
         ieltsSlider.addEventListener('input', function () {
-            ieltsValue.textContent = `Goal Score: ${this.value}`;
+            ieltsValue.textContent = `Target Skor: ${this.value}`;
             formData.ielts_goal = parseFloat(this.value);
         });
     }
@@ -161,11 +165,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const details = document.getElementById('processingDetails');
         const stages = [
-            "Calculating Goal Weight (30%)...",
-            "Evaluating Level Gap (25%)...",
-            "Mapping Weakness Bundle (20%)...",
-            "Checking Budget Constraints (10%)...",
-            "Finalizing Roadmap Strategy..."
+            "Menghitung Bobot Tujuan (30%)...",
+            "Mengevaluasi Kesenjangan Level (25%)...",
+            "Memetakan Bundel Kesulitan (20%)...",
+            "Memeriksa Batasan Anggaran (10%)...",
+            "Menyelesaikan Strategi Roadmap..."
         ];
 
         let i = 0;
@@ -205,9 +209,10 @@ document.addEventListener('DOMContentLoaded', function () {
         resultSection.classList.remove('d-none');
 
         // Populate Summary
-        const goalTexts = { academic: 'IELTS/TOEFL Prep', career: 'Career Growth', conversation: 'Daily Conversation', study_abroad: 'Study Abroad' };
+        const goalTexts = { academic: 'Persiapan IELTS/TOEFL', career: 'Pertumbuhan Karir', conversation: 'Percakapan Harian', study_abroad: 'Studi ke Luar Negeri' };
+        const levelTexts = { beginner: 'Pemula', intermediate: 'Menengah', advanced: 'Lanjutan' };
         document.getElementById('roadmapProfileSummary').textContent =
-            `You are a ${formData.level || 'learner'} aiming for ${goalTexts[formData.goal_category] || 'success'} in ${formData.timeline || 3} months.`;
+            `Anda adalah seorang ${levelTexts[formData.level] || 'pelajar'} yang menargetkan ${goalTexts[formData.goal_category] || 'kesuksesan'} dalam ${formData.timeline || 3} bulan.`;
 
         // The Logic Engine Calculation
         let recommendations = atomicItems.map(item => {
@@ -240,18 +245,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
         scheduleHTML += `
             <div class="m-b-20">
-                <h5 class="fw-800 m-b-5">📅 Monthly Roadmap Calendar (${totalMonths} Months)</h5>
-                <p class="f-13 fc-black-5">Jadwal di bawah ini merepresentasikan rencana belajar bulanan Anda selama ${totalMonths} Bulan ke depan.</p>
+                <h5 class="fw-800 m-b-5">📅 Kalender Roadmap Bulanan (${totalMonths} Bulan)</h5>
+                <p class="f-13 fc-black-5">Jadwal di bawah ini merepresentasikan rencana belajar bulanan Anda selama ${totalMonths} Bulan ke depan. <strong>Klik pada kotak hari untuk kustomisasi jadwal!</strong></p>
             </div>
         `;
 
-        const dayLabels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+        const dayLabels = ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'];
 
         for (let m = 1; m <= totalMonths; m++) {
             scheduleHTML += `
                 <div class="ai-calendar-container m-b-40">
                     <div class="bg-purple-1 p-3 border-bottom-light text-center" style="background-color:#F5F3FF;">
-                        <span class="f-14 fw-800 fc-purple-7">Learning Month ${m}</span>
+                        <span class="f-14 fw-800 fc-purple-7">Bulan Belajar ${m}</span>
                     </div>
                     <table class="ai-calendar-table">
                         <thead>
@@ -265,24 +270,33 @@ document.addEventListener('DOMContentLoaded', function () {
             for (let w = 0; w < 4; w++) {
                 scheduleHTML += '<tr>';
                 for (let d = 0; d < 7; d++) {
-                    const currentWeekNum = ((m - 1) * 4) + w + 1;
+                    const dayKey = `${m}-${w}-${d}`;
                     let dayContent = '';
 
-                    cartItems.forEach(item => {
-                        if (item.category === 'live') {
-                            if (d === 1 || d === 3) dayContent += `<div class="calendar-slot-available live" title="${item.name}">${item.icon} Live</div>`;
-                        } else if (item.category === 'private') {
-                            if (d === 5) dayContent += `<div class="calendar-slot-available private" title="${item.name}">${item.icon} Private</div>`;
-                        } else if (item.category === 'module') {
-                            if (d === 0 || d === 2 || d === 4) dayContent += `<div class="calendar-slot-available module" title="${item.name}">${item.icon} Focus</div>`;
-                        } else if (item.category === 'test') {
-                            if (w === 0 && d === 6) dayContent += `<div class="calendar-slot-available test" title="${item.name}">${item.icon} Test</div>`;
-                        }
-                    });
+                    // Use custom schedule if exists, otherwise fallback to AI logic
+                    if (customSchedule[dayKey]) {
+                        customSchedule[dayKey].forEach(type => {
+                            const icon = type === 'live' ? '🏫' : (type === 'private' ? '👤' : (type === 'module' ? '📽️' : '📜'));
+                            const label = type === 'live' ? 'Live' : (type === 'private' ? 'Private' : (type === 'module' ? 'Focus' : 'Test'));
+                            dayContent += `<div class="calendar-slot-available ${type}" onclick="event.stopPropagation(); toggleActivity('${dayKey}', '${type}')">${icon} ${label}</div>`;
+                        });
+                    } else {
+                        cartItems.forEach(item => {
+                            if (item.category === 'live') {
+                                if (d === 1 || d === 3) dayContent += `<div class="calendar-slot-available live" title="${item.name}" onclick="event.stopPropagation(); toggleActivity('${dayKey}', 'live')">${item.icon} Live</div>`;
+                            } else if (item.category === 'private') {
+                                if (d === 5) dayContent += `<div class="calendar-slot-available private" title="${item.name}" onclick="event.stopPropagation(); toggleActivity('${dayKey}', 'private')">${item.icon} Private</div>`;
+                            } else if (item.category === 'module') {
+                                if (d === 0 || d === 2 || d === 4) dayContent += `<div class="calendar-slot-available module" title="${item.name}" onclick="event.stopPropagation(); toggleActivity('${dayKey}', 'module')">${item.icon} Focus</div>`;
+                            } else if (item.category === 'test') {
+                                if (w === 0 && d === 6) dayContent += `<div class="calendar-slot-available test" title="${item.name}" onclick="event.stopPropagation(); toggleActivity('${dayKey}', 'test')">${item.icon} Test</div>`;
+                            }
+                        });
+                    }
 
                     scheduleHTML += `
-                        <td class="day-cell">
-                            <span class="day-num">Week ${w + 1}</span>
+                        <td class="day-cell" onclick="openDayEditor('${dayKey}')">
+                            <span class="day-num">Mg ${w + 1}</span>
                             <div class="day-activities">${dayContent}</div>
                         </td>
                     `;
@@ -295,16 +309,16 @@ document.addEventListener('DOMContentLoaded', function () {
                     </table>
                     <div class="calendar-legend">
                         <div class="legend-item"><div class="legend-dot live"></div> Live Class</div>
-                        <div class="legend-item"><div class="legend-dot private"></div> Private</div>
-                        <div class="legend-item"><div class="legend-dot module"></div> Module</div>
-                        <div class="legend-item"><div class="legend-dot test"></div> Test</div>
+                        <div class="legend-item"><div class="legend-dot private"></div> Privat</div>
+                        <div class="legend-item"><div class="legend-dot module"></div> Modul</div>
+                        <div class="legend-item"><div class="legend-dot test"></div> Tes</div>
                     </div>
                 </div>
             `;
         }
 
         // Section: Detailed Explanation
-        scheduleHTML += `<div class="m-t-40"><h5 class="fw-800 m-b-20 fc-purple-7">📚 Detail Instruksi & Panduan Rutinitas (${months} Bulan Ke Depan)</h5>`;
+        scheduleHTML += `<div class="m-t-40"><h5 class="fw-800 m-b-20 fc-purple-7">📚 Detail Instruksi & Panduan Rutinitas (${totalMonths} Bulan Ke Depan)</h5>`;
 
         cartItems.forEach(item => {
             let details = '';
@@ -660,4 +674,37 @@ document.addEventListener('DOMContentLoaded', function () {
         resultSection.scrollIntoView({ behavior: 'smooth' });
     }
 
+    // --- INTERACTIVE CALENDAR HANDLERS ---
+    window.toggleActivity = function (dayKey, type) {
+        if (!customSchedule[dayKey]) {
+            customSchedule[dayKey] = [];
+        }
+
+        const index = customSchedule[dayKey].indexOf(type);
+        if (index > -1) {
+            customSchedule[dayKey].splice(index, 1);
+        } else {
+            customSchedule[dayKey].push(type);
+        }
+
+        refreshCalendar();
+    };
+
+    window.openDayEditor = function (dayKey) {
+        if (!customSchedule[dayKey] || customSchedule[dayKey].length === 0) {
+            customSchedule[dayKey] = ['module'];
+        } else if (customSchedule[dayKey].includes('module') && !customSchedule[dayKey].includes('live')) {
+            customSchedule[dayKey].push('live');
+        } else if (customSchedule[dayKey].includes('live')) {
+            customSchedule[dayKey] = [];
+        }
+        refreshCalendar();
+    };
+
+    function refreshCalendar() {
+        const list = document.getElementById('aiRoadmapTimeline');
+        if (list) {
+            list.innerHTML = generateDetailedSchedule(userCart, formData.timeline);
+        }
+    }
 });

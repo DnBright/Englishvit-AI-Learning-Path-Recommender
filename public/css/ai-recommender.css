@@ -290,14 +290,12 @@
 .day-cell {
     padding: 8px !important;
     min-height: 100px;
+    transition: background 0.2s ease;
+    cursor: pointer;
 }
 
-.day-num {
-    display: block;
-    font-size: 10px;
-    font-weight: 700;
-    color: var(--ai-text-muted);
-    margin-bottom: 5px;
+.day-cell:hover {
+    background-color: rgba(79, 70, 229, 0.05);
 }
 
 .day-activities {

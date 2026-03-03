@@ -446,41 +446,41 @@
                     <span class="badge bg-purple-1 fc-purple-7 px-3 py-2 mb-3">
                         <i class="material-icons f-14 v-middle m-r-5">auto_awesome</i> AI-Powered Personalized Learning
                     </span>
-                    <h1 class="fw-800 fc-black-8 m-b-15">Build Your Personal Study Roadmap</h1>
-                    <p class="f-h6 fc-black-5 m-b-30">Tell us your goal, we'll design the fastest path. AI-driven recommendations based on 10,000+ successful student patterns.</p>
+                    <h1 class="fw-800 fc-black-8 m-b-15">Bangun Rencana Belajarmu Sendiri</h1>
+                    <p class="f-h6 fc-black-5 m-b-30">Beri tahu kami tujuanmu, dan kami akan merancang jalur tercepat. Rekomendasi berbasis AI berdasarkan pola 10.000+ siswa yang berhasil.</p>
                 </div>
                 
                 <div class="row m-b-40">
                     <div class="col-md-4">
                         <div class="ai-feature-card">
                             <i class="material-icons fc-info-7 m-b-10">fact_check</i>
-                            <p class="f-14 fw-700 m-b-5">Precision Roadmap</p>
-                            <p class="f-11 fc-black-4">Tailored to your current level and targets.</p>
+                            <p class="f-14 fw-700 m-b-5">Roadmap Presisi</p>
+                            <p class="f-11 fc-black-4">Disesuaikan dengan level dan target Anda saat ini.</p>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="ai-feature-card">
                             <i class="material-icons fc-purple-7 m-b-10">smart_toy</i>
-                            <p class="f-14 fw-700 m-b-5">AI Mentor</p>
-                            <p class="f-11 fc-black-4">Get 24/7 strategic advice on your path.</p>
+                            <p class="f-14 fw-700 m-b-5">Mentor AI</p>
+                            <p class="f-11 fc-black-4">Dapatkan saran strategis 24/7 untuk jalur belajar Anda.</p>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="ai-feature-card">
                             <i class="material-icons fc-warning-7 m-b-10">shopping_basket</i>
-                            <p class="f-14 fw-700 m-b-5">Modular Pricing</p>
-                            <p class="f-11 fc-black-4">Buy only what you need. No more rigid packages.</p>
+                            <p class="f-14 fw-700 m-b-5">Harga Modular</p>
+                            <p class="f-11 fc-black-4">Beli hanya yang Anda butuhkan. Tidak ada lagi paket kaku.</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="d-flex flex-column gap-15 align-center">
                     <button class="ai-btn-generate hover:scale-105" onclick="startAssessment()">
-                        Start Assessment <i class="material-icons f-inherit m-l-5">rocket_launch</i>
+                        Mulai Asesmen <i class="material-icons f-inherit m-l-5">rocket_launch</i>
                     </button>
                     <div class="d-flex align-center gap-20 f-13 fc-black-4">
-                        <span><i class="material-icons f-16 v-middle m-r-5">timer</i> Est. 5-7 min</span>
-                        <span><i class="material-icons f-16 v-middle m-r-5">group</i> 5k+ Roadmaps created</span>
+                        <span><i class="material-icons f-16 v-middle m-r-5">timer</i> Est. 5-7 menit</span>
+                        <span><i class="material-icons f-16 v-middle m-r-5">group</i> 5rb+ Roadmap telah dibuat</span>
                     </div>
                 </div>
             </div>
@@ -492,65 +492,65 @@
                         <div id="aiAssessmentProgress" class="ai-progress-fill" style="width: 16.6%"></div>
                     </div>
                     <div class="d-flex-center-btw mt-3">
-                        <span class="f-12 fw-700 fc-black-6" id="aiStepIndicator">Step 1: Goal Selection</span>
-                        <span class="f-12 fc-black-4" id="aiStepPercent">15% Complete</span>
+                        <span class="f-12 fw-700 fc-black-6" id="aiStepIndicator">Langkah 1: Pemilihan Tujuan</span>
+                        <span class="f-12 fc-black-4" id="aiStepPercent">15% Selesai</span>
                     </div>
                 </div>
 
                 <!-- Step 1: Goal Selection -->
                 <div id="aiStep1" class="ai-step-view">
-                    <h4 class="fw-800 m-b-10 text-left">Why are you learning English?</h4>
-                    <p class="fc-black-4 m-b-30 text-left">This will help our AI determine your study focus and intensity.</p>
+                    <h4 class="fw-800 m-b-10 text-left">Kenapa Anda belajar Bahasa Inggris?</h4>
+                    <p class="fc-black-4 m-b-30 text-left">Ini akan membantu AI kami menentukan fokus dan intensitas studi Anda.</p>
                     <div class="ai-select-grid">
                         <div class="ai-select-box" data-group="goal_category" data-val="academic">
                             <span class="icon">🎓</span>
-                            <div class="f-body2 fw-700">Academic</div>
-                            <div class="f-10 fc-black-5">IELTS / TOEFL Prep</div>
+                            <div class="f-body2 fw-700">Akademik</div>
+                            <div class="f-10 fc-black-5">Persiapan IELTS / TOEFL</div>
                         </div>
                         <div class="ai-select-box" data-group="goal_category" data-val="career">
                             <span class="icon">💼</span>
-                            <div class="f-body2 fw-700">Career Growth</div>
-                            <div class="f-10 fc-black-5">Promotion & CV</div>
+                            <div class="f-body2 fw-700">Karir</div>
+                            <div class="f-10 fc-black-5">Promosi & CV</div>
                         </div>
                         <div class="ai-select-box" data-group="goal_category" data-val="conversation">
                             <span class="icon">🗣️</span>
-                            <div class="f-body2 fw-700">Conversation</div>
-                            <div class="f-10 fc-black-5">Daily Confidence</div>
+                            <div class="f-body2 fw-700">Percakapan</div>
+                            <div class="f-10 fc-black-5">Kepercayaan Diri Harian</div>
                         </div>
                         <div class="ai-select-box" data-group="goal_category" data-val="study_abroad">
                             <span class="icon">✈️</span>
-                            <div class="f-body2 fw-700">Study Abroad</div>
-                            <div class="f-10 fc-black-5">Exchange Programs</div>
+                            <div class="f-body2 fw-700">Studi ke Luar Negeri</div>
+                            <div class="f-10 fc-black-5">Program Pertukaran</div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Step 2: Current Level -->
                 <div id="aiStep2" class="ai-step-view d-none">
-                    <h4 class="fw-800 m-b-10 text-left">What is your current level?</h4>
-                    <p class="fc-black-4 m-b-30 text-left">Be honest! We'll adjust the difficulty of your roadmap.</p>
+                    <h4 class="fw-800 m-b-10 text-left">Apa level Anda saat ini?</h4>
+                    <p class="fc-black-4 m-b-30 text-left">Jujurlah! Kami akan menyesuaikan kesulitan roadmap Anda.</p>
                     <div class="ai-select-grid">
                         <div class="ai-select-box" data-group="level" data-val="beginner">
                             <span class="icon">🌱</span>
-                            <div class="f-body2 fw-700">Beginner</div>
+                            <div class="f-body2 fw-700">Pemula</div>
                             <div class="f-10 fc-black-5">A1/A2</div>
                         </div>
                         <div class="ai-select-box" data-group="level" data-val="intermediate">
                             <span class="icon">🌿</span>
-                            <div class="f-body2 fw-700">Intermediate</div>
+                            <div class="f-body2 fw-700">Menengah</div>
                             <div class="f-10 fc-black-5">B1/B2</div>
                         </div>
                         <div class="ai-select-box" data-group="level" data-val="advanced">
                             <span class="icon">🌲</span>
-                            <div class="f-body2 fw-700">Advanced</div>
+                            <div class="f-body2 fw-700">Lanjutan</div>
                             <div class="f-10 fc-black-5">C1/C2</div>
                         </div>
                     </div>
                     <!-- IELTS Slider (conditionally shown in Stepper or here) -->
                     <div id="ieltsGoalContainer" class="m-t-30 text-left d-none">
                         <div class="d-flex-center-btw mb-2">
-                            <label class="ai-label mb-0 f-14 fw-700">Target IELTS Score:</label>
-                            <span class="badge bg-warning-1 fc-warning-7 fw-600" id="ieltsScoreValue">Goal Score: 7.0</span>
+                            <label class="ai-label mb-0 f-14 fw-700">Target Skor IELTS:</label>
+                            <span class="badge bg-warning-1 fc-warning-7 fw-600" id="ieltsScoreValue">Target Skor: 7.0</span>
                         </div>
                         <div class="ai-slider-container">
                             <input type="range" min="3.0" max="9.0" step="0.5" value="7.0" class="ai-slider" id="ieltsSlider">
@@ -560,60 +560,60 @@
 
                 <!-- Step 3: Weakness Area -->
                 <div id="aiStep3" class="ai-step-view d-none">
-                    <h4 class="fw-800 m-b-10 text-left">Where do you struggle most?</h4>
-                    <p class="fc-black-4 m-b-30 text-left">Select areas that need the most improvement.</p>
+                    <h4 class="fw-800 m-b-10 text-left">Di mana kesulitan terbesar Anda?</h4>
+                    <p class="fc-black-4 m-b-30 text-left">Pilih area yang paling membutuhkan peningkatan.</p>
                     <div class="ai-select-grid">
                         <div class="ai-select-box" data-group="weaknesses" data-multi="true" data-val="speaking">
                             <span class="icon-sm">🎤</span>
-                            <div class="f-12 fw-600">Speaking</div>
+                            <div class="f-12 fw-600">Berbicara</div>
                         </div>
                         <div class="ai-select-box" data-group="weaknesses" data-multi="true" data-val="writing">
                             <span class="icon-sm">📝</span>
-                            <div class="f-12 fw-600">Writing</div>
+                            <div class="f-12 fw-600">Menulis</div>
                         </div>
                         <div class="ai-select-box" data-group="weaknesses" data-multi="true" data-val="listening">
                             <span class="icon-sm">🎧</span>
-                            <div class="f-12 fw-600">Listening</div>
+                            <div class="f-12 fw-600">Mendengar</div>
                         </div>
                         <div class="ai-select-box" data-group="weaknesses" data-multi="true" data-val="grammar">
                             <span class="icon-sm">📚</span>
-                            <div class="f-12 fw-600">Grammar</div>
+                            <div class="f-12 fw-600">Tata Bahasa</div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Step 4: Time Commitment -->
                 <div id="aiStep4" class="ai-step-view d-none">
-                    <h4 class="fw-800 m-b-10 text-left">Your weekly commitment?</h4>
-                    <p class="fc-black-4 m-b-30 text-left">Hours per week you can dedicate to study.</p>
+                    <h4 class="fw-800 m-b-10 text-left">Komitmen waktu mingguan Anda?</h4>
+                    <p class="fc-black-4 m-b-30 text-left">Sediakan waktu per minggu yang dapat didekasikan untuk belajar.</p>
                     <div class="ai-select-grid">
                         <div class="ai-select-box" data-group="time_commit" data-val="low">
                             <span class="icon">☕</span>
-                            <div class="f-body2 fw-700">&lt; 2 Hours</div>
-                            <div class="f-10 fc-black-5">Casual Learner</div>
+                            <div class="f-body2 fw-700">&lt; 2 Jam</div>
+                            <div class="f-10 fc-black-5">Belajar Santai</div>
                         </div>
                         <div class="ai-select-box" data-group="time_commit" data-val="mid">
                             <span class="icon">⏳</span>
-                            <div class="f-body2 fw-700">3-5 Hours</div>
-                            <div class="f-10 fc-black-5">Steady Progress</div>
+                            <div class="f-body2 fw-700">3-5 Jam</div>
+                            <div class="f-10 fc-black-5">Progres Stabil</div>
                         </div>
                         <div class="ai-select-box" data-group="time_commit" data-val="high">
                             <span class="icon">🏃</span>
-                            <div class="f-body2 fw-700">6-10 Hours</div>
-                            <div class="f-10 fc-black-5">Aggressive Goal</div>
+                            <div class="f-body2 fw-700">6-10 Jam</div>
+                            <div class="f-10 fc-black-5">Target Agresif</div>
                         </div>
                         <div class="ai-select-box" data-group="time_commit" data-val="professional">
                             <span class="icon">🔥</span>
-                            <div class="f-body2 fw-700">10+ Hours</div>
-                            <div class="f-10 fc-black-5">Total Immersion</div>
+                            <div class="f-body2 fw-700">10+ Jam</div>
+                            <div class="f-10 fc-black-5">Imersi Total</div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Step 5: Budget Range -->
                 <div id="aiStep5" class="ai-step-view d-none">
-                    <h4 class="fw-800 m-b-10 text-left">What is your budget?</h4>
-                    <p class="fc-black-4 m-b-30 text-left">This ensures our recommendation is realistic for you.</p>
+                    <h4 class="fw-800 m-b-10 text-left">Berapa anggaran Anda?</h4>
+                    <p class="fc-black-4 m-b-30 text-left">Ini memastikan rekomendasi kami realistis untuk Anda.</p>
                     <div class="ai-select-grid">
                         <div class="ai-select-box" data-group="budget" data-val="hemat">
                             <span class="icon">🥉</span>
@@ -636,34 +636,34 @@
 
                 <!-- Step 6: Target Timeline -->
                 <div id="aiStep6" class="ai-step-view d-none">
-                    <h4 class="fw-800 m-b-10 text-left">When is your deadline?</h4>
+                    <h4 class="fw-800 m-b-10 text-left">Kapan tenggat waktu Anda?</h4>
                     <p class="fc-black-4 m-b-30 text-left">Kapan Anda ingin mencapai target ini?</p>
                     <div class="ai-time-grid">
                         <div class="ai-time-box" data-group="timeline" data-val="1">
                             <div class="icon-sm">📅</div>
-                            <div class="f-12 fw-600">1 Month</div>
+                            <div class="f-12 fw-600">1 Bulan</div>
                         </div>
                         <div class="ai-time-box" data-group="timeline" data-val="3">
                             <div class="icon-sm">📅</div>
-                            <div class="f-12 fw-600">3 Months</div>
+                            <div class="f-12 fw-600">3 Bulan</div>
                         </div>
                         <div class="ai-time-box" data-group="timeline" data-val="6">
                             <div class="icon-sm">📅</div>
-                            <div class="f-12 fw-600">6 Months</div>
+                            <div class="f-12 fw-600">6 Bulan</div>
                         </div>
                         <div class="ai-time-box" data-group="timeline" data-val="12">
                             <div class="icon-sm">📅</div>
-                            <div class="f-12 fw-600">1 Year</div>
+                            <div class="f-12 fw-600">1 Tahun</div>
                         </div>
                     </div>
                 </div>
 
                 <div class="ai-form-nav d-flex gap-15 m-t-40 justify-center">
                     <button id="aiPrevBtn" class="btn bg-white fc-black-4 d-none" style="border:1px solid #ddd" onclick="assessmentPrev()">
-                        <i class="material-icons v-middle m-r-5">west</i> Previous
+                        <i class="material-icons v-middle m-r-5">west</i> Sebelumnya
                     </button>
                     <button id="aiNextBtn" class="ai-btn-generate" onclick="assessmentNext()">
-                        Next Step <i class="material-icons v-middle m-l-5">east</i>
+                        Lanjut <i class="material-icons v-middle m-l-5">east</i>
                     </button>
                     <button id="aiFinishBtn" class="ai-btn-generate d-none" onclick="startAIAnalysis()">
                         Generate Roadmap <i class="material-icons v-middle m-l-5">auto_awesome</i>
@@ -674,18 +674,18 @@
             <!-- STAGE 2: Processing Screen -->
             <div id="aiProcessingOverlay" class="ai-processing-overlay d-none">
                 <div class="ai-loader mb-4"></div>
-                <h4 class="fw-bold" id="processingText">Analyzing your goal...</h4>
-                <p class="ai-text-muted mt-2">Allocating optimal learning resources for your budget...</p>
+                <h4 class="fw-bold" id="processingText">Menganalisis tujuan Anda...</h4>
+                <p class="ai-text-muted mt-2">Mengalokasikan sumber daya pembelajaran yang optimal untuk anggaran Anda...</p>
                 <div class="ai-processing-details m-t-30 f-12 fc-black-4" id="processingDetails">
-                    Checking IELTS modules similarity...
+                    Memeriksa kemiripan modul IELTS...
                 </div>
             </div>
 
             <!-- STAGE 3: Result Page - Personalized Roadmap -->
             <div id="aiResultSection" class="d-none">
                 <div class="ai-result-header">
-                    <h2 class="fw-bold">🎯 Your Personalized Roadmap</h2>
-                    <p class="f-h6 fc-info-7" id="roadmapProfileSummary">Summary will go here</p>
+                    <h2 class="fw-bold">🎯 Roadmap Belajar Personal Anda</h2>
+                    <p class="f-h6 fc-info-7" id="roadmapProfileSummary">Ringkasan akan muncul di sini</p>
                 </div>
 
                 <div class="row">
@@ -701,19 +701,19 @@
                         <div class="ai-budget-anchor p-4 m-b-40">
                             <div class="row align-center">
                                 <div class="col-md-7">
-                                    <h5 class="fw-800 m-b-5">Total Academic Investment</h5>
-                                    <p class="f-13 fc-black-5">All modules bundled for your success.</p>
+                                    <h5 class="fw-800 m-b-5">Total Investasi Akademik</h5>
+                                    <p class="f-13 fc-black-5">Semua modul dibundel untuk kesuksesan Anda.</p>
                                 </div>
                                 <div class="col-md-5 text-right">
                                     <h3 class="fw-800 fc-black-8 m-b-0" id="resultTotalPrice">Rp 1.250.000</h3>
-                                    <p class="f-12 fc-success-7 fw-700">Save Rp <span id="resultSavings">200.000</span> if bundled</p>
+                                    <p class="f-12 fc-success-7 fw-700">Hemat Rp <span id="resultSavings">200.000</span> jika dibundel</p>
                                 </div>
                             </div>
                         </div>
 
                         <div class="d-flex gap-15 justify-center">
-                            <button class="ai-btn-generate px-5" onclick="purchasePlan()">Start My Plan <i class="material-icons v-middle m-l-5">shopping_cart</i></button>
-                            <button class="btn bg-white fc-info-7 px-4" style="border:1px solid var(--info-7)" onclick="switchToCustomizer()">Customize Plan</button>
+                            <button class="ai-btn-generate px-5" onclick="purchasePlan()">Mulai Paket Saya <i class="material-icons v-middle m-l-5">shopping_cart</i></button>
+                            <button class="btn bg-white fc-info-7 px-4" style="border:1px solid var(--info-7)" onclick="switchToCustomizer()">Kustomisasi Paket</button>
                         </div>
                     </div>
                 </div>
@@ -722,8 +722,8 @@
             <!-- STAGE 4: AI Customizer Section (Plan Detail Page) -->
             <div id="aiCustomizerSection" class="d-none">
                 <div class="ai-result-header">
-                    <h2 class="fw-bold">🛠️ Refine Your Journey</h2>
-                    <p class="f-h6 fc-info-7">Add or remove modules. AI will guide your academic strength.</p>
+                    <h2 class="fw-bold">🛠️ Sempurnakan Perjalanan Anda</h2>
+                    <p class="f-h6 fc-info-7">Tambah atau hapus modul. AI akan memandu kekuatan akademik Anda.</p>
                 </div>
 
                 <div class="row">
@@ -737,7 +737,7 @@
                             <!-- Path Strength Meter (NEW) -->
                             <div class="ai-strength-container m-b-20" id="aiStrengthContainer">
                                 <div class="ai-strength-label">
-                                    <span class="fc-black-6">Path Strength (Goal Alignment)</span>
+                                    <span class="fc-black-6">Kekuatan Jalur (Kesesuaian Target)</span>
                                     <span id="aiStrengthPercent" class="fc-info-7">0%</span>
                                 </div>
                                 <div class="ai-strength-bar-bg">
@@ -745,18 +745,18 @@
                                 </div>
                                 <!-- Budget Alignment Badge (NEW) -->
                                 <div class="m-t-10 d-flex-center-btw">
-                                    <span class="f-10 fc-black-4 text-uppercase fw-bold">Budget Context:</span>
-                                    <span id="aiBudgetAlignment" class="badge bg-info-1 fc-info-7 f-10">Matching Initial Plan</span>
+                                    <span class="f-10 fc-black-4 text-uppercase fw-bold">Konteks Anggaran:</span>
+                                    <span id="aiBudgetAlignment" class="badge bg-info-1 fc-info-7 f-10">Sesuai Rencana Awal</span>
                                 </div>
                             </div>
 
-                            <h5 class="fw-bold mb-4">Selected Modules (Ketengan)</h5>
+                            <h5 class="fw-bold mb-4">Modul Terpilih (Ketengan)</h5>
                             <div id="aiEceranList">
                                 <!-- Will be populated by JS -->
                             </div>
                             
                             <div class="m-t-30">
-                                <h6 class="fw-bold fc-black-5">Available Add-ons:</h6>
+                                <h6 class="fw-bold fc-black-5">Add-on Tersedia:</h6>
                                 <div id="aiAvailableAddons" class="m-t-15">
                                     <!-- Will be populated by JS -->
                                 </div>
@@ -764,8 +764,8 @@
                         </div>
 
                         <div class="d-flex gap-15 justify-center m-t-40">
-                            <button class="ai-btn-generate px-4" onclick="showFinalRoadmap()">Finalize & View Roadmap</button>
-                            <button class="btn bg-white fc-info-7" style="border:1px solid var(--info-7)" onclick="resetAIForm()">Back to Landing</button>
+                            <button class="ai-btn-generate px-4" onclick="showFinalRoadmap()">Selesaikan & Lihat Roadmap</button>
+                            <button class="btn bg-white fc-info-7" style="border:1px solid var(--info-7)" onclick="resetAIForm()">Kembali ke Awal</button>
                         </div>
                     </div>
                 </div>
