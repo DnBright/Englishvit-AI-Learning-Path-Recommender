@@ -239,7 +239,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const savings = Math.round(totalPrice * 0.15); // Simulated 15% discount for bundle
 
         // Force Presentation Price to 2jt Regardless of Input
-        let displayPrice = 2000000;
+        let displayPrice = 1544900;
         let displaySavings = 0;
 
         const resTotalEl = document.getElementById('resultTotalPrice');
@@ -266,8 +266,7 @@ document.addEventListener('DOMContentLoaded', function () {
             { label: "Reading Practice", cls: "cev-g", icon: "auto_stories", category: "module" }
         ],
         "1-3-6": [
-            { label: "Mini Simulation", cls: "cev-y", icon: "flag", category: "test" },
-            { label: "Review", cls: "cev-g", icon: "auto_stories", category: "module" }
+            { label: "Review & Drill", cls: "cev-g", icon: "auto_stories", category: "module" }
         ],
 
         // MONTH 2 (MEI)
@@ -276,7 +275,6 @@ document.addEventListener('DOMContentLoaded', function () {
         "2-2-2": [{ label: "Live Class 6", cls: "cev-b", icon: "menu_book", category: "live" }],
         "2-1-6": [{ label: "Private Session 2", cls: "cev-o", icon: "record_voice_over", category: "private" }],
         "2-3-4": [
-            { label: "FLOW Boost Test 2", cls: "cev-y", icon: "flag", category: "test" },
             { label: "Score Analysis", cls: "cev-g", icon: "auto_stories", category: "module" }
         ],
 
@@ -285,7 +283,7 @@ document.addEventListener('DOMContentLoaded', function () {
         "3-1-2": [{ label: "Live Class 8", cls: "cev-b", icon: "menu_book", category: "live" }],
         "3-2-4": [{ label: "Live Class 9", cls: "cev-b", icon: "menu_book", category: "live" }],
         "3-0-6": [{ label: "Private Session 3", cls: "cev-o", icon: "record_voice_over", category: "private" }],
-        "3-3-2": [{ label: "Simulation Final", cls: "cev-y", icon: "flag", category: "test" }],
+        "3-3-2": [{ label: "FLOW Boost Test 2", cls: "cev-y", icon: "flag", category: "test" }],
         "3-3-4": [{ label: "Score Projection", cls: "cev-g", icon: "auto_stories", category: "module" }]
     };
 
@@ -311,12 +309,12 @@ document.addEventListener('DOMContentLoaded', function () {
                         <span class="lbl">👤 Private Session</span>
                     </div>
                     <div class="ai-quota-item">
-                        <span class="val">5x</span>
-                        <span class="lbl">📜 Full Test</span>
+                        <span class="val">2x</span>
+                        <span class="lbl">📜 FLOW Test</span>
                     </div>
                     <div class="ai-quota-item">
-                        <span class="val">12x</span>
-                        <span class="lbl">📽️ Drill & Review</span>
+                        <span class="val">14x</span>
+                        <span class="lbl">📽️ VOD Modules</span>
                     </div>
                 </div>
             </div>
@@ -799,7 +797,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const savings = Math.round(totalPrice * 0.15);
 
         // Force Presentation Price to 2jt Regardless of Input
-        let displayPrice = 2000000;
+        let displayPrice = 1544900;
         let displaySavings = 0;
 
         const resTotalEl = document.getElementById('resultTotalPrice');

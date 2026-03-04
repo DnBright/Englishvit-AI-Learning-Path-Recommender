@@ -532,10 +532,10 @@ const MAP_NODES_SEC1 = [
     stars:3, xp:50
   },
   {
-    id:2, type:'done', icon:'🎧', label:'Listening\nBasics',
-    title:'Unit 2: Listening Basics',
+    id:2, type:'done', icon:'🎧', label:'Listening\nMastery',
+    title:'Unit 2: Listening Mastery (VOD)',
     subtitle:'Status: Selesai ✅',
-    desc:'Strategi mendengarkan percakapan pendek di Part A TOEFL.',
+    desc:'7 video modul strategi mendengarkan percakapan pendek TOEFL.',
     stars:2, xp:50
   },
   {
@@ -546,20 +546,20 @@ const MAP_NODES_SEC1 = [
     stars:0, xp:40
   },
   {
-    id:4, type:'checkpoint', icon:'🏅', label:'Checkpoint 1',
-    title:'Checkpoint 1 — Diagnostic',
+    id:4, type:'checkpoint', icon:'🏅', label:'FLOW 1',
+    title:'FLOW Boost Test 1 — Diagnostic',
     subtitle:'Evaluasi · 🔒 Terkunci',
-    desc:'Evaluasi pemahaman Section 1 Foundation sebelum lanjut ke Skill Building.',
+    desc:'Sesi diagnostic test pertama untuk mengukur baseline skor TOEFL kamu.',
     stars:0, xp:100
   },
 ];
 
 const MAP_NODES_SEC2 = [
   {
-    id:5, type:'locked', icon:'📖', label:'Reading\nStrategies',
-    title:'Unit 4: Reading Strategies',
+    id:5, type:'locked', icon:'📖', label:'Reading\nMastery',
+    title:'Unit 4: Reading Mastery (VOD)',
     subtitle:'Unit 4 · 🔒 Terkunci',
-    desc:'Teknik skimming dan scanning untuk menjawab soal Reading TOEFL secara cepat.',
+    desc:'7 video modul teknik skimming dan scanning untuk TOEFL Reading.',
     stars:0, xp:60
   },
   {
@@ -577,10 +577,10 @@ const MAP_NODES_SEC2 = [
     stars:0, xp:60
   },
   {
-    id:8, type:'checkpoint', icon:'🏅', label:'Checkpoint 2',
-    title:'Checkpoint 2 — Mid Test',
+    id:8, type:'checkpoint', icon:'🏅', label:'Mid Review',
+    title:'Middle Evaluation — Mock Test',
     subtitle:'Evaluasi · 🔒 Terkunci',
-    desc:'Simulasi setengah materi TOEFL untuk mengukur kesiapan.',
+    desc:'Review tengah program untuk mengukur progres belajar kamu.',
     stars:0, xp:150
   },
 ];
@@ -594,10 +594,10 @@ const MAP_NODES_SEC3 = [
     stars:0, xp:70
   },
   {
-    id:10, type:'locked', icon:'⏱', label:'Full\nSimulation',
-    title:'Unit 8: Full Simulation',
+    id:10, type:'locked', icon:'⏱', label:'FLOW 2',
+    title:'FLOW Boost Test 2 — Final Simulation',
     subtitle:'Unit 8 · 🔒 Terkunci',
-    desc:'Simulasi ujian TOEFL penuh dengan waktu terbatas (Timed Mode).',
+    desc:'Simulasi ujian TOEFL penuh sebagai evaluasi akhir sebelum target tercapai.',
     stars:0, xp:80
   },
   {

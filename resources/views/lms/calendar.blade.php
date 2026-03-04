@@ -134,11 +134,11 @@ const CAL_EVENTS={
   // BULAN 1 (APRIL)
   '2026-4-1': [{label:'FLOW Boost Test 1',cls:'cev-y',icon:'assessment'}],
   '2026-4-2': [{label:'Live Class 1',cls:'cev-b',icon:'sensors'}],
-  '2026-4-4': [{label:'Self Study Reading',cls:'cev-g',icon:'menu_book'},{label:'Listening Drill',cls:'cev-g',icon:'hearing'}],
+  '2026-4-4': [{label:'Reading Mastery (VOD)',cls:'cev-g',icon:'menu_book'},{label:'Listening Mastery (VOD)',cls:'cev-g',icon:'hearing'}],
   '2026-4-7': [{label:'Live Class 2',cls:'cev-b',icon:'sensors'}],
-  '2026-4-11':[{label:'Private Session 1',cls:'cev-o',icon:'person'},{label:'Reading Practice',cls:'cev-g',icon:'timer'}],
+  '2026-4-11':[{label:'Private Session 1',cls:'cev-o',icon:'person'},{label:'Reading Mastery (VOD)',cls:'cev-g',icon:'timer'}],
   '2026-4-16':[{label:'Live Class 3',cls:'cev-b',icon:'sensors'}],
-  '2026-4-25':[{label:'Mini Simulation',cls:'cev-y',icon:'emoji_events'},{label:'Review',cls:'cev-g',icon:'rule'}],
+  '2026-4-25':[{label:'Review & Drill',cls:'cev-g',icon:'rule'}],
 
   // BULAN 2 (MEI)
   '2026-5-5': [{label:'Live Class 4',cls:'cev-b',icon:'sensors'}],
@@ -146,14 +146,14 @@ const CAL_EVENTS={
   '2026-5-14':[{label:'Live Class 5',cls:'cev-b',icon:'sensors'}],
   '2026-5-16':[{label:'Private Session 2',cls:'cev-o',icon:'person'}],
   '2026-5-19':[{label:'Live Class 6',cls:'cev-b',icon:'sensors'}],
-  '2026-5-28':[{label:'FLOW Boost Test 2',cls:'cev-y',icon:'flag'},{label:'Score Analysis',cls:'cev-g',icon:'insights'}],
+  '2026-5-28':[{label:'Score Analysis',cls:'cev-g',icon:'insights'}],
 
   // BULAN 3 (JUNI)
   '2026-6-4': [{label:'Live Class 7',cls:'cev-b',icon:'sensors'}],
   '2026-6-6': [{label:'Private Session 3',cls:'cev-o',icon:'person'}],
   '2026-6-9': [{label:'Live Class 8',cls:'cev-b',icon:'sensors'}],
   '2026-6-18':[{label:'Live Class 9',cls:'cev-b',icon:'sensors'}],
-  '2026-6-23':[{label:'Simulation Final',cls:'cev-y',icon:'flag'}],
+  '2026-6-23':[{label:'FLOW Boost Test 2',cls:'cev-y',icon:'flag'}],
   '2026-6-25':[{label:'Score Projection',cls:'cev-g',icon:'trending_up'}],
 };
 

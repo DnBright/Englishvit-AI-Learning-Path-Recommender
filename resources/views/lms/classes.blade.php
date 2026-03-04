@@ -22,32 +22,20 @@
   <div class="grid-3">
     <div class="card card-sm">
       <div style="font-size:11px;color:var(--muted);margin-bottom:8px;">📅 4 Mar 2026</div>
-      <div style="font-weight:700;margin-bottom:4px;">Speaking Practice — IELTS Part 1 & 2</div>
-      <div style="font-size:12px;color:var(--text-2);margin-bottom:12px;">Durasi: 45 menit · Mr. Aryo · Zoom</div>
+      <div style="font-weight:700;margin-bottom:4px;">Grammar Mastery — complexe Tenses</div>
+      <div style="font-size:12px;color:var(--text-2);margin-bottom:12px;">Durasi: 90 menit · Mr. Aryo · Zoom</div>
       <button class="btn-sm btn-sm-yellow">▶ Putar Rekaman</button>
     </div>
     <div class="card card-sm">
       <div style="font-size:11px;color:var(--muted);margin-bottom:8px;">📅 28 Feb 2026</div>
-      <div style="font-weight:700;margin-bottom:4px;">Grammar Masterclass — Tenses & Articles</div>
-      <div style="font-size:12px;color:var(--text-2);margin-bottom:12px;">Durasi: 60 menit · Ms. Rina · Zoom</div>
+      <div style="font-weight:700;margin-bottom:4px;">Listening Basics — Short Conversation</div>
+      <div style="font-size:12px;color:var(--text-2);margin-bottom:12px;">Durasi: 90 menit · Ms. Rina · Zoom</div>
       <button class="btn-sm btn-sm-yellow">▶ Putar Rekaman</button>
     </div>
     <div class="card card-sm">
       <div style="font-size:11px;color:var(--muted);margin-bottom:8px;">📅 25 Feb 2026</div>
-      <div style="font-weight:700;margin-bottom:4px;">IELTS Writing Q&A Live — Task 2 Essay</div>
-      <div style="font-size:12px;color:var(--text-2);margin-bottom:12px;">Durasi: 50 menit · Ms. Rina · Zoom</div>
-      <button class="btn-sm btn-sm-yellow">▶ Putar Rekaman</button>
-    </div>
-    <div class="card card-sm">
-      <div style="font-size:11px;color:var(--muted);margin-bottom:8px;">📅 21 Feb 2026</div>
-      <div style="font-weight:700;margin-bottom:4px;">Reading Strategies — Skimming & Scanning</div>
-      <div style="font-size:12px;color:var(--text-2);margin-bottom:12px;">Durasi: 55 menit · Mr. Bayu · Live</div>
-      <button class="btn-sm btn-sm-yellow">▶ Putar Rekaman</button>
-    </div>
-    <div class="card card-sm">
-      <div style="font-size:11px;color:var(--muted);margin-bottom:8px;">📅 18 Feb 2026</div>
-      <div style="font-weight:700;margin-bottom:4px;">Vocabulary Foundation — IELTS Tier-1</div>
-      <div style="font-size:12px;color:var(--text-2);margin-bottom:12px;">Durasi: 40 menit · Self-Study · Recording</div>
+      <div style="font-weight:700;margin-bottom:4px;">Sentence Structure — Foundation</div>
+      <div style="font-size:12px;color:var(--text-2);margin-bottom:12px;">Durasi: 90 menit · Ms. Rina · Zoom</div>
       <button class="btn-sm btn-sm-yellow">▶ Putar Rekaman</button>
     </div>
   </div>
@@ -67,8 +55,8 @@
     <div class="card card-sm" style="display:flex;align-items:center;gap:14px;">
       <div style="font-size:28px;">📚</div>
       <div style="flex:1">
-        <div style="font-weight:700;">IELTS Reading Strategies — Guide PDF</div>
-        <div style="font-size:12px;color:var(--muted);">Unit 3 · 28 halaman · 2.3 MB · Mr. Bayu</div>
+        <div style="font-weight:700;">TOEFL Reading Mastery (VOD Module)</div>
+        <div style="font-size:12px;color:var(--muted);">Unit 4 · 7 Video · 2.3 MB · Mr. Bayu</div>
       </div>
       <button class="btn-sm btn-sm-yellow">⬇ Download</button>
     </div>
@@ -83,10 +71,10 @@
     <div class="card card-sm" style="display:flex;align-items:center;gap:14px;">
       <div style="font-size:28px;">🎧</div>
       <div style="flex:1">
-        <div style="font-weight:700;">IELTS Listening Practice Pack — MP3</div>
-        <div style="font-size:12px;color:var(--muted);">Unit 5 · 12 audio · 45 MB · Official IELTS</div>
+        <div style="font-weight:700;">TOEFL Listening Mastery (VOD Module)</div>
+        <div style="font-size:12px;color:var(--muted);">Unit 2 · 7 Video · 45 MB · Official TOEFL</div>
       </div>
-      <button class="btn-sm btn-sm-ghost">🔒 Locked (Unit 5)</button>
+      <button class="btn-sm btn-sm-ghost">🔒 Locked (Unit 2)</button>
     </div>
     <div class="card card-sm" style="display:flex;align-items:center;gap:14px;">
       <div style="font-size:28px;">📊</div>
@@ -104,8 +92,8 @@
   <div class="card">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
       <div>
-        <div style="font-family:var(--font-disp);font-size:22px;font-weight:800;">92% <span style="font-size:14px;color:var(--muted);font-weight:400">Kehadiran</span></div>
-        <div style="font-size:12px;color:var(--text-2);margin-top:2px;">22 dari 24 sesi hadir</div>
+        <div style="font-family:var(--font-disp);font-size:22px;font-weight:800;">88% <span style="font-size:14px;color:var(--muted);font-weight:400">Kehadiran</span></div>
+        <div style="font-size:12px;color:var(--text-2);margin-top:2px;">8 dari 9 sesi hadir</div>
       </div>
       <span class="tag tag-green">Sangat Baik ✓</span>
     </div>
@@ -120,14 +108,11 @@
    CLASS CARDS
 =========================================================== */
 const classData = [
-  { emoji:'🎤', bg:'linear-gradient(135deg,#1A2D60,#0F1E45)',  title:'IELTS Speaking Practice — Part 1 & 2',    tags:['tag-orange','Intermediate'],  meta:'Zoom · Mr. Aryo',    next:'Hari ini, 10:00', active:true  },
-  { emoji:'✏️', bg:'linear-gradient(135deg,#1A3A2A,#0F2015)',  title:'Grammar Fundamentals — Unit 4',          tags:['tag-blue','Semua Level'],     meta:'Self-paced · Online', next:'Setiap hari',     active:true  },
-  { emoji:'📝', bg:'linear-gradient(135deg,#2A1A0A,#1A0A05)',  title:'IELTS Writing Live Q&A — Task 2',       tags:['tag-yellow','All Levels'],    meta:'Zoom · Ms. Rina',   next:'Hari ini, 14:00', active:true  },
-  { emoji:'📖', bg:'linear-gradient(135deg,#3A2A0A,#201505)',  title:'IELTS Reading Strategies',               tags:['tag-green','Semua Level'],    meta:'Live · Mr. Bayu',   next:'Rabu, 10:00',     active:true  },
-  { emoji:'🎮', bg:'linear-gradient(135deg,#1A2D60,#0F1E45)', title:'Clan Group Study — IELTS Warriors 6.5',  tags:['tag-yellow','Members Only'],  meta:'Zoom · Clan Leader', next:'Hari ini, 20:00', active:true  },
-  { emoji:'🎧', bg:'linear-gradient(135deg,#2A1A3A,#160F20)',  title:'IELTS Listening Drills — Unit 5',        tags:['tag-muted','Intermediate'],   meta:'Self-paced · Online', next:'Buka setelah CP-2', active:false },
-  { emoji:'📊', bg:'linear-gradient(135deg,#1A2A3A,#0F1520)',  title:'IELTS Writing Task 2 Masterclass',        tags:['tag-blue','Advanced'],        meta:'Zoom · Ms. Rina',   next:'Buka setelah U5',  active:false },
-  { emoji:'🧪', bg:'linear-gradient(135deg,#2A0A0A,#1A0505)',  title:'Full Mock Test — Slot Tersedia',         tags:['tag-green','Semua Level'],    meta:'Solo · Timed · 2.5 jam', next:'Buka setelah CP-3', active:false },
+  { emoji:'🏫', bg:'linear-gradient(135deg,#1A2D60,#0F1E45)',  title:'TOEFL Live Class — Live Session 3',    tags:['tag-orange','Intermediate'],  meta:'Zoom · Ms. Rina',    next:'Hari ini, 19:00', active:true  },
+  { emoji:'✏️', bg:'linear-gradient(135deg,#1A3A2A,#0F2015)',  title:'Grammar Mastery — Unit 3',          tags:['tag-blue','Semua Level'],     meta:'Self-paced · Online', next:'Setiap hari',     active:true  },
+  { emoji:'📖', bg:'linear-gradient(135deg,#3A2A0A,#201505)',  title:'TOEFL Reading Mastery (VOD)',               tags:['tag-green','Semua Level'],    meta:'Video · Mr. Bayu',   next:'Kapan saja',     active:true  },
+  { emoji:'🎧', bg:'linear-gradient(135deg,#2A1A3A,#160F20)',  title:'TOEFL Listening Mastery (VOD)',        tags:['tag-muted','Intermediate'],   meta:'Self-paced · Online', next:'Selesai ✅', active:true },
+  { emoji:'🏅', bg:'linear-gradient(135deg,#2A0A0A,#1A0505)',  title:'Checkpoint 1 — Diagnostic Test',         tags:['tag-green','Semua Level'],    meta:'Solo · Timed · 2 jam', next:'Selesai ✅', active:true },
 ];
 function renderClasses(){
   const c=document.getElementById('classCards');
@@ -159,13 +144,11 @@ renderClasses();
 
 /* ABSENSI */
 const absensi = [
-  { date:'4 Mar 2026',  class:'Speaking Practice — IELTS Part 1 & 2', status:'Hadir', cls:'tag-green' },
-  { date:'3 Mar 2026',  class:'Grammar Unit 4 Self-Study',              status:'Hadir', cls:'tag-green' },
-  { date:'28 Feb 2026', class:'IELTS Writing Q&A Live — Task 2',        status:'Hadir', cls:'tag-green' },
-  { date:'25 Feb 2026', class:'Grammar Masterclass — Tenses & Articles', status:'Hadir', cls:'tag-green' },
-  { date:'21 Feb 2026', class:'Reading Strategies — Live Session',       status:'Absen', cls:'tag-red'   },
-  { date:'18 Feb 2026', class:'Speaking Practice — IELTS Part 2',        status:'Hadir', cls:'tag-green' },
-  { date:'14 Feb 2026', class:'Vocabulary Foundation — Unit 1',          status:'Hadir', cls:'tag-green' },
+  { date:'4 Mar 2026',  class:'Grammar Mastery — Unit 3 Session 2', status:'Hadir', cls:'tag-green' },
+  { date:'1 Mar 2026',  class:'Live Class 2 — Strategy & Drill', status:'Hadir', cls:'tag-green' },
+  { date:'25 Feb 2026', class:'Sentence Structure — Foundation', status:'Hadir', cls:'tag-green' },
+  { date:'20 Feb 2026', class:'Listening Basics — Unit 2 Session 4', status:'Absen', cls:'tag-red'   },
+  { date:'15 Feb 2026', class:'Checkpoint 1 — Diagnostic Test',  status:'Hadir', cls:'tag-green' },
   { date:'11 Feb 2026', class:'Placement Test & Diagnostic',              status:'Hadir', cls:'tag-green' },
 ];
 function renderAbsensi(){

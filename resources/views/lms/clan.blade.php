@@ -85,7 +85,7 @@
 
       {{-- Stats Row --}}
       <div style="display:flex;margin-top:22px;border-top:1px solid var(--border);">
-        @foreach([['32','Anggota'],['94%','Aktif Minggu Ini'],['6.1','Avg Skor'],['248','Unit Selesai'],['#12','Posisimu']] as $s)
+        @foreach([['32','Anggota'],['94%','Aktif Minggu Ini'],['515','Avg Skor'],['248','Unit Selesai'],['#12','Posisimu']] as $s)
         <div style="flex:1;padding:14px 10px;text-align:center;{{ !$loop->last ? 'border-right:1px solid var(--border);' : '' }}">
           <div style="font-family:var(--font-disp);font-size:20px;font-weight:800;color:var(--yellow);line-height:1;margin-bottom:3px;">{{ $s[0] }}</div>
           <div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;">{{ $s[1] }}</div>
@@ -117,7 +117,7 @@
       <div class="clan-board-grid">
         <div class="cb-card"><div class="cb-val" style="color:var(--blue-acc)">142</div><div class="cb-lbl">Unit Selesai</div><div style="font-size:10px;color:var(--green-acc);font-weight:700;margin-top:3px;">↑ +28</div></div>
         <div class="cb-card"><div class="cb-val" style="color:var(--orange)">38</div><div class="cb-lbl">Challenges</div><div style="font-size:10px;color:var(--green-acc);font-weight:700;margin-top:3px;">↑ +12</div></div>
-        <div class="cb-card"><div class="cb-val" style="color:var(--green-acc)">6.1</div><div class="cb-lbl">Avg Mock</div><div style="font-size:10px;color:var(--green-acc);font-weight:700;margin-top:3px;">↑ +0.3</div></div>
+        <div class="cb-card"><div class="cb-val" style="color:var(--green-acc)">515</div><div class="cb-lbl">Avg Mock</div><div style="font-size:10px;color:var(--green-acc);font-weight:700;margin-top:3px;">↑ +5</div></div>
         <div class="cb-card"><div class="cb-val" style="color:var(--yellow)">94%</div><div class="cb-lbl">Aktif</div><div style="font-size:10px;color:var(--green-acc);font-weight:700;margin-top:3px;">↑ +4%</div></div>
       </div>
       <div class="section-label" style="font-size:10px;">Kontribusi Anggota</div>
@@ -276,7 +276,7 @@ const DISCUSSIONS = {
 const WAR_TASKS = [
   { icon:'🗣', name:'50 Speaking Minutes Kolektif', meta:'Progress: 32/50 menit · 18 anggota berkontribusi', pts:'+200 War XP',   color:'var(--yellow)'   },
   { icon:'✏️', name:'15 Writing Submissions',       meta:'Progress: 9/15 submission · Deadline: 8 Mar',     pts:'+300 War XP',   color:'var(--blue-acc)' },
-  { icon:'📊', name:'Rata-rata Mock Test > 6.0',    meta:'Current: 6.1 ✓ — Target sudah tercapai!',          pts:'+150 War XP ✓', color:'var(--green-acc)'},
+  { icon:'📊', name:'Rata-rata Mock Test > 550',    meta:'Current: 515 — Target belum tercapai!',          pts:'+150 War XP', color:'var(--orange)'},
 ];
 
 /* ============================================================
@@ -467,7 +467,7 @@ function renderWarTasks() {
    COUNTDOWN
 ============================================================ */
 function updateCountdown() {
-  const diff = new Date('2026-07-04T00:00:00') - new Date();
+  const diff = new Date('2026-06-30T23:59:59') - new Date();
   if (diff <= 0) return;
   const d = Math.floor(diff/86400000);
   const h = Math.floor((diff%86400000)/3600000);
