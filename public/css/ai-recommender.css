@@ -9,21 +9,18 @@
 }
 
 .ai-recommender-section {
-    padding: 80px 0;
+    padding: 60px 0;
     background-color: var(--ai-bg-soft);
-    border-radius: 40px 40px 0 0;
-    margin-top: -40px;
     position: relative;
     z-index: 10;
 }
 
 .ai-card {
     background: #FFFFFF;
-    border-radius: 24px;
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
-    padding: 32px;
+    padding: 32px 15px;
     border: 1px solid rgba(229, 231, 235, 0.5);
     transition: transform 0.3s ease;
+    width: 100%;
 }
 
 .ai-header-badge {
@@ -365,10 +362,7 @@
 
 .ai-month-slide {
     background: #FFFFFF;
-    border: 1px solid #E5E7EB;
-    border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
     animation: fadeIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     width: 100%;
 }

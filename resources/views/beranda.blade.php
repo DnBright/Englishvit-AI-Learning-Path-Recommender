@@ -435,9 +435,9 @@
 
     <!-- AI Learning Path Recommender Section -->
     <section class="ai-recommender-section" id="ai-recommender">
-        <div class="container">
+        <div class="container-fluid p-0">
             <!-- 1. Onboarding Screen -->
-            <div id="aiOnboardingForm" class="ai-card center-align" style="max-width: 1000px; margin: 0 auto;">
+            <div id="aiOnboardingForm" class="ai-card center-align">
             <!-- STAGE 0: Landing Page (Hook) -->
             <div id="aiLandingPage" class="ai-landing-page">
                 <div class="m-b-30">
@@ -689,8 +689,8 @@
                     <p class="f-h6 fc-info-7" id="roadmapProfileSummary">Ringkasan akan muncul di sini</p>
                 </div>
 
-                <div class="row justify-content-center">
-                    <div class="col-md-11">
+                <div class="row m-0">
+                    <div class="col-12 p-0">
                         <!-- Roadmap View -->
                         <div class="m-b-40 ai-roadmap-result-container" id="aiRoadmapTimeline">
                              <!-- Will be populated by JS -->

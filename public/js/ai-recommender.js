@@ -384,7 +384,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     <div class="calendar-header-main">
                         <span class="f-16 fw-800">Bulan ${monthNames[m - 1]}</span>
                     </div>
-                    <div class="cal-grid p-3">
+                    <div class="cal-grid">
                         <div class="cal-grid-row">
                             <div class="cal-dh wknd" style="width:40px">Wk</div>
                             <div class="cal-dh">Sun</div>
