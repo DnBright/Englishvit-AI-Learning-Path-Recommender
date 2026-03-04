@@ -108,12 +108,12 @@
       <div style="font-size:11px;color:var(--muted);margin-top:6px">56% dari target bulanan (50 jam) · on-track ✓</div>
       <div style="margin-top:12px;display:flex;flex-direction:column;gap:4px;">
         <div style="display:flex;justify-content:space-between;font-size:11px;">
-          <span style="color:var(--muted)">FLOW Test 2 (target)</span>
-          <span style="font-weight:700;color:var(--orange)">30 Apr 2026</span>
+          <span style="color:var(--muted)">FLOW Boost Test 2</span>
+          <span style="font-weight:700;color:var(--orange)">28 Mei 2026</span>
         </div>
         <div style="display:flex;justify-content:space-between;font-size:11px;">
-          <span style="color:var(--muted)">TOEFL Final Exam</span>
-          <span style="font-weight:700;color:var(--yellow)">4 Jun 2026</span>
+          <span style="color:var(--muted)">Simulation Final Test</span>
+          <span style="font-weight:700;color:var(--yellow)">23 Jun 2026</span>
         </div>
       </div>
     </div>
@@ -129,44 +129,54 @@
 const MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
 
 // Scheduled target events
-/* ── TOEFL Survivors 580 · Rina · Maret 2026 ── */
+/* ── TOEFL Survivors 580 · Rina · April - Juni 2026 ── */
 const CAL_EVENTS={
-  /* Minggu 1 — Diagnosis & Fundamental */
-  '2026-3-4': [{label:'Live Class TOEFL',cls:'cev-b',icon:'sensors'},{label:'Reading Speed',cls:'cev-o',icon:'timer'}],
-  '2026-3-5': [{label:'Self Study Reading',cls:'cev-y',icon:'menu_book'}],
-  '2026-3-6': [{label:'Listening Part A',cls:'cev-g',icon:'hearing'}],
-  /* Minggu 1 akhir — FLOW Test 1 */
-  '2026-3-8': [{label:'FLOW Test 1 🏅',cls:'cev-g',icon:'flag'}],
-  /* Minggu 2 */
-  '2026-3-10':[{label:'Live Class TOEFL',cls:'cev-b',icon:'sensors'},{label:'Grammar Boost',cls:'cev-o',icon:'spellcheck'}],
-  '2026-3-11':[{label:'Private Session 1',cls:'cev-y',icon:'person'}],
-  '2026-3-12':[{label:'Listening Drill',cls:'cev-b',icon:'hearing'}],
-  '2026-3-14':[{label:'Reading Timed',cls:'cev-o',icon:'timer'},{label:'Clan Study ⚔️',cls:'cev-g',icon:'groups'}],
-  /* Minggu 3 */
-  '2026-3-16':[{label:'Live Class TOEFL',cls:'cev-g',icon:'sensors'}],
-  '2026-3-17':[{label:'Structure Quiz',cls:'cev-b',icon:'rule'}],
-  '2026-3-18':[{label:'Self Study List.',cls:'cev-y',icon:'hearing'}],
-  '2026-3-19':[{label:'Vocab Mastery',cls:'cev-o',icon:'grade'}],
-  '2026-3-21':[{label:'Mock Listening',cls:'cev-b',icon:'headphones'},{label:'Clan Study 🗡',cls:'cev-g',icon:'groups'}],
-  /* Minggu 4 */
-  '2026-3-23':[{label:'Mini Mock Test',cls:'cev-g',icon:'emoji_events'}],
-  '2026-3-24':[{label:'Writing Drill',cls:'cev-y',icon:'edit_note'}],
-  '2026-3-25':[{label:'IELTS Writing Live',cls:'cev-y',icon:'forum'}],
-  '2026-3-26':[{label:'Speaking',cls:'cev-o',icon:'record_voice_over'}],
-  '2026-3-28':[{label:'Clan War ⚔️',cls:'cev-g',icon:'military_tech'},{label:'Grammar Review',cls:'cev-b',icon:'menu_book'}],
-  '2026-3-31':[{label:'Monthly Assessment',cls:'cev-g',icon:'assessment'}],
+  // BULAN 1 (APRIL)
+  '2026-4-1': [{label:'FLOW Boost Test 1',cls:'cev-y',icon:'assessment'}],
+  '2026-4-2': [{label:'Live Class 1',cls:'cev-b',icon:'sensors'}],
+  '2026-4-4': [{label:'Self Study Reading',cls:'cev-g',icon:'menu_book'},{label:'Listening Drill',cls:'cev-g',icon:'hearing'}],
+  '2026-4-5': [{label:'Review & Error Log',cls:'cev-g',icon:'rule'}],
+  '2026-4-7': [{label:'Live Class 2',cls:'cev-b',icon:'sensors'}],
+  '2026-4-9': [{label:'Live Class 3',cls:'cev-b',icon:'sensors'}],
+  '2026-4-11':[{label:'Private Session 1',cls:'cev-o',icon:'person'},{label:'Reading Practice',cls:'cev-g',icon:'timer'}],
+  '2026-4-14':[{label:'Live Class 4',cls:'cev-b',icon:'sensors'}],
+  '2026-4-16':[{label:'Live Class 5',cls:'cev-b',icon:'sensors'}],
+  '2026-4-18':[{label:'Listening Full Drill',cls:'cev-g',icon:'headphones'},{label:'Vocabulary',cls:'cev-g',icon:'grade'}],
+  '2026-4-21':[{label:'Live Class 6',cls:'cev-b',icon:'sensors'}],
+  '2026-4-23':[{label:'Live Class 7',cls:'cev-b',icon:'sensors'}],
+  '2026-4-25':[{label:'Mini Simulation',cls:'cev-y',icon:'emoji_events'},{label:'Review',cls:'cev-g',icon:'rule'}],
+
+  // BULAN 2 (MEI)
+  '2026-5-5': [{label:'Live Class 8',cls:'cev-b',icon:'sensors'}],
+  '2026-5-7': [{label:'Live Class 9',cls:'cev-b',icon:'sensors'}],
+  '2026-5-9': [{label:'Reading Timed',cls:'cev-g',icon:'timer'},{label:'Error Log Review',cls:'cev-g',icon:'history_edu'}],
+  '2026-5-12':[{label:'Live Class 10',cls:'cev-b',icon:'sensors'}],
+  '2026-5-14':[{label:'Live Class 11',cls:'cev-b',icon:'sensors'}],
+  '2026-5-16':[{label:'Private Session 2',cls:'cev-o',icon:'person'}],
+  '2026-5-19':[{label:'Live Class 12',cls:'cev-b',icon:'sensors'}],
+  '2026-5-21':[{label:'Live Class 13',cls:'cev-b',icon:'sensors'}],
+  '2026-5-23':[{label:'Full Practice Test',cls:'cev-y',icon:'assessment'},{label:'Review',cls:'cev-g',icon:'rule'}],
+  '2026-5-26':[{label:'Live Class 14',cls:'cev-b',icon:'sensors'}],
+  '2026-5-28':[{label:'FLOW Boost Test 2',cls:'cev-y',icon:'flag'},{label:'Score Analysis',cls:'cev-g',icon:'insights'}],
+
+  // BULAN 3 (JUNI)
+  '2026-6-2': [{label:'Live Class 15',cls:'cev-b',icon:'sensors'}],
+  '2026-6-4': [{label:'Live Class 16',cls:'cev-b',icon:'sensors'}],
+  '2026-6-6': [{label:'Private Session 3',cls:'cev-o',icon:'person'}],
+  '2026-6-9': [{label:'Live Class 17',cls:'cev-b',icon:'sensors'}],
+  '2026-6-11':[{label:'Live Class 18',cls:'cev-b',icon:'sensors'}],
+  '2026-6-13':[{label:'Full Mock Test 1',cls:'cev-y',icon:'emoji_events'}],
+  '2026-6-16':[{label:'Live Class 19',cls:'cev-b',icon:'sensors'}],
+  '2026-6-18':[{label:'Live Class 20',cls:'cev-b',icon:'sensors'}],
+  '2026-6-20':[{label:'Full Mock Test 2',cls:'cev-y',icon:'emoji_events'},{label:'Deep Review',cls:'cev-g',icon:'rule'}],
+  '2026-6-23':[{label:'Simulation Final',cls:'cev-y',icon:'flag'}],
+  '2026-6-25':[{label:'Score Projection',cls:'cev-g',icon:'trending_up'}],
 };
 
-// Tiket kelas yang belum dijadwalkan (sisa paket Aryo)
-let UNSCHEDULED_EVENTS = [
-  {label:'IELTS Speaking 1-on-1', cls:'cev-o', icon:'co_present'},
-  {label:'IELTS Speaking 1-on-1', cls:'cev-o', icon:'co_present'},
-  {label:'Writing Masterclass Live', cls:'cev-y', icon:'videocam'},
-  {label:'Grammar Intensive Clinic', cls:'cev-b', icon:'healing'},
-  {label:'Full Mock Test Slot', cls:'cev-g', icon:'emoji_events'},
-];
+// Tiket kelas yang belum dijadwalkan (Backpack kosong untuk demo)
+let UNSCHEDULED_EVENTS = [];
 
-let calCur={year:2026,month:3};
+let calCur={year:2026,month:4};
 
 function calChange(dir){
   calCur.month+=dir;
