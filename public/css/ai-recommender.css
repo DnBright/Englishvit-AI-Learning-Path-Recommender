@@ -896,17 +896,19 @@
 
 .ai-roadmap-result-container {
     padding: 30px;
-    background: #0a0e1a;
-    /* Dark Premium */
+    background: #ffffff;
+    /* Reverted to White as requested */
     border-radius: 24px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
     margin-top: 30px;
-    color: #ffffff;
+    color: #1e293b;
 }
 
 .ai-month-slider-container {
     overflow: hidden;
     position: relative;
+    background: #ffffff;
 }
 
 .ai-month-slide {
@@ -916,7 +918,7 @@
 .calendar-header-main {
     margin-bottom: 20px;
     padding-bottom: 15px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 2px solid #f1f5f9;
 }
 
 .cal-grid {
@@ -937,7 +939,7 @@
     font-weight: 700;
     letter-spacing: 1px;
     text-transform: uppercase;
-    color: #6E80A8;
+    color: #64748b;
     padding: 6px 0;
 }
 
@@ -946,13 +948,13 @@
 }
 
 .cal-cell {
-    background: rgba(255, 255, 255, .03);
-    border: 1px solid transparent;
-    border-radius: 10px;
-    min-height: 80px;
+    background: #f8fafc;
+    border: 1px solid #f1f5f9;
+    border-radius: 12px;
+    min-height: 85px;
     padding: 10px;
     cursor: pointer;
-    transition: all .18s;
+    transition: all .2s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     display: flex;
     flex-direction: column;
@@ -960,8 +962,11 @@
 }
 
 .cal-cell:hover {
-    background: rgba(255, 255, 255, .08);
-    border-color: rgba(255, 255, 255, 0.1);
+    background: #ffffff;
+    border-color: #cbd5e1;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+    transform: translateY(-2px);
+    z-index: 10;
 }
 
 .week-num-cell {
@@ -970,20 +975,22 @@
     justify-content: center;
     font-size: 10px;
     font-weight: 800;
-    color: #F5C842;
-    background: rgba(245, 200, 66, 0.05);
+    color: #d97706;
+    background: #fffbeb;
     border-radius: 8px;
+    border: 1px solid #fef3c7;
 }
 
 .cdn {
     font-size: 11px;
     font-weight: 700;
-    color: #9DAAC8;
+    color: #94a3b8;
     margin-bottom: 4px;
 }
 
 .cal-cell.has-ev {
-    background: rgba(255, 255, 255, 0.05);
+    background: #ffffff;
+    border-color: #e2e8f0;
 }
 
 /* Ticket Capsules */
@@ -1083,9 +1090,9 @@
 
 /* Legend Modernization */
 .ai-legend-wrapper {
-    background: rgba(255, 255, 255, 0.02);
+    background: #f8fafc;
     border-radius: 16px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid #e2e8f0;
 }
 
 .ai-legend-grid {
@@ -1095,42 +1102,42 @@
 }
 
 .ai-legend-card {
-    background: rgba(255, 255, 255, 0.03) !important;
-    border: 1px solid rgba(255, 255, 255, 0.05) !important;
-    color: #ffffff;
+    background: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    color: #1e293b;
 }
 
 .ai-legend-card .title {
-    color: #ffffff !important;
+    color: #0f172a !important;
 }
 
 .ai-legend-card .desc {
-    color: #9DAAC8 !important;
+    color: #64748b !important;
 }
 
 .ai-legend-card.cev-b .icon {
-    background: rgba(79, 123, 255, .2);
+    background: rgba(79, 123, 255, .1);
     color: #4F7BFF;
 }
 
 .ai-legend-card.cev-o .icon {
-    background: rgba(245, 132, 42, .2);
+    background: rgba(245, 132, 42, .1);
     color: #F5842A;
 }
 
 .ai-legend-card.cev-g .icon {
-    background: rgba(61, 214, 140, .2);
+    background: rgba(61, 214, 140, .1);
     color: #3DD68C;
 }
 
 .ai-legend-card.cev-y .icon {
-    background: rgba(245, 200, 66, .2);
+    background: rgba(245, 200, 66, .1);
     color: #F5C842;
 }
 
 .ai-quota-summary {
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
     border-radius: 16px;
     padding: 20px;
     margin-bottom: 25px;
@@ -1143,24 +1150,26 @@
 }
 
 .ai-quota-item {
-    background: rgba(255, 255, 255, 0.03);
+    background: #ffffff;
     padding: 12px;
     border-radius: 12px;
     display: flex;
     flex-direction: column;
-    border: 1px solid rgba(255, 255, 255, 0.03);
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
 }
 
 .ai-quota-item .val {
     font-size: 18px;
     font-weight: 800;
-    color: #F5C842;
+    color: #b45309;
+    /* Slightly darker Amber for readability on white */
 }
 
 .ai-quota-item .lbl {
     font-size: 11px;
     font-weight: 600;
-    color: #6E80A8;
+    color: #64748b;
     margin-top: 2px;
 }
 
