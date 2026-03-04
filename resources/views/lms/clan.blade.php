@@ -1,236 +1,75 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Clan System — Englishvit</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+@extends('layouts.lms-layout')
+@section('title', '👥 Clan System')
+@section('nav_clan', 'active')
+@section('topbar_title', '👥 Clan System')
+
+@section('styles')
 <style>
-/* ============================================================
-   SIMULASI VARIABEL CSS DARI lms-layout (dark theme)
-============================================================ */
-:root {
-  --navy:        #08152E;
-  --navy-2:      #0F1E45;
-  --navy-3:      #162755;
-  --navy-card:   rgba(255,255,255,.04);
-  --border:      rgba(255,255,255,.08);
-  --yellow:      #F5C842;
-  --yellow-dim:  rgba(245,200,66,.12);
-  --orange:      #F5842A;
-  --orange-dim:  rgba(245,132,42,.15);
-  --blue-acc:    #4F7BFF;
-  --green-acc:   #3DD68C;
-  --red-acc:     #FF5A5A;
-  --white:       #FFFFFF;
-  --muted:       #6E80A8;
-  --text-2:      #9DAAC8;
-  --font-disp:   'Syne', sans-serif;
-  --font-body:   'Plus Jakarta Sans', sans-serif;
-  --sidebar:     240px;
-}
+/* ──────────────────────────────────────────────────────
+   CLAN PAGE — LOCAL STYLES
+   (Menggunakan variabel global dari lms-layout)
+────────────────────────────────────────────────────── */
 
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html, body { height: 100%; background: var(--navy); font-family: var(--font-body); color: var(--white); overflow-x: hidden; }
-
-/* ── SIDEBAR ── */
-.sidebar {
-  position: fixed; top: 0; left: 0; bottom: 0;
-  width: var(--sidebar);
-  background: var(--navy-2);
-  border-right: 1px solid var(--border);
-  display: flex; flex-direction: column;
-  padding: 22px 0; z-index: 100;
-}
-.sb-logo { display:flex;align-items:center;gap:10px;padding:0 20px 22px;border-bottom:1px solid var(--border);margin-bottom:14px; }
-.sb-logo-mark { width:38px;height:38px;background:var(--yellow);border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:var(--font-disp);font-weight:800;font-size:14px;color:var(--navy);box-shadow:0 3px 0 #D4AA00;flex-shrink:0; }
-.sb-logo-txt { font-family:var(--font-disp);font-size:17px;font-weight:800; }
-.sb-logo-txt span { color: var(--yellow); }
-.sb-logo-sub { font-size:9px;color:var(--muted);font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-top:1px; }
-.sb-sec { padding:6px 20px 4px;font-size:9px;letter-spacing:1.4px;text-transform:uppercase;color:var(--muted);font-weight:700;margin-top:6px; }
-.sb-item { display:flex;align-items:center;gap:10px;padding:10px 20px;margin:2px 10px;border-radius:10px;cursor:pointer;font-size:13px;font-weight:600;color:var(--text-2);transition:all .18s;border:1px solid transparent; }
-.sb-item:hover { background:rgba(255,255,255,.06);color:var(--white); }
-.sb-item.active { background:var(--yellow-dim);border-color:rgba(245,200,66,.22);color:var(--yellow); }
-.sb-icon { width:30px;height:30px;border-radius:8px;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0; }
-.sb-item.active .sb-icon { background:rgba(245,200,66,.18); }
-.sb-badge { margin-left:auto;background:var(--orange);color:#fff;font-size:10px;font-weight:800;padding:2px 7px;border-radius:20px; }
-.sb-bottom { margin-top:auto;padding:16px 20px;border-top:1px solid var(--border); }
-.sb-user { display:flex;align-items:center;gap:10px; }
-.sb-av { width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--yellow),var(--orange));display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;color:var(--navy); }
-
-/* ── TOPBAR ── */
-.topbar {
-  position: fixed; top: 0; left: var(--sidebar); right: 0;
-  height: 56px; z-index: 90;
-  background: rgba(8,21,46,.85);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border);
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 28px;
-}
-.tb-title { font-family:var(--font-disp);font-size:17px;font-weight:800; }
-.tb-actions { display:flex;gap:8px; }
-.btn-ghost { background:rgba(255,255,255,.07);border:1px solid var(--border);color:var(--text-2);padding:7px 16px;border-radius:40px;font-size:12px;font-weight:700;cursor:pointer;font-family:var(--font-body);transition:all .18s; }
-.btn-ghost:hover { background:rgba(255,255,255,.12);color:var(--white); }
-.btn-yellow { background:var(--yellow);border:none;color:var(--navy);padding:8px 18px;border-radius:40px;font-size:12px;font-weight:800;cursor:pointer;font-family:var(--font-body);box-shadow:0 3px 0 #D4AA00;transition:all .18s; }
-.btn-yellow:hover { transform:translateY(-1px);box-shadow:0 5px 0 #D4AA00; }
-
-/* ── MAIN SCROLL ── */
-.main { margin-left: var(--sidebar); padding-top: 56px; min-height: 100vh; overflow-y: auto; }
-.page-content { max-width: 1080px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; padding: 28px 24px 60px; }
-
-/* ── CARD BASE (dari lms-layout) ── */
-.card {
-  background: var(--navy-card);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 22px;
-}
-.card-sm { padding: 16px; }
-
-/* ── SECTION LABEL ── */
-.section-label {
-  font-size: 10px; font-weight: 700;
-  letter-spacing: 1.5px; text-transform: uppercase;
-  color: var(--muted); margin-bottom: 12px;
-  display: flex; align-items: center; gap: 6px;
-}
-.section-label::after { content:'';flex:1;height:1px;background:var(--border); }
-
-/* ── TAGS ── */
-.tag { display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700; }
-.tag-yellow  { background:var(--yellow-dim);color:var(--yellow); }
-.tag-orange  { background:var(--orange-dim);color:var(--orange); }
-.tag-blue    { background:rgba(79,123,255,.15);color:var(--blue-acc); }
-.tag-green   { background:rgba(61,214,140,.12);color:var(--green-acc); }
-.tag-red     { background:rgba(255,90,90,.12);color:var(--red-acc); }
-.tag-muted   { background:rgba(255,255,255,.06);color:var(--muted); }
-.tag-purple  { background:rgba(167,139,250,.15);color:#a78bfa; }
-
-/* ── PROG BAR ── */
-.prog-bar { height:6px;background:rgba(255,255,255,.07);border-radius:10px;overflow:hidden; }
-.prog-fill { height:100%;border-radius:10px;background:linear-gradient(90deg,var(--yellow),var(--orange));transition:width .8s ease; }
-
-/* ── GRID ── */
-.grid-2 { display:grid;grid-template-columns:1fr 1fr;gap:20px; }
-
-/* ── LB AVATAR ── */
-.lb-avatar { width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;flex-shrink:0; }
-.lb-row { display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:12px;background:rgba(255,255,255,.03);border:1px solid var(--border);margin-bottom:8px;transition:all .18s;cursor:pointer; }
-.lb-row:hover { background:rgba(255,255,255,.06); }
-.lb-row.me { background:var(--yellow-dim);border-color:rgba(245,200,66,.25); }
-.lb-rank { font-family:var(--font-disp);font-size:18px;font-weight:800;color:var(--muted);width:28px;text-align:center;flex-shrink:0; }
-.lb-rank.gold { color:var(--yellow); }
-.lb-rank.silver { color:#C0C8D8; }
-.lb-rank.bronze { color:#CD7F32; }
-.lb-info { flex:1; }
-.lb-name { font-size:13px;font-weight:700;margin-bottom:3px; }
-.lb-bar-wrap { flex:1;max-width:100px; }
-.lb-bar { height:4px;background:rgba(255,255,255,.06);border-radius:4px;overflow:hidden; }
-.lb-fill { height:100%;border-radius:4px;background:linear-gradient(90deg,var(--yellow),var(--orange)); }
-.lb-pts { font-family:var(--font-disp);font-size:16px;font-weight:800;color:var(--yellow); }
-
-/* ── CLAN BOARD GRID ── */
-.clan-board-grid { display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border-radius:12px;overflow:hidden;margin-bottom:20px; }
-.cb-card { background:rgba(255,255,255,.025);padding:14px 10px;text-align:center;transition:background .15s; }
-.cb-card:hover { background:rgba(255,255,255,.05); }
-.cb-val { font-family:var(--font-disp);font-size:22px;font-weight:800;line-height:1;margin-bottom:4px; }
-.cb-lbl { font-size:9px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.8px; }
-
-/* ── CLAN NAME ── */
-.clan-name { font-family:var(--font-disp);font-weight:800;letter-spacing:-.5px;line-height:1.15; }
-
-/* ── CLAN SHIELD ── */
-.clan-shield { width:76px;height:76px;border-radius:20px;background:rgba(245,200,66,.1);border:2px solid rgba(245,200,66,.25);display:flex;align-items:center;justify-content:center;font-size:38px;flex-shrink:0; }
-
-/* ── CLAN WAR BANNER ── */
-.clan-war-banner { background:linear-gradient(135deg,#1A0B2E,#2A1260,#0F1E45);border-radius:16px;padding:22px;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center; }
-.cw-glow { position:absolute;top:-60px;left:50%;transform:translateX(-50%);width:300px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(167,139,250,.15) 0%,transparent 65%);pointer-events:none; }
-
-/* ── CTAB (Discussion Tab dari layout) ── */
-.ctab { padding:7px 14px;border-radius:40px;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;border:1px solid var(--border);color:var(--muted);background:transparent;transition:all .18s;flex-shrink:0; }
-.ctab:hover { border-color:rgba(255,255,255,.2);color:var(--white); }
-.ctab.active { background:var(--navy-3);color:var(--white);border-color:rgba(255,255,255,.15); }
-
-/* ── CHAT INPUT / SEND (dari halaman AI) ── */
-.chat-input { background:rgba(255,255,255,.06);border:1px solid var(--border);color:var(--white);font-family:var(--font-body);font-size:13px;padding:10px 14px;border-radius:10px;outline:none;transition:border .18s; }
-.chat-input:focus { border-color:rgba(245,200,66,.4); }
-.chat-input::placeholder { color:var(--muted); }
-.chat-send { width:38px;height:38px;border-radius:10px;background:var(--yellow);border:none;color:var(--navy);font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .18s;box-shadow:0 3px 0 #D4AA00;flex-shrink:0; }
-.chat-send:hover { transform:translateY(-1px);box-shadow:0 5px 0 #D4AA00; }
-.chat-send:active { transform:translateY(1px);box-shadow:0 1px 0 #D4AA00; }
-
-/* ── ANIMATIONS ── */
-@keyframes fade-up { from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);} }
+/* Hero Banner */
+.clan-name  { font-family:var(--font-disp);font-weight:800;letter-spacing:-.5px;line-height:1.15; }
+.clan-shield{ width:76px;height:76px;border-radius:20px;background:rgba(245,200,66,.1);border:2px solid rgba(245,200,66,.25);display:flex;align-items:center;justify-content:center;font-size:38px;flex-shrink:0; }
 @keyframes shield-glow { 0%,100%{box-shadow:0 8px 28px rgba(245,200,66,.12);}50%{box-shadow:0 8px 40px rgba(245,200,66,.28);} }
+
+/* Clan Board Grid (4 stat boxes inside card) */
+.clan-board-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border-radius:12px;overflow:hidden;margin-bottom:18px;}
+.cb-card    { background:rgba(255,255,255,.025);padding:14px 10px;text-align:center;transition:background .15s; }
+.cb-card:hover{ background:rgba(255,255,255,.05); }
+.cb-val     { font-family:var(--font-disp);font-size:22px;font-weight:800;line-height:1;margin-bottom:4px; }
+.cb-lbl     { font-size:9px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.8px; }
+
+/* Leaderboard rows */
+.lb-avatar  { width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;flex-shrink:0; }
+.lb-row     { display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:12px;background:rgba(255,255,255,.03);border:1px solid var(--border);margin-bottom:8px;transition:all .18s;cursor:pointer; }
+.lb-row:hover{ background:rgba(255,255,255,.06); }
+.lb-row.me  { background:var(--yellow-dim);border-color:rgba(245,200,66,.25); }
+.lb-rank    { font-family:var(--font-disp);font-size:18px;font-weight:800;color:var(--muted);width:28px;text-align:center;flex-shrink:0; }
+.lb-rank.gold  { color:var(--yellow); }
+.lb-rank.silver{ color:#C0C8D8; }
+.lb-rank.bronze{ color:#CD7F32; }
+.lb-info    { flex:1; }
+.lb-name    { font-size:13px;font-weight:700;margin-bottom:3px; }
+.lb-bar-wrap{ max-width:90px; }
+.lb-bar     { height:4px;background:rgba(255,255,255,.06);border-radius:4px;overflow:hidden; }
+.lb-fill    { height:100%;border-radius:4px;background:linear-gradient(90deg,var(--yellow),var(--orange)); }
+.lb-pts     { font-family:var(--font-disp);font-size:16px;font-weight:800;color:var(--yellow); }
+
+/* Clan War Banner */
+.clan-war-banner { background:linear-gradient(135deg,#1A0B2E,#2A1260,#0F1E45);border-radius:16px;padding:22px;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center; }
+.cw-glow    { position:absolute;top:-60px;left:50%;transform:translateX(-50%);width:300px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(167,139,250,.15) 0%,transparent 65%);pointer-events:none; }
+
+/* Tab buttons */
+.ctab       { padding:7px 14px;border-radius:40px;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;border:1px solid var(--border);color:var(--muted);background:transparent;transition:all .18s;flex-shrink:0; }
+.ctab:hover { border-color:rgba(255,255,255,.2);color:var(--white); }
+.ctab.active{ background:rgba(255,255,255,.08);color:var(--white);border-color:rgba(255,255,255,.15); }
+
+/* Feed animations */
 @keyframes feed-in { from{opacity:0;transform:translateX(-6px);}to{opacity:1;transform:translateX(0);} }
+@keyframes fade-up  { from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);} }
 
-.page-content > * { animation: fade-up .4s ease both; }
-.page-content > *:nth-child(1){animation-delay:.00s;}
-.page-content > *:nth-child(2){animation-delay:.07s;}
-.page-content > *:nth-child(3){animation-delay:.13s;}
-.page-content > *:nth-child(4){animation-delay:.19s;}
-.page-content > *:nth-child(5){animation-delay:.25s;}
-
+/* Responsive */
 @media(max-width:800px){
-  .sidebar{display:none;}.topbar{left:0;}.main{margin-left:0;}
-  .grid-2{grid-template-columns:1fr;}
-  .clan-board-grid{grid-template-columns:repeat(2,1fr);}
+  .grid-2         { grid-template-columns:1fr; }
+  .clan-board-grid{ grid-template-columns:repeat(2,1fr); }
 }
 </style>
-</head>
-<body>
+@endsection
 
-<!-- SIDEBAR -->
-<nav class="sidebar">
-  <div class="sb-logo">
-    <div class="sb-logo-mark">Ev</div>
-    <div>
-      <div class="sb-logo-txt">english<span>vit</span></div>
-      <div class="sb-logo-sub">My Success Path</div>
-    </div>
-  </div>
-  <div class="sb-sec">Learning</div>
-  <div class="sb-item"><div class="sb-icon">🗺</div> My Map</div>
-  <div class="sb-item"><div class="sb-icon">📘</div> Core Roadmap</div>
-  <div class="sb-item"><div class="sb-icon">🤖</div> AI Assistant <span class="sb-badge">3</span></div>
-  <div class="sb-sec">Schedule</div>
-  <div class="sb-item"><div class="sb-icon">📅</div> Calendar</div>
-  <div class="sb-sec">Community</div>
-  <div class="sb-item active"><div class="sb-icon">👥</div> Clan</div>
-  <div class="sb-item"><div class="sb-icon">🎓</div> Class Menu</div>
-  <div class="sb-bottom">
-    <div class="sb-user">
-      <div class="sb-av">AR</div>
-      <div>
-        <div style="font-size:13px;font-weight:700;">Aryo Rahmat</div>
-        <div style="font-size:11px;color:var(--muted);">IELTS 6.5 Target</div>
-      </div>
-    </div>
-  </div>
-</nav>
+@section('content')
+<div style="display:flex;flex-direction:column;gap:20px;padding-bottom:40px;">
 
-<!-- TOPBAR -->
-<div class="topbar">
-  <div class="tb-title">👥 Clan System</div>
-  <div class="tb-actions">
-    <button class="btn-ghost">🔔 Notifikasi</button>
-    <button class="btn-yellow">+ Invite Anggota</button>
-  </div>
-</div>
-
-<!-- MAIN -->
-<div class="main">
-<div class="page-content">
-
-  <!-- ══════════════════════════════════════════
+  {{-- ══════════════════════════════
        1. CLAN HERO
-  ═════════════════════════════════════════════ -->
-  <div style="background:linear-gradient(135deg,rgba(255,255,255,.05) 0%,rgba(255,255,255,.02) 100%);border:1px solid var(--border);border-radius:20px;padding:0;overflow:hidden;position:relative;">
-    <div style="position:absolute;top:-80px;right:-80px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(245,200,66,.12) 0%,transparent 65%);pointer-events:none;"></div>
-    <div style="position:absolute;bottom:-60px;left:-60px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(79,123,255,.1) 0%,transparent 65%);pointer-events:none;"></div>
+  ══════════════════════════════════ --}}
+  <div style="background:linear-gradient(135deg,rgba(255,255,255,.05),rgba(255,255,255,.02));border:1px solid var(--border);border-radius:20px;padding:0;overflow:hidden;position:relative;">
+    <div style="position:absolute;top:-80px;right:-80px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(245,200,66,.12),transparent 65%);pointer-events:none;"></div>
+    <div style="position:absolute;bottom:-60px;left:-60px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(79,123,255,.1),transparent 65%);pointer-events:none;"></div>
 
-    <div style="position:relative;z-index:1;padding:28px 28px 0;">
+    <div style="position:relative;z-index:1;padding:28px;">
       <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;">
         <div>
           <div style="display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap;">
@@ -238,66 +77,41 @@ html, body { height: 100%; background: var(--navy); font-family: var(--font-body
             <span class="tag tag-muted">32 Members</span>
             <span class="tag" style="background:rgba(61,214,140,.1);color:var(--green-acc);">🟢 Aktif</span>
           </div>
-          <div class="clan-name" style="font-size:26px;margin-bottom:6px;color:var(--white);">⚔️ IELTS Warriors 6.5</div>
+          <div class="clan-name" style="font-size:26px;margin-bottom:6px;">⚔️ IELTS Warriors 6.5</div>
           <div style="font-size:13px;color:var(--text-2);">Target Bersama: <b style="color:var(--white);">IELTS 6.5</b> · 4 Month Intensive Program</div>
         </div>
         <div class="clan-shield" style="animation:shield-glow 3s ease-in-out infinite;">⚔️</div>
       </div>
 
-      <!-- Stats Row -->
+      {{-- Stats Row --}}
       <div style="display:flex;margin-top:22px;border-top:1px solid var(--border);">
-        <div style="flex:1;padding:14px 10px;text-align:center;border-right:1px solid var(--border);">
-          <div style="font-family:var(--font-disp);font-size:20px;font-weight:800;color:var(--yellow);line-height:1;margin-bottom:3px;">32</div>
-          <div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;">Anggota</div>
+        @foreach([['32','Anggota'],['94%','Aktif Minggu Ini'],['6.1','Avg Skor'],['248','Unit Selesai'],['#12','Posisimu']] as $s)
+        <div style="flex:1;padding:14px 10px;text-align:center;{{ !$loop->last ? 'border-right:1px solid var(--border);' : '' }}">
+          <div style="font-family:var(--font-disp);font-size:20px;font-weight:800;color:var(--yellow);line-height:1;margin-bottom:3px;">{{ $s[0] }}</div>
+          <div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;">{{ $s[1] }}</div>
         </div>
-        <div style="flex:1;padding:14px 10px;text-align:center;border-right:1px solid var(--border);">
-          <div style="font-family:var(--font-disp);font-size:20px;font-weight:800;color:var(--yellow);line-height:1;margin-bottom:3px;">94%</div>
-          <div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;">Aktif Minggu Ini</div>
-        </div>
-        <div style="flex:1;padding:14px 10px;text-align:center;border-right:1px solid var(--border);">
-          <div style="font-family:var(--font-disp);font-size:20px;font-weight:800;color:var(--yellow);line-height:1;margin-bottom:3px;">6.1</div>
-          <div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;">Avg Skor</div>
-        </div>
-        <div style="flex:1;padding:14px 10px;text-align:center;border-right:1px solid var(--border);">
-          <div style="font-family:var(--font-disp);font-size:20px;font-weight:800;color:var(--yellow);line-height:1;margin-bottom:3px;">248</div>
-          <div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;">Unit Selesai</div>
-        </div>
-        <div style="flex:1;padding:14px 10px;text-align:center;">
-          <div style="font-family:var(--font-disp);font-size:20px;font-weight:800;color:var(--yellow);line-height:1;margin-bottom:3px;">#12</div>
-          <div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;">Posisimu</div>
-        </div>
+        @endforeach
       </div>
     </div>
 
-    <!-- Countdown -->
-    <div style="display:flex;justify-content:center;gap:8px;padding:18px 28px 24px;position:relative;z-index:1;">
-      <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:10px 14px;text-align:center;min-width:56px;">
-        <div style="font-family:var(--font-disp);font-size:20px;font-weight:800;color:var(--white);line-height:1;" id="cdDay">—</div>
-        <div style="font-size:9px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-top:3px;">Hari</div>
-      </div>
-      <div style="font-family:var(--font-disp);font-size:22px;color:rgba(255,255,255,.2);align-self:flex-start;padding-top:10px;">:</div>
-      <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:10px 14px;text-align:center;min-width:56px;">
-        <div style="font-family:var(--font-disp);font-size:20px;font-weight:800;color:var(--white);line-height:1;" id="cdHour">—</div>
-        <div style="font-size:9px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-top:3px;">Jam</div>
-      </div>
-      <div style="font-family:var(--font-disp);font-size:22px;color:rgba(255,255,255,.2);align-self:flex-start;padding-top:10px;">:</div>
-      <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:10px 14px;text-align:center;min-width:56px;">
-        <div style="font-family:var(--font-disp);font-size:20px;font-weight:800;color:var(--white);line-height:1;" id="cdMin">—</div>
-        <div style="font-size:9px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-top:3px;">Menit</div>
-      </div>
-      <div style="font-family:var(--font-disp);font-size:22px;color:rgba(255,255,255,.2);align-self:flex-start;padding-top:10px;">:</div>
-      <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:10px 14px;text-align:center;min-width:56px;">
-        <div style="font-family:var(--font-disp);font-size:20px;font-weight:800;color:var(--white);line-height:1;" id="cdSec">—</div>
-        <div style="font-size:9px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-top:3px;">Detik</div>
-      </div>
+    {{-- Countdown --}}
+    <div style="display:flex;justify-content:center;gap:8px;padding:14px 28px 22px;position:relative;z-index:1;">
+      @foreach([['cdDay','Hari'],['cdHour','Jam'],['cdMin','Menit'],['cdSec','Detik']] as $c)
+        @if(!$loop->first)
+        <div style="font-family:var(--font-disp);font-size:22px;color:rgba(255,255,255,.2);align-self:flex-start;padding-top:10px;">:</div>
+        @endif
+        <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:10px 14px;text-align:center;min-width:56px;">
+          <div style="font-family:var(--font-disp);font-size:20px;font-weight:800;color:var(--white);line-height:1;" id="{{ $c[0] }}">—</div>
+          <div style="font-size:9px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-top:3px;">{{ $c[1] }}</div>
+        </div>
+      @endforeach
     </div>
   </div>
 
-  <!-- ══════════════════════════════════════════
+  {{-- ══════════════════════════════
        2. PROGRESS BOARD + LEADERBOARD
-  ═════════════════════════════════════════════ -->
+  ══════════════════════════════════ --}}
   <div class="grid-2">
-    <!-- Progress Board -->
     <div class="card">
       <div class="section-label">📊 Clan Progress Board <span class="tag tag-blue" style="margin-left:auto;letter-spacing:0;text-transform:none;font-size:10px;">Minggu Ini</span></div>
       <div class="clan-board-grid">
@@ -310,23 +124,20 @@ html, body { height: 100%; background: var(--navy); font-family: var(--font-body
       <div id="memberRings" style="display:flex;flex-direction:column;gap:10px;"></div>
     </div>
 
-    <!-- Leaderboard -->
     <div class="card">
       <div class="section-label">🏆 Weekly Leaderboard</div>
       <div id="leaderboardList"></div>
     </div>
   </div>
 
-  <!-- ══════════════════════════════════════════
+  {{-- ══════════════════════════════
        3. WEEKLY CHALLENGE
-  ═════════════════════════════════════════════ -->
+  ══════════════════════════════════ --}}
   <div class="card">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
       <div class="section-label" style="margin-bottom:0;">🔥 Weekly Challenge</div>
       <div style="font-family:var(--font-disp);font-size:13px;font-weight:800;color:var(--orange);">⏱ <span id="challengeTimer">—</span> tersisa</div>
     </div>
-
-    <!-- Clan total bar -->
     <div style="background:rgba(79,123,255,.06);border:1px solid rgba(79,123,255,.12);border-radius:12px;padding:14px 16px;margin-bottom:16px;">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
         <div style="font-size:13px;font-weight:700;">🏅 Progress Clan Minggu Ini</div>
@@ -338,15 +149,13 @@ html, body { height: 100%; background: var(--navy); font-family: var(--font-body
         <span style="color:var(--blue-acc);font-weight:700;">+240 Clan XP</span>
       </div>
     </div>
-
     <div id="challengeList" style="display:flex;flex-direction:column;gap:10px;"></div>
   </div>
 
-  <!-- ══════════════════════════════════════════
+  {{-- ══════════════════════════════
        4. ACTIVITY FEED + DISCUSSION
-  ═════════════════════════════════════════════ -->
+  ══════════════════════════════════ --}}
   <div class="grid-2">
-    <!-- Activity Feed -->
     <div class="card">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
         <div class="section-label" style="margin-bottom:0;">⚡ Activity Feed</div>
@@ -355,7 +164,6 @@ html, body { height: 100%; background: var(--navy); font-family: var(--font-body
       <div id="activityFeed"></div>
     </div>
 
-    <!-- Discussion Room -->
     <div class="card">
       <div class="section-label" style="margin-bottom:12px;">💬 Discussion Room <span class="tag tag-blue" style="margin-left:auto;letter-spacing:0;text-transform:none;font-size:10px;">12 Online</span></div>
       <div style="display:flex;gap:6px;margin-bottom:14px;overflow-x:auto;scrollbar-width:none;">
@@ -372,9 +180,9 @@ html, body { height: 100%; background: var(--navy); font-family: var(--font-body
     </div>
   </div>
 
-  <!-- ══════════════════════════════════════════
+  {{-- ══════════════════════════════
        5. CLAN WAR
-  ═════════════════════════════════════════════ -->
+  ══════════════════════════════════ --}}
   <div class="card">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
       <div class="section-label" style="margin-bottom:0;">⚔️ Clan War — Season 4</div>
@@ -414,12 +222,13 @@ html, body { height: 100%; background: var(--navy); font-family: var(--font-body
     <div id="warTasks" style="display:flex;flex-direction:column;gap:8px;"></div>
   </div>
 
-</div><!-- /page-content -->
-</div><!-- /main -->
+</div>
+@endsection
 
+@section('scripts')
 <script>
 /* ============================================================
-   DATA — identik dengan clan.blade.php project
+   DATA
 ============================================================ */
 const MEMBERS = [
   { name:'Siti Rahma',    initials:'SR', color:'#F5C500,#FF7A00', pct:100, pts:1240 },
@@ -443,7 +252,7 @@ const FEED_DATA = [
   { initials:'🏅', system:true,             text:'<b>Clan mencapai 50% Weekly Challenge!</b> Mari kita kejar sisanya!',  badge:'Milestone',   badgeColor:'var(--blue-acc)', time:'15 mnt lalu' },
   { initials:'BK', color:'#4F7BFF,#7BAEFF', text:'<b>Bima Kusuma</b> dapat skor <b>6.5</b> di Mock Test Listening',    badge:'🎯 Mock',      badgeColor:'var(--orange)',    time:'32 mnt lalu' },
   { initials:'LN', color:'#3DD68C,#7DFFC9', text:'<b>Laila Nur</b> selesaikan Writing Task 2 Submission',              badge:'🔥 Challenge', badgeColor:'var(--yellow)',    time:'1 jam lalu'  },
-  { initials:'⚔️', system:true,             text:'<b>Clan War:</b> IELTS Warriors unggul 1,100 poin dari English Blazers!', badge:'⚔️ War',   badgeColor:'#a78bfa',         time:'2 jam lalu'  },
+  { initials:'⚔️', system:true,             text:'<b>Clan War:</b> IELTS Warriors unggul 1,100 poin dari English Blazers!', badge:'⚔️ War', badgeColor:'#a78bfa',          time:'2 jam lalu'  },
   { initials:'RF', color:'#FF8A4F,#FFB27A', text:'<b>Reza Fauzi</b> bergabung dan selesaikan Placement Test',          badge:'👋 Join',      badgeColor:'var(--muted)',     time:'3 jam lalu'  },
 ];
 
@@ -520,13 +329,7 @@ function renderChallenges() {
   const c = document.getElementById('challengeList');
   CHALLENGES.forEach(ch => {
     const el = document.createElement('div');
-    el.style.cssText = `
-      display:flex;align-items:center;gap:12px;
-      padding:14px 16px;border-radius:12px;
-      border:1px solid ${ch.done?'rgba(61,214,140,.2)':'var(--border)'};
-      background:${ch.done?'rgba(61,214,140,.04)':'rgba(255,255,255,.02)'};
-      transition:all .2s;cursor:pointer;position:relative;overflow:hidden;
-    `;
+    el.style.cssText = `display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:12px;border:1px solid ${ch.done?'rgba(61,214,140,.2)':'var(--border)'};background:${ch.done?'rgba(61,214,140,.04)':'rgba(255,255,255,.02)'};transition:all .2s;cursor:pointer;`;
     el.innerHTML = `
       <div style="width:44px;height:44px;border-radius:12px;background:rgba(255,255,255,.05);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">${ch.icon}</div>
       <div style="flex:1;">
@@ -587,13 +390,7 @@ function renderDiscussions(tab) {
   c.innerHTML = '';
   (DISCUSSIONS[tab] || []).forEach(t => {
     const el = document.createElement('div');
-    el.style.cssText = `
-      display:flex;gap:10px;align-items:flex-start;
-      padding:12px 14px;border-radius:12px;cursor:pointer;
-      border:1px solid ${t.pinned ? 'rgba(245,200,66,.2)' : 'var(--border)'};
-      background:${t.pinned ? 'rgba(245,200,66,.04)' : 'rgba(255,255,255,.02)'};
-      transition:all .18s;
-    `;
+    el.style.cssText = `display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border-radius:12px;cursor:pointer;border:1px solid ${t.pinned?'rgba(245,200,66,.2)':'var(--border)'};background:${t.pinned?'rgba(245,200,66,.04)':'rgba(255,255,255,.02)'};transition:all .18s;`;
     el.innerHTML = `
       <div class="lb-avatar" style="background:linear-gradient(135deg,${t.color});color:#0B1B3E;font-size:11px;margin-top:2px;">${t.initials}</div>
       <div style="flex:1;">
@@ -682,13 +479,13 @@ function updateCountdown() {
   document.getElementById('cdMin').textContent  = p(m);
   document.getElementById('cdSec').textContent  = p(s);
 
-  // challenge timer → hitung ke Senin berikutnya
+  // Challenge timer → hitung ke Senin berikutnya
   const now = new Date();
   const nextMon = new Date(now);
   const daysUntilMon = (1 + 7 - now.getDay()) % 7 || 7;
   nextMon.setDate(now.getDate() + daysUntilMon);
   nextMon.setHours(0,0,0,0);
-  const cd = nextMon - now;
+  const cd  = nextMon - now;
   const ch2 = Math.floor(cd/3600000);
   const cm2 = Math.floor((cd%3600000)/60000);
   document.getElementById('challengeTimer').textContent = `${ch2}j ${p(cm2)}m`;
@@ -704,5 +501,4 @@ renderWarTasks();
 updateCountdown();
 setInterval(updateCountdown, 1000);
 </script>
-</body>
-</html>
+@endsection
