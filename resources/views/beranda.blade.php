@@ -692,10 +692,8 @@
                 <div class="row justify-content-center">
                     <div class="col-md-11">
                         <!-- Roadmap View -->
-                        <div class="roadmap-container m-b-40">
-                             <div id="aiRoadmapTimeline">
-                                 <!-- Will be populated by JS -->
-                             </div>
+                        <div class="m-b-40 ai-roadmap-result-container" id="aiRoadmapTimeline">
+                             <!-- Will be populated by JS -->
                         </div>
 
                         <!-- Budget Anchor Section -->

@@ -452,13 +452,13 @@ document.addEventListener('DOMContentLoaded', function () {
         if (altRecs.length > 0) {
             const altDiv = document.createElement('div');
             altDiv.className = 'm-t-20 p-3 bg-light br-12';
-            altDiv.innerHTML = `< h6 class="fw-700 f-12 m-b-10 fc-black-5" > Alternative Suggestions(50 - 64 % Match):</h6 > `;
+            altDiv.innerHTML = `<h6 class="fw-700 f-12 m-b-10 fc-black-5">Alternative Suggestions (50-64% Match):</h6>`;
             altRecs.forEach(alt => {
                 altDiv.innerHTML += `
-                < div class="f-12 m-b-5 d-flex-center-btw" >
+                <div class="f-12 m-b-5 d-flex-center-btw">
                     <span>• ${alt.name}</span>
                     <span class="fc-warning-7 fw-700">${alt.matchScore}% Match</span>
-                 </div > `;
+                 </div>`;
             });
             list.appendChild(altDiv);
         }
