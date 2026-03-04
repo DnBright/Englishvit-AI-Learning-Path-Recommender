@@ -422,18 +422,12 @@
   {{-- ── PROGRESS BANNER ── --}}
   <div class="map-header-banner">
     <div class="map-prog-left">
-      <h3>🎯 IELTS Target: 6.5</h3>
-      <p>Timeline: 4 Bulan &nbsp;·&nbsp; Estimasi selesai: <strong>Juli 2026</strong></p>
-      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;margin-bottom:10px;">
-        <span class="tag tag-green" style="font-size:10px;">✓ Reading 6.0</span>
-        <span class="tag tag-orange" style="font-size:10px;">⚠ Writing 5.5</span>
-        <span class="tag tag-blue" style="font-size:10px;">~ Listening 5.5</span>
       <h3 class="fc-white mb-1">Target: TOEFL 580</h3>
-      <p class="mb-0">3 Bulan — 📅 Selesai Mei 2026</p>
+      <p class="mb-0">3 Bulan — 📅 Selesai Juni 2026</p>
     </div>
     <div>
-      <div class="map-big-pct">480<span>/580</span></div>
-      <div style="font-size:12px;color:var(--muted);text-align:right">Completed</div>
+      <div class="map-big-pct">495<span>/580</span></div>
+      <div style="font-size:12px;color:var(--muted);text-align:right">Current Level (Est.)</div>
     </div>
   </div>
 
@@ -477,28 +471,28 @@
   <div class="map-stats-grid">
     <div class="card card-sm">
       <div class="section-label">📍 Kamu Sekarang</div>
-      <div style="font-size:14px;font-weight:700;margin-bottom:4px">✏️ Grammar Fundamentals</div>
-      <div style="font-size:12px;color:var(--muted);margin-bottom:8px">Section 1 · Unit 4 · 60% selesai</div>
+      <div style="font-size:14px;font-weight:700;margin-bottom:4px">✏️ Grammar Mastery</div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:8px">Section 1 · Unit 3 · 60% selesai</div>
       <div class="prog-bar"><div class="prog-fill" style="width:60%"></div></div>
-      <div style="font-size:11px;color:var(--muted);margin-top:6px">3 lesson tersisa untuk selesai</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:6px">2 lesson tersisa untuk selesai</div>
     </div>
     <div class="card card-sm">
       <div class="section-label">⭐ Checkpoint Berikutnya</div>
-      <div style="font-size:14px;font-weight:700;margin-bottom:4px">Mini Mock Test — Checkpoint 2</div>
-      <div style="font-size:12px;color:var(--muted);margin-bottom:8px">Selesaikan Unit 4 & 5 untuk unlock</div>
-      <div><span class="tag tag-orange">Butuh 2 Unit Lagi</span></div>
+      <div style="font-size:14px;font-weight:700;margin-bottom:4px">Mini Mock Test — Checkpoint 1</div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:8px">Selesaikan Unit 3 untuk unlock</div>
+      <div><span class="tag tag-orange">Unit 3 In Progress</span></div>
     </div>
     <div class="card card-sm">
       <div class="section-label">🔒 Unit Selanjutnya</div>
-      <div style="font-size:14px;font-weight:700;margin-bottom:4px">🎧 Listening Strategies</div>
-      <div style="font-size:12px;color:var(--muted);margin-bottom:8px">Buka setelah Grammar 100%</div>
+      <div style="font-size:14px;font-weight:700;margin-bottom:4px">📖 Reading Strategies</div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:8px">Buka setelah Section 1 Selesai</div>
       <div><span class="tag tag-muted">Terkunci</span></div>
     </div>
     <div class="card card-sm">
       <div class="section-label">🏆 Total Progress</div>
-      <div style="font-size:14px;font-weight:700;margin-bottom:2px">4 dari 14 Unit Selesai</div>
-      <div style="font-size:12px;color:var(--muted);margin-bottom:8px">1.250 XP terkumpul</div>
-      <div class="prog-bar"><div class="prog-fill" style="width:29%;background:linear-gradient(90deg,var(--yellow),var(--orange));"></div></div>
+      <div style="font-size:14px;font-weight:700;margin-bottom:2px">2 dari 9 Unit Selesai</div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:8px">850 XP terkumpul</div>
+      <div class="prog-bar"><div class="prog-fill" style="width:25%;background:linear-gradient(90deg,var(--yellow),var(--orange));"></div></div>
     </div>
     <div class="card card-sm">
       <div class="section-label">🎯 Skor Terakhir (Mock)</div>
@@ -529,105 +523,88 @@
    Sesuaikan dengan data dinamis dari controller Laravel
    Contoh: JSON dari $nodes yang di-pass dari controller
 ============================================================ */
-/* ──────────────────────────────────────────────
-   SECTION 1 — Foundation English (Unit 1–5)
-   Status: Unit 1–3 SELESAI, Unit 4 PROGRESS 60%,
-           Unit 5 & Checkpoint 2 LOCKED
-────────────────────────────────────────────── */
-    title:'Grammar Fundamentals',
-    subtitle:'Unit 4 · ⏳ Berjalan — 60%',
-    desc:'👈 Kamu sedang di sini! Materi: Past/Present/Future Tenses, Articles (a/an/the), Prepositions, dan Conditional Sentences.',
+const MAP_NODES_SEC1 = [
+  {
+    id:1, type:'done', icon:'📝', label:'Sentence\nStructure',
+    title:'Unit 1: Basic Sentence Structure',
+    subtitle:'Status: Selesai ✅',
+    desc:'Materi subjek, predikat, dan tenses dasar untuk TOEFL.',
+    stars:3, xp:50
+  },
+  {
+    id:2, type:'done', icon:'🎧', label:'Listening\nBasics',
+    title:'Unit 2: Listening Basics',
+    subtitle:'Status: Selesai ✅',
+    desc:'Strategi mendengarkan percakapan pendek di Part A TOEFL.',
+    stars:2, xp:50
+  },
+  {
+    id:3, type:'progress', icon:'✏️', label:'Grammar\nMastery',
+    title:'Unit 3: Grammar Mastery',
+    subtitle:'Unit 3 · ⏳ Berjalan — 60%',
+    desc:'👈 Kamu sedang di sini! Fokus: Articles, Prepositions, dan Tenses kompleks.',
     stars:0, xp:40
   },
   {
-    id:7, type:'locked', icon:'🎧', label:'Listening\nStrategies',
-    title:'Listening Strategies',
-    subtitle:'Unit 5 · 🔒 Terkunci',
-    desc:'Teknik menjawab soal IELTS Listening: prediction, note-taking, dan keyword spotting. Buka setelah Grammar 100% selesai.',
-    stars:0, xp:40
-  },
-  {
-    id:8, type:'checkpoint', icon:'🏅', label:'Checkpoint 2',
-    title:'Checkpoint 2 — Mini Mock Test',
+    id:4, type:'checkpoint', icon:'🏅', label:'Checkpoint 1',
+    title:'Checkpoint 1 — Diagnostic',
     subtitle:'Evaluasi · 🔒 Terkunci',
-    desc:'Mini mock test mencakup semua materi Unit 3–5. Butuh minimal skor 75% untuk membuka Section 2: Skill Building.',
+    desc:'Evaluasi pemahaman Section 1 Foundation sebelum lanjut ke Skill Building.',
     stars:0, xp:100
   },
 ];
 
-/* ──────────────────────────────────────────────
-   SECTION 2 — Skill Building (Unit 6–9)
-   Status: Semua LOCKED (buka setelah CP-2)
-────────────────────────────────────────────── */
 const MAP_NODES_SEC2 = [
   {
-    id:9, type:'locked', icon:'🎤', label:'Speaking\nFluency',
-    title:'Speaking Fluency — Part 1, 2 & 3',
+    id:5, type:'locked', icon:'📖', label:'Reading\nStrategies',
+    title:'Unit 4: Reading Strategies',
+    subtitle:'Unit 4 · 🔒 Terkunci',
+    desc:'Teknik skimming dan scanning untuk menjawab soal Reading TOEFL secara cepat.',
+    stars:0, xp:60
+  },
+  {
+    id:6, type:'locked', icon:'🔊', label:'Listening\nAdvanced',
+    title:'Unit 5: Listening Advanced',
+    subtitle:'Unit 5 · 🔒 Terkunci',
+    desc:'Materi listening percakapan panjang dan lecture akademik (Part B & C).',
+    stars:0, xp:60
+  },
+  {
+    id:7, type:'locked', icon:'🏛️', label:'TOEFL\nStructure II',
+    title:'Unit 6: TOEFL Structure II',
     subtitle:'Unit 6 · 🔒 Terkunci',
-    desc:'Teknik menjawab IELTS Speaking Part 1 (personal), Part 2 (cue card 2 menit), dan Part 3 (diskusi akademik). Target band 6.0.',
+    desc:'Analisis struktur kalimat kompleks dan identifikasi error dalam teks.',
     stars:0, xp:60
   },
   {
-    id:10, type:'locked', icon:'📊', label:'Writing\nTask 1',
-    title:'Writing Task 1 — Academic',
-    subtitle:'Unit 7 · 🔒 Terkunci',
-    desc:'Deskripsikan grafik, tabel, diagram, dan chart secara akademik. Formula: Overview → Key Feature → Detail. Min. 150 kata.',
-    stars:0, xp:60
-  },
-  {
-    id:11, type:'locked', icon:'📝', label:'Writing\nTask 2',
-    title:'Writing Task 2 — Essay',
-    subtitle:'Unit 8 · 🔒 Terkunci',
-    desc:'Essay argumentatif dan diskusi dengan formula PEEL. Target: coherence band 7, vocabulary band 6.5. Min. 250 kata dalam 40 menit.',
-    stars:0, xp:60
-  },
-  {
-    id:12, type:'locked', icon:'📚', label:'Advanced\nVocab',
-    title:'Advanced Vocabulary & Collocations',
-    subtitle:'Unit 9 · 🔒 Terkunci',
-    desc:'300 kata akademik tier-2 + collocations IELTS. Kata kerja akademik (AWL), frasa transisi, dan idiom formal untuk Writing & Speaking.',
-    stars:0, xp:50
-  },
-  {
-    id:13, type:'checkpoint', icon:'🏅', label:'Checkpoint 3',
-    title:'Checkpoint 3 — Full Mock Test',
+    id:8, type:'checkpoint', icon:'🏅', label:'Checkpoint 2',
+    title:'Checkpoint 2 — Mid Test',
     subtitle:'Evaluasi · 🔒 Terkunci',
-    desc:'Full mock test 2.5 jam mencakup semua 4 skills. Target: Overall 6.0 untuk membuka Section 3 Final Intensive.',
+    desc:'Simulasi setengah materi TOEFL untuk mengukur kesiapan.',
     stars:0, xp:150
   },
 ];
 
-/* ──────────────────────────────────────────────
-   SECTION 3 — Intensive & Final (Unit 10–12)
-   Status: Semua LOCKED
-────────────────────────────────────────────── */
 const MAP_NODES_SEC3 = [
   {
-    id:14, type:'locked', icon:'🔁', label:'Weak Area\nIntensive',
-    title:'Intensive — Weak Area Training',
-    subtitle:'Unit 10 · 🔒 Terkunci',
-    desc:'Sesi intensif fokus pada area terlemah berdasarkan Mock Test 1. AI akan generate latihan personal untuk Writing dan Speaking.',
+    id:9, type:'locked', icon:'🎯', label:'Problem Area\nDrill',
+    title:'Unit 7: Focus & Drill',
+    subtitle:'Unit 7 · 🔒 Terkunci',
+    desc:'Latihan intensif pada area terlemah berdasarkan hasil simulasi sebelumnya.',
     stars:0, xp:70
   },
   {
-    id:15, type:'locked', icon:'⏱', label:'Exam\nSimulation',
-    title:'Full Exam Simulation × 3',
-    subtitle:'Unit 11 · 🔒 Terkunci',
-    desc:'3 sesi simulasi ujian IELTS penuh dalam kondisi nyata (timed, no-pause). Analisis mendalam pasca-simulasi oleh AI Coach.',
+    id:10, type:'locked', icon:'⏱', label:'Full\nSimulation',
+    title:'Unit 8: Full Simulation',
+    subtitle:'Unit 8 · 🔒 Terkunci',
+    desc:'Simulasi ujian TOEFL penuh dengan waktu terbatas (Timed Mode).',
     stars:0, xp:80
   },
   {
-    id:16, type:'locked', icon:'🧘', label:'Pre-Exam\nStrategy',
-    title:'Pre-Exam Strategy & Mindset',
-    subtitle:'Unit 12 · 🔒 Terkunci',
-    desc:'Strategi hari-H: manajemen waktu, teknik anti-panik, mindset positif, dan checklist persiapan 48 jam sebelum ujian.',
-    stars:0, xp:50
-  },
-  {
-    id:17, type:'locked', icon:'🏆', label:'IELTS\n6.5 Goal!',
-    title:'🏆 IELTS 6.5 — Final Goal',
-    subtitle:'Target · Juli 2026',
-    desc:'Ini tujuan akhirmu! Selesaikan semua unit dan capai skor IELTS 6.5. Selamat, kamu akan membuka sertifikat digital Englishvit! 🎉',
+    id:11, type:'locked', icon:'🏆', label:'Final Goal\n580!',
+    title:'Unit 9: 🏆 Final Goal 580',
+    subtitle:'Target · Juni 2026',
+    desc:'Tujuan akhir program 3 bulan! Capai skor target dan buka sertifikat Englishvit.',
     stars:0, xp:500
   },
 ];
