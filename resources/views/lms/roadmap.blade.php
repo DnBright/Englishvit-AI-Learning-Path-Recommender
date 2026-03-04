@@ -428,15 +428,11 @@
         <span class="tag tag-green" style="font-size:10px;">✓ Reading 6.0</span>
         <span class="tag tag-orange" style="font-size:10px;">⚠ Writing 5.5</span>
         <span class="tag tag-blue" style="font-size:10px;">~ Listening 5.5</span>
-        <span class="tag tag-orange" style="font-size:10px;">⚠ Speaking 5.5</span>
-      </div>
-      <div class="prog-bar" style="width:100%;max-width:240px;">
-        <div class="prog-fill" style="width:29%"></div>
-      </div>
-      <div style="font-size:12px;color:var(--muted);margin-top:6px">Unit 4 dari 14 · 29% selesai</div>
+      <h3 class="fc-white mb-1">Target: TOEFL 580</h3>
+      <p class="mb-0">3 Bulan — 📅 Selesai Mei 2026</p>
     </div>
     <div>
-      <div class="map-big-pct">29<span>%</span></div>
+      <div class="map-big-pct">480<span>/580</span></div>
       <div style="font-size:12px;color:var(--muted);text-align:right">Completed</div>
     </div>
   </div>
@@ -538,44 +534,6 @@
    Status: Unit 1–3 SELESAI, Unit 4 PROGRESS 60%,
            Unit 5 & Checkpoint 2 LOCKED
 ────────────────────────────────────────────── */
-const MAP_NODES_SEC1 = [
-  {
-    id:1, type:'done', icon:'📋', label:'Placement\nTest',
-    title:'Placement Test — Diagnostic',
-    subtitle:'Assessment · Selesai · ⭐⭐⭐',
-    desc:'Kamu memulai di level B1. Skor awal: Listening 5.5 · Reading 5.5 · Writing 5.0 · Speaking 5.0. Ini adalah basismu untuk naik ke 6.5.',
-    stars:3, xp:50
-  },
-  {
-    id:2, type:'done', icon:'📗', label:'Vocab\nFoundation',
-    title:'Vocabulary Foundation',
-    subtitle:'Unit 1 · Selesai · ⭐⭐⭐',
-    desc:'200 kosakata IELTS tier-1 dikuasai. Kamu berhasil menyelesaikan unit ini dengan skor 92%. Gunakan teknik spaced-repetition untuk review.',
-    stars:3, xp:40
-  },
-  {
-    id:3, type:'done', icon:'🗣', label:'Pronunciation\n101',
-    title:'Pronunciation & Fluency 101',
-    subtitle:'Unit 2 · Selesai · ⭐⭐',
-    desc:'Berlatih fonem, intonasi, dan linking sounds. Kamu mendapat ⭐⭐ — coba ulang bagian linking words untuk mendapat ⭐ ketiga.',
-    stars:2, xp:40
-  },
-  {
-    id:4, type:'checkpoint', icon:'⭐', label:'Checkpoint 1',
-    title:'Checkpoint 1 — Mini Quiz',
-    subtitle:'Evaluasi · Selesai · Skor 84%',
-    desc:'Kamu lulus Checkpoint 1 dengan skor 84% (min. 70%). Vocab dan Pronunciation tervalidasi. Section berikutnya terbuka!',
-    stars:3, xp:80
-  },
-  {
-    id:5, type:'done', icon:'📖', label:'Reading\nStrategies',
-    title:'Reading Strategies',
-    subtitle:'Unit 3 · Selesai · ⭐',
-    desc:'Teknik skimming, scanning, dan detail reading untuk passage akademik IELTS. Selesai dengan skor 71% — perlu sedikit latihan tambahan.',
-    stars:1, xp:40
-  },
-  {
-    id:6, type:'progress', icon:'✏️', label:'Grammar\nFundamentals',
     title:'Grammar Fundamentals',
     subtitle:'Unit 4 · ⏳ Berjalan — 60%',
     desc:'👈 Kamu sedang di sini! Materi: Past/Present/Future Tenses, Articles (a/an/the), Prepositions, dan Conditional Sentences.',

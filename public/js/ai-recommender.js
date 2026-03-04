@@ -47,13 +47,13 @@ document.addEventListener('DOMContentLoaded', function () {
     let currentStep = 1;
     const totalSteps = 6;
     let formData = {
-        goal_category: '',
-        level: '',
-        ielts_goal: 7.0,
-        weaknesses: [],
-        time_commit: '',
-        budget: '',
-        timeline: ''
+        goal_category: 'academic',
+        level: 'intermediate',
+        ielts_goal: 580, // Using as TOEFL score target
+        weaknesses: ['listening', 'grammar'],
+        time_commit: 'high', // 6-10 hours
+        budget: 'intensive', // > 1.5M
+        timeline: '3' // 3 Months
     };
 
     // --- INTERACTIVE CALENDAR STATE ---

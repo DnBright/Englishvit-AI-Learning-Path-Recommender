@@ -48,10 +48,10 @@
 
   <div class="sb-bottom">
     <div class="sb-user">
-      <div class="sb-avatar">{{ substr(Auth::user()->name ?? 'Student', 0, 1) }}</div>
+      <div class="sb-avatar">R</div>
       <div>
-        <div class="sb-user-name">{{ Auth::user()->name ?? 'Student Name' }}</div>
-        <div class="sb-user-tag">IELTS 6.5 Target</div>
+        <div class="sb-user-name">Rina</div>
+        <div class="sb-user-tag">TOEFL 580 Target</div>
       </div>
     </div>
   </div>

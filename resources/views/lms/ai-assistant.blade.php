@@ -18,10 +18,10 @@
         <div class="msg-avatar" style="background:transparent;"><img src="{{ asset('images/logo-white.svg') }}" style="width: 24px; object-fit: contain;"></div>
         <div>
           <div class="msg-bubble">
-            Halo <b>Aryo</b>! 👋 Saya AI Coach-mu hari ini.<br><br>
-            Update terbaru: <b>Reading-mu naik ke 6.0</b> — bagus sekali! 🎉 Tapi perlu atensi: <b>Writing Task 2 (5.5)</b> dan <b>Speaking (5.5)</b> masih jadi gap terbesar menuju <b>IELTS 6.5</b>.<br><br>
-            Kamu sedang di <b>Unit 4 — Grammar Fundamentals (60%)</b>. Selesaikan ini dulu, lalu kita fokus ke Writing & Speaking bersamaan.<br><br>
-            Mau mulai dengan strategi Writing Task 2 hari ini?
+            Halo <b>Rina</b>! 👋 Saya AI Coach-mu hari ini.<br><br>
+            Update terbaru: <b>Reading stabil di 490</b> — awal yang bagus! 🎉 Tapi perlu atensi: <b>Listening (480)</b> dan <b>Grammar (470)</b> masih jadi gap terbesar menuju target <b>TOEFL 580</b>.<br><br>
+            Kamu sedang di <b>Diagnosis & Fundamental Boost (Bulan 1)</b>. Selesaikan latihan Structure hari ini untuk memperkuat pondasi.<br><br>
+            Mau mulai dengan strategi Listening Part A hari ini?
           </div>
           <span class="msg-time">09:00 · AI Coach</span>
         </div>
@@ -48,37 +48,37 @@
     <div class="coach-sidebar-item">
       <div class="strategist-header">
         <div class="sh-label">Score Strategist</div>
-        <div class="sh-val">5.5</div>
+        <div class="sh-val">480</div>
       </div>
-      <div class="sh-target">Overall Saat Ini · Target: <b>6.5</b></div>
+      <div class="sh-target">Overall Saat Ini · Target: <b>580</b></div>
 
       {{-- Per-skill bars --}}
       <div style="display:flex;flex-direction:column;gap:6px;margin:10px 0;">
-        @foreach([['L','Listening','5.5',60],['R','Reading','6.0',80],['W','Writing','5.5',60],['S','Speaking','5.5',60]] as $sk)
+        @foreach([['L','Listening','480',60],['R','Reading','490',70],['S','Structure','470',50]] as $sk)
         <div style="display:flex;align-items:center;gap:6px;">
           <span style="font-size:10px;font-weight:700;color:var(--muted);width:14px;">{{ $sk[0] }}</span>
           <div style="flex:1;height:4px;background:rgba(255,255,255,.06);border-radius:4px;overflow:hidden;">
-            <div style="height:100%;width:{{ $sk[3] }}%;background:{{ $sk[2]==='6.0' ? 'var(--green-acc)' : 'var(--yellow)' }};border-radius:4px;"></div>
+            <div style="height:100%;width:{{ $sk[3] }}%;background:{{ $sk[3]>=70 ? 'var(--green-acc)' : 'var(--yellow)' }};border-radius:4px;"></div>
           </div>
-          <span style="font-size:11px;font-weight:700;color:{{ $sk[2]==='6.0' ? 'var(--green-acc)' : 'var(--text-2)' }};">{{ $sk[2] }}</span>
+          <span style="font-size:11px;font-weight:700;color:{{ $sk[3]>=70 ? 'var(--green-acc)' : 'var(--text-2)' }};">{{ $sk[2] }}</span>
         </div>
         @endforeach
       </div>
 
       <div class="simulation-box">
         <div class="sim-row">
-          <span class="sim-label">Jika Writing 5.5 → 6.5</span>
-          <span class="sim-impact">+0.25 Overall</span>
+          <span class="sim-label">Jika Structure 470 → 530</span>
+          <span class="sim-impact">+15 Overall</span>
         </div>
         <div style="height:1px;background:var(--border);margin:8px 0;"></div>
         <div class="sim-row">
-          <span class="sim-label">Jika Speaking 5.5 → 6.5</span>
-          <span class="sim-impact">+0.25 Overall</span>
+          <span class="sim-label">Jika Listening 480 → 520</span>
+          <span class="sim-impact">+10 Overall</span>
         </div>
         <div style="height:1px;background:var(--border);margin:8px 0;"></div>
         <div class="sim-row">
-          <span class="sim-label">Estimasi Overall (Juli)</span>
-          <span class="sim-impact" style="color:var(--green-acc)">6.5 ✓</span>
+          <span class="sim-label">Estimasi Overall (Juni)</span>
+          <span class="sim-impact" style="color:var(--green-acc)">580 ✓</span>
         </div>
       </div>
     </div>
@@ -86,17 +86,17 @@
     {{-- Goal Reinforcement --}}
     <div class="coach-sidebar-item">
       <div class="section-label" style="font-size:10px;margin-bottom:12px;">🎯 Goal Reinforcement</div>
-      <div style="font-size:13px;font-weight:700;color:var(--white);margin-bottom:6px;">Target: IELTS 6.5 · 4 Jul 2026</div>
+      <div style="font-size:13px;font-weight:700;color:var(--white);margin-bottom:6px;">Target: TOEFL 580 · 4 Jun 2026</div>
       <div style="font-size:12px;color:var(--muted);line-height:1.6;">
-        Gap: <b style="color:var(--orange);">+1.0 Writing</b>, <b style="color:var(--orange);">+1.0 Speaking</b>, <b style="color:var(--blue-acc);">+1.0 Listening</b>, <b style="color:var(--green-acc);">+0.5 Reading</b>.
-        Fokus utama: selesaikan Grammar lalu pindah ke Writing & Speaking intensif.
+        Gap: <b style="color:var(--orange);">+110 Structure</b>, <b style="color:var(--orange);">+80 Listening</b>, <b style="color:var(--green-acc);">+60 Reading</b>.
+        Fokus utama: selesaikan Fundamental Boost lalu masuk ke Intensification Part B & C.
       </div>
       <div style="margin-top:10px;">
         <div style="display:flex;justify-content:space-between;font-size:11px;">
-          <span style="color:var(--muted);">Unit 4 Grammar</span>
-          <span style="font-weight:700;color:var(--yellow);">60% selesai</span>
+          <span style="color:var(--muted);">Diagnosis Phase</span>
+          <span style="font-weight:700;color:var(--yellow);">30% selesai</span>
         </div>
-        <div class="prog-bar" style="margin-top:4px;height:4px;"><div class="prog-fill" style="width:60%;"></div></div>
+        <div class="prog-bar" style="margin-top:4px;height:4px;"><div class="prog-fill" style="width:30%;"></div></div>
       </div>
     </div>
 

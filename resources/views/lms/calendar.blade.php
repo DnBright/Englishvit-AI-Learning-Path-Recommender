@@ -108,12 +108,12 @@
       <div style="font-size:11px;color:var(--muted);margin-top:6px">56% dari target bulanan (50 jam) · on-track ✓</div>
       <div style="margin-top:12px;display:flex;flex-direction:column;gap:4px;">
         <div style="display:flex;justify-content:space-between;font-size:11px;">
-          <span style="color:var(--muted)">Checkpoint 2 (target)</span>
-          <span style="font-weight:700;color:var(--orange)">8 Mar 2026</span>
+          <span style="color:var(--muted)">FLOW Test 2 (target)</span>
+          <span style="font-weight:700;color:var(--orange)">30 Apr 2026</span>
         </div>
         <div style="display:flex;justify-content:space-between;font-size:11px;">
-          <span style="color:var(--muted)">IELTS Exam Day</span>
-          <span style="font-weight:700;color:var(--yellow)">4 Jul 2026</span>
+          <span style="color:var(--muted)">TOEFL Final Exam</span>
+          <span style="font-weight:700;color:var(--yellow)">4 Jun 2026</span>
         </div>
       </div>
     </div>
@@ -129,25 +129,24 @@
 const MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
 
 // Scheduled target events
-/* ── IELTS Warriors 6.5 · Aryo Rahmat · Maret 2026 ── */
+/* ── TOEFL Survivors 580 · Rina · Maret 2026 ── */
 const CAL_EVENTS={
-  /* Minggu 1 — Grammar & Speaking */
-  '2026-3-4': [{label:'Grammar U4',cls:'cev-b',icon:'menu_book'},{label:'Speaking',cls:'cev-o',icon:'record_voice_over'}],
-  '2026-3-5': [{label:'IELTS Writing Q&A',cls:'cev-y',icon:'forum'}],
-  '2026-3-6': [{label:'Vocab Review',cls:'cev-g',icon:'spellcheck'}],
-  /* Minggu 1 akhir — Checkpoint 2 */
-  '2026-3-7': [{label:'Grammar U4',cls:'cev-b',icon:'menu_book'}],
-  '2026-3-8': [{label:'Checkpoint 2 🏅',cls:'cev-g',icon:'flag'}],
+  /* Minggu 1 — Diagnosis & Fundamental */
+  '2026-3-4': [{label:'Live Class TOEFL',cls:'cev-b',icon:'sensors'},{label:'Reading Speed',cls:'cev-o',icon:'timer'}],
+  '2026-3-5': [{label:'Self Study Reading',cls:'cev-y',icon:'menu_book'}],
+  '2026-3-6': [{label:'Listening Part A',cls:'cev-g',icon:'hearing'}],
+  /* Minggu 1 akhir — FLOW Test 1 */
+  '2026-3-8': [{label:'FLOW Test 1 🏅',cls:'cev-g',icon:'flag'}],
   /* Minggu 2 */
-  '2026-3-10':[{label:'Speaking Pt2',cls:'cev-o',icon:'record_voice_over'},{label:'Grammar U4',cls:'cev-b',icon:'menu_book'}],
-  '2026-3-11':[{label:'IELTS Writing Live',cls:'cev-y',icon:'sensors'}],
+  '2026-3-10':[{label:'Live Class TOEFL',cls:'cev-b',icon:'sensors'},{label:'Grammar Boost',cls:'cev-o',icon:'spellcheck'}],
+  '2026-3-11':[{label:'Private Session 1',cls:'cev-y',icon:'person'}],
   '2026-3-12':[{label:'Listening Drill',cls:'cev-b',icon:'hearing'}],
-  '2026-3-14':[{label:'Speaking',cls:'cev-o',icon:'record_voice_over'},{label:'Clan Study 🗡',cls:'cev-g',icon:'groups'}],
+  '2026-3-14':[{label:'Reading Timed',cls:'cev-o',icon:'timer'},{label:'Clan Study ⚔️',cls:'cev-g',icon:'groups'}],
   /* Minggu 3 */
-  '2026-3-16':[{label:'Reading Strategies',cls:'cev-g',icon:'auto_stories'}],
-  '2026-3-17':[{label:'Grammar Clinic',cls:'cev-b',icon:'healing'}],
-  '2026-3-18':[{label:'IELTS Writing Live',cls:'cev-y',icon:'sensors'}],
-  '2026-3-19':[{label:'Speaking Pt3',cls:'cev-o',icon:'record_voice_over'}],
+  '2026-3-16':[{label:'Live Class TOEFL',cls:'cev-g',icon:'sensors'}],
+  '2026-3-17':[{label:'Structure Quiz',cls:'cev-b',icon:'rule'}],
+  '2026-3-18':[{label:'Self Study List.',cls:'cev-y',icon:'hearing'}],
+  '2026-3-19':[{label:'Vocab Mastery',cls:'cev-o',icon:'grade'}],
   '2026-3-21':[{label:'Mock Listening',cls:'cev-b',icon:'headphones'},{label:'Clan Study 🗡',cls:'cev-g',icon:'groups'}],
   /* Minggu 4 */
   '2026-3-23':[{label:'Mini Mock Test',cls:'cev-g',icon:'emoji_events'}],
