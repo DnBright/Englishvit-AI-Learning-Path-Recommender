@@ -250,74 +250,75 @@ document.addEventListener('DOMContentLoaded', function () {
         renderRoadmapTimeline(coreRecs, recommendations);
     }
 
+    // --- GLOBAL DATA FOR PRESENTATION ---
+    const presentationSchedule = {
+        // MONTH 1 (APRIL)
+        "1-0-3": [{ label: "FLOW Boost Test 1", cls: "cev-y", icon: "flag", category: "test" }],
+        "1-0-4": [{ label: "Live Class 1", cls: "cev-b", icon: "menu_book", category: "live" }],
+        "1-0-6": [
+            { label: "Self Study Reading", cls: "cev-g", icon: "auto_stories", category: "module" },
+            { label: "Listening Drill", cls: "cev-g", icon: "auto_stories", category: "module" }
+        ],
+        "1-0-0": [{ label: "Review & Error Log", cls: "cev-g", icon: "auto_stories", category: "module" }],
+        "1-1-2": [{ label: "Live Class 2", cls: "cev-b", icon: "menu_book", category: "live" }],
+        "1-1-4": [{ label: "Live Class 3", cls: "cev-b", icon: "menu_book", category: "live" }],
+        "1-1-6": [
+            { label: "Private Session 1", cls: "cev-o", icon: "record_voice_over", category: "private" },
+            { label: "Reading Practice", cls: "cev-g", icon: "auto_stories", category: "module" }
+        ],
+        "1-2-2": [{ label: "Live Class 4", cls: "cev-b", icon: "menu_book", category: "live" }],
+        "1-2-4": [{ label: "Live Class 5", cls: "cev-b", icon: "menu_book", category: "live" }],
+        "1-2-6": [
+            { label: "Listening Full Drill", cls: "cev-g", icon: "auto_stories", category: "module" },
+            { label: "Vocab Reinforcement", cls: "cev-g", icon: "auto_stories", category: "module" }
+        ],
+        "1-3-2": [{ label: "Live Class 6", cls: "cev-b", icon: "menu_book", category: "live" }],
+        "1-3-4": [{ label: "Live Class 7", cls: "cev-b", icon: "menu_book", category: "live" }],
+        "1-3-6": [
+            { label: "Mini Simulation", cls: "cev-y", icon: "flag", category: "test" },
+            { label: "Review", cls: "cev-g", icon: "auto_stories", category: "module" }
+        ],
+
+        // MONTH 2 (MEI)
+        "2-0-2": [{ label: "Live Class 8", cls: "cev-b", icon: "menu_book", category: "live" }],
+        "2-0-4": [{ label: "Live Class 9", cls: "cev-b", icon: "menu_book", category: "live" }],
+        "2-0-6": [
+            { label: "Reading Timed", cls: "cev-g", icon: "auto_stories", category: "module" },
+            { label: "Error Log Review", cls: "cev-g", icon: "auto_stories", category: "module" }
+        ],
+        "2-1-2": [{ label: "Live Class 10", cls: "cev-b", icon: "menu_book", category: "live" }],
+        "2-1-4": [{ label: "Live Class 11", cls: "cev-b", icon: "menu_book", category: "live" }],
+        "2-1-6": [{ label: "Private Session 2", cls: "cev-o", icon: "record_voice_over", category: "private" }],
+        "2-2-2": [{ label: "Live Class 12", cls: "cev-b", icon: "menu_book", category: "live" }],
+        "2-2-4": [{ label: "Live Class 13", cls: "cev-b", icon: "menu_book", category: "live" }],
+        "2-2-6": [
+            { label: "Full Practice Test", cls: "cev-y", icon: "flag", category: "test" },
+            { label: "Review", cls: "cev-g", icon: "auto_stories", category: "module" }
+        ],
+        "2-3-2": [{ label: "Live Class 14", cls: "cev-b", icon: "menu_book", category: "live" }],
+        "2-3-4": [
+            { label: "FLOW Boost Test 2", cls: "cev-y", icon: "flag", category: "test" },
+            { label: "Score Analysis", cls: "cev-g", icon: "auto_stories", category: "module" }
+        ],
+
+        // MONTH 3 (JUNI)
+        "3-0-2": [{ label: "Live Class 15", cls: "cev-b", icon: "menu_book", category: "live" }],
+        "3-0-4": [{ label: "Live Class 16", cls: "cev-b", icon: "menu_book", category: "live" }],
+        "3-0-6": [{ label: "Private Session 3", cls: "cev-o", icon: "record_voice_over", category: "private" }],
+        "3-1-2": [{ label: "Live Class 17", cls: "cev-b", icon: "menu_book", category: "live" }],
+        "3-1-4": [{ label: "Live Class 18", cls: "cev-b", icon: "menu_book", category: "live" }],
+        "3-1-6": [{ label: "Full Mock Test 1", cls: "cev-y", icon: "flag", category: "test" }],
+        "3-2-2": [{ label: "Live Class 19", cls: "cev-b", icon: "menu_book", category: "live" }],
+        "3-2-4": [{ label: "Live Class 20", cls: "cev-b", icon: "menu_book", category: "live" }],
+        "3-2-6": [
+            { label: "Full Mock Test 2", cls: "cev-y", icon: "flag", category: "test" },
+            { label: "Deep Review", cls: "cev-g", icon: "auto_stories", category: "module" }
+        ],
+        "3-3-2": [{ label: "Simulation Final", cls: "cev-y", icon: "flag", category: "test" }],
+        "3-3-4": [{ label: "Score Projection", cls: "cev-g", icon: "auto_stories", category: "module" }]
+    };
+
     function generateDetailedSchedule(cartItems, timelineMonths) {
-        // Force fixed schedule for presentation (April - June 2026)
-        const presentationSchedule = {
-            // MONTH 1 (APRIL)
-            "1-0-3": [{ label: "FLOW Boost Test 1", cls: "cev-y", icon: "flag", category: "test" }],
-            "1-0-4": [{ label: "Live Class 1", cls: "cev-b", icon: "menu_book", category: "live" }],
-            "1-0-6": [
-                { label: "Self Study Reading", cls: "cev-g", icon: "auto_stories", category: "module" },
-                { label: "Listening Drill", cls: "cev-g", icon: "auto_stories", category: "module" }
-            ],
-            "1-0-0": [{ label: "Review & Error Log", cls: "cev-g", icon: "auto_stories", category: "module" }],
-            "1-1-2": [{ label: "Live Class 2", cls: "cev-b", icon: "menu_book", category: "live" }],
-            "1-1-4": [{ label: "Live Class 3", cls: "cev-b", icon: "menu_book", category: "live" }],
-            "1-1-6": [
-                { label: "Private Session 1", cls: "cev-o", icon: "record_voice_over", category: "private" },
-                { label: "Reading Practice", cls: "cev-g", icon: "auto_stories", category: "module" }
-            ],
-            "1-2-2": [{ label: "Live Class 4", cls: "cev-b", icon: "menu_book", category: "live" }],
-            "1-2-4": [{ label: "Live Class 5", cls: "cev-b", icon: "menu_book", category: "live" }],
-            "1-2-6": [
-                { label: "Listening Full Drill", cls: "cev-g", icon: "auto_stories", category: "module" },
-                { label: "Vocab Reinforcement", cls: "cev-g", icon: "auto_stories", category: "module" }
-            ],
-            "1-3-2": [{ label: "Live Class 6", cls: "cev-b", icon: "menu_book", category: "live" }],
-            "1-3-4": [{ label: "Live Class 7", cls: "cev-b", icon: "menu_book", category: "live" }],
-            "1-3-6": [
-                { label: "Mini Simulation", cls: "cev-y", icon: "flag", category: "test" },
-                { label: "Review", cls: "cev-g", icon: "auto_stories", category: "module" }
-            ],
-
-            // MONTH 2 (MEI)
-            "2-0-2": [{ label: "Live Class 8", cls: "cev-b", icon: "menu_book", category: "live" }],
-            "2-0-4": [{ label: "Live Class 9", cls: "cev-b", icon: "menu_book", category: "live" }],
-            "2-0-6": [
-                { label: "Reading Timed", cls: "cev-g", icon: "auto_stories", category: "module" },
-                { label: "Error Log Review", cls: "cev-g", icon: "auto_stories", category: "module" }
-            ],
-            "2-1-2": [{ label: "Live Class 10", cls: "cev-b", icon: "menu_book", category: "live" }],
-            "2-1-4": [{ label: "Live Class 11", cls: "cev-b", icon: "menu_book", category: "live" }],
-            "2-1-6": [{ label: "Private Session 2", cls: "cev-o", icon: "record_voice_over", category: "private" }],
-            "2-2-2": [{ label: "Live Class 12", cls: "cev-b", icon: "menu_book", category: "live" }],
-            "2-2-4": [{ label: "Live Class 13", cls: "cev-b", icon: "menu_book", category: "live" }],
-            "2-2-6": [
-                { label: "Full Practice Test", cls: "cev-y", icon: "flag", category: "test" },
-                { label: "Review", cls: "cev-g", icon: "auto_stories", category: "module" }
-            ],
-            "2-3-2": [{ label: "Live Class 14", cls: "cev-b", icon: "menu_book", category: "live" }],
-            "2-3-4": [
-                { label: "FLOW Boost Test 2", cls: "cev-y", icon: "flag", category: "test" },
-                { label: "Score Analysis", cls: "cev-g", icon: "auto_stories", category: "module" }
-            ],
-
-            // MONTH 3 (JUNI)
-            "3-0-2": [{ label: "Live Class 15", cls: "cev-b", icon: "menu_book", category: "live" }],
-            "3-0-4": [{ label: "Live Class 16", cls: "cev-b", icon: "menu_book", category: "live" }],
-            "3-0-6": [{ label: "Private Session 3", cls: "cev-o", icon: "record_voice_over", category: "private" }],
-            "3-1-2": [{ label: "Live Class 17", cls: "cev-b", icon: "menu_book", category: "live" }],
-            "3-1-4": [{ label: "Live Class 18", cls: "cev-b", icon: "menu_book", category: "live" }],
-            "3-1-6": [{ label: "Full Mock Test 1", cls: "cev-y", icon: "flag", category: "test" }],
-            "3-2-2": [{ label: "Live Class 19", cls: "cev-b", icon: "menu_book", category: "live" }],
-            "3-2-4": [{ label: "Live Class 20", cls: "cev-b", icon: "menu_book", category: "live" }],
-            "3-2-6": [
-                { label: "Full Mock Test 2", cls: "cev-y", icon: "flag", category: "test" },
-                { label: "Deep Review", cls: "cev-g", icon: "auto_stories", category: "module" }
-            ],
-            "3-3-2": [{ label: "Simulation Final", cls: "cev-y", icon: "flag", category: "test" }],
-            "3-3-4": [{ label: "Score Projection", cls: "cev-g", icon: "auto_stories", category: "module" }]
-        };
 
         const monthNames = ["April", "Mei", "Juni"];
         let scheduleHTML = `
@@ -405,8 +406,16 @@ document.addEventListener('DOMContentLoaded', function () {
                     const dayKey = `${m}-${w}-${d}`;
                     let dayContent = '';
 
-                    if (presentationSchedule[dayKey]) {
-                        presentationSchedule[dayKey].forEach((s, idx) => {
+                    // PRIORITIZE CUSTOM/DRAGGED SCHEDULE, FALLBACK TO PRESENTATION DATA
+                    let eventsToShow = [];
+                    if (customSchedule[dayKey]) {
+                        eventsToShow = customSchedule[dayKey];
+                    } else if (presentationSchedule[dayKey]) {
+                        eventsToShow = presentationSchedule[dayKey];
+                    }
+
+                    if (eventsToShow.length > 0) {
+                        eventsToShow.forEach((s, idx) => {
                             dayContent += `
                                 <div class="cev-ticket ${s.cls}" draggable="true" ondragstart="dragEvent(event, '${dayKey}', ${idx})">
                                     <div class="cev-icon"><span class="material-icons" style="font-size:10px;">${s.icon}</span></div>
@@ -517,33 +526,9 @@ document.addEventListener('DOMContentLoaded', function () {
     function materializeInitialSchedule() {
         if (Object.keys(customSchedule).length > 0) return;
 
-        // This is a bit heavy, but it ensures we have a real state to edit
-        const totalMonths = parseInt(formData.timeline) || 1;
-        const cartItems = userCart;
-
-        for (let m = 1; m <= totalMonths; m++) {
-            for (let w = 0; w < 4; w++) {
-                for (let d = 0; d < 7; d++) {
-                    const dayKey = `${m}-${w}-${d}`;
-                    let dayEvents = [];
-
-                    cartItems.forEach(item => {
-                        let itemObj = {
-                            label: item.name.split(' ')[0] + (item.category === 'live' ? ' Class' : (item.category === 'test' ? ' Quiz' : '')),
-                            cls: item.category === 'live' ? 'cev-b' : (item.category === 'private' ? 'cev-o' : (item.category === 'module' ? 'cev-g' : 'cev-y')),
-                            icon: item.category === 'live' ? 'menu_book' : (item.category === 'private' ? 'record_voice_over' : (item.category === 'module' ? 'auto_stories' : 'flag')),
-                            category: item.category
-                        };
-
-                        if (item.category === 'live' && (d === 1 || d === 3 || d === 5)) dayEvents.push(itemObj);
-                        else if (item.category === 'private' && d === 6) dayEvents.push(itemObj);
-                        else if (item.category === 'module' && (d === 0 || d === 2 || d === 4)) dayEvents.push(itemObj);
-                        else if (item.category === 'test' && (w === 0 || w === 2) && d === 6) dayEvents.push(itemObj);
-                    });
-
-                    if (dayEvents.length > 0) customSchedule[dayKey] = dayEvents;
-                }
-            }
+        // Materialize using the hardcoded presentation data so it becomes editable
+        for (const [key, value] of Object.entries(presentationSchedule)) {
+            customSchedule[key] = JSON.parse(JSON.stringify(value)); // Deep copy
         }
     }
 
@@ -598,25 +583,35 @@ document.addEventListener('DOMContentLoaded', function () {
         const invoiceList = document.getElementById('aiInvoiceItems');
         if (invoiceList) invoiceList.innerHTML = '';
 
+        const hardcodedInvoiceItems = [
+            { name: "TOEFL Live Class Program (3 Months)", price: 632500, desc: "Structured live sessions (2x per week) covering Listening, Structure, and Reading" },
+            { name: "TOEFL Private Coaching (3 Sessions)", price: 600000, desc: "1-on-1 mentoring session (personalized correction & strategy)" },
+            { name: "TOEFL Reading Mastery (VOD Module)", price: 77000, desc: "Self-paced reading strategy & drill module" },
+            { name: "TOEFL Listening Mastery (VOD Module)", price: 77000, desc: "Self-paced listening improvement module" },
+            { name: "FLOW Boost Test Package (2x Simulation)", price: 158400, desc: "TOEFL simulation tests for progress evaluation" }
+        ];
+
         let total = 0;
-        userCart.forEach(item => {
+        hardcodedInvoiceItems.forEach((item, idx) => {
             total += item.price;
             if (invoiceList) {
                 invoiceList.innerHTML += `
-                <div class="d-flex-center-btw m-b-10">
-                        <span class="f-13 fc-black-5">${item.name}</span>
-                        <span class="f-13 fw-700">Rp ${item.price.toLocaleString('id-ID')}</span>
+                    <div class="m-b-15">
+                        <div class="d-flex-center-btw mb-1">
+                            <span class="f-13 fw-700 fc-black-8">${idx + 1}. ${item.name}</span>
+                            <span class="f-13 fw-800 fc-purple-7">Rp ${item.price.toLocaleString('id-ID')}</span>
+                        </div>
+                        <div class="f-11 fc-black-4 lh-1-4">${item.desc}</div>
                     </div>
                 `;
             }
         });
 
-        const commitmentText = formData.timeline ? `${formData.timeline} Months` : 'Flexible';
         const totalEl = document.getElementById('aiInvoiceTotal');
-        const commitEl = document.getElementById('aiInvoiceCommitment');
+        const subTotalEl = document.getElementById('aiInvoiceSubtotal');
 
-        if (totalEl) totalEl.textContent = `Rp ${total.toLocaleString('id-ID')} `;
-        if (commitEl) commitEl.textContent = `${commitmentText} Commitment`;
+        if (totalEl) totalEl.textContent = `Rp ${total.toLocaleString('id-ID')}`;
+        if (subTotalEl) subTotalEl.textContent = `Rp ${total.toLocaleString('id-ID')}`;
     }
 
 
