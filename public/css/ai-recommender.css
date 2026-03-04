@@ -1173,6 +1173,76 @@
     margin-top: 2px;
 }
 
+/* Backpack & Trash Zone */
+.ai-backpack-container {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+}
+
+.ai-backpack-header {
+    background: #ffffff;
+    padding: 15px 20px;
+    border-bottom: 1px solid #f1f5f9;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ai-backpack-count {
+    background: #e0e7ff;
+    color: #4338ca;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.ai-backpack-list {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    min-height: 80px;
+    background: #fcfdfe;
+}
+
+.ai-trash-zone {
+    width: 45px;
+    height: 45px;
+    border-radius: 12px;
+    background: #fef2f2;
+    border: 2px dashed #fecaca;
+    color: #ef4444;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ai-trash-zone:hover,
+.ai-trash-zone.active-drag {
+    background: #fee2e2;
+    border-color: #f87171;
+    transform: scale(1.1);
+}
+
+.ai-trash-zone i {
+    font-size: 24px;
+}
+
+/* Dragging styles */
+.cev-ticket[draggable="true"] {
+    cursor: grab;
+}
+
+.cev-ticket:active {
+    cursor: grabbing;
+}
+
 .ai-strength-bar-bg {
     height: 10px;
     background: #E5E7EB;

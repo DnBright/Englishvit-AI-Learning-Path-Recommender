@@ -57,8 +57,12 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     // --- INTERACTIVE CALENDAR STATE ---
-    let customSchedule = {}; // Key: "m-w-d", Value: [activityType, ...]
+    let customSchedule = {}; // Key: "m-w-d", Value: [ {label, cls, icon, category} ]
+    let unscheduledSessions = []; // Backpack for "lives/nyawa"
     let currentMonthView = 1;
+
+    // Drag and Drop State
+    let draggedEvt = null;
 
 
     // --- DOM ELEMENTS ---
@@ -246,17 +250,33 @@ document.addEventListener('DOMContentLoaded', function () {
         const totalWeeks = totalMonths * 4;
 
         // Calculate Quotas based on schedule logic
-        let countLive = 0;
-        let countPrivate = 0;
-        let countModule = 0;
-        let countTest = 0;
-
+        let sessions = [];
         cartItems.forEach(item => {
-            if (item.category === 'live') countLive += totalWeeks * 3; // Tue, Thu, Sat
-            if (item.category === 'private') countPrivate += totalWeeks * 1; // Sun
-            if (item.category === 'module') countModule += totalWeeks * 3; // Mon, Wed, Fri
-            if (item.category === 'test') countTest += totalMonths * 2; // Week 1 & 3 of each month
+            let count = 0;
+            if (item.category === 'live') count = totalWeeks * 3;
+            if (item.category === 'private') count = totalWeeks * 1;
+            if (item.category === 'module') count = totalWeeks * 3;
+            if (item.category === 'test') count = totalMonths * 2;
+
+            for (let i = 0; i < count; i++) {
+                sessions.push({
+                    label: item.name.split(' ')[0] + (item.category === 'live' ? ' Class' : (item.category === 'test' ? ' Quiz' : '')),
+                    cls: item.category === 'live' ? 'cev-b' : (item.category === 'private' ? 'cev-o' : (item.category === 'module' ? 'cev-g' : 'cev-y')),
+                    icon: item.category === 'live' ? 'menu_book' : (item.category === 'private' ? 'record_voice_over' : (item.category === 'module' ? 'auto_stories' : 'flag')),
+                    category: item.category
+                });
+            }
         });
+
+        // Initialize unscheduledSessions if empty (first run)
+        if (unscheduledSessions.length === 0 && Object.keys(customSchedule).length === 0) {
+            unscheduledSessions = sessions;
+        }
+
+        const countLive = unscheduledSessions.filter(s => s.category === 'live').length + Object.values(customSchedule).flat().filter(s => s.category === 'live').length;
+        const countPrivate = unscheduledSessions.filter(s => s.category === 'private').length + Object.values(customSchedule).flat().filter(s => s.category === 'private').length;
+        const countModule = unscheduledSessions.filter(s => s.category === 'module').length + Object.values(customSchedule).flat().filter(s => s.category === 'module').length;
+        const countTest = unscheduledSessions.filter(s => s.category === 'test').length + Object.values(customSchedule).flat().filter(s => s.category === 'test').length;
 
         // Add Quota Summary Section
         scheduleHTML += `
@@ -285,25 +305,55 @@ document.addEventListener('DOMContentLoaded', function () {
                     </div>
                 </div>
             </div>
+
+            <!-- Backpack / Unscheduled Sessions -->
+            <div class="ai-backpack-container m-b-30">
+                <div class="ai-backpack-header">
+                    <div class="d-flex align-center gap-10">
+                        <span class="f-20">🎒</span>
+                        <div>
+                            <span class="fw-800 f-14 d-block">Sesi Belum Terjadwal (Backpack)</span>
+                            <span class="f-11 fc-black-4">Tarik sesi ke kalender untuk menjadwalkan.</span>
+                        </div>
+                    </div>
+                    <div class="ai-backpack-count" id="unschedCount">${unscheduledSessions.length} Sesi</div>
+                </div>
+                <div class="ai-backpack-list" id="unscheduledZone" ondragover="allowDrop(event)" ondrop="dropEvent(event, 'unscheduled')">
+                    ${unscheduledSessions.map((s, i) => `
+                        <div class="cev-ticket ${s.cls}" draggable="true" ondragstart="dragEvent(event, 'unscheduled', ${i})">
+                            <div class="cev-icon"><span class="material-icons" style="font-size:10px;">${s.icon}</span></div>
+                            <div class="cev-label">${s.label}</div>
+                        </div>
+                    `).join('')}
+                    ${unscheduledSessions.length === 0 ? '<div class="f-12 fc-black-3 italic p-2">Semua sesi sudah dijadwalkan!</div>' : ''}
+                </div>
+            </div>
         `;
 
         scheduleHTML += `
             <div class="m-b-30 d-flex-center-btw flex-wrap gap-15 ai-roadmap-controls">
                 <div>
                     <h4 class="fw-800 m-b-5">📅 Kalender Roadmap Belajar</h4>
-                    <p class="f-13 fc-black-5 mb-0">Rencana personal Anda. <strong>Klik hari untuk kustomisasi jadwal!</strong></p>
+                    <p class="f-13 fc-black-5 mb-0">Rencana personal Anda. <strong>Tarik sesi (Drag & Drop) untuk kustomisasi!</strong></p>
                 </div>
-                <div class="d-flex align-center gap-15 bg-white p-2 border-radius-12 shadow-sm border">
-                    <button class="btn btn-sm btn-icon-round bg-purple-1 fc-purple-7" onclick="changeMonthView(-1)" title="Bulan Sebelumnya">
-                        <i class="material-icons f-18">chevron_left</i>
-                    </button>
-                    <div class="text-center px-2" style="min-width: 100px;">
-                        <span class="f-11 fw-700 fc-black-4 d-block text-uppercase">Tampilan</span>
-                        <span class="fw-800 f-15 fc-purple-7" id="currentMonthLabel">Bulan ${currentMonthView}</span>
+                <div class="d-flex align-center gap-15">
+                    <!-- Trash Zone -->
+                    <div id="trashZone" class="ai-trash-zone" ondragover="allowDrop(event)" ondrop="deleteEvent(event)" title="Tarik ke sini untuk menghapus">
+                        <i class="material-icons">delete_outline</i>
                     </div>
-                    <button class="btn btn-sm btn-icon-round bg-purple-1 fc-purple-7" onclick="changeMonthView(1)" title="Bulan Berikutnya">
-                        <i class="material-icons f-18">chevron_right</i>
-                    </button>
+
+                    <div class="d-flex align-center gap-10 bg-white p-2 border-radius-12 shadow-sm border">
+                        <button class="btn btn-sm btn-icon-round bg-purple-1 fc-purple-7" onclick="changeMonthView(-1)" title="Bulan Sebelumnya">
+                            <i class="material-icons f-18">chevron_left</i>
+                        </button>
+                        <div class="text-center px-2" style="min-width: 100px;">
+                            <span class="f-11 fw-700 fc-black-4 d-block text-uppercase">Tampilan</span>
+                            <span class="fw-800 f-15 fc-purple-7" id="currentMonthLabel">Bulan ${currentMonthView}</span>
+                        </div>
+                        <button class="btn btn-sm btn-icon-round bg-purple-1 fc-purple-7" onclick="changeMonthView(1)" title="Bulan Berikutnya">
+                            <i class="material-icons f-18">chevron_right</i>
+                        </button>
+                    </div>
                 </div>
             </div>
             <div class="ai-month-slider-container">
@@ -343,42 +393,46 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     // Use custom schedule if exists, otherwise fallback to AI logic
                     if (customSchedule[dayKey]) {
-                        customSchedule[dayKey].forEach(type => {
-                            const icon = type === 'live' ? 'menu_book' : (type === 'private' ? 'record_voice_over' : (type === 'module' ? 'auto_stories' : 'flag'));
-                            const colorCls = type === 'live' ? 'cev-b' : (type === 'private' ? 'cev-o' : (type === 'module' ? 'cev-g' : 'cev-y'));
-                            const label = type === 'live' ? 'Live Class' : (type === 'private' ? 'Private' : (type === 'module' ? 'Focus' : 'Test'));
-
+                        customSchedule[dayKey].forEach((s, idx) => {
                             dayContent += `
-                                <div class="cev-ticket ${colorCls}" onclick="event.stopPropagation(); toggleActivity('${dayKey}', '${type}')">
-                                    <div class="cev-icon"><span class="material-icons" style="font-size:10px;">${icon}</span></div>
-                                    <div class="cev-label">${label}</div>
+                                <div class="cev-ticket ${s.cls}" draggable="true" ondragstart="dragEvent(event, '${dayKey}', ${idx})">
+                                    <div class="cev-icon"><span class="material-icons" style="font-size:10px;">${s.icon}</span></div>
+                                    <div class="cev-label">${s.label}</div>
                                 </div>`;
                         });
-                    } else {
+                    } else if (Object.keys(customSchedule).length === 0) {
+                        // Only auto-populate if user hasn't edited anything manually
                         cartItems.forEach(item => {
+                            let itemObj = {
+                                label: item.name.split(' ')[0] + (item.category === 'live' ? ' Class' : (item.category === 'test' ? ' Quiz' : '')),
+                                cls: item.category === 'live' ? 'cev-b' : (item.category === 'private' ? 'cev-o' : (item.category === 'module' ? 'cev-g' : 'cev-y')),
+                                icon: item.category === 'live' ? 'menu_book' : (item.category === 'private' ? 'record_voice_over' : (item.category === 'module' ? 'auto_stories' : 'flag')),
+                                category: item.category
+                            };
+
                             if (item.category === 'live' && (d === 1 || d === 3 || d === 5)) {
                                 dayContent += `
-                                    <div class="cev-ticket cev-b" title="${item.name}" onclick="event.stopPropagation(); toggleActivity('${dayKey}', 'live')">
-                                        <div class="cev-icon"><span class="material-icons" style="font-size:10px;">menu_book</span></div>
-                                        <div class="cev-label">Live Class</div>
+                                    <div class="cev-ticket ${itemObj.cls}" title="${item.name}" draggable="true" ondragstart="dragEvent(event, 'AUTO-${dayKey}', -1)">
+                                        <div class="cev-icon"><span class="material-icons" style="font-size:10px;">${itemObj.icon}</span></div>
+                                        <div class="cev-label">${itemObj.label}</div>
                                     </div>`;
                             } else if (item.category === 'private' && d === 6) {
                                 dayContent += `
-                                    <div class="cev-ticket cev-o" title="${item.name}" onclick="event.stopPropagation(); toggleActivity('${dayKey}', 'private')">
-                                        <div class="cev-icon"><span class="material-icons" style="font-size:10px;">record_voice_over</span></div>
-                                        <div class="cev-label">Private</div>
+                                    <div class="cev-ticket ${itemObj.cls}" title="${item.name}" draggable="true" ondragstart="dragEvent(event, 'AUTO-${dayKey}', -1)">
+                                        <div class="cev-icon"><span class="material-icons" style="font-size:10px;">${itemObj.icon}</span></div>
+                                        <div class="cev-label">${itemObj.label}</div>
                                     </div>`;
                             } else if (item.category === 'module' && (d === 0 || d === 2 || d === 4)) {
                                 dayContent += `
-                                    <div class="cev-ticket cev-g" title="${item.name}" onclick="event.stopPropagation(); toggleActivity('${dayKey}', 'module')">
-                                        <div class="cev-icon"><span class="material-icons" style="font-size:10px;">auto_stories</span></div>
-                                        <div class="cev-label">Materi</div>
+                                    <div class="cev-ticket ${itemObj.cls}" title="${item.name}" draggable="true" ondragstart="dragEvent(event, 'AUTO-${dayKey}', -1)">
+                                        <div class="cev-icon"><span class="material-icons" style="font-size:10px;">${itemObj.icon}</span></div>
+                                        <div class="cev-label">${itemObj.label}</div>
                                     </div>`;
                             } else if (item.category === 'test' && (w === 0 || w === 2) && d === 6) {
                                 dayContent += `
-                                    <div class="cev-ticket cev-y" title="${item.name}" onclick="event.stopPropagation(); toggleActivity('${dayKey}', 'test')">
-                                        <div class="cev-icon"><span class="material-icons" style="font-size:10px;">flag</span></div>
-                                        <div class="cev-label">Quiz</div>
+                                    <div class="cev-ticket ${itemObj.cls}" title="${item.name}" draggable="true" ondragstart="dragEvent(event, 'AUTO-${dayKey}', -1)">
+                                        <div class="cev-icon"><span class="material-icons" style="font-size:10px;">${itemObj.icon}</span></div>
+                                        <div class="cev-label">${itemObj.label}</div>
                                     </div>`;
                             }
                         });
@@ -387,7 +441,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     const hasActivityClass = dayContent !== '' ? 'has-ev' : '';
 
                     scheduleHTML += `
-                        <div class="cal-cell ${hasActivityClass}" onclick="openDayEditor('${dayKey}')">
+                        <div class="cal-cell ${hasActivityClass}" ondragover="allowDrop(event)" ondrop="dropEvent(event, '${dayKey}')">
                             <div class="cdn">${d + 1}</div>
                             ${dayContent}
                         </div>
@@ -441,6 +495,129 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
         return scheduleHTML;
+    }
+
+    // --- DRAG AND DROP HANDLERS ---
+    window.allowDrop = function (ev) {
+        ev.preventDefault();
+    };
+
+    window.dragEvent = function (ev, sourceKey, index) {
+        // If it's an "AUTO" ticket (initial state), we need to materialize it first
+        if (sourceKey.startsWith('AUTO-')) {
+            const realKey = sourceKey.replace('AUTO-', '');
+            // Materialize the whole initial state into customSchedule once
+            materializeInitialSchedule();
+            // Now find the item in the materialized schedule
+            const itemIdx = customSchedule[realKey].findIndex(item => item.label === ev.target.innerText.trim());
+            draggedEvt = { sourceKey: realKey, index: itemIdx };
+        } else {
+            draggedEvt = { sourceKey, index };
+        }
+
+        ev.dataTransfer.effectAllowed = 'move';
+        // Visual feedback
+        const trash = document.getElementById('trashZone');
+        if (trash) {
+            trash.classList.add('active-drag');
+        }
+    };
+
+    window.dropEvent = function (ev, targetKey) {
+        ev.preventDefault();
+        resetDragStyles();
+        if (!draggedEvt) return;
+
+        const { sourceKey, index } = draggedEvt;
+        if (sourceKey === targetKey) return;
+
+        // 1. Extract item
+        let item;
+        if (sourceKey === 'unscheduled') {
+            item = unscheduledSessions.splice(index, 1)[0];
+        } else {
+            if (!customSchedule[sourceKey]) materializeInitialSchedule();
+            item = customSchedule[sourceKey].splice(index, 1)[0];
+            if (customSchedule[sourceKey].length === 0) delete customSchedule[sourceKey];
+        }
+
+        // 2. Insert item
+        if (targetKey === 'unscheduled') {
+            unscheduledSessions.push(item);
+        } else {
+            if (!customSchedule[targetKey]) {
+                // If dropping into a fresh cell, make sure we have the rest materialized if not already
+                if (Object.keys(customSchedule).length === 0) materializeInitialSchedule();
+                if (!customSchedule[targetKey]) customSchedule[targetKey] = [];
+            }
+            customSchedule[targetKey].push(item);
+        }
+
+        draggedEvt = null;
+        refreshCalendarUI();
+    };
+
+    window.deleteEvent = function (ev) {
+        ev.preventDefault();
+        resetDragStyles();
+        if (!draggedEvt) return;
+
+        const { sourceKey, index } = draggedEvt;
+        if (sourceKey === 'unscheduled') {
+            unscheduledSessions.splice(index, 1);
+        } else {
+            if (!customSchedule[sourceKey]) materializeInitialSchedule();
+            customSchedule[sourceKey].splice(index, 1)[0];
+            if (customSchedule[sourceKey].length === 0) delete customSchedule[sourceKey];
+        }
+
+        draggedEvt = null;
+        refreshCalendarUI();
+    };
+
+    function resetDragStyles() {
+        const trash = document.getElementById('trashZone');
+        if (trash) trash.classList.remove('active-drag');
+    }
+
+    function materializeInitialSchedule() {
+        if (Object.keys(customSchedule).length > 0) return;
+
+        // This is a bit heavy, but it ensures we have a real state to edit
+        const totalMonths = parseInt(formData.timeline) || 1;
+        const cartItems = userCart;
+
+        for (let m = 1; m <= totalMonths; m++) {
+            for (let w = 0; w < 4; w++) {
+                for (let d = 0; d < 7; d++) {
+                    const dayKey = `${m}-${w}-${d}`;
+                    let dayEvents = [];
+
+                    cartItems.forEach(item => {
+                        let itemObj = {
+                            label: item.name.split(' ')[0] + (item.category === 'live' ? ' Class' : (item.category === 'test' ? ' Quiz' : '')),
+                            cls: item.category === 'live' ? 'cev-b' : (item.category === 'private' ? 'cev-o' : (item.category === 'module' ? 'cev-g' : 'cev-y')),
+                            icon: item.category === 'live' ? 'menu_book' : (item.category === 'private' ? 'record_voice_over' : (item.category === 'module' ? 'auto_stories' : 'flag')),
+                            category: item.category
+                        };
+
+                        if (item.category === 'live' && (d === 1 || d === 3 || d === 5)) dayEvents.push(itemObj);
+                        else if (item.category === 'private' && d === 6) dayEvents.push(itemObj);
+                        else if (item.category === 'module' && (d === 0 || d === 2 || d === 4)) dayEvents.push(itemObj);
+                        else if (item.category === 'test' && (w === 0 || w === 2) && d === 6) dayEvents.push(itemObj);
+                    });
+
+                    if (dayEvents.length > 0) customSchedule[dayKey] = dayEvents;
+                }
+            }
+        }
+    }
+
+    function refreshCalendarUI() {
+        const timeline = document.getElementById('aiRoadmapTimeline');
+        if (timeline) {
+            timeline.innerHTML = generateDetailedSchedule(userCart, formData.timeline);
+        }
     }
 
     function renderRoadmapTimeline(coreRecs, allRecs) {
