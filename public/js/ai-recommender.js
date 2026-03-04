@@ -251,87 +251,101 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function generateDetailedSchedule(cartItems, timelineMonths) {
-        let scheduleHTML = '';
-        const totalMonths = parseInt(timelineMonths) || 1;
-        const totalWeeks = totalMonths * 4;
+        // Force fixed schedule for presentation (April - June 2026)
+        const presentationSchedule = {
+            // MONTH 1 (APRIL)
+            "1-0-3": [{ label: "FLOW Boost Test 1", cls: "cev-y", icon: "flag", category: "test" }],
+            "1-0-4": [{ label: "Live Class 1", cls: "cev-b", icon: "menu_book", category: "live" }],
+            "1-0-6": [
+                { label: "Self Study Reading", cls: "cev-g", icon: "auto_stories", category: "module" },
+                { label: "Listening Drill", cls: "cev-g", icon: "auto_stories", category: "module" }
+            ],
+            "1-0-0": [{ label: "Review & Error Log", cls: "cev-g", icon: "auto_stories", category: "module" }],
+            "1-1-2": [{ label: "Live Class 2", cls: "cev-b", icon: "menu_book", category: "live" }],
+            "1-1-4": [{ label: "Live Class 3", cls: "cev-b", icon: "menu_book", category: "live" }],
+            "1-1-6": [
+                { label: "Private Session 1", cls: "cev-o", icon: "record_voice_over", category: "private" },
+                { label: "Reading Practice", cls: "cev-g", icon: "auto_stories", category: "module" }
+            ],
+            "1-2-2": [{ label: "Live Class 4", cls: "cev-b", icon: "menu_book", category: "live" }],
+            "1-2-4": [{ label: "Live Class 5", cls: "cev-b", icon: "menu_book", category: "live" }],
+            "1-2-6": [
+                { label: "Listening Full Drill", cls: "cev-g", icon: "auto_stories", category: "module" },
+                { label: "Vocab Reinforcement", cls: "cev-g", icon: "auto_stories", category: "module" }
+            ],
+            "1-3-2": [{ label: "Live Class 6", cls: "cev-b", icon: "menu_book", category: "live" }],
+            "1-3-4": [{ label: "Live Class 7", cls: "cev-b", icon: "menu_book", category: "live" }],
+            "1-3-6": [
+                { label: "Mini Simulation", cls: "cev-y", icon: "flag", category: "test" },
+                { label: "Review", cls: "cev-g", icon: "auto_stories", category: "module" }
+            ],
 
-        // Calculate Quotas based on schedule logic
-        let sessions = [];
-        cartItems.forEach(item => {
-            let count = 0;
-            if (item.category === 'live') count = totalWeeks * 3;
-            if (item.category === 'private') count = totalWeeks * 1;
-            if (item.category === 'module') count = totalWeeks * 3;
-            if (item.category === 'test') count = totalMonths * 2;
+            // MONTH 2 (MEI)
+            "2-0-2": [{ label: "Live Class 8", cls: "cev-b", icon: "menu_book", category: "live" }],
+            "2-0-4": [{ label: "Live Class 9", cls: "cev-b", icon: "menu_book", category: "live" }],
+            "2-0-6": [
+                { label: "Reading Timed", cls: "cev-g", icon: "auto_stories", category: "module" },
+                { label: "Error Log Review", cls: "cev-g", icon: "auto_stories", category: "module" }
+            ],
+            "2-1-2": [{ label: "Live Class 10", cls: "cev-b", icon: "menu_book", category: "live" }],
+            "2-1-4": [{ label: "Live Class 11", cls: "cev-b", icon: "menu_book", category: "live" }],
+            "2-1-6": [{ label: "Private Session 2", cls: "cev-o", icon: "record_voice_over", category: "private" }],
+            "2-2-2": [{ label: "Live Class 12", cls: "cev-b", icon: "menu_book", category: "live" }],
+            "2-2-4": [{ label: "Live Class 13", cls: "cev-b", icon: "menu_book", category: "live" }],
+            "2-2-6": [
+                { label: "Full Practice Test", cls: "cev-y", icon: "flag", category: "test" },
+                { label: "Review", cls: "cev-g", icon: "auto_stories", category: "module" }
+            ],
+            "2-3-2": [{ label: "Live Class 14", cls: "cev-b", icon: "menu_book", category: "live" }],
+            "2-3-4": [
+                { label: "FLOW Boost Test 2", cls: "cev-y", icon: "flag", category: "test" },
+                { label: "Score Analysis", cls: "cev-g", icon: "auto_stories", category: "module" }
+            ],
 
-            for (let i = 0; i < count; i++) {
-                sessions.push({
-                    label: item.name.split(' ')[0] + (item.category === 'live' ? ' Class' : (item.category === 'test' ? ' Quiz' : '')),
-                    cls: item.category === 'live' ? 'cev-b' : (item.category === 'private' ? 'cev-o' : (item.category === 'module' ? 'cev-g' : 'cev-y')),
-                    icon: item.category === 'live' ? 'menu_book' : (item.category === 'private' ? 'record_voice_over' : (item.category === 'module' ? 'auto_stories' : 'flag')),
-                    category: item.category
-                });
-            }
-        });
+            // MONTH 3 (JUNI)
+            "3-0-2": [{ label: "Live Class 15", cls: "cev-b", icon: "menu_book", category: "live" }],
+            "3-0-4": [{ label: "Live Class 16", cls: "cev-b", icon: "menu_book", category: "live" }],
+            "3-0-6": [{ label: "Private Session 3", cls: "cev-o", icon: "record_voice_over", category: "private" }],
+            "3-1-2": [{ label: "Live Class 17", cls: "cev-b", icon: "menu_book", category: "live" }],
+            "3-1-4": [{ label: "Live Class 18", cls: "cev-b", icon: "menu_book", category: "live" }],
+            "3-1-6": [{ label: "Full Mock Test 1", cls: "cev-y", icon: "flag", category: "test" }],
+            "3-2-2": [{ label: "Live Class 19", cls: "cev-b", icon: "menu_book", category: "live" }],
+            "3-2-4": [{ label: "Live Class 20", cls: "cev-b", icon: "menu_book", category: "live" }],
+            "3-2-6": [
+                { label: "Full Mock Test 2", cls: "cev-y", icon: "flag", category: "test" },
+                { label: "Deep Review", cls: "cev-g", icon: "auto_stories", category: "module" }
+            ],
+            "3-3-2": [{ label: "Simulation Final", cls: "cev-y", icon: "flag", category: "test" }],
+            "3-3-4": [{ label: "Score Projection", cls: "cev-g", icon: "auto_stories", category: "module" }]
+        };
 
-        // Initialize unscheduledSessions if empty (first run)
-        if (unscheduledSessions.length === 0 && Object.keys(customSchedule).length === 0) {
-            unscheduledSessions = sessions;
-        }
-
-        const countLive = unscheduledSessions.filter(s => s.category === 'live').length + Object.values(customSchedule).flat().filter(s => s.category === 'live').length;
-        const countPrivate = unscheduledSessions.filter(s => s.category === 'private').length + Object.values(customSchedule).flat().filter(s => s.category === 'private').length;
-        const countModule = unscheduledSessions.filter(s => s.category === 'module').length + Object.values(customSchedule).flat().filter(s => s.category === 'module').length;
-        const countTest = unscheduledSessions.filter(s => s.category === 'test').length + Object.values(customSchedule).flat().filter(s => s.category === 'test').length;
-
-        // Add Quota Summary Section
-        scheduleHTML += `
-            <div class="ai-quota-summary">
-                <div class="d-flex align-center gap-10 m-b-5">
-                    <span class="badge bg-purple-1 fc-purple-7 f-10 fw-800">RINGKASAN PAKET</span>
-                    <h5 class="fw-800 mb-0">Rincian Total Sesi & Fasilitas</h5>
+        const monthNames = ["April", "Mei", "Juni"];
+        let scheduleHTML = `
+            <div class="m-b-30">
+                <div class="d-flex align-center gap-15 m-b-20">
+                    <div class="f-40">📊</div>
+                    <div>
+                        <h4 class="fw-800 m-b-5">Target & Quota Belajar</h4>
+                        <p class="f-13 fc-black-5">Estimasi kebutuhan sesi untuk target TOEFL 580 (3 Bulan).</p>
+                    </div>
                 </div>
-                <p class="f-12 fc-black-4 m-b-15">Berikut adalah total jatah kegiatan yang Anda dapatkan selama <strong>${totalMonths} bulan</strong> ke depan:</p>
                 <div class="ai-quota-grid">
                     <div class="ai-quota-item">
-                        <span class="val">${countLive}x</span>
-                        <span class="lbl">🏫 Live Classes</span>
+                        <span class="val">20x</span>
+                        <span class="lbl">🏫 Live Class</span>
                     </div>
                     <div class="ai-quota-item">
-                        <span class="val">${countPrivate}x</span>
+                        <span class="val">3x</span>
                         <span class="lbl">👤 Private Session</span>
                     </div>
                     <div class="ai-quota-item">
-                        <span class="val">${countModule}x</span>
-                        <span class="lbl">📽️ Materi Focus</span>
+                        <span class="val">5x</span>
+                        <span class="lbl">📜 Full Test</span>
                     </div>
                     <div class="ai-quota-item">
-                        <span class="val">${countTest}x</span>
-                        <span class="lbl">📜 Quiz & Test</span>
+                        <span class="val">12x</span>
+                        <span class="lbl">📽️ Drill & Review</span>
                     </div>
-                </div>
-            </div>
-
-            <!-- Backpack / Unscheduled Sessions -->
-            <div class="ai-backpack-container m-b-30">
-                <div class="ai-backpack-header">
-                    <div class="d-flex align-center gap-10">
-                        <span class="f-20">🎒</span>
-                        <div>
-                            <span class="fw-800 f-14 d-block">Sesi Belum Terjadwal (Backpack)</span>
-                            <span class="f-11 fc-black-4">Tarik sesi ke kalender untuk menjadwalkan.</span>
-                        </div>
-                    </div>
-                    <div class="ai-backpack-count" id="unschedCount">${unscheduledSessions.length} Sesi</div>
-                </div>
-                <div class="ai-backpack-list" id="unscheduledZone" ondragover="allowDrop(event)" ondrop="dropEvent(event, 'unscheduled')">
-                    ${unscheduledSessions.map((s, i) => `
-                        <div class="cev-ticket ${s.cls}" draggable="true" ondragstart="dragEvent(event, 'unscheduled', ${i})">
-                            <div class="cev-icon"><span class="material-icons" style="font-size:10px;">${s.icon}</span></div>
-                            <div class="cev-label">${s.label}</div>
-                        </div>
-                    `).join('')}
-                    ${unscheduledSessions.length === 0 ? '<div class="f-12 fc-black-3 italic p-2">Semua sesi sudah dijadwalkan!</div>' : ''}
                 </div>
             </div>
         `;
@@ -340,14 +354,12 @@ document.addEventListener('DOMContentLoaded', function () {
             <div class="m-b-30 d-flex-center-btw flex-wrap gap-15 ai-roadmap-controls">
                 <div>
                     <h4 class="fw-800 m-b-5">📅 Kalender Roadmap Belajar</h4>
-                    <p class="f-13 fc-black-5 mb-0">Rencana personal Anda. <strong>Tarik sesi (Drag & Drop) untuk kustomisasi!</strong></p>
+                    <p class="f-13 fc-black-5 mb-0">Rencana personal Anda untuk April - Juni 2026.</p>
                 </div>
                 <div class="d-flex align-center gap-15">
-                    <!-- Trash Zone -->
                     <div id="trashZone" class="ai-trash-zone" ondragover="allowDrop(event)" ondrop="deleteEvent(event)" title="Tarik ke sini untuk menghapus">
                         <i class="material-icons">delete_outline</i>
                     </div>
-
                     <div class="d-flex align-center gap-10 bg-white p-2 border-radius-12 shadow-sm border">
                         <button class="btn btn-sm btn-icon-round bg-purple-1 fc-purple-7" onclick="changeMonthView(-1)" title="Bulan Sebelumnya">
                             <i class="material-icons f-18">chevron_left</i>
@@ -365,14 +377,12 @@ document.addEventListener('DOMContentLoaded', function () {
             <div class="ai-month-slider-container">
         `;
 
-        const dayLabels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-
-        for (let m = 1; m <= totalMonths; m++) {
+        for (let m = 1; m <= 3; m++) {
             const isVisible = m === currentMonthView ? '' : 'd-none';
             scheduleHTML += `
                 <div class="ai-month-slide ${isVisible}" id="monthSlide-${m}">
                     <div class="calendar-header-main">
-                        <span class="f-16 fw-800">Bulan April</span>
+                        <span class="f-16 fw-800">Bulan ${monthNames[m - 1]}</span>
                     </div>
                     <div class="cal-grid p-3">
                         <div class="cal-grid-row">
@@ -389,81 +399,35 @@ document.addEventListener('DOMContentLoaded', function () {
 
             for (let w = 0; w < 4; w++) {
                 scheduleHTML += `<div class="cal-grid-row">`;
-                // Week number indicator
                 scheduleHTML += `<div class="week-num-cell">W${w + 1}</div>`;
 
                 for (let d = 0; d < 7; d++) {
                     const dayKey = `${m}-${w}-${d}`;
                     let dayContent = '';
 
-                    // Use custom schedule if exists, otherwise fallback to AI logic
-                    if (customSchedule[dayKey]) {
-                        customSchedule[dayKey].forEach((s, idx) => {
+                    if (presentationSchedule[dayKey]) {
+                        presentationSchedule[dayKey].forEach((s, idx) => {
                             dayContent += `
                                 <div class="cev-ticket ${s.cls}" draggable="true" ondragstart="dragEvent(event, '${dayKey}', ${idx})">
                                     <div class="cev-icon"><span class="material-icons" style="font-size:10px;">${s.icon}</span></div>
-                                    <div class="cev-label">${s.label}</div>
+                                    <div class="cev-label" style="font-size:9px;">${s.label}</div>
                                 </div>`;
-                        });
-                    } else if (Object.keys(customSchedule).length === 0) {
-                        // Only auto-populate if user hasn't edited anything manually
-                        cartItems.forEach(item => {
-                            let itemObj = {
-                                label: item.name.split(' ')[0] + (item.category === 'live' ? ' Class' : (item.category === 'test' ? ' Quiz' : '')),
-                                cls: item.category === 'live' ? 'cev-b' : (item.category === 'private' ? 'cev-o' : (item.category === 'module' ? 'cev-g' : 'cev-y')),
-                                icon: item.category === 'live' ? 'menu_book' : (item.category === 'private' ? 'record_voice_over' : (item.category === 'module' ? 'auto_stories' : 'flag')),
-                                category: item.category
-                            };
-
-                            if (item.category === 'live' && (d === 1 || d === 3 || d === 5)) {
-                                dayContent += `
-                                    <div class="cev-ticket ${itemObj.cls}" title="${item.name}" draggable="true" ondragstart="dragEvent(event, 'AUTO-${dayKey}', -1)">
-                                        <div class="cev-icon"><span class="material-icons" style="font-size:10px;">${itemObj.icon}</span></div>
-                                        <div class="cev-label">${itemObj.label}</div>
-                                    </div>`;
-                            } else if (item.category === 'private' && d === 6) {
-                                dayContent += `
-                                    <div class="cev-ticket ${itemObj.cls}" title="${item.name}" draggable="true" ondragstart="dragEvent(event, 'AUTO-${dayKey}', -1)">
-                                        <div class="cev-icon"><span class="material-icons" style="font-size:10px;">${itemObj.icon}</span></div>
-                                        <div class="cev-label">${itemObj.label}</div>
-                                    </div>`;
-                            } else if (item.category === 'module' && (d === 0 || d === 2 || d === 4)) {
-                                dayContent += `
-                                    <div class="cev-ticket ${itemObj.cls}" title="${item.name}" draggable="true" ondragstart="dragEvent(event, 'AUTO-${dayKey}', -1)">
-                                        <div class="cev-icon"><span class="material-icons" style="font-size:10px;">${itemObj.icon}</span></div>
-                                        <div class="cev-label">${itemObj.label}</div>
-                                    </div>`;
-                            } else if (item.category === 'test' && (w === 0 || w === 2) && d === 6) {
-                                dayContent += `
-                                    <div class="cev-ticket ${itemObj.cls}" title="${item.name}" draggable="true" ondragstart="dragEvent(event, 'AUTO-${dayKey}', -1)">
-                                        <div class="cev-icon"><span class="material-icons" style="font-size:10px;">${itemObj.icon}</span></div>
-                                        <div class="cev-label">${itemObj.label}</div>
-                                    </div>`;
-                            }
                         });
                     }
 
                     const hasActivityClass = dayContent !== '' ? 'has-ev' : '';
-
                     scheduleHTML += `
                         <div class="cal-cell ${hasActivityClass}" ondragover="allowDrop(event)" ondrop="dropEvent(event, '${dayKey}')">
                             <div class="cdn">${d + 1}</div>
-                            ${dayContent}
-                        </div>
-                    `;
+                            <div class="cev-container">${dayContent}</div>
+                        </div>`;
                 }
-                scheduleHTML += '</div>';
+                scheduleHTML += `</div>`;
             }
-
-            scheduleHTML += `
-                    </div>
-                </div>
-            `;
+            scheduleHTML += '</div></div>';
         }
 
-        scheduleHTML += `</div>`; // Close slider container
-
-
+        scheduleHTML += `</div>`;
         return scheduleHTML;
     }
 
