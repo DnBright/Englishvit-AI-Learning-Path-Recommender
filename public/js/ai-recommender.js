@@ -372,8 +372,7 @@ document.addEventListener('DOMContentLoaded', function () {
             scheduleHTML += `
                 <div class="ai-month-slide ${isVisible}" id="monthSlide-${m}">
                     <div class="calendar-header-main">
-                        <span class="f-16 fw-800">Bulan Belajar ${m}</span>
-                        <p class="f-12 fc-black-4 m-0">Satu langkah lebih dekat ke target Anda!</p>
+                        <span class="f-16 fw-800">Bulan April</span>
                     </div>
                     <div class="cal-grid p-3">
                         <div class="cal-grid-row">
@@ -457,41 +456,6 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             scheduleHTML += `
-                    </div>
-                    <div class="ai-legend-wrapper m-t-25 p-3">
-                        <div class="f-12 fw-800 m-b-15 fc-white text-uppercase letter-spacing-1">
-                            <i class="material-icons f-14 v-middle m-r-5">info_outline</i> Panduan Jenis Kegiatan
-                        </div>
-                        <div class="ai-legend-grid">
-                            <div class="ai-legend-card cev-b">
-                                <div class="icon"><span class="material-icons">menu_book</span></div>
-                                <div class="info">
-                                    <span class="title">Live Class</span>
-                                    <p class="desc">Kelas interaktif Zoom dengan Tutor Expert (1.5 Jam).</p>
-                                </div>
-                            </div>
-                            <div class="ai-legend-card cev-o">
-                                <div class="icon"><span class="material-icons">record_voice_over</span></div>
-                                <div class="info">
-                                    <span class="title">Privat</span>
-                                    <p class="desc">Sesi 1-on-1 intensif untuk konsultasi (1 Jam).</p>
-                                </div>
-                            </div>
-                            <div class="ai-legend-card cev-g">
-                                <div class="icon"><span class="material-icons">auto_stories</span></div>
-                                <div class="info">
-                                    <span class="title">Materi / Focus</span>
-                                    <p class="desc">Belajar mandiri via platform video & latihan.</p>
-                                </div>
-                            </div>
-                            <div class="ai-legend-card cev-y">
-                                <div class="icon"><span class="material-icons">flag</span></div>
-                                <div class="info">
-                                    <span class="title">Quiz / Test</span>
-                                    <p class="desc">Ukur progres berkala setiap 2 minggu sekali.</p>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             `;
