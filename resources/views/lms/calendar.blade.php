@@ -90,22 +90,22 @@
       <div class="section-label">📊 Progress Bulan Maret</div>
       <div style="display:flex;gap:12px;margin-bottom:14px;">
         <div style="flex:1;text-align:center;">
-          <div style="font-family:var(--font-disp);font-size:26px;font-weight:800;color:var(--yellow)">14</div>
+          <div style="font-family:var(--font-disp);font-size:26px;font-weight:800;color:var(--yellow)">9</div>
           <div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;">Kelas</div>
         </div>
         <div style="flex:1;text-align:center;">
-          <div style="font-family:var(--font-disp);font-size:26px;font-weight:800;color:var(--white)">28</div>
+          <div style="font-family:var(--font-disp);font-size:26px;font-weight:800;color:var(--white)">18</div>
           <div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;">Jam</div>
         </div>
         <div style="flex:1;text-align:center;">
-          <div style="font-family:var(--font-disp);font-size:26px;font-weight:800;color:var(--green-acc)">1,250</div>
+          <div style="font-family:var(--font-disp);font-size:26px;font-weight:800;color:var(--green-acc)">850</div>
           <div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;">XP</div>
         </div>
       </div>
       <div class="prog-bar">
-        <div class="prog-fill" style="width:56%"></div>
+        <div class="prog-fill" style="width:40%"></div>
       </div>
-      <div style="font-size:11px;color:var(--muted);margin-top:6px">56% dari target bulanan (50 jam) · on-track ✓</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:6px">40% dari target bulanan (45 jam) · on-track ✓</div>
       <div style="margin-top:12px;display:flex;flex-direction:column;gap:4px;">
         <div style="display:flex;justify-content:space-between;font-size:11px;">
           <span style="color:var(--muted)">FLOW Boost Test 2</span>
@@ -135,40 +135,24 @@ const CAL_EVENTS={
   '2026-4-1': [{label:'FLOW Boost Test 1',cls:'cev-y',icon:'assessment'}],
   '2026-4-2': [{label:'Live Class 1',cls:'cev-b',icon:'sensors'}],
   '2026-4-4': [{label:'Self Study Reading',cls:'cev-g',icon:'menu_book'},{label:'Listening Drill',cls:'cev-g',icon:'hearing'}],
-  '2026-4-5': [{label:'Review & Error Log',cls:'cev-g',icon:'rule'}],
   '2026-4-7': [{label:'Live Class 2',cls:'cev-b',icon:'sensors'}],
-  '2026-4-9': [{label:'Live Class 3',cls:'cev-b',icon:'sensors'}],
   '2026-4-11':[{label:'Private Session 1',cls:'cev-o',icon:'person'},{label:'Reading Practice',cls:'cev-g',icon:'timer'}],
-  '2026-4-14':[{label:'Live Class 4',cls:'cev-b',icon:'sensors'}],
-  '2026-4-16':[{label:'Live Class 5',cls:'cev-b',icon:'sensors'}],
-  '2026-4-18':[{label:'Listening Full Drill',cls:'cev-g',icon:'headphones'},{label:'Vocabulary',cls:'cev-g',icon:'grade'}],
-  '2026-4-21':[{label:'Live Class 6',cls:'cev-b',icon:'sensors'}],
-  '2026-4-23':[{label:'Live Class 7',cls:'cev-b',icon:'sensors'}],
+  '2026-4-16':[{label:'Live Class 3',cls:'cev-b',icon:'sensors'}],
   '2026-4-25':[{label:'Mini Simulation',cls:'cev-y',icon:'emoji_events'},{label:'Review',cls:'cev-g',icon:'rule'}],
 
   // BULAN 2 (MEI)
-  '2026-5-5': [{label:'Live Class 8',cls:'cev-b',icon:'sensors'}],
-  '2026-5-7': [{label:'Live Class 9',cls:'cev-b',icon:'sensors'}],
+  '2026-5-5': [{label:'Live Class 4',cls:'cev-b',icon:'sensors'}],
   '2026-5-9': [{label:'Reading Timed',cls:'cev-g',icon:'timer'},{label:'Error Log Review',cls:'cev-g',icon:'history_edu'}],
-  '2026-5-12':[{label:'Live Class 10',cls:'cev-b',icon:'sensors'}],
-  '2026-5-14':[{label:'Live Class 11',cls:'cev-b',icon:'sensors'}],
+  '2026-5-14':[{label:'Live Class 5',cls:'cev-b',icon:'sensors'}],
   '2026-5-16':[{label:'Private Session 2',cls:'cev-o',icon:'person'}],
-  '2026-5-19':[{label:'Live Class 12',cls:'cev-b',icon:'sensors'}],
-  '2026-5-21':[{label:'Live Class 13',cls:'cev-b',icon:'sensors'}],
-  '2026-5-23':[{label:'Full Practice Test',cls:'cev-y',icon:'assessment'},{label:'Review',cls:'cev-g',icon:'rule'}],
-  '2026-5-26':[{label:'Live Class 14',cls:'cev-b',icon:'sensors'}],
+  '2026-5-19':[{label:'Live Class 6',cls:'cev-b',icon:'sensors'}],
   '2026-5-28':[{label:'FLOW Boost Test 2',cls:'cev-y',icon:'flag'},{label:'Score Analysis',cls:'cev-g',icon:'insights'}],
 
   // BULAN 3 (JUNI)
-  '2026-6-2': [{label:'Live Class 15',cls:'cev-b',icon:'sensors'}],
-  '2026-6-4': [{label:'Live Class 16',cls:'cev-b',icon:'sensors'}],
+  '2026-6-4': [{label:'Live Class 7',cls:'cev-b',icon:'sensors'}],
   '2026-6-6': [{label:'Private Session 3',cls:'cev-o',icon:'person'}],
-  '2026-6-9': [{label:'Live Class 17',cls:'cev-b',icon:'sensors'}],
-  '2026-6-11':[{label:'Live Class 18',cls:'cev-b',icon:'sensors'}],
-  '2026-6-13':[{label:'Full Mock Test 1',cls:'cev-y',icon:'emoji_events'}],
-  '2026-6-16':[{label:'Live Class 19',cls:'cev-b',icon:'sensors'}],
-  '2026-6-18':[{label:'Live Class 20',cls:'cev-b',icon:'sensors'}],
-  '2026-6-20':[{label:'Full Mock Test 2',cls:'cev-y',icon:'emoji_events'},{label:'Deep Review',cls:'cev-g',icon:'rule'}],
+  '2026-6-9': [{label:'Live Class 8',cls:'cev-b',icon:'sensors'}],
+  '2026-6-18':[{label:'Live Class 9',cls:'cev-b',icon:'sensors'}],
   '2026-6-23':[{label:'Simulation Final',cls:'cev-y',icon:'flag'}],
   '2026-6-25':[{label:'Score Projection',cls:'cev-g',icon:'trending_up'}],
 };
