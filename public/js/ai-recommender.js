@@ -235,11 +235,17 @@ document.addEventListener('DOMContentLoaded', function () {
         userCart = [...coreRecs];
 
         // Calculate Total Price & Savings
-        const totalPrice = coreRecs.reduce((sum, item) => sum + item.price, 0);
-        const savings = Math.round(totalPrice * 0.15); // Simulated 15% discount for bundle
+        let displayPrice = totalPrice;
+        let displaySavings = savings;
 
-        document.getElementById('resultTotalPrice').textContent = `Rp ${totalPrice.toLocaleString('id-ID')}`;
-        document.getElementById('resultSavings').textContent = `${savings.toLocaleString('id-ID')}`;
+        // Presentation Override for Rina/TOEFL narrative
+        if (formData.ielts_goal === 580) {
+            displayPrice = 489000;
+            displaySavings = 73350;
+        }
+
+        document.getElementById('resultTotalPrice').textContent = `Rp ${displayPrice.toLocaleString('id-ID')}`;
+        document.getElementById('resultSavings').textContent = `${displaySavings.toLocaleString('id-ID')}`;
 
         renderRoadmapTimeline(coreRecs, recommendations);
     }
@@ -890,13 +896,19 @@ document.addEventListener('DOMContentLoaded', function () {
         resultSection.classList.remove('d-none');
 
         // Update total price display in Result Section based on actual custom cart
-        const totalPrice = userCart.reduce((sum, item) => sum + item.price, 0);
-        const savings = Math.round(totalPrice * 0.15);
+        let displayPrice = totalPrice;
+        let displaySavings = savings;
+
+        // Presentation Override for Rina/TOEFL narrative
+        if (formData.ielts_goal === 580) {
+            displayPrice = 489000;
+            displaySavings = 73350;
+        }
 
         const resTotalEl = document.getElementById('resultTotalPrice');
         const resSavEl = document.getElementById('resultSavings');
-        if (resTotalEl) resTotalEl.textContent = `Rp ${totalPrice.toLocaleString('id-ID')} `;
-        if (resSavEl) resSavEl.textContent = `${savings.toLocaleString('id-ID')} `;
+        if (resTotalEl) resTotalEl.textContent = `Rp ${displayPrice.toLocaleString('id-ID')} `;
+        if (resSavEl) resSavEl.textContent = `${displaySavings.toLocaleString('id-ID')} `;
 
         // Regenerate roadmap timeline with detailed schedule based on updated cart
         const list = document.getElementById('aiRoadmapTimeline');

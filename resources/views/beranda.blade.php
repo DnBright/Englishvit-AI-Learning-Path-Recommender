@@ -700,7 +700,7 @@
                         <div class="ai-budget-anchor p-4 m-b-40">
                             <div class="row align-center">
                                 <div class="col-md-7">
-                                    <h5 class="fw-800 m-b-5">Total Investasi Akademik</h5>
+                                    <h5 class="fw-800 m-b-5">2jt</h5>
                                     <p class="f-13 fc-black-5">Semua modul dibundel untuk kesuksesan Anda.</p>
                                 </div>
                                 <div class="col-md-5 text-right">
