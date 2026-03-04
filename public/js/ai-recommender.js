@@ -492,10 +492,10 @@ document.addEventListener('DOMContentLoaded', function () {
             total += item.price;
             if (invoiceList) {
                 invoiceList.innerHTML += `
-                < div class="d-flex-center-btw m-b-10" >
+                <div class="d-flex-center-btw m-b-10">
                         <span class="f-13 fc-black-5">${item.name}</span>
                         <span class="f-13 fw-700">Rp ${item.price.toLocaleString('id-ID')}</span>
-                    </div >
+                    </div>
                 `;
             }
         });
@@ -564,13 +564,13 @@ document.addEventListener('DOMContentLoaded', function () {
             const div = document.createElement('div');
             div.className = 'ai-item-eceran';
             div.innerHTML = `
-                < div class="ai-item-info" >
+                <div class="ai-item-info">
                     <span class="f-20">${item.icon}</span>
                     <div>
                         <div class="fw-bold">${item.name}</div>
                         <div class="f-12 fc-black-5">${item.category}</div>
                     </div>
-                </div >
+                </div>
                 <div class="d-flex align-items-center gap-15">
                     <div class="ai-item-price">Rp ${item.price.toLocaleString('id-ID')}</div>
                     <button class="ai-btn-remove" onclick="removeFromCart(${index})">
@@ -586,10 +586,10 @@ document.addEventListener('DOMContentLoaded', function () {
             const div = document.createElement('div');
             div.className = 'ai-item-eceran';
             div.innerHTML = `
-                < div class="ai-item-info" >
+                <div class="ai-item-info">
                     <span class="f-20">${item.icon}</span>
                     <div class="fw-bold">${item.name}</div>
-                </div >
+                </div>
                 <div class="d-flex align-items-center gap-15">
                     <div class="ai-item-price">Rp ${item.price.toLocaleString('id-ID')}</div>
                     <button class="ai-btn-add" onclick="addToCart('${item.id}')">Add</button>
