@@ -255,65 +255,36 @@ document.addEventListener('DOMContentLoaded', function () {
         // MONTH 1 (APRIL)
         "1-0-3": [{ label: "FLOW Boost Test 1", cls: "cev-y", icon: "flag", category: "test" }],
         "1-0-4": [{ label: "Live Class 1", cls: "cev-b", icon: "menu_book", category: "live" }],
+        "1-1-2": [{ label: "Live Class 2", cls: "cev-b", icon: "menu_book", category: "live" }],
+        "1-2-4": [{ label: "Live Class 3", cls: "cev-b", icon: "menu_book", category: "live" }],
         "1-0-6": [
             { label: "Self Study Reading", cls: "cev-g", icon: "auto_stories", category: "module" },
             { label: "Listening Drill", cls: "cev-g", icon: "auto_stories", category: "module" }
         ],
-        "1-0-0": [{ label: "Review & Error Log", cls: "cev-g", icon: "auto_stories", category: "module" }],
-        "1-1-2": [{ label: "Live Class 2", cls: "cev-b", icon: "menu_book", category: "live" }],
-        "1-1-4": [{ label: "Live Class 3", cls: "cev-b", icon: "menu_book", category: "live" }],
         "1-1-6": [
             { label: "Private Session 1", cls: "cev-o", icon: "record_voice_over", category: "private" },
             { label: "Reading Practice", cls: "cev-g", icon: "auto_stories", category: "module" }
         ],
-        "1-2-2": [{ label: "Live Class 4", cls: "cev-b", icon: "menu_book", category: "live" }],
-        "1-2-4": [{ label: "Live Class 5", cls: "cev-b", icon: "menu_book", category: "live" }],
-        "1-2-6": [
-            { label: "Listening Full Drill", cls: "cev-g", icon: "auto_stories", category: "module" },
-            { label: "Vocab Reinforcement", cls: "cev-g", icon: "auto_stories", category: "module" }
-        ],
-        "1-3-2": [{ label: "Live Class 6", cls: "cev-b", icon: "menu_book", category: "live" }],
-        "1-3-4": [{ label: "Live Class 7", cls: "cev-b", icon: "menu_book", category: "live" }],
         "1-3-6": [
             { label: "Mini Simulation", cls: "cev-y", icon: "flag", category: "test" },
             { label: "Review", cls: "cev-g", icon: "auto_stories", category: "module" }
         ],
 
         // MONTH 2 (MEI)
-        "2-0-2": [{ label: "Live Class 8", cls: "cev-b", icon: "menu_book", category: "live" }],
-        "2-0-4": [{ label: "Live Class 9", cls: "cev-b", icon: "menu_book", category: "live" }],
-        "2-0-6": [
-            { label: "Reading Timed", cls: "cev-g", icon: "auto_stories", category: "module" },
-            { label: "Error Log Review", cls: "cev-g", icon: "auto_stories", category: "module" }
-        ],
-        "2-1-2": [{ label: "Live Class 10", cls: "cev-b", icon: "menu_book", category: "live" }],
-        "2-1-4": [{ label: "Live Class 11", cls: "cev-b", icon: "menu_book", category: "live" }],
+        "2-0-2": [{ label: "Live Class 4", cls: "cev-b", icon: "menu_book", category: "live" }],
+        "2-1-4": [{ label: "Live Class 5", cls: "cev-b", icon: "menu_book", category: "live" }],
+        "2-2-2": [{ label: "Live Class 6", cls: "cev-b", icon: "menu_book", category: "live" }],
         "2-1-6": [{ label: "Private Session 2", cls: "cev-o", icon: "record_voice_over", category: "private" }],
-        "2-2-2": [{ label: "Live Class 12", cls: "cev-b", icon: "menu_book", category: "live" }],
-        "2-2-4": [{ label: "Live Class 13", cls: "cev-b", icon: "menu_book", category: "live" }],
-        "2-2-6": [
-            { label: "Full Practice Test", cls: "cev-y", icon: "flag", category: "test" },
-            { label: "Review", cls: "cev-g", icon: "auto_stories", category: "module" }
-        ],
-        "2-3-2": [{ label: "Live Class 14", cls: "cev-b", icon: "menu_book", category: "live" }],
         "2-3-4": [
             { label: "FLOW Boost Test 2", cls: "cev-y", icon: "flag", category: "test" },
             { label: "Score Analysis", cls: "cev-g", icon: "auto_stories", category: "module" }
         ],
 
         // MONTH 3 (JUNI)
-        "3-0-2": [{ label: "Live Class 15", cls: "cev-b", icon: "menu_book", category: "live" }],
-        "3-0-4": [{ label: "Live Class 16", cls: "cev-b", icon: "menu_book", category: "live" }],
+        "3-0-4": [{ label: "Live Class 7", cls: "cev-b", icon: "menu_book", category: "live" }],
+        "3-1-2": [{ label: "Live Class 8", cls: "cev-b", icon: "menu_book", category: "live" }],
+        "3-2-4": [{ label: "Live Class 9", cls: "cev-b", icon: "menu_book", category: "live" }],
         "3-0-6": [{ label: "Private Session 3", cls: "cev-o", icon: "record_voice_over", category: "private" }],
-        "3-1-2": [{ label: "Live Class 17", cls: "cev-b", icon: "menu_book", category: "live" }],
-        "3-1-4": [{ label: "Live Class 18", cls: "cev-b", icon: "menu_book", category: "live" }],
-        "3-1-6": [{ label: "Full Mock Test 1", cls: "cev-y", icon: "flag", category: "test" }],
-        "3-2-2": [{ label: "Live Class 19", cls: "cev-b", icon: "menu_book", category: "live" }],
-        "3-2-4": [{ label: "Live Class 20", cls: "cev-b", icon: "menu_book", category: "live" }],
-        "3-2-6": [
-            { label: "Full Mock Test 2", cls: "cev-y", icon: "flag", category: "test" },
-            { label: "Deep Review", cls: "cev-g", icon: "auto_stories", category: "module" }
-        ],
         "3-3-2": [{ label: "Simulation Final", cls: "cev-y", icon: "flag", category: "test" }],
         "3-3-4": [{ label: "Score Projection", cls: "cev-g", icon: "auto_stories", category: "module" }]
     };
@@ -332,7 +303,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 </div>
                 <div class="ai-quota-grid">
                     <div class="ai-quota-item">
-                        <span class="val">20x</span>
+                        <span class="val">9x</span>
                         <span class="lbl">🏫 Live Class</span>
                     </div>
                     <div class="ai-quota-item">
