@@ -236,7 +236,7 @@ const MEMBERS = [
   { name:'Laila Nur',     initials:'LN', color:'#3DD68C,#7DFFC9', pct:89,  pts:1102 },
   { name:'Reza Fauzi',    initials:'RF', color:'#FF8A4F,#FFB27A', pct:79,  pts:980  },
   { name:'Maya Putri',    initials:'MP', color:'#A78BFA,#C4B5FD', pct:69,  pts:860  },
-  { name:'Aryo Rahmat ★', initials:'AR', color:'#F5C500,#FF7A00', pct:60,  pts:745, me:true },
+  { name:'Rina ★', initials:'R', color:'#F5C500,#FF7A00', pct:60,  pts:745, me:true },
   { name:'Dani Syahri',   initials:'DS', color:'#4F7BFF,#7BAEFF', pct:55,  pts:680  },
 ];
 
