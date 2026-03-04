@@ -309,7 +309,7 @@ document.addEventListener('DOMContentLoaded', function () {
             <div class="ai-month-slider-container">
         `;
 
-        const dayLabels = ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'];
+        const dayLabels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
         for (let m = 1; m <= totalMonths; m++) {
             const isVisible = m === currentMonthView ? '' : 'd-none';
@@ -319,20 +319,23 @@ document.addEventListener('DOMContentLoaded', function () {
                         <span class="f-16 fw-800">Bulan Belajar ${m}</span>
                         <p class="f-12 fc-black-4 m-0">Satu langkah lebih dekat ke target Anda!</p>
                     </div>
-                    <table class="ai-calendar-table">
-                        <thead>
-                            <tr>
-                                <th class="week-hdr">Wk</th>
-                                ${dayLabels.map(label => `<th>${label}</th>`).join('')}
-                            </tr>
-                        </thead>
-                        <tbody>
+                    <div class="cal-grid p-3">
+                        <div class="cal-grid-row">
+                            <div class="cal-dh wknd" style="width:40px">Wk</div>
+                            <div class="cal-dh">Sun</div>
+                            <div class="cal-dh">Mon</div>
+                            <div class="cal-dh">Tue</div>
+                            <div class="cal-dh">Wed</div>
+                            <div class="cal-dh">Thu</div>
+                            <div class="cal-dh">Fri</div>
+                            <div class="cal-dh">Sat</div>
+                        </div>
             `;
 
             for (let w = 0; w < 4; w++) {
-                scheduleHTML += '<tr>';
+                scheduleHTML += `<div class="cal-grid-row">`;
                 // Week number indicator
-                scheduleHTML += `<td class="week-num-col">Minggu<br>${w + 1}</td>`;
+                scheduleHTML += `<div class="week-num-cell">W${w + 1}</div>`;
 
                 for (let d = 0; d < 7; d++) {
                     const dayKey = `${m}-${w}-${d}`;
@@ -341,90 +344,91 @@ document.addEventListener('DOMContentLoaded', function () {
                     // Use custom schedule if exists, otherwise fallback to AI logic
                     if (customSchedule[dayKey]) {
                         customSchedule[dayKey].forEach(type => {
-                            const icon = type === 'live' ? '🏫' : (type === 'private' ? '👤' : (type === 'module' ? '📽️' : '📜'));
-                            const label = type === 'live' ? 'Live' : (type === 'private' ? 'Private' : (type === 'module' ? 'Focus' : 'Test'));
-                            const time = type === 'live' ? '19:00' : (type === 'private' ? '10:00' : (type === 'module' ? '09:00' : '08:00'));
-                            dayContent += `<div class="calendar-slot-available ${type}" onclick="event.stopPropagation(); toggleActivity('${dayKey}', '${type}')">
-                                <span class="slot-time">${time} WIB</span>
-                                <span class="slot-label">${icon} ${label}</span>
-                            </div>`;
+                            const icon = type === 'live' ? 'menu_book' : (type === 'private' ? 'record_voice_over' : (type === 'module' ? 'auto_stories' : 'flag'));
+                            const colorCls = type === 'live' ? 'cev-b' : (type === 'private' ? 'cev-o' : (type === 'module' ? 'cev-g' : 'cev-y'));
+                            const label = type === 'live' ? 'Live Class' : (type === 'private' ? 'Private' : (type === 'module' ? 'Focus' : 'Test'));
+
+                            dayContent += `
+                                <div class="cev-ticket ${colorCls}" onclick="event.stopPropagation(); toggleActivity('${dayKey}', '${type}')">
+                                    <div class="cev-icon"><span class="material-icons" style="font-size:10px;">${icon}</span></div>
+                                    <div class="cev-label">${label}</div>
+                                </div>`;
                         });
                     } else {
                         cartItems.forEach(item => {
-                            if (item.category === 'live') {
-                                // Distributed: Tuesday, Thursday, Saturday
-                                if (d === 1 || d === 3 || d === 5) dayContent += `<div class="calendar-slot-available live" title="${item.name}" onclick="event.stopPropagation(); toggleActivity('${dayKey}', 'live')">
-                                    <span class="slot-time">19:00 WIB</span>
-                                    <span class="slot-label">${item.icon} Live Class</span>
-                                </div>`;
-                            } else if (item.category === 'private') {
-                                // Distributed: Sunday
-                                if (d === 6) dayContent += `<div class="calendar-slot-available private" title="${item.name}" onclick="event.stopPropagation(); toggleActivity('${dayKey}', 'private')">
-                                    <span class="slot-time">10:00 WIB</span>
-                                    <span class="slot-label">${item.icon} Private</span>
-                                </div>`;
-                            } else if (item.category === 'module') {
-                                // Distributed: Monday, Wednesday, Friday
-                                if (d === 0 || d === 2 || d === 4) dayContent += `<div class="calendar-slot-available module" title="${item.name}" onclick="event.stopPropagation(); toggleActivity('${dayKey}', 'module')">
-                                    <span class="slot-time">09:00 WIB</span>
-                                    <span class="slot-label">${item.icon} Materi</span>
-                                </div>`;
-                            } else if (item.category === 'test') {
-                                // Distributed: Sunday (Week 1 and 3)
-                                if ((w === 0 || w === 2) && d === 6) dayContent += `<div class="calendar-slot-available test" title="${item.name}" onclick="event.stopPropagation(); toggleActivity('${dayKey}', 'test')">
-                                    <span class="slot-time">08:00 WIB</span>
-                                    <span class="slot-label">${item.icon} Quiz</span>
-                                </div>`;
+                            if (item.category === 'live' && (d === 1 || d === 3 || d === 5)) {
+                                dayContent += `
+                                    <div class="cev-ticket cev-b" title="${item.name}" onclick="event.stopPropagation(); toggleActivity('${dayKey}', 'live')">
+                                        <div class="cev-icon"><span class="material-icons" style="font-size:10px;">menu_book</span></div>
+                                        <div class="cev-label">Live Class</div>
+                                    </div>`;
+                            } else if (item.category === 'private' && d === 6) {
+                                dayContent += `
+                                    <div class="cev-ticket cev-o" title="${item.name}" onclick="event.stopPropagation(); toggleActivity('${dayKey}', 'private')">
+                                        <div class="cev-icon"><span class="material-icons" style="font-size:10px;">record_voice_over</span></div>
+                                        <div class="cev-label">Private</div>
+                                    </div>`;
+                            } else if (item.category === 'module' && (d === 0 || d === 2 || d === 4)) {
+                                dayContent += `
+                                    <div class="cev-ticket cev-g" title="${item.name}" onclick="event.stopPropagation(); toggleActivity('${dayKey}', 'module')">
+                                        <div class="cev-icon"><span class="material-icons" style="font-size:10px;">auto_stories</span></div>
+                                        <div class="cev-label">Materi</div>
+                                    </div>`;
+                            } else if (item.category === 'test' && (w === 0 || w === 2) && d === 6) {
+                                dayContent += `
+                                    <div class="cev-ticket cev-y" title="${item.name}" onclick="event.stopPropagation(); toggleActivity('${dayKey}', 'test')">
+                                        <div class="cev-icon"><span class="material-icons" style="font-size:10px;">flag</span></div>
+                                        <div class="cev-label">Quiz</div>
+                                    </div>`;
                             }
                         });
                     }
 
-                    const hasActivityClass = dayContent !== '' ? 'has-activity' : 'is-empty';
-                    const hoverTitle = dayContent !== '' ? 'Klik untuk edit' : 'Klik untuk tambah jadwal';
+                    const hasActivityClass = dayContent !== '' ? 'has-ev' : '';
 
                     scheduleHTML += `
-                        <td class="day-cell ${hasActivityClass}" onclick="openDayEditor('${dayKey}')" title="${hoverTitle}">
-                            <div class="day-activities">${dayContent}</div>
-                        </td>
+                        <div class="cal-cell ${hasActivityClass}" onclick="openDayEditor('${dayKey}')">
+                            <div class="cdn">${d + 1}</div>
+                            ${dayContent}
+                        </div>
                     `;
                 }
-                scheduleHTML += '</tr>';
+                scheduleHTML += '</div>';
             }
 
             scheduleHTML += `
-                        </tbody>
-                    </table>
-                    <div class="ai-legend-wrapper m-t-25">
-                        <div class="f-12 fw-800 m-b-15 fc-black-6 text-uppercase letter-spacing-1">
+                    </div>
+                    <div class="ai-legend-wrapper m-t-25 p-3">
+                        <div class="f-12 fw-800 m-b-15 fc-white text-uppercase letter-spacing-1">
                             <i class="material-icons f-14 v-middle m-r-5">info_outline</i> Panduan Jenis Kegiatan
                         </div>
                         <div class="ai-legend-grid">
-                            <div class="ai-legend-card live">
-                                <div class="icon">🏫</div>
+                            <div class="ai-legend-card cev-b">
+                                <div class="icon"><span class="material-icons">menu_book</span></div>
                                 <div class="info">
                                     <span class="title">Live Class</span>
-                                    <p class="desc">Kelas interaktif tatap muka via Zoom dengan Tutor Expert (1.5 Jam).</p>
+                                    <p class="desc">Kelas interaktif Zoom dengan Tutor Expert (1.5 Jam).</p>
                                 </div>
                             </div>
-                            <div class="ai-legend-card private">
-                                <div class="icon">👤</div>
+                            <div class="ai-legend-card cev-o">
+                                <div class="icon"><span class="material-icons">record_voice_over</span></div>
                                 <div class="info">
                                     <span class="title">Privat</span>
-                                    <p class="desc">Sesi 1-on-1 intensif untuk konsultasi personal & koreksi (1 Jam).</p>
+                                    <p class="desc">Sesi 1-on-1 intensif untuk konsultasi (1 Jam).</p>
                                 </div>
                             </div>
-                            <div class="ai-legend-card module">
-                                <div class="icon">📽️</div>
+                            <div class="ai-legend-card cev-g">
+                                <div class="icon"><span class="material-icons">auto_stories</span></div>
                                 <div class="info">
                                     <span class="title">Materi / Focus</span>
-                                    <p class="desc">Belajar mandiri via platform video & latihan modul pilihan.</p>
+                                    <p class="desc">Belajar mandiri via platform video & latihan.</p>
                                 </div>
                             </div>
-                            <div class="ai-legend-card test">
-                                <div class="icon">📜</div>
+                            <div class="ai-legend-card cev-y">
+                                <div class="icon"><span class="material-icons">flag</span></div>
                                 <div class="info">
                                     <span class="title">Quiz / Test</span>
-                                    <p class="desc">Ukur progres Anda dengan tes berkala setiap 2 minggu sekali.</p>
+                                    <p class="desc">Ukur progres berkala setiap 2 minggu sekali.</p>
                                 </div>
                             </div>
                         </div>
@@ -448,13 +452,13 @@ document.addEventListener('DOMContentLoaded', function () {
         if (altRecs.length > 0) {
             const altDiv = document.createElement('div');
             altDiv.className = 'm-t-20 p-3 bg-light br-12';
-            altDiv.innerHTML = `<h6 class="fw-700 f-12 m-b-10 fc-black-5">Alternative Suggestions (50-64% Match):</h6>`;
+            altDiv.innerHTML = `< h6 class="fw-700 f-12 m-b-10 fc-black-5" > Alternative Suggestions(50 - 64 % Match):</h6 > `;
             altRecs.forEach(alt => {
                 altDiv.innerHTML += `
-                 <div class="f-12 m-b-5 d-flex-center-btw">
+                < div class="f-12 m-b-5 d-flex-center-btw" >
                     <span>• ${alt.name}</span>
                     <span class="fc-warning-7 fw-700">${alt.matchScore}% Match</span>
-                 </div>`;
+                 </div > `;
             });
             list.appendChild(altDiv);
         }
@@ -488,10 +492,10 @@ document.addEventListener('DOMContentLoaded', function () {
             total += item.price;
             if (invoiceList) {
                 invoiceList.innerHTML += `
-                    <div class="d-flex-center-btw m-b-10">
+                < div class="d-flex-center-btw m-b-10" >
                         <span class="f-13 fc-black-5">${item.name}</span>
                         <span class="f-13 fw-700">Rp ${item.price.toLocaleString('id-ID')}</span>
-                    </div>
+                    </div >
                 `;
             }
         });
@@ -500,7 +504,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const totalEl = document.getElementById('aiInvoiceTotal');
         const commitEl = document.getElementById('aiInvoiceCommitment');
 
-        if (totalEl) totalEl.textContent = `Rp ${total.toLocaleString('id-ID')}`;
+        if (totalEl) totalEl.textContent = `Rp ${total.toLocaleString('id-ID')} `;
         if (commitEl) commitEl.textContent = `${commitmentText} Commitment`;
     }
 
@@ -560,13 +564,13 @@ document.addEventListener('DOMContentLoaded', function () {
             const div = document.createElement('div');
             div.className = 'ai-item-eceran';
             div.innerHTML = `
-                <div class="ai-item-info">
+                < div class="ai-item-info" >
                     <span class="f-20">${item.icon}</span>
                     <div>
                         <div class="fw-bold">${item.name}</div>
                         <div class="f-12 fc-black-5">${item.category}</div>
                     </div>
-                </div>
+                </div >
                 <div class="d-flex align-items-center gap-15">
                     <div class="ai-item-price">Rp ${item.price.toLocaleString('id-ID')}</div>
                     <button class="ai-btn-remove" onclick="removeFromCart(${index})">
@@ -582,10 +586,10 @@ document.addEventListener('DOMContentLoaded', function () {
             const div = document.createElement('div');
             div.className = 'ai-item-eceran';
             div.innerHTML = `
-                <div class="ai-item-info">
+                < div class="ai-item-info" >
                     <span class="f-20">${item.icon}</span>
                     <div class="fw-bold">${item.name}</div>
-                </div>
+                </div >
                 <div class="d-flex align-items-center gap-15">
                     <div class="ai-item-price">Rp ${item.price.toLocaleString('id-ID')}</div>
                     <button class="ai-btn-add" onclick="addToCart('${item.id}')">Add</button>
@@ -612,7 +616,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function updateTotalPrice() {
         const total = userCart.reduce((sum, item) => sum + item.price, 0);
-        totalPriceDisplay.textContent = `Rp ${total.toLocaleString('id-ID')}`;
+        totalPriceDisplay.textContent = `Rp ${total.toLocaleString('id-ID')} `;
     }
 
     function updatePathStrength() {
@@ -636,8 +640,8 @@ document.addEventListener('DOMContentLoaded', function () {
         strength = Math.min(100, strength);
 
         // Update UI
-        strengthFill.style.width = `${strength}%`;
-        strengthPercent.textContent = `${strength}%`;
+        strengthFill.style.width = `${strength}% `;
+        strengthPercent.textContent = `${strength}% `;
 
         // Pulse effect
         const container = document.getElementById('aiStrengthContainer');
@@ -679,7 +683,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         budgetBadge.textContent = status;
-        budgetBadge.className = `badge ${badgeClass} f-10`;
+        budgetBadge.className = `badge ${badgeClass} f - 10`;
     }
 
     function updateMentorAdvice() {
@@ -714,8 +718,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const resTotalEl = document.getElementById('resultTotalPrice');
         const resSavEl = document.getElementById('resultSavings');
-        if (resTotalEl) resTotalEl.textContent = `Rp ${totalPrice.toLocaleString('id-ID')}`;
-        if (resSavEl) resSavEl.textContent = `${savings.toLocaleString('id-ID')}`;
+        if (resTotalEl) resTotalEl.textContent = `Rp ${totalPrice.toLocaleString('id-ID')} `;
+        if (resSavEl) resSavEl.textContent = `${savings.toLocaleString('id-ID')} `;
 
         // Regenerate roadmap timeline with detailed schedule based on updated cart
         const list = document.getElementById('aiRoadmapTimeline');
