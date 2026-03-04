@@ -704,8 +704,8 @@
                                     <p class="f-13 fc-black-5">Semua modul dibundel untuk kesuksesan Anda.</p>
                                 </div>
                                 <div class="col-md-5 text-right">
-                                    <h3 class="fw-800 fc-black-8 m-b-0" id="resultTotalPrice">Rp 1.250.000</h3>
-                                    <p class="f-12 fc-success-7 fw-700">Hemat Rp <span id="resultSavings">200.000</span> jika dibundel</p>
+                                    <h3 class="fw-800 fc-black-8 m-b-0" id="resultTotalPrice">Rp 489.000</h3>
+                                    <p class="f-12 fc-success-7 fw-700">Hemat Rp <span id="resultSavings">73.350</span> jika dibundel</p>
                                 </div>
                             </div>
                         </div>

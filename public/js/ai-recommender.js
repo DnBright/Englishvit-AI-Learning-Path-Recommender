@@ -235,6 +235,9 @@ document.addEventListener('DOMContentLoaded', function () {
         userCart = [...coreRecs];
 
         // Calculate Total Price & Savings
+        const totalPrice = coreRecs.reduce((sum, item) => sum + item.price, 0);
+        const savings = Math.round(totalPrice * 0.15); // Simulated 15% discount for bundle
+
         let displayPrice = totalPrice;
         let displaySavings = savings;
 
@@ -244,8 +247,10 @@ document.addEventListener('DOMContentLoaded', function () {
             displaySavings = 73350;
         }
 
-        document.getElementById('resultTotalPrice').textContent = `Rp ${displayPrice.toLocaleString('id-ID')}`;
-        document.getElementById('resultSavings').textContent = `${displaySavings.toLocaleString('id-ID')}`;
+        const resTotalEl = document.getElementById('resultTotalPrice');
+        const resSavEl = document.getElementById('resultSavings');
+        if (resTotalEl) resTotalEl.textContent = `Rp ${displayPrice.toLocaleString('id-ID')}`;
+        if (resSavEl) resSavEl.textContent = `${displaySavings.toLocaleString('id-ID')}`;
 
         renderRoadmapTimeline(coreRecs, recommendations);
     }
@@ -896,6 +901,9 @@ document.addEventListener('DOMContentLoaded', function () {
         resultSection.classList.remove('d-none');
 
         // Update total price display in Result Section based on actual custom cart
+        const totalPrice = userCart.reduce((sum, item) => sum + item.price, 0);
+        const savings = Math.round(totalPrice * 0.15);
+
         let displayPrice = totalPrice;
         let displaySavings = savings;
 
