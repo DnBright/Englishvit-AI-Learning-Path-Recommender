@@ -51,61 +51,71 @@
 
   <div class="cal-side">
     <div class="sched-card">
-      <div class="section-label">📋 Jadwal Hari Ini</div>
+      <div class="section-label">📋 Jadwal Hari Ini — 4 Mar 2026</div>
       <div class="sched-row">
-        <div class="sched-time">07:00</div>
-        <div class="sched-bar" style="background:var(--orange)"></div>
-        <div class="sched-info">
-          <div class="st">Morning Speaking Session</div>
-          <div class="ss">Intermediate · Zoom</div>
-        </div>
-      </div>
-      <div class="sched-row">
-        <div class="sched-time">09:30</div>
+        <div class="sched-time">08:00</div>
         <div class="sched-bar" style="background:var(--blue-acc)"></div>
         <div class="sched-info">
-          <div class="st">Grammar — Unit 4</div>
-          <div class="ss">Self-paced · Online</div>
+          <div class="st">Grammar — Unit 4 (Self-Study)</div>
+          <div class="ss">Section 1 · 60% selesai · Mandiri</div>
         </div>
       </div>
       <div class="sched-row">
-        <div class="sched-time">16:00</div>
+        <div class="sched-time">10:00</div>
+        <div class="sched-bar" style="background:var(--orange)"></div>
+        <div class="sched-info">
+          <div class="st">Speaking Practice — Part 1 & 2</div>
+          <div class="ss">IELTS Prep · Zoom · Mr. Aryo</div>
+        </div>
+      </div>
+      <div class="sched-row">
+        <div class="sched-time">14:00</div>
         <div class="sched-bar" style="background:var(--yellow)"></div>
         <div class="sched-info">
-          <div class="st">Live Q&A — IELTS Writing</div>
-          <div class="ss">All levels · Zoom</div>
+          <div class="st">IELTS Writing Q&A Live</div>
+          <div class="ss">Task 2 Focus · All Levels · Zoom</div>
         </div>
       </div>
       <div class="sched-row">
-        <div class="sched-time">19:00</div>
+        <div class="sched-time">20:00</div>
         <div class="sched-bar" style="background:var(--green-acc)"></div>
         <div class="sched-info">
-          <div class="st">Conversation Club</div>
-          <div class="ss">Beginner–Intermediate</div>
+          <div class="st">Clan Group Study ⚔️</div>
+          <div class="ss">IELTS Warriors 6.5 · Zoom</div>
         </div>
       </div>
     </div>
 
     <div class="sched-card">
-      <div class="section-label">📊 Stats Bulan Ini</div>
-      <div style="display:flex;gap:16px;">
+      <div class="section-label">📊 Progress Bulan Maret</div>
+      <div style="display:flex;gap:12px;margin-bottom:14px;">
         <div style="flex:1;text-align:center;">
-          <div style="font-family:var(--font-disp);font-size:28px;font-weight:800;color:var(--yellow)">18</div>
+          <div style="font-family:var(--font-disp);font-size:26px;font-weight:800;color:var(--yellow)">14</div>
           <div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;">Kelas</div>
         </div>
         <div style="flex:1;text-align:center;">
-          <div style="font-family:var(--font-disp);font-size:28px;font-weight:800;color:var(--white)">36</div>
+          <div style="font-family:var(--font-disp);font-size:26px;font-weight:800;color:var(--white)">28</div>
           <div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;">Jam</div>
         </div>
         <div style="flex:1;text-align:center;">
-          <div style="font-family:var(--font-disp);font-size:28px;font-weight:800;color:var(--green-acc)">5</div>
-          <div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;">Event</div>
+          <div style="font-family:var(--font-disp);font-size:26px;font-weight:800;color:var(--green-acc)">1,250</div>
+          <div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;">XP</div>
         </div>
       </div>
-      <div class="prog-bar" style="margin-top:16px">
-        <div class="prog-fill" style="width:72%"></div>
+      <div class="prog-bar">
+        <div class="prog-fill" style="width:56%"></div>
       </div>
-      <div style="font-size:11px;color:var(--muted);margin-top:6px">72% dari target bulanan (50 jam)</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:6px">56% dari target bulanan (50 jam) · on-track ✓</div>
+      <div style="margin-top:12px;display:flex;flex-direction:column;gap:4px;">
+        <div style="display:flex;justify-content:space-between;font-size:11px;">
+          <span style="color:var(--muted)">Checkpoint 2 (target)</span>
+          <span style="font-weight:700;color:var(--orange)">8 Mar 2026</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:11px;">
+          <span style="color:var(--muted)">IELTS Exam Day</span>
+          <span style="font-weight:700;color:var(--yellow)">4 Jul 2026</span>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -119,29 +129,42 @@
 const MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
 
 // Scheduled target events
+/* ── IELTS Warriors 6.5 · Aryo Rahmat · Maret 2026 ── */
 const CAL_EVENTS={
-  '2026-3-4':[{label:'Speaking',cls:'cev-o',icon:'record_voice_over'},{label:'TOEFL',cls:'cev-g',icon:'school'}],
-  '2026-3-5':[{label:'Live Session',cls:'cev-y',icon:'sensors'}],
-  '2026-3-7':[{label:'Grammar',cls:'cev-b',icon:'menu_book'}],
-  '2026-3-8':[{label:'Checkpoint 1',cls:'cev-g',icon:'flag'}],
-  '2026-3-11':[{label:'Live Q&A',cls:'cev-y',icon:'forum'},{label:'Grammar',cls:'cev-b',icon:'menu_book'}],
-  '2026-3-14':[{label:'Speaking',cls:'cev-o',icon:'record_voice_over'}],
-  '2026-3-16':[{label:'TOEFL Prep',cls:'cev-g',icon:'school'}],
-  '2026-3-18':[{label:'Live Session',cls:'cev-y',icon:'sensors'}],
-  '2026-3-21':[{label:'Speaking',cls:'cev-o',icon:'record_voice_over'},{label:'Grammar',cls:'cev-b',icon:'menu_book'}],
-  '2026-3-23':[{label:'Mock Test',cls:'cev-g',icon:'emoji_events'}],
-  '2026-3-25':[{label:'Live Q&A',cls:'cev-y',icon:'forum'}],
-  '2026-3-28':[{label:'Speaking',cls:'cev-o',icon:'record_voice_over'}],
+  /* Minggu 1 — Grammar & Speaking */
+  '2026-3-4': [{label:'Grammar U4',cls:'cev-b',icon:'menu_book'},{label:'Speaking',cls:'cev-o',icon:'record_voice_over'}],
+  '2026-3-5': [{label:'IELTS Writing Q&A',cls:'cev-y',icon:'forum'}],
+  '2026-3-6': [{label:'Vocab Review',cls:'cev-g',icon:'spellcheck'}],
+  /* Minggu 1 akhir — Checkpoint 2 */
+  '2026-3-7': [{label:'Grammar U4',cls:'cev-b',icon:'menu_book'}],
+  '2026-3-8': [{label:'Checkpoint 2 🏅',cls:'cev-g',icon:'flag'}],
+  /* Minggu 2 */
+  '2026-3-10':[{label:'Speaking Pt2',cls:'cev-o',icon:'record_voice_over'},{label:'Grammar U4',cls:'cev-b',icon:'menu_book'}],
+  '2026-3-11':[{label:'IELTS Writing Live',cls:'cev-y',icon:'sensors'}],
+  '2026-3-12':[{label:'Listening Drill',cls:'cev-b',icon:'hearing'}],
+  '2026-3-14':[{label:'Speaking',cls:'cev-o',icon:'record_voice_over'},{label:'Clan Study 🗡',cls:'cev-g',icon:'groups'}],
+  /* Minggu 3 */
+  '2026-3-16':[{label:'Reading Strategies',cls:'cev-g',icon:'auto_stories'}],
+  '2026-3-17':[{label:'Grammar Clinic',cls:'cev-b',icon:'healing'}],
+  '2026-3-18':[{label:'IELTS Writing Live',cls:'cev-y',icon:'sensors'}],
+  '2026-3-19':[{label:'Speaking Pt3',cls:'cev-o',icon:'record_voice_over'}],
+  '2026-3-21':[{label:'Mock Listening',cls:'cev-b',icon:'headphones'},{label:'Clan Study 🗡',cls:'cev-g',icon:'groups'}],
+  /* Minggu 4 */
+  '2026-3-23':[{label:'Mini Mock Test',cls:'cev-g',icon:'emoji_events'}],
+  '2026-3-24':[{label:'Writing Drill',cls:'cev-y',icon:'edit_note'}],
+  '2026-3-25':[{label:'IELTS Writing Live',cls:'cev-y',icon:'forum'}],
+  '2026-3-26':[{label:'Speaking',cls:'cev-o',icon:'record_voice_over'}],
+  '2026-3-28':[{label:'Clan War ⚔️',cls:'cev-g',icon:'military_tech'},{label:'Grammar Review',cls:'cev-b',icon:'menu_book'}],
+  '2026-3-31':[{label:'Monthly Assessment',cls:'cev-g',icon:'assessment'}],
 };
 
-// Unscheduled source events (Nyawa / Tiket)
+// Tiket kelas yang belum dijadwalkan (sisa paket Aryo)
 let UNSCHEDULED_EVENTS = [
-  {label:'Live Class Zoom 1', cls:'cev-y', icon:'videocam'},
-  {label:'Live Class Zoom 2', cls:'cev-y', icon:'videocam'},
-  {label:'One-on-One 1', cls:'cev-o', icon:'co_present'},
-  {label:'One-on-One 2', cls:'cev-o', icon:'co_present'},
-  {label:'TOEFL Test Attempt', cls:'cev-g', icon:'school'},
-  {label:'Grammar Clinic', cls:'cev-b', icon:'healing'}
+  {label:'IELTS Speaking 1-on-1', cls:'cev-o', icon:'co_present'},
+  {label:'IELTS Speaking 1-on-1', cls:'cev-o', icon:'co_present'},
+  {label:'Writing Masterclass Live', cls:'cev-y', icon:'videocam'},
+  {label:'Grammar Intensive Clinic', cls:'cev-b', icon:'healing'},
+  {label:'Full Mock Test Slot', cls:'cev-g', icon:'emoji_events'},
 ];
 
 let calCur={year:2026,month:3};
