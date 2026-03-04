@@ -407,9 +407,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     let dayContent = '';
 
                     // PRIORITIZE CUSTOM/DRAGGED SCHEDULE, FALLBACK TO PRESENTATION DATA
+                    const isCustomized = Object.keys(customSchedule).length > 0;
                     let eventsToShow = [];
-                    if (customSchedule[dayKey]) {
-                        eventsToShow = customSchedule[dayKey];
+
+                    if (isCustomized) {
+                        eventsToShow = customSchedule[dayKey] || [];
                     } else if (presentationSchedule[dayKey]) {
                         eventsToShow = presentationSchedule[dayKey];
                     }
@@ -446,12 +448,15 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     window.dragEvent = function (ev, sourceKey, index) {
+        // Materialize initial state on first drag to ensure move behavior
+        if (Object.keys(customSchedule).length === 0) {
+            materializeInitialSchedule();
+        }
+
         // If it's an "AUTO" ticket (initial state), we need to materialize it first
         if (sourceKey.startsWith('AUTO-')) {
             const realKey = sourceKey.replace('AUTO-', '');
-            // Materialize the whole initial state into customSchedule once
-            materializeInitialSchedule();
-            // Now find the item in the materialized schedule
+            // Materialize is already handled above now
             const itemIdx = customSchedule[realKey].findIndex(item => item.label === ev.target.innerText.trim());
             draggedEvt = { sourceKey: realKey, index: itemIdx };
         } else {

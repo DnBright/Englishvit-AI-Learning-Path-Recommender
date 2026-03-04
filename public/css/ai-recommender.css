@@ -2085,3 +2085,29 @@ body.ecosystem-theme {
 .send-btn-v3:hover {
     background: #d1d1d1;
 }
+
+.ai-trash-zone {
+    width: 45px;
+    height: 45px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f3f4f6;
+    color: #6b7280;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px dashed #d1d5db;
+}
+
+.ai-trash-zone.active-drag {
+    background: #fee2e2 !important;
+    border-color: #ef4444 !important;
+    color: #ef4444 !important;
+    transform: scale(1.15);
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.2);
+}
+
+.ai-trash-zone .material-icons {
+    font-size: 24px;
+}
