@@ -238,14 +238,9 @@ document.addEventListener('DOMContentLoaded', function () {
         const totalPrice = coreRecs.reduce((sum, item) => sum + item.price, 0);
         const savings = Math.round(totalPrice * 0.15); // Simulated 15% discount for bundle
 
-        let displayPrice = totalPrice;
-        let displaySavings = savings;
-
-        // Presentation Override for Rina/TOEFL narrative
-        if (formData.ielts_goal === 580) {
-            displayPrice = 489000;
-            displaySavings = 73350;
-        }
+        // Force Presentation Price to 2jt Regardless of Input
+        let displayPrice = 2000000;
+        let displaySavings = 0;
 
         const resTotalEl = document.getElementById('resultTotalPrice');
         const resSavEl = document.getElementById('resultSavings');
@@ -904,14 +899,9 @@ document.addEventListener('DOMContentLoaded', function () {
         const totalPrice = userCart.reduce((sum, item) => sum + item.price, 0);
         const savings = Math.round(totalPrice * 0.15);
 
-        let displayPrice = totalPrice;
-        let displaySavings = savings;
-
-        // Presentation Override for Rina/TOEFL narrative
-        if (formData.ielts_goal === 580) {
-            displayPrice = 489000;
-            displaySavings = 73350;
-        }
+        // Force Presentation Price to 2jt Regardless of Input
+        let displayPrice = 2000000;
+        let displaySavings = 0;
 
         const resTotalEl = document.getElementById('resultTotalPrice');
         const resSavEl = document.getElementById('resultSavings');
