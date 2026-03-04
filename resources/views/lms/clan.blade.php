@@ -77,10 +77,10 @@
             <span class="tag tag-muted">32 Members</span>
             <span class="tag" style="background:rgba(61,214,140,.1);color:var(--green-acc);">🟢 Aktif</span>
           </div>
-          <div class="clan-name" style="font-size:26px;margin-bottom:6px;">⚔️ IELTS Warriors 6.5</div>
-          <div style="font-size:13px;color:var(--text-2);">Target Bersama: <b style="color:var(--white);">IELTS 6.5</b> · 4 Month Intensive Program</div>
+          <div class="clan-name" style="font-size:26px;margin-bottom:6px;">⚔️ TOEFL Survivors 580</div>
+          <div style="font-size:13px;color:var(--text-2);">Target Bersama: <b style="color:var(--white);">TOEFL 580</b> · 3 Month Intensive Program</div>
         </div>
-        <div class="clan-shield" style="animation:shield-glow 3s ease-in-out infinite;">⚔️</div>
+        <div class="clan-shield" style="animation:shield-glow 3s ease-in-out infinite;">🏆</div>
       </div>
 
       {{-- Stats Row --}}
@@ -196,13 +196,13 @@
       <div class="cw-glow"></div>
       <div style="position:relative;z-index:1;display:flex;justify-content:space-between;align-items:center;width:100%;gap:16px;margin-bottom:16px;">
         <div style="text-align:center;flex:1;">
-          <div style="font-family:var(--font-disp);font-size:13px;color:rgba(255,255,255,.8);margin-bottom:6px;">⚔️ IELTS Warriors 6.5</div>
+          <div style="font-family:var(--font-disp);font-size:13px;color:rgba(255,255,255,.8);margin-bottom:6px;">⚔️ TOEFL Survivors 580</div>
           <div style="font-family:var(--font-disp);font-size:32px;font-weight:800;color:var(--yellow);line-height:1;">2,840</div>
           <div style="font-size:10px;color:rgba(255,255,255,.35);margin-top:4px;">Klan Kamu</div>
         </div>
         <div style="font-family:var(--font-disp);font-size:18px;font-weight:800;color:rgba(255,255,255,.2);padding:0 10px;">VS</div>
         <div style="text-align:center;flex:1;">
-          <div style="font-family:var(--font-disp);font-size:13px;color:rgba(255,255,255,.8);margin-bottom:6px;">🔥 English Blazers</div>
+          <div style="font-family:var(--font-disp);font-size:13px;color:rgba(255,255,255,.8);margin-bottom:6px;">🔥 TOEFL Blazers</div>
           <div style="font-family:var(--font-disp);font-size:32px;font-weight:800;color:rgba(255,255,255,.4);line-height:1;">1,740</div>
           <div style="font-size:10px;color:rgba(255,255,255,.35);margin-top:4px;">Lawan</div>
         </div>
@@ -241,35 +241,35 @@ const MEMBERS = [
 ];
 
 const CHALLENGES = [
-  { icon:'🗣', name:'Speaking Marathon',         meta:'Record 3 jawaban 2 menit · Submit sebelum Minggu',    pts:'+80 XP',  pct:33,  done:false },
-  { icon:'✏️', name:'Writing Task 2 Submission', meta:'Tulis 1 essay IELTS Task 2 min. 250 kata',            pts:'+100 XP', pct:60,  done:false },
-  { icon:'🎧', name:'Listening Mock Test',        meta:'Selesaikan 1 full listening test dalam sekali duduk', pts:'+60 XP',  pct:100, done:true  },
-  { icon:'📖', name:'20 Vocabulary Practice',    meta:'Selesaikan 20 soal vocab dari bank soal IELTS',       pts:'+40 XP',  pct:0,   done:false },
+  { icon:'🎧', name:'Listening Marathon',         meta:'Dengar 3 full record tanpa jeda',    pts:'+250 XP',  pct:33,  done:false },
+  { icon:'📚', name:'Structure Sweep', meta:'Selesaikan 5 modul Structure minggu ini', pts:'+150 XP', pct:60,  done:false },
+  { icon:'📋', name:'FLOW Test Result',        meta:'Submit skor FLOW Test 1 kamu', pts:'+60 XP',  pct:100, done:true  },
+  { icon:'📖', name:'Vocab Practice',    meta:'Selesaikan 20 soal vocab dari bank soal TOEFL',       pts:'+40 XP',  pct:0,   done:false },
 ];
 
 const FEED_DATA = [
-  { initials:'SR', color:'#F5C500,#FF7A00', text:'<b>Siti Rahma</b> menyelesaikan Unit 5 — Listening Strategies',      badge:'✅ Unit',      badgeColor:'var(--green-acc)', time:'2 mnt lalu'  },
+  { initials:'SR', color:'#F5C500,#FF7A00', text:'<b>Siti Rahma</b> menyelesaikan Unit 5 — Listening Parts B & C',      badge:'✅ Unit',      badgeColor:'var(--green-acc)', time:'2 mnt lalu'  },
   { initials:'🏅', system:true,             text:'<b>Clan mencapai 50% Weekly Challenge!</b> Mari kita kejar sisanya!',  badge:'Milestone',   badgeColor:'var(--blue-acc)', time:'15 mnt lalu' },
-  { initials:'BK', color:'#4F7BFF,#7BAEFF', text:'<b>Bima Kusuma</b> dapat skor <b>6.5</b> di Mock Test Listening',    badge:'🎯 Mock',      badgeColor:'var(--orange)',    time:'32 mnt lalu' },
-  { initials:'LN', color:'#3DD68C,#7DFFC9', text:'<b>Laila Nur</b> selesaikan Writing Task 2 Submission',              badge:'🔥 Challenge', badgeColor:'var(--yellow)',    time:'1 jam lalu'  },
-  { initials:'⚔️', system:true,             text:'<b>Clan War:</b> IELTS Warriors unggul 1,100 poin dari English Blazers!', badge:'⚔️ War', badgeColor:'#a78bfa',          time:'2 jam lalu'  },
-  { initials:'RF', color:'#FF8A4F,#FFB27A', text:'<b>Reza Fauzi</b> bergabung dan selesaikan Placement Test',          badge:'👋 Join',      badgeColor:'var(--muted)',     time:'3 jam lalu'  },
+  { initials:'BK', color:'#4F7BFF,#7BAEFF', text:'<b>Bima Kusuma</b> dapat skor <b>540</b> di Mock Test Listening',    badge:'🎯 Mock',      badgeColor:'var(--orange)',    time:'32 mnt lalu' },
+  { initials:'R',  color:'#F5C500,#FF7A00', text:'<b>Rina</b> selesaikan Fundamental Boost Month 1',              badge:'🔥 Progress', badgeColor:'var(--yellow)',    time:'1 jam lalu'  },
+  { initials:'⚔️', system:true,             text:'<b>Clan War:</b> TOEFL Survivors unggul 1,100 poin dari English Blazers!', badge:'⚔️ War', badgeColor:'#a78bfa',          time:'2 jam lalu'  },
+  { initials:'RF', color:'#FF8A4F,#FFB27A', text:'<b>Reza Fauzi</b> bergabung dan selesaikan Diagnostic Test',          badge:'👋 Join',      badgeColor:'var(--muted)',     time:'3 jam lalu'  },
 ];
 
 const DISCUSSIONS = {
   grammar: [
-    { initials:'DS', color:'#4F7BFF,#7BAEFF', author:'Dani Syahri',  time:'10 mnt', text:'"Beda Present Perfect vs Past Simple untuk IELTS Writing?"',    replies:8,  likes:14, pinned:false },
-    { initials:'SR', color:'#F5C500,#FF7A00', author:'Siti Rahma',   time:'1 jam',  text:'"Tips pakai articles (a/an/the) yang benar di Writing Task 2?"', replies:12, likes:22, pinned:true  },
+    { initials:'DS', color:'#4F7BFF,#7BAEFF', author:'Dani Syahri',  time:'10 mnt', text:'"Beda Present Perfect vs Past Simple untuk TOEFL Structure?"',    replies:8,  likes:14, pinned:false },
+    { initials:'SR', color:'#F5C500,#FF7A00', author:'Siti Rahma',   time:'1 jam',  text:'"Tips pakai articles (a/an/the) yang benar di TOEFL?"', replies:12, likes:22, pinned:true  },
   ],
   tips: [
     { initials:'LN', color:'#3DD68C,#7DFFC9', author:'Laila Nur',   time:'20 mnt', text:'"Baca 1 artikel BBC setiap hari — sudah 2 bulan dan reading speed meningkat!"', replies:18, likes:31, pinned:true  },
-    { initials:'BK', color:'#4F7BFF,#7BAEFF', author:'Bima Kusuma', time:'2 jam',  text:'"Speaking Part 2: gunakan framework STAR (Situation, Task, Action, Result)."',  replies:7,  likes:15, pinned:false },
+    { initials:'BK', color:'#4F7BFF,#7BAEFF', author:'Bima Kusuma', time:'2 jam',  text:'"Listening Part A: fokus pada speaker kedua."',  replies:7,  likes:15, pinned:false },
   ],
   mock: [
-    { initials:'RF', color:'#FF8A4F,#FFB27A', author:'Reza Fauzi',  time:'5 jam',  text:'"Mock Test 1 selesai! L6.5 R6.0 W5.5 S5.5. Ada yang mau group review besok?"', replies:10, likes:8, pinned:false },
+    { initials:'RF', color:'#FF8A4F,#FFB27A', author:'Reza Fauzi',  time:'5 jam',  text:'"Diagnostic Test selesai! Skor 490. Ada yang mau group review besok?"', replies:10, likes:8, pinned:false },
   ],
   general: [
-    { initials:'AR', color:'#F5C500,#FF7A00', author:'Aryo Rahmat', time:'1 jam',  text:'"Group study malam ini jam 20.00 WIB — siapa yang ikut? Link Zoom di Calendar!"', replies:14, likes:20, pinned:true },
+    { initials:'R', color:'#F5C500,#FF7A00', author:'Rina', time:'1 jam',  text:'"Group study malam ini jam 20.00 WIB — siapa yang ikut? Link Zoom di Calendar!"', replies:14, likes:20, pinned:true },
   ],
 };
 
