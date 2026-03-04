@@ -696,6 +696,12 @@
                              <!-- Will be populated by JS -->
                         </div>
 
+                        <div class="text-center m-b-30">
+                            <div class="d-inline-block bg-purple-1 fc-purple-7 px-4 py-2 border-radius-10 fw-700 shadow-sm border">
+                                <i class="material-icons v-middle m-r-5 f-18">info</i> Kamu bisa sesuaikan jadwalmu sendiri
+                            </div>
+                        </div>
+
                         <!-- Budget Anchor Section -->
                         <div class="ai-budget-anchor p-4 m-b-40">
                             <div class="row align-center">
@@ -779,30 +785,54 @@
 
                 <div class="row">
                     <div class="col-md-6 offset-md-3">
-                        <div class="ai-dashboard-card p-4 m-b-40 shadow">
-                            <h5 class="fw-800 m-b-20 text-center border-bottom pb-3">Official Invoice</h5>
+                        <div class="ai-dashboard-card p-4 m-b-40 shadow bg-white border-radius-16">
+                            <h5 class="fw-800 m-b-20 text-center border-bottom pb-3">🧾 OFFICIAL INVOICE</h5>
                             
-                            <div class="d-flex-center-btw m-b-15">
+                            <div class="d-flex-center-btw m-b-5">
                                 <span class="f-12 fc-black-4">Order ID:</span>
                                 <span class="f-12 fw-700">#EVIT-AI-9921</span>
                             </div>
-                            <div class="d-flex-center-btw border-bottom pb-3 m-b-15">
-                                <span class="f-12 fc-black-4">Date:</span>
-                                <span class="f-12 fw-700" id="invoiceDate">Today</span>
+                            <div class="d-flex-center-btw m-b-5">
+                                <span class="f-12 fc-black-4">Invoice Date:</span>
+                                <span class="f-12 fw-700">4 March 2026</span>
+                            </div>
+                            <div class="d-flex-center-btw m-b-15 border-bottom pb-3">
+                                <span class="f-12 fc-black-4">Program Period:</span>
+                                <span class="f-12 fw-700">1 April 2026 – 30 June 2026</span>
                             </div>
 
+                            <div class="m-b-15 f-11 fw-700 fc-black-4 text-uppercase">Program Details</div>
+                            
                             <div id="aiInvoiceItems" class="m-b-20">
                                 <!-- Populated by JS -->
                             </div>
 
-                            <div class="d-flex-center-btw border-top pt-3 m-b-10">
-                                <span class="fw-700 f-14">Total Paid:</span>
-                                <span class="fw-800 f-16 fc-purple-7" id="aiInvoiceTotal">Rp 0</span>
+                            <div class="payment-summary bg-light p-3 border-radius-12">
+                                <div class="d-flex-center-btw m-b-5">
+                                    <span class="f-12">Subtotal:</span>
+                                    <span class="f-12 fw-700" id="aiInvoiceSubtotal">Rp 1.544.900</span>
+                                </div>
+                                <div class="d-flex-center-btw m-b-5">
+                                    <span class="f-12">Discount:</span>
+                                    <span class="f-12 fw-700">Rp 0</span>
+                                </div>
+                                <div class="d-flex-center-btw m-b-5">
+                                    <span class="f-12">Tax:</span>
+                                    <span class="f-12 fw-700">Included</span>
+                                </div>
+                                <div class="d-flex-center-btw border-top pt-2 m-t-5">
+                                    <span class="fw-800 f-14">Total Paid:</span>
+                                    <span class="fw-800 f-16 fc-purple-7" id="aiInvoiceTotal">Rp 1.544.900</span>
+                                </div>
                             </div>
                             
-                            <div class="m-t-30 bg-light p-3 br-10 text-center">
-                                <span class="f-11 fw-700 fc-black-5 d-block m-b-5">YOUR LEARNING COMMITMENT:</span>
-                                <span class="f-13 fw-800 fc-info-7" id="aiInvoiceCommitment">3 Months - High Intensity</span>
+                            <div class="m-t-20 text-center">
+                                <span class="badge bg-success-1 fc-success-7 px-3 py-2 fw-700">Payment Status: PAID (Full Payment)</span>
+                            </div>
+
+                            <div class="m-t-25 pt-3 border-top text-center">
+                                <span class="f-11 fw-700 fc-black-5 d-block m-b-5">STUDENT COMMITMENT:</span>
+                                <span class="f-13 fw-800 fc-info-7" id="aiInvoiceCommitment">3 Months Intensive TOEFL Preparation</span>
                             </div>
                         </div>
 
